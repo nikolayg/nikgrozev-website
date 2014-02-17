@@ -8,7 +8,7 @@ h1{font: 400 58px/60px 'Bree Serif', Georgia, serif; color:#6a6969;}
 h2{font: 400 18px/22px 'Bree Serif', Georgia, serif; color:#6a6969;}
 h3{font: 400 14px/16px 'Bree Serif', Georgia, serif; color:#6a6969;}
 ul{margin:0px; padding:0px;}
-a {text-decoration:none; color:#6a6969;}
+a {text-decoration:underline; color:#6a6969;}
 a:hover {color:#979797;}
 a img{border:0px;}
 
@@ -43,7 +43,7 @@ a img{border:0px;}
 	float:left;
 	list-style:none;
 	margin-left:27px;
-	font: 400 16px/20px 'Bree Serif', Georgia, serif;
+	font: 400 20px/20px 'Bree Serif', Georgia, serif;
 }
 
 /****************************************************/
@@ -76,7 +76,7 @@ a img{border:0px;}
 	background:url(images/sm-linkedin-icon.png) no-repeat;
 }
 #about .content{overflow:auto;}
-#about .content img{float:left; margin-right:40px; border:5px solid #222222;}
+#about .content img{float:left; margin-right:40px; border:5px solid #222222;margin: 2em 2em 5em 0em;}
 #about .content #service-icons{margin-top:20px;}
 #about .content #service-icons li{
 	display:block;
@@ -96,28 +96,30 @@ a img{border:0px;}
 /* EXPERIENCE SECTION */
 /****************************************************/
 
-#experience{margin:0px 43px; padding-top:115px;}
-#experience .col{
-	width:235px;
-	float:left;
+#resume{margin:0px 43px; padding-top:115px;}
+#resume .content{overflow:auto;}
+
+#resume p {
+	margin: 0em 0em 0em 2em;
 }
-#experience .content{overflow:auto;}
-#experience .col-mid{margin:0px 65px;}
+#resume h3 {
+	margin: 1em 0em 0em 1em;
+}
 
 /****************************************************/
 /* WORK SECTION */
 /****************************************************/
 
-#work{margin:0px 43px; padding-top:115px;}
-#work .content{overflow:auto;}
-#work #work-thumbs li{
-	list-style:none;
-	float:left;
-	margin:0px 20px 15px 0px;
-	padding:0px;
+#publications{margin:0px 43px; padding-top:115px;}
+#publications table {
+	width:90%;
 }
-#work #work-thumbs li.last{margin:0px;}
+#publications td {
+	width:10%;
+	padding-bottom: 1.5em;
+}
 
+ 
 /****************************************************/
 /* CONNECT SECTION */
 /****************************************************/
