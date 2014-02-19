@@ -5,26 +5,31 @@ body{
     background:#333333 url(images/page-bg.jpg);
     margin:0px;
     font: 400 12px/22px 'Open Sans', Verdana, Helvetica, sans-serif;
-    color:#6a6969;
+    color:#525252;
 }
-h1{font: 400 56px/58px 'Bree Serif', Georgia, serif; color:#6a6969; float:left; margin-bottom:0.3em;}
-h2{font: 400 18px/22px 'Bree Serif', Georgia, serif; color:#6a6969;}
-h3{font: 400 14px/16px 'Bree Serif', Georgia, serif; color:#6a6969;}
+h1{font: 400 52px/54px 'Bree Serif', Georgia, serif; color:#525252; float:left; margin-bottom:0.2em;}
+h2{font: 400 20px/24px 'Bree Serif', Georgia, serif; color:#525252;}
+h3{font: 400 14px/16px 'Bree Serif', Georgia, serif; color:#525252;}
 ul{margin:0px; padding:0px;}
 a {text-decoration:underline; color:#6a6969;}
 a:hover {color:#979797;}
 a img{border:0px;}
 
+.myname {
+    color:#D9512B;
+    font-style:oblique;
+}
+
 #container{
     width:950px;
     margin:0px auto 300px auto;
-    background:url(images/body-bg.png);
+    background-color:#D9D7D7;
     overflow:auto;
     padding-bottom:100px;
 }
 
-#top-social{float:right; padding-top:6em;}
-#top-social li{float:left; list-style:none; margin-left:1.5em;}
+#top-social{float:right; padding-top:5em;}
+#top-social li{float:left; list-style:none; margin-left:1em;}
 .facebook{
     text-indent:-9999px; 
     display:block; 
@@ -73,9 +78,9 @@ a img{border:0px;}
 /****************************************************/
 
 #header{
-    width:875px;
+    width:879px;
     height:110px;
-    background-color:#222222;
+    background-color:#3B3B3B;
     padding:0px 3em;
     position: fixed;
     top:0px;
@@ -101,7 +106,7 @@ a img{border:0px;}
 #about{margin:0px 2em; padding-top:6em;}
 
 #about .content{overflow:auto;}
-#about .content img{float:left; border:5px solid #222222;margin: 2em 2em 1em 0em;}
+#about .content img{float:left; border:2px solid #ADADAD;margin: 2.5em 2em 1em 1.5em;}
 
 /****************************************************/
 /* RESUME SECTION */
@@ -132,6 +137,9 @@ a img{border:0px;}
 #publications td {
     width:20%;
     padding-bottom: 1.5em;
+}
+#publications ul {
+    margin-left: 1.5em;
 }
 
  

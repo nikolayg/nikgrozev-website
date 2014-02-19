@@ -12,8 +12,8 @@
 <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script></head><body>
 <div id="header">
-    <div id="logo"><a href="#"><img src="images/logo-name.png"></a></div>
-    <ul id="main-menu">
+    <div id="logo" class="transition"><a href="#about"><img src="images/logo-name.png"></a></div>
+    <ul id="main-menu" class="transition">
         <li><a href="#about">About</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#resume">Résumé</a></li>
@@ -35,13 +35,13 @@
         </ul>
         <div class="top-divider"></div>
         <div class="content">
-            <img src="images/profile-pic/cropped.jpg" width="25%" height="25%">
+            <img src="images/profile-pic/cropped.jpg" width="23%">
             <h2>Hi there,</h2>
-            <p>My name is Nikolay Grozev. I'm a PhD candidate at the <a href="http://www.gridbus.org/">Cloud Computing and Distributed Systems</a> (CLOUDS) Laboratory, <a href="http://www.unimelb.edu.au/" title="http://www.unimelb.edu.au/">University of Melbourne</a>, Australia. My supervisor is <a href="http://www.buyya.com">Professor Rajkumar Buyya</a>. Currently I'm working on Cloud technologies, but my broader interests include Software Engineering, Software Architectures, Quality Assurance and Machine Learning.  
+            <p>My name is <span class="myname">Nikolay (Nik) Grozev</span>. I'm a PhD candidate at the <a href="http://www.gridbus.org/">Cloud Computing and Distributed Systems</a> (CLOUDS) Laboratory, <a href="http://www.unimelb.edu.au/" title="http://www.unimelb.edu.au/">University of Melbourne</a>, Australia. My supervisor is <a href="http://www.buyya.com">Professor Rajkumar Buyya</a>. Currently I'm working on Cloud technologies, but my broader interests include Software Engineering, Software Architectures, Quality Assurance and Machine Learning.  
             
             <p> In my PhD I investigate how to architect large scale 3-tier software applications so that they can utilise multiple Cloud data centres. That would allow them to be legislation compliant, more resilient to data centre outages and to increase users’ Quality of Experience (QoE). I am developing novel formal models, adaptive software architectures and I am using online machine learning techniques to “learn” the application’s behaviour in real time and allocate computing resources adequately.</p>
             
-            <p> This is an exciting and important topic and you can learn more by exploring <a href="#publications">my latest publications</a>.</p>
+            <p> This is an exciting and important topic and you can learn more by exploring <span class="transition"><a href="#publications">my latest publications</a></span>.</p>
 
         </div>
     <div class="bottom-divider"></div> 
@@ -67,7 +67,6 @@
                 <li><a href="http://www.informatik.uni-trier.de/~ley/pers/hd/g/Grozev:Nikolay">DBLP profile</a></li>
                 <li><a href="https://www.researchgate.net/profile/Nikolay_Grozev/">Research Gate</a></li>
             </ul>
-            <br/>
             
             <h2>Papers </h2>
             <ul>
@@ -280,7 +279,7 @@
  <!-- The JavaScript -->  
         <script type="text/javascript">
             $(function() {
-                $('#main-menu li a').bind('click',function(event){
+                $('.transition a').bind('click',function(event){
                     var $anchor = $(this);
                     
                     $('html, body').stop().animate({
