@@ -24,6 +24,12 @@ a img{border:0px;}
     /*font-style:oblique;*/
 }
 
+.myblog {
+    color:#8C4E3C;
+    /*font-style:oblique;*/
+    font-weight:600;
+}
+
 #container{
     width:950px;
     margin:0px auto 300px auto;
