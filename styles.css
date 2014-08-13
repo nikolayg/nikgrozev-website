@@ -30,16 +30,34 @@ a img{border:0em;}
     font-weight:600;
 }
 
+@media screen and (min-width: 1024px){
+    #container{
+        width:80em;
+    }
+}
+
+@media (max-width: 1024px){
+    #container{
+        width:100%;
+    }
+}
+
 #container{
-    width:80em;
     margin:0em auto 0em auto;
     background-color:#D9D7D7;
     overflow:auto;
     padding-bottom:20em;
 }
 
+
 #top-social{float:right; padding-top:4em;}
 #top-social li{float:left; list-style:none; margin-left:1em;}
+
+@media (max-width: 1024px){
+    #top-social{
+        visibility:hidden;
+    }
+}
 
 .facebook, .twitter, .linkedin, .google, .wordpress, .github {
     text-indent:-9999px; 
@@ -97,17 +115,50 @@ a img{border:0em;}
     padding-left:1em;
     float:left;
 }
-#header #main-menu{float:right; padding-top:1em;}
-#header #main-menu li{
+#header #menu{float:right; padding-top:1em;}
+#header #menu li{
     float:left;
     list-style:none;
     margin-left:0.3em;
     margin-right:0.2em;
     font: 3em 'Bree Serif', Georgia, serif;
 }
-#header #main-menu a {
+#header #menu a {
     color:#737373;
 }
+@media screen and (min-width: 1024px){
+    #header #nav-div {
+        float: right;
+    }
+    
+    #header #nav-div #menu li{
+        width: auto;
+        float: left;
+    }
+
+}
+
+.nav-toggle:before {
+  color: gray; /* Edit this to change the icon color */
+  font-family: "responsivenav", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 6em;
+  text-transform: none;
+  position: absolute;
+  content: "≡";
+  text-indent: 0;
+  text-align: center;
+  /*line-height: 55px;*/
+  padding-top:0.2em;
+  speak: none;
+  width: 50%;
+  height: 75%;
+  top: 15%;
+  left: 10%;
+}
+
 /****************************************************/
 /* ABOUT SECTION */
 /****************************************************/
