@@ -296,14 +296,19 @@
 
     <!-- The JavaScript -->  
     <script type="text/javascript">
-        //ResponsiveNav
+        // ResponsiveNav
         var nav = responsiveNav(".nav-collapse", { // Selector
           label: "", // String: Label for the navigation toggle
-          insert: "before", // String: Insert the toggle before or after the navigation
+          insert: "after", // String: Insert the toggle before or after the navigation
           closeOnNavClick: true, // Boolean: Close the navigation when one of the links are clicked
           openPos: "relative", // String: Position of the opened nav, relative or static
         });
-
+        
+        $('#container').click(function() {
+            nav.close();
+        });
+        
+        // Transition event
          $(function() {
             $('.transition a').bind('click',function(event){
                 var $anchor = $(this);

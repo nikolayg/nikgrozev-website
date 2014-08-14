@@ -30,6 +30,7 @@ a img{border:0em;}
     font-weight:600;
 }
 
+/* Change the container based on the screen size */
 @media screen and (min-width: 1024px){
     #container{
         width:80em;
@@ -56,6 +57,8 @@ a img{border:0em;}
 @media (max-width: 1024px){
     #top-social{
         visibility:hidden;
+        width:0px;
+        height:0px;
     }
 }
 
@@ -111,7 +114,7 @@ a img{border:0em;}
     margin: 0em auto 0em auto;
 }
 #header #logo{
-    padding-top:2em;
+    padding-top:1.5em;
     padding-left:1em;
     float:left;
 }
@@ -126,37 +129,65 @@ a img{border:0em;}
 #header #menu a {
     color:#737373;
 }
+
+/* When Screen is big - show the nav list and align it */
 @media screen and (min-width: 1024px){
     #header #nav-div {
         float: right;
     }
-    
     #header #nav-div #menu li{
         width: auto;
         float: left;
     }
-
 }
 
+/* When Screen is small - show the nav in the center */
+@media (max-width: 1024px){
+    .js .nav-collapse {
+        max-width:100%;
+        min-width:100%;
+        text-align: left;
+        float:left;
+        min-height:60%;
+    }
+    
+    .js .nav-collapse ul li{
+        padding-bottom: 5px ;
+    }
+    
+    .js .nav-collapse ul li a {
+        display: block;
+        width:100%;
+        height:100%;
+        min-height:10px;
+        font-size: 2em;
+    }
+    .js .nav-collapse ul li a:hover {
+        background-color: #313131;
+    }
+}
+
+/* Style of the navigation menu */
 .nav-toggle:before {
-  color: gray; /* Edit this to change the icon color */
-  font-family: "responsivenav", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  font-size: 6em;
-  text-transform: none;
-  position: absolute;
-  content: "≡";
-  text-indent: 0;
-  text-align: center;
-  /*line-height: 55px;*/
-  padding-top:0.2em;
-  speak: none;
-  width: 50%;
-  height: 75%;
-  top: 15%;
-  left: 10%;
+    color: gray; /* Edit this to change the icon color */
+    font-family: "responsivenav", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    font-size: 6em;
+    text-transform: none;
+    position: fixed;
+    content: "≡";
+    text-indent: 0;
+    text-align: right;
+    /*line-height: 55px;*/
+    speak: none;
+    margin: 0em auto 0em auto;
+    top: 0em;
+    right: 0em;
+    padding-right:1%;
+    padding-top:3%;
+    float: right;
 }
 
 /****************************************************/
