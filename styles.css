@@ -7,17 +7,30 @@ html{
 body{
     background:#333333 url(images/page-bg.jpg);
     margin:0%;
-    font: 400 12px/22px 'Open Sans', Verdana, Helvetica, sans-serif;
+    font: 'Open Sans', Verdana, Helvetica, sans-serif;
     color:#525252;
     height:100%;
 }
-h1{font: 400 50px/56px 'Bree Serif', Georgia, serif; color:#525252; float:left; margin-bottom:0.3em;}
-h2{font: 400 18px/22px 'Bree Serif', Georgia, serif; color:#525252;}
-h3{font: 400 14px/16px 'Bree Serif', Georgia, serif; color:#525252;}
+h1{float:left; margin-bottom:0.3em;}
 ul{padding:0%;}
 a {text-decoration:underline; color:#6a6969;}
 a:hover {color:#979797;}
 a img{border:0em;}
+
+.nav a {
+    text-decoration:none;
+    color:#979797;
+    font: 'Bree Serif', Georgia, serif; 
+}
+.nav a:hover {
+    text-decoration:none;
+}
+.navbar-header a {
+    text-decoration:none;
+    font: 'Bree Serif', Georgia, serif;
+    font-weight:850;
+    font-size:1.5em;
+}
 
 .myname {
     color:#8C4E3C;
@@ -30,36 +43,35 @@ a img{border:0em;}
     font-weight:600;
 }
 
+.stress {
+    font-weight:650;
+    font-size:1.65em;
+    margin-bottom:0.5em;
+    margin-top:1em;
+}
+
 /* Change the container based on the screen size */
 @media screen and (min-width: 1024px){
-    #container{
-        width:80em;
+    #body-container{
+        width:75em;
+    }
+    .navbar{
+        width:76em;
+        margin: 0em auto 0em auto;
     }
 }
 
 @media (max-width: 1024px){
-    #container{
+    #body-container{
         width:100%;
     }
 }
 
-#container{
+#body-container{
     margin:0em auto 0em auto;
     background-color:#D9D7D7;
     overflow:auto;
-    padding-bottom:20em;
-}
-
-
-#top-social{float:right; padding-top:4em;}
-#top-social li{float:left; list-style:none; margin-left:1em;}
-
-@media (max-width: 1024px){
-    #top-social{
-        visibility:hidden;
-        width:0px;
-        height:0px;
-    }
+    padding-bottom:5em;
 }
 
 .facebook, .twitter, .linkedin, .google, .wordpress, .github {
@@ -93,122 +105,60 @@ a img{border:0em;}
     background:url(images/sm-github-icon.png) no-repeat;
 }
 
-.section-head {
+
+section {
     margin:0em 2em; 
-    padding-top:5em;
+    padding-top:3em;
     height:100%;
 }
-
-/****************************************************/
-/* HEADER */
-/****************************************************/
-
-#header{
-    width:80em;
-    height:7em;
-    background-color:#3B3B3B;
-    position: fixed;
-    top:0em;
-    left: 0;
-    right: 0;
-    margin: 0em auto 0em auto;
-}
-#header #logo{
-    padding-top:1.5em;
-    padding-left:1em;
-    float:left;
-}
-#header #menu{float:right; padding-top:1em;}
-#header #menu li{
-    float:left;
-    list-style:none;
-    margin-left:0.3em;
-    margin-right:0.2em;
-    font: 3em 'Bree Serif', Georgia, serif;
-}
-#header #menu a {
-    color:#737373;
-}
-
-/* When Screen is big - show the nav list and align it */
 @media screen and (min-width: 1024px){
-    #header #nav-div {
-        float: right;
-    }
-    #header #nav-div #menu li{
-        width: auto;
-        float: left;
+    section {
+        margin:0em 2em; 
     }
 }
-
-/* When Screen is small - show the nav in the center */
 @media (max-width: 1024px){
-    .js .nav-collapse {
-        max-width:100%;
-        min-width:100%;
-        text-align: left;
-        float:left;
-        min-height:60%;
+    section {
+        margin:0em 1%; 
     }
-    
-    .js .nav-collapse ul li{
-        padding-bottom: 5px ;
-    }
-    
-    .js .nav-collapse ul li a {
-        display: block;
-        width:100%;
-        height:100%;
-        min-height:10px;
-        font-size: 2em;
-    }
-    .js .nav-collapse ul li a:hover {
-        background-color: #313131;
-    }
-}
-
-/* Style of the navigation menu */
-.nav-toggle:before {
-    color: gray; /* Edit this to change the icon color */
-    font-family: "responsivenav", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    font-size: 6em;
-    text-transform: none;
-    position: fixed;
-    content: "≡";
-    text-indent: 0;
-    text-align: right;
-    /*line-height: 55px;*/
-    speak: none;
-    margin: 0em auto 0em auto;
-    top: 0em;
-    right: 0em;
-    padding-right:1%;
-    padding-top:3%;
-    float: right;
 }
 
 /****************************************************/
 /* ABOUT SECTION */
 /****************************************************/
 #about .content{overflow:auto;}
-#about .content img{float:left; border:2px solid #ADADAD;margin: 2em 2em 1em 0.5em;}
+#about .content img{
+    float:left; 
+    border:2px solid #ADADAD;
+    margin: 5% 2% 2px 1%;
+}
+
+@media screen and (min-width: 1024px){
+    #about .content img{
+        width:20%;
+        margin: 1em 1em 0px 0.5em;
+    }
+}
+@media (max-width: 1024px){
+    #about .content img{
+        width:35%;
+        margin: 1em 1em 2px 0.5em;
+    }
+}
+
 
 /****************************************************/
 /* RESUME SECTION */
 /****************************************************/
 #resume .content{overflow:auto;}
 
+#resume .stress {
+    margin-left:0em;
+    margin-bottom:0.5em;
+    margin-top:1em;
+}
+
 #resume p {
-    margin: 0em 0em 0em 3em;
-}
-#resume h2 {
-    margin: 1.5em 0em 0em 0em;
-}
-#resume h3 {
-    margin: 1em 0em 0em 2em;
+    margin: 0em 0em 0em 1.2em;
 }
 
 /****************************************************/
@@ -225,7 +175,6 @@ a img{border:0em;}
 }
 
 #publications .content ul li ul li{
-    margin-left: 2%;    
     display: inline-block;
     min-width: 9em;
 }
@@ -236,20 +185,10 @@ a img{border:0em;}
 
 #connect .content{overflow:auto;}
 
-#connect p {
-    margin: 1em 1em 1em 3em;
-}
-
-#connect #left-empty-list {
-    margin:0px 3em;
-}
-
 #connect #left-empty-list li{
     display: inline-block;
     list-style:none;
-    margin:0px 0.5em;
 }
-
 
 /****************************************************/
 /* MISC */
@@ -261,14 +200,25 @@ a img{border:0em;}
     clear:both;
 }
 .top-divider{
-    margin-bottom:5%;
-}
-.bottom-divider{
-    margin-top:15%;
-    margin-bottom:30%;
+    margin-bottom:1%;
 }
 
-#last-divider{
-    margin-bottom:30%;
+.bottom-divider{
+    margin-top:5%;
 }
+
+@media screen and (min-width: 1024px){
+    .bottom-divider{
+        margin-bottom:25%;
+    }
+}
+
+@media (max-width: 1024px){
+    .bottom-divider{
+        margin-bottom:1%;
+    }
+}
+
+
+
 
