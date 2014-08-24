@@ -291,12 +291,13 @@
   
   <script>
     // Hide the navigation menu upon click
-    
-    $(document).on('click',function(){
-        if($('.navbar-toggle').css('display') !='none'){
+    $(function() {
+        $('.nav a').on('click', function(){ 
+            if($('.navbar-toggle').css('display') !='none'){
                 $(".navbar-toggle").trigger( "click" );
-        }
-    })
+            }
+        });
+    });
   </script>
   
 </body>
