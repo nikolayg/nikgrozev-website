@@ -111,7 +111,12 @@ section {
     padding-top:3em;
     height:100%;
 }
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1280px) and (min-height: 1024px){
+    section {
+        margin:0em 5em; 
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1280px){
     section {
         margin:0em 2em; 
     }
