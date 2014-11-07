@@ -55,6 +55,11 @@ a img{border:0em;}
     list-style:none;
 }
 
+/* Fix navigation menu outline in Firefox */
+a:hover, a:active, a:focus {
+  outline:0;
+}
+
 /* Change the container based on the screen size */
 @media screen and (min-width: 1024px){
     #body-container{
