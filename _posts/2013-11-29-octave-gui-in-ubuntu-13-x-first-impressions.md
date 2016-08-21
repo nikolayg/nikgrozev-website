@@ -12,36 +12,12 @@ tags:
 - Octave
 - Octave GUI
 - Ubuntu
-meta:
-  _wpas_done_all: '1'
-  _wpcom_is_markdown: '1'
-  _publicize_pending: '1'
-  publicize_google_plus_url: https://plus.google.com/116873873608085229608/posts/Gg8HuNz9VWE
-  _wpas_done_5385652: '1'
-  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
-  publicize_twitter_user: nikolaygrozev
-  publicize_twitter_url: http://t.co/VEaVmWf7jm
-  _wpas_done_5385644: '1'
-  publicize_linkedin_url: http://www.linkedin.com/updates?discuss=&scope=30071619&stype=M&topic=5812028592883781632&type=U&a=r4ZI
-  _wpas_done_5385639: '1'
-  _wpas_skip_5385652: '1'
-  _wpas_skip_5385644: '1'
-  _wpas_skip_5385639: '1'
-  geo_public: '0'
-  _edit_last: '1'
-  _kad_blog_head: default
-  _kad_post_summery: default
-  _kad_post_sidebar: 'yes'
-  _kad_sidebar_choice: sidebar-primary
-  _kad_blog_author: default
-  _kad_blog_carousel_similar: default
-  _thumbnail_id: '30'
 author:
-  login: nikolaygrozev
   email: nikolay.grozev@gmail.com
   display_name: nikolaygrozev
   first_name: 'Nikolay'
   last_name: 'Grozev'
+  name: 'Nikolay Grozev'
 ---
 
 [GNU Octave](http://www.gnu.org/software/octave/) is a powerful open source alternative to Matlab. A major obstacle to its adoption is the lack of simple and convenient graphical environment (like [RStudio](http://www.rstudio.com/) for R). The most famous Octave GUI front-end [QtOctave is no longer developed](https://sites.google.com/site/davidecittaro/apple-stuff/qtoctavenomoresupported) and the new environments like [Domain Math IDE](https://sites.google.com/site/domainmathide/) and [Octclipse](http://sourceforge.net/projects/octclipse/) still haven't gained maturity. Developing Octave code in an external editor is not too hard, as many editors (e.g. [Geany](http://www.geany.org/)) support Matlab/Octave syntax highlighting and even code completion. For me, the real problem is the lack of an integrated debugger, which makes diagnosing and fixing bugs pretty hard.
