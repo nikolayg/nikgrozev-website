@@ -17,9 +17,11 @@ categories:
 - CloudStone
 tags:
 - Bash
+- Benchmark
 - CloudStone
 - CloudSuite
 - Ubuntu
+- Web App
 author:
   login: nikolaygrozev
   email: nikolay.grozev@gmail.com
