@@ -5,6 +5,13 @@ date: 2014-10-16 12:37:26.000000000 +11:00
 type: post
 published: true
 status: publish
+excerpt: 
+    Setting up a simple RESTful Java based development 
+    environment to play with can be surprisingly difficult. In this tutorial, I will show how to set up a 
+    RESTful server (Jetty+Jersey) to start from a standard 
+    Java main method. Furthermore, using Maven we'll package the entire application in a single executable jar file, 
+    which can be started from any machine with a Java environment. Finally, we'll see how to import it into Eclipse, 
+    so we can develop and debug there ...
 categories:
 - Miscellaneous
 tags:
