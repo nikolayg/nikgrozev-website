@@ -279,7 +279,7 @@ if unstacking) and its values are nested in the other index, which is now a Mult
 Therefore the result is always a Series with a hierarchical index. The following example demonstrates this:
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png" alt="Stack and Unstack" >
+  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png" width="100%">
   <figurecaption>Stack and Unstack</figurecaption>
 </figure>
 
