@@ -1,0 +1,229 @@
+---
+layout: post
+title: REST with Embedded Jetty and Jersey in a Single Jar - Step by Step
+date: 2014-10-16 12:37:26.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- Miscellaneous
+tags:
+- eclipse
+- java
+- jersey
+- jetty
+- Maven
+- REST
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  geo_public: '0'
+  _publicize_pending: '1'
+  publicize_google_plus_url: https://plus.google.com/116873873608085229608/posts/KzTjZ1MKmHf
+  _wpas_done_5385652: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
+  publicize_twitter_user: nikolaygrozev
+  publicize_twitter_url: http://t.co/mwqvOtOHUo
+  _wpas_done_5385644: '1'
+  publicize_linkedin_url: ''
+  _wpas_done_5385639: '1'
+  _wpas_skip_facebook: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _wpas_skip_5385652: '1'
+  _wpas_skip_5385644: '1'
+  _wpas_skip_5385639: '1'
+  _oembed_554a3207fe9d8a312d86105b4a3d0423: "{{unknown}}"
+  _oembed_e730c689f587773b20948fdc846ca61c: "{{unknown}}"
+  _oembed_894ecfab9a23b38c3e01119c6340cc0c: "{{unknown}}"
+  _oembed_03b04f06f0d25833092ddc3b7c3a5e6e: "{{unknown}}"
+  _oembed_1d95a680aabc3f514b15b9c557001855: "{{unknown}}"
+  _oembed_b5547f81af0c08cb57eb48c597e3c54d: "{{unknown}}"
+  _oembed_0fbf2c5cde09374b8c647b579f95ca69: "{{unknown}}"
+  _oembed_5d6daf3b3f2ebaeb82169c0e47a2ed74: "{{unknown}}"
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction</h1>
+<p>Setting up a simple <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> development environment to play with can be surprisingly difficult. Furthermore, if you're using Java you may have to use different IDE plugins (e.g. for Eclipse or NetBeans), and to rely on the IDE's integration with a web server.</p>
+<p>In this tutorial I will show how to set up a RESTful server (Jetty+Jersey) to start from a standard Java main method. Furthermore, using Maven we'll package the entire application in a single executable jar file, which can be started from any machine with a Java environment. Finally, we'll see how to import it into Eclipse, so we can develop and debug there.</p>
+<h1>Prerequisites</h1>
+<p>Before following this tutorial you should have JDK 7 and Maven 3.2 or later installed on your system. Installation instructions can be found here:</p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/7/docs/webnotes/install/">http://docs.oracle.com/javase/7/docs/webnotes/install/</a></li>
+<li><a href="http://maven.apache.org/download.cgi#Installation">http://maven.apache.org/download.cgi#Installation</a></li>
+</ul>
+<p>If you plan to work with Eclipse, you will need <a href="https://www.eclipse.org/downloads/">Eclipse IDE Java EE Developers</a>.</p>
+<h1>Maven Project</h1>
+<p>First, we need to create a simple maven project called <span style="text-decoration:underline;">restprj</span>. We do so by using the simplest <span style="text-decoration:underline;">quickstart</span> maven archetype. It creates a simple <span style="text-decoration:underline;">App</span> java class and an <span style="text-decoration:underline;">AppTest</span> unit test for us. We'll delete the test, as we won't need it for now:</p>
+<pre><code class="bash">mvn archetype:create -DgroupId=com.rest.test 
+         -DartifactId=restprj 
+         -DarchetypeArtifactId=maven-archetype-quickstart
+cd restprj
+rm src/test/java/com/rest/test/AppTest.java
+</code></pre>
+<p>Now we need to edit the pom.xml file to include the following dependencies:</p>
+<pre><code class="xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;
+        &lt;artifactId&gt;jetty-server&lt;/artifactId&gt;
+        &lt;version&gt;9.2.3.v20140905&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;
+        &lt;artifactId&gt;jetty-servlet&lt;/artifactId&gt;
+        &lt;version&gt;9.2.3.v20140905&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.glassfish.jersey.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jersey-server&lt;/artifactId&gt;
+        &lt;version&gt;2.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.glassfish.jersey.containers&lt;/groupId&gt;
+        &lt;artifactId&gt;jersey-container-servlet-core&lt;/artifactId&gt;
+        &lt;version&gt;2.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.glassfish.jersey.containers&lt;/groupId&gt;
+        &lt;artifactId&gt;jersey-container-jetty-http&lt;/artifactId&gt;
+        &lt;version&gt;2.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.glassfish.jersey.media&lt;/groupId&gt;
+        &lt;artifactId&gt;jersey-media-moxy&lt;/artifactId&gt;
+        &lt;version&gt;2.7&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<p>Note that there may be newer versions of these dependencies. Visit <a href="http://mvnrepository.com/">http://mvnrepository.com/</a> to check for new versions.</p>
+<h1>Server and REST service</h1>
+<p>Now we need to create a simple test REST service class EntryPoint:</p>
+<pre><code class="java">package com.rest.test;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/entry-point")
+public class EntryPoint {
+
+    @GET
+    @Path("test")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test() {
+        return "Test";
+    }
+}
+</code></pre>
+<p>Afterwards we need to update the main class (i.e. App.java), which will start the server:</p>
+<pre><code class="java">package com.rest.test;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.setContextPath("/");
+
+        Server jettyServer = new Server(8080);
+        jettyServer.setHandler(context);
+
+        ServletHolder jerseyServlet = context.addServlet(
+             org.glassfish.jersey.servlet.ServletContainer.class, "/*");
+        jerseyServlet.setInitOrder(0);
+
+        // Tells the Jersey Servlet which REST service/class to load.
+        jerseyServlet.setInitParameter(
+           "jersey.config.server.provider.classnames",
+           EntryPoint.class.getCanonicalName());
+
+        try {
+            jettyServer.start();
+            jettyServer.join();
+        } finally {
+            jettyServer.destroy();
+        }
+    }
+}
+
+</code></pre>
+<h1>Building a Single Uber Jar</h1>
+<p>This step is in fact optional. It allows you to create an executable single/uber jar file with all dependencies. You can then execute it from any java-endabled machine. To do so, update the pom.xml with the following:</p>
+<pre><code class="xml">&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+      &lt;version&gt;1.6&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;createDependencyReducedPom&gt;true&lt;/createDependencyReducedPom&gt;
+        &lt;filters&gt;
+          &lt;filter&gt;
+            &lt;artifact&gt;*:*&lt;/artifact&gt;
+            &lt;excludes&gt;
+              &lt;exclude&gt;META-INF/*.SF&lt;/exclude&gt;
+              &lt;exclude&gt;META-INF/*.DSA&lt;/exclude&gt;
+              &lt;exclude&gt;META-INF/*.RSA&lt;/exclude&gt;
+            &lt;/excludes&gt;
+          &lt;/filter&gt;
+        &lt;/filters&gt;
+      &lt;/configuration&gt;
+
+      &lt;executions&gt;
+        &lt;execution&gt;
+          &lt;phase&gt;package&lt;/phase&gt;
+          &lt;goals&gt;
+            &lt;goal&gt;shade&lt;/goal&gt;
+          &lt;/goals&gt;
+          &lt;configuration&gt;
+            &lt;transformers&gt;
+              &lt;transformer
+                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" /&gt;
+              &lt;transformer
+                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+                &lt;manifestEntries&gt;
+                  &lt;Main-Class&gt;com.rest.test.App&lt;/Main-Class&gt;
+                &lt;/manifestEntries&gt;
+              &lt;/transformer&gt;
+            &lt;/transformers&gt;
+          &lt;/configuration&gt;
+        &lt;/execution&gt;
+      &lt;/executions&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>Now you can build and the run the jar file:</p>
+<pre><code class="bash">cd restprj
+mvn clean install
+cd target
+java -jar restprj-1.0-SNAPSHOT.jar
+</code></pre>
+<p>At this point you can open <a href="http://localhost:8080/entry-point/test">http://localhost:8080/entry-point/test</a> in your browser to test the web service.</p>
+<h1>Eclipse</h1>
+<p>This section is also optional. It describes how to import the Maven project in Eclipse, so you can run and debug your app from there.</p>
+<p>First you need to set up the Eclipse maven environment:</p>
+<p>[gallery ids="390,391,392"]</p>
+<p>Then you need to import the project:</p>
+<p>[gallery ids="393,394,395"]</p>
+<h1>References</h1>
+<p>This post is based on the following StackOverflow discussions:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/22738497/how-do-i-update-example-to-work-with-latest-versions-jetty-9-1-0-rc2-and-jerse">how-do-i-update-example-to-work-with-latest-versions</a></li>
+<li><a href="http://stackoverflow.com/questions/17953886/how-to-embed-jetty-and-jersey-into-my-java-application">how-to-embed-jetty-and-jersey-into-my-java-application</a></li>
+</ul>

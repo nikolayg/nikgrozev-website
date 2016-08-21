@@ -1,0 +1,129 @@
+---
+layout: post
+title: C# pitfalls for Java Devs - Static Members in Template Classes [Part 2]
+date: 2014-10-13 01:47:03.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- C#
+tags:
+- charp
+- generics
+- java
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  _publicize_pending: '1'
+  publicize_google_plus_url: https://plus.google.com/116873873608085229608/posts/1uu2kLzqvkB
+  geo_public: '0'
+  _wpas_done_5385652: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
+  publicize_twitter_user: nikolaygrozev
+  publicize_twitter_url: http://t.co/PyqxCDwtik
+  _wpas_done_5385644: '1'
+  publicize_linkedin_url: ''
+  _wpas_done_5385639: '1'
+  _wpas_skip_5385652: '1'
+  _wpas_skip_5385644: '1'
+  _wpas_skip_5385639: '1'
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction</h1>
+<p>Previously I discussed one of the major differences between C# and Java - <a href="www.nikgrozev.net/2014/10/12/c-pitfalls-for-java-devs-overriding-part-1/">method overriding</a>. Because of it Java and C# code, which look almost identical, can have very different semantics. Similarly, C# and Java generics differ significantly in terms of the underlying semantics, which can be quite confusing for a Java programmer.</p>
+<h1>Example</h1>
+<p>Let us consider the following seemingly analogous code snippets implemented in both languages.</p>
+<p>C# code:</p>
+<pre><code class="csharp">public class Animal { }
+public class Lion:Animal { }
+public class Bear:Animal { }
+public class Cage&lt;T&gt;;
+{
+    private static int instanceCount = 0;
+    public Cage()
+    {
+        instanceCount++;
+    }
+    public void PrintInstanceCount()
+    {
+        System.Console.WriteLine(instanceCount);
+    }
+}
+</code></pre>
+<p>Java code:</p>
+<pre><code class="java">public class Animal { }
+public class Lion extends Animal { }
+public class Bear extends Animal { }
+public class Cage&lt;T&gt;;
+{
+    private static int instanceCount = 0;
+    public Cage()
+    {
+        instanceCount++;
+    }
+    public void PrintInstanceCount()
+    {
+        System.out.println(instanceCount);
+    }
+}
+</code></pre>
+<p>Now let us consider the following invocations:</p>
+<pre><code class="java">Cage &lt;Animal&gt; ca = new Cage&lt;Animal&gt;();
+Cage &lt;Lion&gt; cl = new Cage&lt;Lion&gt;();
+Cage &lt;Bear&gt; cb = new Cage&lt;Bear&gt;();
+ca.PrintInstanceCount();
+cl.PrintInstanceCount();
+cb.PrintInstanceCount();
+</code></pre>
+<p>Many will be surprised to see that the results are different, as per the following table:</p>
+<table style="width:20em">
+<thead>
+<tr>
+<th>Command / Language
+            </th>
+<th>C#
+            </th>
+<th>Java
+        </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca.PrintInstanceCount();</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>cl.PrintInstanceCount();</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>cb.PrintInstanceCount();</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Java implements <a href="http://docs.oracle.com/javase/tutorial/java/generics/erasure.html">type erasure</a>, which means that type parameters are erased at compile time and at a runtime there is a single class for each template. Thus, in the previous example at runtime there is a single static member variable for all instances of Cage, independent of the type parameter.</p>
+<p>Conversely, the C# compiler (i.e. the Just In Time compiler - JIT) ensures that all closed types (e.g. Cage
+<lion>and Cage<bear>) have their own static fields. Thus to the programmer they seem as different types/classes.</p>
+<h1>Consequences</h1>
+<p>As a result C# does not let you access the static members of a template class without specifying the template parameters:</p>
+<pre><code class="java">Cage.instanceCount = 5;         // Invalid in C#, Valid in Java
+Cage&lt;Lion&gt;.instanceCount = 5;   // Valid in C#, Invalid in Java
+Cage&lt;Bear&gt;.instanceCount = 5;   // Valid in C#, Invalid in Java
+</code></pre>
+<p>Also C# does not let you have an entry point (i.e. a Main method) in a template class.</bear></lion>

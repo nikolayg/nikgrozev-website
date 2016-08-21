@@ -1,0 +1,338 @@
+---
+layout: post
+title: Pandas in Jupyter - Quickstart and Useful Snippets
+date: 2015-12-27 12:14:57.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- DataScience
+- Python
+tags:
+- Jupyter
+- Pandas
+- Python
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  geo_public: '0'
+  _publicize_job_id: '18145071606'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:5385644;s:59:"https://twitter.com/nikolaygrozev/status/680919801133334528";}}
+  _publicize_done_5425648: '1'
+  _wpas_done_5385644: '1'
+  publicize_twitter_user: nikolaygrozev
+  publicize_google_plus_url: https://plus.google.com/+NikolayGrozev/posts/V3d9QoNbU1v
+  _publicize_done_5425656: '1'
+  _wpas_done_5385652: '1'
+  _wpas_skip_5385652: '1'
+  _wpas_skip_5385644: '1'
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+  _thumbnail_id: '536'
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Table of Contents</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installing_and_importing">Installing and Importing</a></li>
+<li><a href="#toc">Table of Contents</a></li>
+<li><a href="#creating_data_frames">Creating Data Frames</a>
+<ul>
+<li><a href="#loading_csv_files">Loading CSV Files</a></li>
+<li><a href="#hardcoded_dataframes">Hardcoded Dataframes</a></li>
+</ul>
+</li>
+<li><a href="#previewing_data">Previewing Data</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#selecting_querying">Selecting/Querying</a></li>
+<li><a href="#modifying_data_frames">Modifying Data Frames</a></li>
+<li><a href="#dates_and_time">Dates and Time</a></li>
+<li><a href="#plotting">Plotting</a>
+<ul>
+<li><a href="#set_up">Set Up</a></li>
+<li><a href="#basic_plotting">Basic Plotting</a></li>
+<li><a href="#further_reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="introduction"></a></p>
+<h1>Introduction</h1>
+<p>This article overviews how to quickly set up and get started with the <a href="http://pandas.pydata.org/">pandas data analysis library</a>. It also lists common code snippets for parsing, loading, and transforming data. For more detailed documentation on pandas' more advanced features (e.g. plot styling and combining data frames) you'll need to refer to other sources.</p>
+<p><a name="installing_and_importing"></a></p>
+<h1>Installing and Importing</h1>
+<p>First we need to install python and the <a href="https://pip.pypa.io/en/stable/">pip</a> package manger. If you don't already have them, you can use <a href="https://github.com/yyuu/pyenv">pyenv</a> to easily install them (tested on Ubuntu and OS X). On Ubuntu you can follow <a href="http://opencafe.readthedocs.org/en/latest/getting_started/pyenv/">these instructions</a> to get pyenv. On OS X you can just use brew:</p>
+<pre><code class="bash">brew install pyenv
+</code></pre>
+<p>Once you have pyenv, you can install an configure the desired python version as follows:</p>
+<pre><code class="bash"># Install the desired python version - e.g. 3.4.3
+pyenv install 3.4.3
+# Set it up as a global version - pyenv will reconfigure your PATH accordingly
+pyenv global 3.4.3
+</code></pre>
+<p>Now we can use <em>pip</em> to install pandas, the <a href="http://ipython.org/">ipython</a> shell, and <a href="http://jupyter.org/">jupyter</a>.</p>
+<pre><code class="bash">pip install pandas ipython[all] jupyter
+</code></pre>
+<p>The last two libraries will allow us to create web base notebooks in which we can play with python and pandas. If you don't know what jupyter notebooks are you can see <a href="https://www.youtube.com/watch?v=Rc4JQWowG5I">this tutorial</a>.</p>
+<p>Next, we need to start jupyter. I find it useful to store all notebooks on a cloud storage or a folder under version control, so I can share between multiple machines. This can be achieved with an additional parameter as follows:</p>
+<pre><code class="bash">jupyter notebook --notebook-dir=~/Dropbox/notebooks
+</code></pre>
+<p>Next, we need to import pandas in the first cell of the jupyter notebook.:</p>
+<pre><code class="bash">import pandas
+</code></pre>
+<p><a name="toc"></a></p>
+<h1>Table Of Contents</h1>
+<p>When we have a long notebook, it is useful to have an automatically generated table of contents (TOC). The following code (Borrowed from this <a href="http://stackoverflow.com/questions/21188698/what-happend-to-the-toc-extension-for-ipython-notebook/33051798#33051798">post on StackOverflow</a>) installs the TOC jupyter plugin, i.e.:</p>
+<pre><code class="bash">## download 
+mkdir toc
+cd toc
+wget https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/toc.js
+wget https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/toc.css
+
+## install and enable
+cd ..
+jupyter-nbextension install --user toc
+jupyter-nbextension enable toc/toc 
+</code></pre>
+<p>Then we need to restart the kernel and make the first cell "Markdown" type and add the following:</p>
+<pre><code class="html">**Table of Contents**
+&lt;div id="toc"&gt;&lt;/div&gt;
+</code></pre>
+<p>When you save the TOC should appear.</p>
+<p><a name="creating_data_frames"></a></p>
+<h1>Creating Data Frames</h1>
+<p><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">Data frames</a> are the central concept in pandas. In essence, a data frame is table with labeled rows and columns. Data frames can be created from multiple sources - e.g. CSV files, excel files, and JSON.</p>
+<p><a name="loading_csv_files"></a></p>
+<h2>Loading CSV files</h2>
+<p>Loading a CSV file as a data frame is pretty easy:</p>
+<pre><code class="python">data_frame = pandas.read_csv('file.csv', sep=';')
+</code></pre>
+<p>Sometimes the CSV file contains padding spaces in front of the values. To ignore them use the <em>skipinitialspaces</em> parameter:</p>
+<pre><code class="python">pandas.read_csv('file.csv', sep=';', skipinitialspace=True)
+</code></pre>
+<p>If the padding white spaces occur on both sides of the cell values we need to use a regular expression separator. In this case, we need to use the 'python' processing engine, instead of the underlying native one, in order to avoid warnings. This will degrade the performance a bit:</p>
+<pre><code class="python">pandas.read_csv('file.csv', sep='\s*;\s*', skipinitialspace=True, engine='python')
+</code></pre>
+<p>Sometimes we need to sample the data before loading it, as it is too big to fit in memory. This can be achieved following <a href="www.nikgrozev.org/2015/06/16/fast-and-simple-sampling-in-pandas-when-loading-data-from-files/">this approach</a>.</p>
+<p><a name="hardcoded_dataframes"></a></p>
+<h2>Hardcoded Dataframes</h2>
+<p>Hardcoded data frames can be constructed by providing a hash of columns and their values.</p>
+<pre><code class="python">df = pandas.DataFrame({
+   'col1': ['Item0', 'Item0', 'Item1', 'Item1'],
+   'col2': ['Gold', 'Bronze', 'Gold', 'Silver'],
+   'col3': [1, 2, np.nan, 4]
+})
+</code></pre>
+<p>We will reuse this data frame in some of the subsequent examples.</p>
+<p><a name="previewing_data"></a></p>
+<h1>Previewing Data</h1>
+<p>To preview the data and the metadata of a dataframe you can use the following functions:</p>
+<pre><code class="python"># Displays the top 5 rows. Accepts an optional int parameter - num. of rows to show
+df.head()
+
+# Similar to head, but displays the last rows
+df.tail()
+
+# The dimensions of the dataframe as a (rows, cols) tuple
+df.shape
+
+# The number of columns. Equal to df.shape[0]
+len(df) 
+
+# An array of the column names
+df.columns 
+
+# Columns and their types
+df.dtypes
+
+# Converts the frame to a two-dimensional table
+df.values 
+
+# Displays descriptive stats for all columns
+df.describe()
+</code></pre>
+<p><a name="sorting"></a></p>
+<h1>Sorting</h1>
+<p>The <em>sort_index</em> method is used to sort the frame by one of its axis indices. The axis is either 0 or 1 - row/column axis respectively:</p>
+<pre><code class="python"># Sort rows descendingly by the index
+df.sort_index(axis=0, ascending=False)
+</code></pre>
+<p>We can also sort by one or multiple columns:</p>
+<pre><code class="python">df.sort_values(by=['col2', 'col1'], ascending=False)
+</code></pre>
+<p><a name="selecting_querying"></a></p>
+<h1>Selecting/Querying</h1>
+<p>Individual columns can be selected with the [] operator or directly as attributes:</p>
+<pre><code class="python"># Selects only the column named 'col1';
+df.col1 
+
+# Same as previous
+df['col1'] 
+
+# Select two columns
+df[['col1', 'col2']]
+</code></pre>
+<p>You can also select by absolute coordinates/position in the frame. Indices are zero based:</p>
+<pre><code class="python"># Selects second row
+df.iloc[1]
+# Selects rows 1-to-3
+df.iloc[1:3]
+# First row, first column
+df.iloc[0,0]
+# First 4 rows and first 2 columns
+df.iloc[0:4, 0:2]
+</code></pre>
+<p>Most often, we need to select by a condition on the cell values. To do so, we provide a boolean array denoting which rows will be selected. The trick is that <em>pandas</em> predefines many boolean operators for its data frames and series. For example the following expression produces a boolean array:</p>
+<pre><code class="python"># Produces and array, not a single value!
+df.col3 &gt; 0
+</code></pre>
+<p>This allows us to write queries like these:</p>
+<pre><code class="python"># Query by a single column value
+df[df.col3 &gt; 0] 
+
+# Query by a single column, if it is in a list of predefined values
+df[df['col2'].isin(['Gold', 'Silver'])] 
+
+# A conjunction query using two columns
+df[(df['col3'] &gt; 0) &amp; (df['col2'] == 'Silver')] 
+
+# A disjunction query using two columns
+df[(df['col3'] &gt; 0) | (df['col2'] == 'Silver')]
+
+# A query checking the textual content of the cells
+df[df.col2.str.contains('ilver')]
+</code></pre>
+<p><a name="#modifying_data_frames"></a></p>
+<h1>Modifying Data Frames</h1>
+<p>Pandas' operations tend to produce new data frames instead of modifying the provided ones. Many operations have the optional boolean <em>inplace</em> parameter which we can use to force pandas to apply the changes to subject data frame.</p>
+<p>It is also possible to directly assign manipulate the values in cells, columns, and selections as follows:</p>
+<pre><code class="python"># Modifies the cell identified by its row index and column name
+df.at[1, 'col2'] = 'Bronze and Gold' 
+
+# Modifies the cell identified by its absolute row and column indices
+df.iat[1,1] = 'Bronze again' 
+
+# Replaces the column with the array. It could be a numpy array or a simple list.
+#Could also be used to create new columns
+df.loc[:,'col3'] = ['Unknown'] * len(df) 
+
+# Equivalent to the previous
+df.col3 = ['Unknown'] * len(df) 
+
+# Removes all rows with any missing values.
+df.dropna(how='any') 
+
+# Removes all rows with all missing values.
+df.dropna(how='all')
+</code></pre>
+<p>It is often useful to create new columns based on existing ones by using a function. The new columns are often called <em>Derived Characteristics</em>:</p>
+<pre><code class="python">def f(x):
+    return x + ' New Column';
+
+# Uses the unary function f to create a new column based on an existing one
+df.col4 = f(df.col3) 
+
+def g(x, y):
+    return x + '_' + y
+
+# Uses the 2-arg function g to create a new column based on 2 existing columns
+df.col4 = g(df.col3, df.col2)
+</code></pre>
+<p><a name="dates_and_time"></a></p>
+<h1>Dates and Time</h1>
+<p>When loading data from a CSV, we can tell pandas to look for and parse dates. The <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html">parse_dates</a> parameters can be used for that. In the most typical case, you would pass a list of column names as <em>parse_dates</em>:</p>
+<pre><code class="python">dates_df = pandas.read_csv('test.csv', sep=';', parse_dates=['col1', 'col2'])
+</code></pre>
+<p>This will work for most typical date formats. If it does not (i.e. we have a non-standard date format) we need to supply our own date parser:</p>
+<pre><code class="python">def custom_parser(s):
+    # Specify the non-standard format you need
+    return pandas.datetime.strptime(s, '%d%b%Y')
+
+dates_df = pandas.read_csv('test.csv', sep=';', parse_dates=['col1'], date_parser=custom_parser)
+</code></pre>
+<p>Alternatively, if we've already loaded the data frame we can change a column from string to a date:</p>
+<pre><code class="python">dates_df['col2'] = pandas.to_datetime(dates_df['col2'], format='%d.%m.%Y')
+</code></pre>
+<p>For more on date-time formats look at the <a href="https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior">documentation</a>.</p>
+<p>Often we need to work with <a href="https://en.wikipedia.org/wiki/Unix_time">Unix/Posix timestamps</a>. Converting numeric timestamps to pandas timestamps is easy with the <em>unit</em> parameter:</p>
+<pre><code class="python"># Unit specifies if the time is in seconds('s'), millis ('ms'), nanos('ns') etc.
+dates_df['col'] = pandas.to_datetime(dates_df['col'], unit='ms')
+</code></pre>
+<p>If we need to parse Posix timestamps while reading CSVs, we can once again resort to converter functions. In the converter function we can use the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_datetime.html">pandas.to_datetime</a> utility which accepts a <em>unit</em> parameter:</p>
+<pre><code class="python">def timestamp_parser(n):
+    # Specify the unit you need
+    return pandas.to_datetime(float(n), unit='ms')
+
+dates_df = pandas.read_csv('test.csv', sep=';', parse_dates=['col1'], date_parser=timestamp_parser)
+</code></pre>
+<p>We can also convert time/timestamp data to Unix epoch numbers:</p>
+<pre><code class="python"># Creates a new numeric column with the timestamp epoch in nanos
+dates_df.col4 = pandas.to_numeric(dates_df.col3)
+</code></pre>
+<p><a name="plotting"></a></p>
+<h1>Plotting</h1>
+<p><a name="set_up"></a></p>
+<h2>Set Up</h2>
+<p>Pandas uses <a href="http://matplotlib.org/">matplotlib</a> to render graphs, so you need to install it:</p>
+<pre><code class="bash">pip install matplotlib
+</code></pre>
+<p>Before we continue we need to test if matplotlib was set up properly. Open a terminal, start the python interpreter, and type:</p>
+<pre><code class="python">import matplotlib
+</code></pre>
+<p>If the import works without problems you're good to go. However, sometimes in OS X you may get the following error:</p>
+<blockquote><p>
+  <em>"RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are Working with Matplotlib in a virtual enviroment see 'Working with Matplotlib in Virtual environments' in the Matplotlib FAQ"</em>
+</p></blockquote>
+<p>If that error occurs, you need to execute the following from terminal:</p>
+<pre><code class="bash">echo "backend: TkAgg" &gt;&gt; ~/.matplotlib/matplotlibrc
+</code></pre>
+<p>This will set the proper matplotlib backend, as discussed <a href="http://stackoverflow.com/questions/21784641/installation-issue-with-matplotlib-python">here</a>.</p>
+<p>Now we can import the matplot library in one of the jupyter notebook cells:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+</code></pre>
+<p>There is one last configuration to complete before we can display plots in the web notebook. We need to tell jupyter to display the matplotlib plots as images in the notebook itself. To do so, type the following command in one of the notbook cells:</p>
+<pre><code class="python"># Will allow us to embed images in the notebook
+%matplotlib inline
+</code></pre>
+<p><a name="basic_plotting"></a></p>
+<h2>Basic Plotting</h2>
+<p>In the rest of this section we'll use the following data frame:</p>
+<pre><code class="python">plot_df = pandas.DataFrame({
+    'col1': [1, 3, 2, 4],
+    'col2': [3, 6, 5, 1],
+    'col3': [4, 7, 6, 2],
+})
+</code></pre>
+<p>Data frames have a method called <em>plot</em>. By default it plots a line chart with al numerical columns. The x-axis is the row index of the data frame. In other words, you're plotting :</p>
+<pre><code class="python">plot_df.plot()
+</code></pre>
+<p>[caption id="attachment_538" align="alignnone" width="300"]<img src="{{ site.baseurl }}/assets/lines-300x209.png" alt="Line chart." width="300" height="209" class="size-medium wp-image-538" /> Line chart.[/caption]</p>
+<p>We can also specify a column for the x-axis:</p>
+<pre><code class="python">plot_df.plot(x='col1')
+</code></pre>
+<p>The <em>plot</em> has an optional parameter <em>kind</em> which can be use to plot the data in different type of visualisation - e.g. bar harts, pie chart, or histograms.</p>
+<p>Using <em>kind='bar'</em> produces multiple plots - one for each row. In each plot, there's a bar for each cell.</p>
+<pre><code class="python"># Use kind='hbar' for horizontal bars, and stacked=True to stack the groups
+plot_df.plot(kind='bar')
+</code></pre>
+<p>Boxplots are displayed with the <em>kind='box'</em> options. Each box represents a numeric column.</p>
+<pre><code class="python">plot_df.plot(kind='box')
+</code></pre>
+<p>[gallery ids="536,535,534"]</p>
+<p><a name="further_reading"></a></p>
+<h1>Further Reading</h1>
+<ul>
+<li><a href="http://pandas.pydata.org/pandas-docs/version/0.15.2/10min.html">Official pandas quickstart tutorial</a></li>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/visualization.html">Official pandas plotting guide</a></li>
+<li><a href="http://stackoverflow.com/questions/23797491/parse-dates-in-pandas">Parse dates in pandas (StackOverflow)</a></li>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/timeseries.html">Timeseries in Pandas</a></li>
+</ul>

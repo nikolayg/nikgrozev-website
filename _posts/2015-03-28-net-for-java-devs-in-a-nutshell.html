@@ -1,0 +1,61 @@
+---
+layout: post
+title: ".NET for Java Devs in a nutshell"
+date: 2015-03-28 00:15:28.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- C#
+tags:
+- charp
+- dotnet
+- java
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  _publicize_pending: '1'
+  publicize_google_plus_url: https://plus.google.com/+NikolayGrozev/posts/2VoRyUpwrvq
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_5385639: '1'
+  _wpas_done_5385652: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
+  publicize_twitter_user: nikolaygrozev
+  publicize_twitter_url: http://t.co/HUuJnACH3T
+  _wpas_done_5385644: '1'
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+  _thumbnail_id: '409'
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction</h1>
+<p>.Net is a software development platform, which allows code written in different languages to interoperate. C# and the .Net model have some resemblances with some java-based technologies. This article aims to briefly explain some of its core concepts by comparing and contrasting the two “worlds”.</p>
+<h1>Specifications and Implementations</h1>
+<p>There are several main specifications which define what .Net actually is:</p>
+<ol>
+<li>The <strong>Common Intermediate Language</strong> (CIL or just IL) is a language independent representation of compiled code. Similarly to java byte code, which can be compiled from several of languages (Java, Scala, Jython etc.), CIL can be compiled from a multitude of languages.</li>
+<li>The <strong>Common Language Runtime</strong> (CLR) is an execution environment (like the JVM), which executes CIL code. It manages threads, garbage collection, just-in-time (JIT) compilation etc.</li>
+<li>The <strong>Common Type System</strong> (CTS) defines all data types and programming constructs supported by the CLR, and which can be described in CIL. In java terms, you can think of it as a specification of the JVM's types and constructs.</li>
+<li>The <strong>Common Language Specification</strong> (CLS) is a subset of CTS. Not all languages support all features of the CLR runtime (i.e. CTS). For example a language may not have unsigned long. The CLS defines a subset of CTS, which should be supported by all .Net languages. If some code needs to be integrated with other languages, it's externally visible interface (function signatures, member variables etc.) must only use CLS types. There are ways to make the compiler enforce that. There is no similar concept in the java world, and all languages must support all JVM types in order to interoperate.</li>
+<li>The <strong>Framework Class Library</strong> (FCL) and its subset the <strong>Base Class Library</strong> (BCL) define the standard library functionalities, which can be used by all languages. In a java environment, the alternative would be the standard java library.</li>
+<li>The <strong>Common Language Infrastructure</strong> (CLI) is a “master” specification, which includes all previous ones (CIL, CLR, CTS, CLS etc.) and defines their relationships. .Net is the most famous implementation of CLI. <a href="http://www.mono-project.com/">Mono</a> is a major multi-platform open source alternative. In November 2014, Microsoft announced it will open source .Net core (the fundamental part of .Net) to GitHub and will start working to make .Net multi-platform (as of now it works on Windows only).</li>
+</ol>
+<p>[caption id="attachment_409" align="aligncenter" width="669"]<img src="{{ site.baseurl }}/assets/dot_net.jpg" alt="Relationship between specifications" width="669" height="366" class="size-full wp-image-409" /> Relationship between specifications[/caption]</p>
+<h1>Assemblies</h1>
+<p>In .Net assemblies are files (*.dll or *.exe) which contain compiled CIL code and a manifest. The manifest defines the assembly's name, version and dependencies/references to other assemblies. An assembly is basically packaged compiled code, and a similar java concept would be a JAR file. A JAR file also has a manifest, but is not required to contain name, version and dependencies/references. Some component models (e.g. <a href="http://en.wikipedia.org/wiki/OSGi">OSGI</a>) demand that jar files' manifests contain such information.</p>
+<p>A Jar file is in fact a zip archive, and can be easily opened and explored. A .Net assembly on the hand can be explored with a tool called <u>ildasm.exe</u>, which ships with .Net.</p>
+<p>Assemblies can be built with the respective compiler for the used language (e.g. <u>csc</u>_ for C#), similar to the &lt;u">javac and <u>jar</u> utilities. A response file (*.rsp) can contain multiple build instructions and configurations. Assemblies can also be built with an IDE like Visual Studio, SharpDevelop or MonoDevelop.</p>
+<p>The <strong>Global Assembly Cache</strong> (GAC) is a repository, which contains assemblies reusable between multiple applications – mostly system binaries. Users can install assemblies in GAC using system tools, which ship with .Net, although this is not advisable.</p>
+<p>Big projects need tools to manage the dependencies on components (assemblies or JARs) and to automate the build. In the java domain, tools like <a href="http://maven.apache.org/">Maven</a> and <a href="http://gradle.org/">Gradle</a> can be used. In the .Net world, <a href="https://www.nuget.org/">NuGet</a> can be used to manage assembly dependencies. Integration with Mono on non-Windows systems seems to be in progress. <a href="http://en.wikipedia.org/wiki/MSBuild">MsBuild</a> seems to be the preferred automated build system for .Net. It also allows you to build Visual Studio solutions and projects without Visual Studio.</p>
+<p>In .Net assemblies are not only deployment artefacts – they are also logical entities. For example C# defines an access modifier called <u>internal</u>, which denotes that the respective member can only be accessed from the same assembly. Similarly members with modifier <u>protected internal</u> can be accessed either from the assembly or through inheritance. There does not seem to be an alternative to this in Java. In OSGI you can achieve similar access restriction by specifying which JAR/bundle packages are visible to the outside world.</p>

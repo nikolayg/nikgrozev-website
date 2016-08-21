@@ -1,0 +1,145 @@
+---
+layout: post
+title: C# pitfalls for Java Devs - Overriding [Part 1]
+date: 2014-10-12 22:07:10.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- C#
+tags:
+- C++
+- java
+- override
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_facebook: '1'
+  _wpas_skip_path: '1'
+  _publicize_pending: '1'
+  geo_public: '0'
+  publicize_google_plus_url: https://plus.google.com/116873873608085229608/posts/X7FBE1xsWu8
+  _wpas_done_5385652: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
+  publicize_twitter_user: nikolaygrozev
+  publicize_twitter_url: http://t.co/nMmLgEbGCU
+  _wpas_done_5385644: '1'
+  publicize_linkedin_url: ''
+  _wpas_done_5385639: '1'
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction</h1>
+<p>Last week I finally had the time to learn a bit of C#, after a number of years of mostly Java coding. Professional C# developers have described it to me as a "better Java" or "Java with syntactic sugar", and have claimed that Java programmers should not have problems picking it up. It is true that both languages have a lot in common - i.e. the C-like syntax and single inheritance. However, there are some quite fundamental philosophical differences, which can be mind-boggling for a Java programmer.</p>
+<p>One of these is method overriding, which is fundamentally different in Java and C#.</p>
+<h1>Example</h1>
+<p>Let us consider the following seemingly analogous code snippets implemented in both languages.</p>
+<p>C# code:</p>
+<pre><code class="csharp">public class Base
+{
+    public virtual void F()
+    {
+        System.Console.WriteLine("Base::F()");
+    }
+    public void G()
+    {
+        System.Console.WriteLine("Base::G()");
+    }
+}
+public class Der : Base
+{
+    public override void F()
+    {
+        System.Console.WriteLine("Der::F()");
+    }
+    public void G()
+    {
+        System.Console.WriteLine("Der::G()");
+    }
+}
+</code></pre>
+<p>Java code:</p>
+<pre><code class="java">public class Base
+{
+    public void F()
+    {
+        System.out.println("Base::F()");
+    }
+    public void G()
+    {
+        System.out.println("Base::G()");
+    }
+}
+public class Der extends Base
+{
+    public void F()
+    {
+        System.out.println("Der::F()");
+    }
+    public void G()
+    {
+        System.out.println("Der::G()");
+    }
+}
+</code></pre>
+<p>Now let us consider the following invocations:</p>
+<pre><code class="java">Base d = new Der();
+d.F();
+d.G();
+((Der)d).F();
+((Der)d).G();
+</code></pre>
+<p>Many will be surprised to see that the results are different, as per the following table.</p>
+<table style="witdh:60em">
+<thead>
+<tr>
+<th>Command / Language</th>
+<th>C#</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d.F();</td>
+<td>Der::F()</td>
+<td>Der::F()</td>
+</tr>
+<tr>
+<td>d.G();</td>
+<td>Base::G()</td>
+<td>Der::F()</td>
+</tr>
+<tr>
+<td>((Der)d).F();</td>
+<td>Der::F()</td>
+<td>Der::F()</td>
+</tr>
+<tr>
+<td>((Der)d).G();</td>
+<td>Der::G()</td>
+<td>Der::G()</td>
+</tr>
+</tbody>
+</table>
+<p>Java <u>always</u> invokes the method of the <u><strong>actual</strong> <strong>class</strong></u> of the object. In other words, the actual method is not known by the compiler - it is decided on at runtime. C# has this behaviour only if the method is declared as virtual (e.g. F()). The invocation of non-virtual methods (e.g. G()) is decided by the compiler, before the execution.</p>
+<p>In other words, Java keeps it simple, by always deferring the decision until runtime. This is called <u>Dynamic binding</u>, and causes a certain performance penalty, because of the runtime object inspection. In contrast C# does it the C++ way, and supports both dynamic and static binding. By default methods are bound statically at compile time, unless they are marked as virtual.</p>
+<h1>Syntax specifics</h1>
+<p>In Java it is a good practice to annotate overriding methods with the <u>@Override</u> annotation. This signals the compiler to validate that the method indeed overrides properly. Even if the annotation is not specified, the behaviour remains the same.</p>
+<p>In C#, the <u>override</u> keyword has a similar role - it tells the compiler that an overriding takes place. However, if the programmer does not specify the <u>override</u> keyword, the method can not be dynamically invoked from a base class reference! In other words, in the previous example if we had omitted the override keyword, the invocation of <u>d.F()</u> would call <u>Base::F()</u>, even though it is a virtual method and the actual instance type is <u>Der</u>.</p>
+<p>In C# you can explicitly mark methods with the <u>new</u> keyword, to indicate that they are redefining, rather than overriding a base class method. Specifying <u>new</u>, is semantically the same as not specifying override (as in the previous paragraph). The <u>new</u> keyword just makes it clearer for the reader.</p>
+<h1>A huge difference</h1>
+<p>Java's default dynamic binding behaviour can be implemented in C# by specifying all instance methods as <u>virtual</u>, and annotating all their redefinitions with <u>override</u>. The reverse is not possible. Java can't implement static binding. The closest you can achieve is to define a method as <u>final</u>, which forbids subclasses from re-implementing it altogether.</p>
+<p>This is a huge philosophical difference. In Java an object behaves identically, no matter what the type of the reference actually is. Conversely, in C# the behaviour of a single object may change depending on the declared type of the reference.</p>
+<p>In Java, you can extend any class from any library and override any accessible method (unless explicitly forbidden with final). This sometimes proves invaluable, as it allows you to work-around bugs or unwanted behaviour in external code bases. In C# you can only override what the original developer has marked as virtual. This in turns allows you to be more specific about which parts of your code are extensible (i.e. can be overriden).</p>

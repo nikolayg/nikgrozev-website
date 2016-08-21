@@ -1,0 +1,202 @@
+---
+layout: post
+title: Java 8 in a Nutshell
+date: 2014-03-21 22:13:36.000000000 +11:00
+type: post
+published: true
+status: publish
+categories:
+- Miscellaneous
+tags:
+- java
+- jdk
+- lambda
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  _publicize_pending: '1'
+  publicize_google_plus_url: https://plus.google.com/116873873608085229608/posts/N4ohp7KMPGv
+  _wpas_done_5385652: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"116873873608085229608";b:1;}}
+  publicize_twitter_user: nikolaygrozev
+  publicize_twitter_url: http://t.co/YULh9qNfwd
+  _wpas_done_5385644: '1'
+  publicize_linkedin_url: http://www.linkedin.com/updates?discuss=&scope=30071619&stype=M&topic=5852733562503065600&type=U&a=yww-
+  _wpas_done_5385639: '1'
+  _wpas_skip_5385652: '1'
+  _wpas_skip_5385644: '1'
+  _wpas_skip_5385639: '1'
+  geo_public: '0'
+  _oembed_3afab96eee5eb967ac1e7feb8135d849: "{{unknown}}"
+  _oembed_98fa1a8424b9985e244ac6a2389a26f6: "{{unknown}}"
+  _oembed_249129576af856cf37f36794e8bbf665: "{{unknown}}"
+  _oembed_b63b24e9ccb814cde55edb79648d23ae: "{{unknown}}"
+  _oembed_ad47b4bc478290007539c16b9e044a02: "{{unknown}}"
+  _oembed_c47be8ba7ceb7f3508a0ee9cfee7115e: "{{unknown}}"
+  _oembed_8c03aa60a02a33d2c351874d7c8e6445: "{{unknown}}"
+  _oembed_aa7d2db11ed677044519abf8984920b5: "{{unknown}}"
+  _oembed_75b79200206ff2025d481602190453b6: "{{unknown}}"
+  _oembed_f65ec015d9d7a0a881c9ba103a114780: "{{unknown}}"
+  _oembed_68211be2e5525e5aadf10291b7dcd11a: "{{unknown}}"
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction and Installation</h1>
+<p>Oracle has <a href="https://blogs.oracle.com/thejavatutorials/entry/jdk_8_is_released">officially released JDK 8</a>, featuring long-awaited language features like lambdas and a new Date-Time API. This posts gives a brief overview of the new functional programming features in Java.</p>
+<p>The latest JDK 8 can be downloaded and installed from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle's website</a>, or if you are running Ubuntu you can <a href="http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html">use an additional PPA repository</a> as follows:</p>
+<pre><code class="bash">sudo su -
+echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+exit
+
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo update-java-alternatives -s java-8-oracle
+sudo apt-get install oracle-java8-set-default
+</code></pre>
+<h1>Enhanced interfaces</h1>
+<p>A major problem of Java interfaces is extensibility. If you change an interface, all implementing classes must change as well. If this interface is a part of a public library for example, thousands of implementations (some of which in external code bases) may have to change. As of Java 8, interfaces can have default methods. Unlike standard abstract methods, a default method has an implementation and underlying classes do not need to implement it. Hence default methods can be added later on, without having to modify or recompile existing classes.</p>
+<p>Another change in Java 8 is that interfaces can have static methods just like classes. The following example illustrates these features:</p>
+<pre><code class="java">@FunctionalInterface // Will cause a complication error if a second abstract method is added
+public interface Student {
+    // Abstract method - all non-abstract subclasses need to implement it
+    double getGPAGrade();
+
+    // Static method
+    static double getMaxGPAGrade() {
+        return 7;
+    }
+
+    // Default method - no need to implement. Subclasses can still decide to override it.
+    default double getPercentageGrade() {
+        return (getGPAGrade() / getMaxGPAGrade()) * 100;
+    }
+}
+</code></pre>
+<p>An interface with a single abstract method (i.e. which is not static or default) is called a <u><strong>functional interface</strong></u>, since it is essentially an abstract definition of a function. Standard examples are <a href="http://download.java.net/jdk8/docs/api/java/lang/Runnable.html">Runnable</a>, <a href="http://download.java.net/lambda/b78/docs/api/java/util/concurrent/Callable.html">Callable</a>, <a href="http://download.java.net/jdk8/docs/api/java/awt/event/ActionListener.html">ActionListener</a> and <a href="http://download.java.net/jdk8/docs/api/java/util/Comparator.html">Comparator</a>. The new package <a href="http://download.java.net/jdk8/docs/api/java/util/function/package-summary.html">java.util.function</a> introduces more standard functional interfaces like <a href="http://download.java.net/jdk8/docs/api/java/util/function/Predicate.html">Predicate</a>, <a href="http://download.java.net/jdk8/docs/api/java/util/function/Function.html">Function</a> and <a href="http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html">Consumer</a>.</p>
+<p>Java 8 introduces an informative annotation <a href="http://download.java.net/jdk8/docs/api/java/lang/FunctionalInterface.html">@FunctionalInterface</a> which can be used to annotate interfaces. If an annotated interface is not a functional interface a compilation error is raised.</p>
+<h1>Lambdas</h1>
+<p>Lambdas are not a new concept and should be straightforward to understand for anyone exposed to some sort of functional programming. If you have no experience with programming languages with functional features, you can think of lambda expressions as a syntax shorthand for anonymous subclasses of functional interfaces. The syntax for a lambda expression is:</p>
+<pre><code>(param1, param2, ... , paramN) -&gt; expression | block of code 
+</code></pre>
+<p>If the parameter list has only one parameter the brackets can be omitted. Note that there are no types in the lambda definitions, as types are automatically inferred from the functional interface definition. Types can be defined explicitly, but this is not required. The body of the lambda expressions can be either a single expression (whose evaluation is the result of the function call) or a block of code, similar to a method definition.</p>
+<p>The following examples demonstrate functionally equivalent definitions:</p>
+<pre><code class="java">Student s1 = () -&gt; 3;               // Expression body
+Student s2 = () -&gt; {return 3;};     // Block of code body
+Student s3 = new Student() {        // Java 7 style
+    public double getGPAGrade() {
+        return 3;
+    }
+};
+</code></pre>
+<pre><code class="java">Comparator &lt;Integer&gt; cmp1 = (x, y) -&gt; x.compareTo(y);   // Expression body. Types NOT specified
+Comparator &lt;Integer&gt; cmp2 = (Integer x, Integer y) -&gt; { // Block of code body. Types specified
+    return x.compareTo(y);
+};
+Comparator &lt;Integer&gt; cmp3 = new Comparator&lt;Integer&gt; () { // Java 7 style
+    public int compare(Integer x, Integer y) {
+        return x.compareTo(y);
+    }
+};
+</code></pre>
+<pre><code class="java">Runnable r1 = () -&gt; System.out.println("Test");         // Expression body
+Runnable r2 = () -&gt; { System.out.println("Test"); };    // Block of code body
+Runnable r3 = new Runnable() {                          // Java 7 style
+    public void run() {
+        System.out.println("Test");
+    }
+};
+</code></pre>
+<h1>Method References</h1>
+<p>Lambdas are a neat way to implement functional interfaces, but often all they do is call an existing method. To make things simpler Java 8 introduces method references. Method references are a shorthand for implementing functional interfaces by calling already defined methods.</p>
+<p>There are four types of method references:</p>
+<table style="width:60em;">
+<thead>
+<tr>
+<th>Reference to</th>
+<th>Syntax</th>
+<th>Lambda Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static method</td>
+<td>Class::staticMethod</td>
+<td>(param1, ... paramN) -> Class.staticMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Specific instance's method</td>
+<td>var::instanceMethod</td>
+<td>(param1, ... paramN) -> var.instanceMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Instance method</td>
+<td>Class::instanceMethod</td>
+<td>(var, param1, ... paramN) -> var.instanceMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Class::new</td>
+<td>(param1, ... paramN) -> new Class(param1, ... paramN)</td>
+</tr>
+</tbody>
+</table>
+<p>The following examples demonstrate equivalent definitions with method references and lambdas:</p>
+<pre><code class="java">Predicate &lt;String&gt; p1 = Boolean::getBoolean;         // Static method reference
+Predicate &lt;String&gt; p2 = s -&gt; Boolean.getBoolean(s);  // Equivalent lambda
+</code></pre>
+<pre><code class="java">String var = "TestEquality";
+Predicate &lt;String&gt; p1 = var::equals;         // Specific instance's method reference
+Predicate &lt;String&gt; p2 = s -&gt; var.equals(s);  // Equivalent lambda
+</code></pre>
+<pre><code class="java">Predicate &lt;String&gt; p1 = String::isEmpty;     // Instance method reference
+Predicate &lt;String&gt; p2 = s -&gt; s.isEmpty();    // Equivalent lambda
+</code></pre>
+<pre><code class="java">Predicate &lt;String&gt; p1 = Boolean::new;           // Constructor reference
+Predicate &lt;String&gt; p2 = s -&gt; new Boolean(s);    // Equivalent lambda
+</code></pre>
+<h1>Streams</h1>
+<p>So far we've seen that Java 8 has removed some of the clutter around implementing functional interfaces. Functional interfaces are especially useful for manipulating collections, and thus Java 8 introduces the <a href="http://download.java.net/jdk8/docs/api/java/util/stream/package-summary.html">java.util.stream</a> package. The main interface in this package is <a href="http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html">Stream</a>, which represents a sequence of elements supporting performing a sequence of actions - e.g. filtering, mapping, aggregation etc. Each of these standard stream methods takes as a parameter an instance of a functional interface.</p>
+<p>Each standard collection in Java 8 can be converted to a stream through the <u>stream()</u> and <u>parallelStream()</u> methods. The difference between them, is that if possible <u>parallelStream()</u> returns a Stream instance, whose operations can be parallelised. Streams can also be converted to collections by the <u>collect()</u> method.</p>
+<p>The main functionalities/methods of Stream are:</p>
+<ul>
+<li><u>filter</u> - given a predicate creates a new stream, whose elements match the predicate;</li>
+<li><u>map</u> - given a function f, creates a new stream, whose elements are the result of applying the function over this stream's element;</li>
+<li><u>reduce</u> - aggregates the stream elements into a single value by consecutively applying a provided binary function. The result is wrapped in an <a href="http://download.java.net/jdk8/docs/api/java/util/Optional.html">Optional</a> instance;</li>
+<li><u>forEach</u>/<u>forEachOrdered</u> - executes a <a href="http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html">Consumer</a> instance's method for every element of the stream. The <a href="http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html">Consumer</a> functional interface represents an arbitrary block of code.</li>
+</ul>
+<p>The following example demonstrates how lambdas and method references allow standard collection processing operations to be written in a single line, rather than using series of loops as in Java 7.</p>
+<pre><code class="java">List &lt;Integer&gt; numbers = Arrays.asList(1, 7, 15, 51, 16, 8);
+
+// Filter all even numbers, then convert the stream to a list
+List &lt;Integer&gt; evens = numbers.stream().filter(x -&gt; x % 2 == 0).collect(Collectors.toList());
+
+// Find the max even number
+int maxEven = numbers.stream().filter(x -&gt; x % 2 == 0).max(Integer::compare).get();
+
+// Compute the sum of the squares of all even numbers in the list
+int sumSquaresEven =
+   numbers.stream().filter(x -&gt; x % 2 == 0).map(x -&gt; x * x).reduce(Integer::sum).get();
+
+// Print all elements on a new line
+numbers.stream().forEachOrdered(x -&gt; System.out.println(x));
+</code></pre>
+<h1>References</h1>
+<ul>
+<li><a href="http://docs.oracle.com/javase/tutorial/java/javaOO/">http://docs.oracle.com/javase/tutorial/java/javaOO/</a></li>
+<li><a href="http://baddotrobot.com/blog/2014/02/18/method-references-in-java8/">http://baddotrobot.com/blog/2014/02/18/method-references-in-java8/</a></li>
+<li><a href="http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html">http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html</a></li>
+<li><a href="http://www.infoq.com/minibooks/emag-java-8">http://www.infoq.com/minibooks/emag-java-8</a></li>
+</ul>

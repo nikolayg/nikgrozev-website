@@ -1,0 +1,300 @@
+---
+layout: post
+title: Functional Programming and Category Theory [Part 2] – Applicative Functors
+date: 2016-04-11 23:54:06.000000000 +10:00
+type: post
+published: true
+status: publish
+categories:
+- Functional programming
+- Scala
+tags:
+- Applicative Functor
+- Functional programming
+- Scala
+meta:
+  _edit_last: '1'
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  geo_public: '0'
+  _thumbnail_id: '706'
+  _publicize_job_id: '21675234993'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Table of Contents</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#curried-functions">Motivating Example</a></li>
+<li><a href="#curried-functions">Curried Functions</a></li>
+<li><a href="#struct-and-compute">Applicative Functor: Structure and Computation</a>
+<ul>
+<li><a href="#function-pure">Function "Pure"</a></li>
+<li><a href="#function-apply">Function "Apply"</a></li>
+<li><a href="#variations">Variations</a></li>
+<li><a href="#putting-pieces-together">Putting the Pieces Together</a></li>
+</ul>
+</li>
+<li><a href="#laws">Laws</a>
+<ul>
+<li><a href="#identity-law">Identity Law</a></li>
+<li><a href="#composition-law">Composition Law</a></li>
+<li><a href="#homomorphism-law">Homomorphism Law</a></li>
+<li><a href="#interchange-law">Interchange Law</a></li>
+</ul>
+</li>
+<li><a href="#app-functor-is-functor">Applicative Functors are Functors</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<p><!-- ---------------------------------------------------------------------- --><br />
+<!--- =============================== INTRODUCTION =============================== --></p>
+<div id="introduction">
+<h1>Introduction</h1>
+<p>In a <a href="www.nikgrozev.org/2016/03/14/functional-programming-and-category-theory-part-1-categories-and-functors/">previous post</a> I talked about the basic concepts in Category Theory and Functional Programming (FP) - namely Categories and Functors. This post introduces a type of functors called <em>Applicative Functors</em>. Unlike the ordinary functors, applicatives allow us to work with multi-arguement functions and thus turn out to be quite useful in FP.</p>
+<p><!--- =============================== MOTIVATING EXAMPLE =============================== --></p>
+<div id="curried-functions">
+<h1>Motivating Example</h1>
+<p>We can reason about a functor as a context for values of a given type <u><strong>A</strong></u> - e.g. <u><strong>List[A], Vector[A], Option[A]</strong></u>. A functor allows us to transfer/map a function <u><strong>f:A &rarr; B</strong></u> to that context. For example:</p>
+<ul>
+<li><strong>map[List]: (A &rarr; B) &rarr; (List[A] &rarr; List[B])</strong></li>
+<li><strong>map[Option]: (A &rarr; B) &rarr; (Option[A] &rarr; Option[B])</strong></li>
+</ul>
+<p>But what if the function that we want to use takes multiple parameters? Functors can only map over single-arguement functions. The following example illustrates the problem:</p>
+<pre><code class="scala">def sum(x : Int)(y : Int) = x + y
+
+val xOpt : Option[Int] = Some(1)
+val yOpt : Option[Int] = Some(2)
+
+// How can we sum xOpt and yOpt?
+// val result = sum(xOpt)(yOpt) does not compile
+</code></pre>
+<p>We can obviously "unbox" the values in the two options, apply the function, and embed the new result in an option. This approach is far from elegant. It is not general and does not apply to other functor. We would like to have a generic solution that works with many other functors as well.</p>
+<p><!--- =============================== CURRIED FUNCTIONS =============================== --></p>
+<div id="curried-functions">
+<h1>Curried Functions</h1>
+<p>Before we discuss applicative functors, we need to introduce the concept of <a href="https://en.wikipedia.org/wiki/Currying">currying</a>. In FP, we can partially apply a function of multiple parameters by specifying a subset of its required parameters. For this purpose, Scala offers special syntax, allowing us to group function parameters into separate parameter lists.</p>
+<pre><code class="scala">def curriedF(x : Int) (y : Int) = x + y
+
+// We need to use underscore after the function invocation
+val partiallyApplied : Int =&gt; Int = curriedF(1)_
+
+// Call the partially applied function. Result is 3
+val result = partiallyApplied(2)
+</code></pre>
+<p>The ability to create partially applied functions is called <strong>currying</strong>. Scala also allows us to create curried functions from non-curried ones:</p>
+<pre><code class="scala">// Non-curried
+def f(x : Int, y : Int) = x + y
+
+// Make a curried version of f
+val fCurried = (f _).curried
+
+// Invoke the non-curried and curried functions
+f(1, 2)
+fCurried(1)(2)
+</code></pre>
+<p>In fact, this is a much more general idea which is not specific to Scala and FP. Unfortunately, most languages do not explicitly support currying. We can still easily curry every function in most modern languages as long as they support anonymous functions, as in the following Python example:</p>
+<pre><code class="python"># Non-curried
+def f(x, y): return x + y
+
+# Make a curried version of f
+def fCurried(x): return lambda y : f(x, y) 
+
+# Invoke the non-curried and curried functions
+f(1, 2)
+fCurried(1)(2)
+</code></pre>
+<p>Curried and non-curried functions are equivalent. As we just showed, we can convert each function to a curried one. The opposite is also true. In terms of notation, we'll denote the non-curried version of a function as <u><strong>f: (A<sub>1</sub> &times; A<sub>2</sub> &times; ... &times; A<sub>n-1</sub>) &rarr; A<sub>n</sub></strong></u>, or we could just write: <u><strong>f: (A<sub>1</sub>, A<sub>2</sub>, ...,A<sub>n-1</sub>) &rarr; A<sub>n</sub></strong></u>.</p>
+<p>The curried version will be written as: <u><strong>f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub></strong></u>.</p>
+<p>Currying is a simple but powerful method to represent a function with multiple arguements as a single-arg function. This allows us to generalise everything that works for single arguement functions to the multi-arguement case.</p>
+<p><!--- =============================== STRUCTURE AND COMPUTATION =============================== --></p>
+<div id="struct-and-compute">
+<h1>Applicative Functor: Structure and Computation</h1>
+<p>An applicative functor is defined by:</p>
+<ul>
+<li>A type constructor <u><strong>F[ &#95; ]</strong></u> - e.g. <u><strong>List</strong></u>, <u><strong>Option</strong></u>;</li>
+<li>A function <u><strong>pure : A &rarr; F[A]</strong></u>, where <u><strong>A</strong></u> can be any type (including types of functions);</li>
+<li>A function <u><strong>apply: F[A &rarr; B] &rarr; (F[A] &rarr; F[B])</strong></u>, where <u><strong>A</strong></u> and <u><strong>B</strong></u> can be any types (including types of functions);</li>
+</ul>
+<div id="function-pure">
+<h2>Function "Pure"</h2>
+<p>The <u><strong>pure</strong></u> function is also known as <u><strong>point</strong></u> in some languages and libraries. Essentially, it is a constructor which can convert a value of any type <u><strong>A</strong></u> to a value of <u><strong>F[A]</strong></u>. We often say that <u><strong>pure</strong></u> "lifts" its arguement to the corresponding type defined by the type constructor (e.g. from <u><strong>Int</strong></u> to <u><strong>List[Int]</strong></u>). Here is a sample implementation for <u><strong>Option</strong></u>.</p>
+<pre><code class="scala">// Implementation for Options
+def pure[A](a : A) : Option[A] = Some(a)
+
+pure("Text") // Some("Text")
+
+// We can also embed a function in an Option
+pure(x:Int =&gt; x.toString) //Some(Int =&gt; String)
+</code></pre>
+<p>Similarly, an implementation of <u><strong>pure</strong></u> for <u><strong>List</strong></u> would just wrap it in a list:</p>
+<pre><code class="scala">// Implementation for List
+def pure[A](a : A) : List[A] = List(a)
+
+// We can embed a function in a list
+pure(x:Int =&gt; x + 1) //List(Int =&gt; Int)
+</code></pre>
+<div id="function-apply">
+<h2>Function "Apply"</h2>
+<p>The <u><strong>apply</strong></u> function takes a function, which is embedded into the context defined by the type constructor (e.g. <u><strong>Option[A &rarr; B]</strong></u>), and lifts/converts it to a function in the realm of the type constructor (e.g. <u><strong>Option[A] &rarr; Option[B]</strong></u>). Here is a sample implementation for <u><strong>Option</strong></u>:</p>
+<pre><code class="scala">  // Implementation for Option
+  def apply[A, B](oFunc : Option[A =&gt; B]) : Option[A] =&gt; Option[B] = {
+    // Returns an anonymous function
+    oA: Option[A] =&gt; oA match {
+      case None =&gt; None
+      case Some(a) =&gt; oFunc.map(f =&gt; f(a))
+    }
+  }
+</code></pre>
+<p>Implementing "apply" for List is somewhat less straigthforward. Given a list of functions (i.e. <u><strong>List[A &rarr; B]</strong></u>), we need to return a function that converts from one list to another (i.e. <u><strong>List[A] &rarr; List[B]</strong></u>). One approach is to return a function, which applies all functions in the given list to all elements in its input parameter:</p>
+<pre><code class="scala">  // Implementation for List
+  def apply[A, B](lFunc : List[A =&gt; B]) : List[A] =&gt; List[B] = {
+    // Create an inner result function
+    def resultF (lA: List[A]) : List[B] = {
+      lA match {
+        case List() =&gt; List()
+        case head :: tail =&gt; lFunc.map(f =&gt; f(head)) ::: resultF(tail)
+      }
+    }
+    return resultF
+  }
+</code></pre>
+<div id="variations">
+<h2>Variations</h2>
+<p>The <u><strong>apply</strong></u> function returns a function as a result. One would usually take this result and invoke it with some parameter. Hence, it often makes sense to use an alternative signature for the <u><strong>apply</strong></u> function:</p>
+<pre><code class="scala">def apply[A,B](f: F[A=&gt;B], fa: F[A]): F[B]
+</code></pre>
+<p>This definition does both at the same time - it converts/maps the lifted function <u><strong>f: F[A=&gt;B]</strong></u> to a function of type <u><strong>F[A]=&gt;F[B]</strong></u> and then applies it to the second arguement <u><strong>fa</strong></u>. It is a convenience "wrapper" for the previous definition of <u><strong>apply</strong></u>. In the rest of the article we'll use both definitions interchangeably in accordance with the needs of each example.</p>
+<div id="putting-pieces-together">
+<h2>Putting the Pieces Together</h2>
+<p>Let's consider a multi-argument curried function <u><strong>f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub></strong></u>. The function <u><strong>pure</strong></u> can embed <u><strong>f</strong></u> into an instance of <u><strong>F[A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</strong></u>.</p>
+<p>This sets the stage for an invocation of the <u><strong>apply</strong></u> function which transforms <u><strong>F[A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</strong></u> to <u><strong>F[A<sub>1</sub>] &rarr; F[A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</strong></u>. We can further use <u><strong>apply</strong></u> repeatedly to transform this to <u><strong>F[A<sub>1</sub>] &rarr; F[A<sub>2</sub>] &rarr; ... &rarr; F[A<sub>N</sub>]</strong></u>, and hence we have been able to <em>"lift"</em> the <u><strong>f</strong></u> function into the applicative functor. This computation is depicted in the next figure.</p>
+<p>[caption id="attachment_696" align="aligncenter" width="940"]<a href="http://www.nikgrozev.org/wp-content/uploads/2016/04/applicativefunctor1.jpg" rel="attachment wp-att-696"><img src="{{ site.baseurl }}/assets/applicativefunctor1.jpg?w=940" alt="Computational process when applying an Applicative Functor." class="size-large wp-image-696" /></a> Computational process of applying an Applicative functor.[/caption]</p>
+<p>The following diagram depicts how an Applicative Functor acts as an endofunctor in the <strong>Hask</strong> category. It shows how the generic function <u><strong>pure</strong></u> maps each type (i.e <u><strong>A<sub>1</sub> ... A<sub>n</sub></strong></u>) to the corresponding type defined by the type constructor (i.e <u><strong>F[A<sub>1</sub>] ... F[A<sub>n</sub>]</strong></u>). By composing the <u><strong>apply</strong></u> and <u><strong>pure</strong></u> functions, we can map any function <u><strong>f: A<sub>1</sub> &rarr; ... &rarr; A<sub>n</sub></strong></u> to a function with the following form <u><strong>f ': F[A<sub>1</sub>] &rarr; ... &rarr; F[A<sub>n</sub>]</strong></u>.</p>
+<p>[caption id="attachment_706" align="aligncenter" width="940"]<a href="http://www.nikgrozev.org/wp-content/uploads/2016/04/applicativefunctorhask.jpg" rel="attachment wp-att-706"><img src="{{ site.baseurl }}/assets/applicativefunctorhask.jpg?w=940" alt="An Applicative Functor in Hask" class="size-large wp-image-706" /></a> An Applicative Functor in Hask[/caption]</p>
+<p>Going back to the example from the motivation section, we can implement the desired logic as:</p>
+<pre><code class="scala">def sum(x : Int)(y : Int) = x + y
+val xOpt : Option[Int] = Some(1)
+val yOpt : Option[Int] = Some(2)
+
+// The result is Some(3)
+apply(apply(pure(sum), xOpt), yOpt)
+</code></pre>
+<p>For convenience, some languages and libraries alias the <u><strong>apply</strong></u> function with the left associative <u><strong>&lt;&#42;&gt;</strong></u> operator, which allows for the more succinct expression:</p>
+<pre><code class="scala">pure(sum) &lt;*&gt; xOpt &lt;*&gt; yOpt
+</code></pre>
+<p><!--- =============================== Laws =============================== --></p>
+<div id="laws">
+<h1>Laws</h1>
+<p>This section is a bit less intuitive and you may wish to skip it when reading for the first time. To qualify as an Applicative Functor, a pair of <u><strong>apply</strong></u> and <u><strong>pure</strong></u> functions must obey several laws. In this section, we'll formulate and demonstrate them using the aforementioned Applicative Functor for Option.</p>
+<div id="identity-law">
+<h2>Identity Law</h2>
+<p>The identity law states that <u><strong>pure(id) &lt;&#42;&gt; v = v</strong></u> for every <u><strong>v</strong></u>, where <u><strong>id</strong></u> is an identity function. This rule implies that <u><strong>pure</strong></u> preserves the identity function. The following snippet exemplifies this law for the Option's applicative functor:</p>
+<pre><code class="scala">// Identity Function
+def id[A](a: A) = a
+
+// Any v - for example Some(42)
+val v: Option[Int] = Some(42)
+
+// The following should be true for every v. In other words,
+// pure(id[Int]) should be an identity with respect to &lt;*&gt;.
+pure(id[Int]) &lt;*&gt; v == v
+</code></pre>
+<div id="composition-law">
+<h2>Composition Law</h2>
+<p>The composition law states that <u><strong>pure(f) &lt;&#42;&gt; pure(x)=pure(f(x))</strong></u> meaning that for every function <u><strong>f</strong></u> and value <u><strong>x</strong></u>, applying the lifted/mapped function to the lifted value is the same as lifting the function's result, as in the following snippet:</p>
+<pre><code class="scala">// Any function f. For example: x+1
+def f(x: Int) = x + 1
+
+// Any x - for example Some(42)
+val x: Option[Int] = Some(42)
+
+// The following should be true for every f and x. In other words, "lifting" 
+// f and applying x, should be the same as lifting f(x)
+pure(f) &lt;*&gt; x == pure(f(x))
+</code></pre>
+<div id="homomorphism-law">
+<h2>Homomorphism Law</h2>
+<p>The homomorphism law states that <u><strong>pure(&#8728;) &lt;&#42;&gt; u &lt;&#42;&gt; v &lt;&#42;&gt; w =  u &lt;&#42;&gt; (v &lt;&#42;&gt; w)</strong></u>. Here, "&#8728;" is function composition, which is a function of two arguements (the functions it composes). This law states that function composition is preserved by the applicative functor. The following snippet illustrates:</p>
+<pre><code class="scala">// Composition Function
+def compose[A,B,C](f: A=&gt;B, g: B=&gt;C) = 
+  a: A =&gt; g(f(a))
+
+// Any two functions u and v. For example:
+def u(x: Int) = x+1
+def v(x: Int) = x+2
+
+// Any w - for example Some(42)
+val w: Option[Int] = Some(42)
+
+// The following should be true. In other words, pure(compose) 
+// should compose u and v with respect to &lt;*&gt;.
+pure(compose) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w == u &lt;*&gt; (v &lt;*&gt; w)
+</code></pre>
+<div id="interchange-law">
+<h2>Interchange Law</h2>
+<p>The interchange law states that <u><strong>u &lt;&#42;&gt; pure x = pure (f =&gt; f(x)) &lt;&#42;&gt; u</strong></u>. Therefore, we should be able to change the order of <u><strong>apply</strong></u>'s the parameters. To do so, however, we need to convert the second parameter to a higher order function, as in the following snippet:</p>
+<pre><code class="scala">// Any function u. For example: x+1
+def u(x: Int) = x + 1
+
+// Any u - for example Some(42)
+val x: Option[Int] = Some(42)
+
+// The following should be true. In the following code, f is an anonymous
+// higher order function that applies its arguement (a function) to x.
+u &lt;*&gt; x == pure(f:(Option[Int] =&gt; Option[Int]) =&gt; f(x)) &lt;*&gt; u
+</code></pre>
+<p><!--- =============================== Applicative Functors are Functors =============================== --></p>
+<div id="app-functor-is-functor">
+<h1>Applicative Functors are Functors</h1>
+<p>So far we have defined an applicative functor, as a pair of two functions - <u><strong>pure</strong></u> and <u><strong>apply</strong></u>. However, we have not yet shown that it is indeed a type of functor. We can do so by implementing a <u><strong>map</strong></u> function as follows:</p>
+<pre><code class="scala">def map[F[]]map(f: A =&gt; B, fa:F[A]) =
+    pure(f) &lt;*&gt; fa
+</code></pre>
+<p>The previous laws ensure that this implementation conforms to the functor laws.</p>
+<p>In the <a href="www.nikygrozev.org/2016/03/14/functional-programming-and-category-theory-part-1-categories-and-functors/">previous post</a> we saw that a Functor can be defined as a trait representing the type constructor and defining the <u><strong>map</strong></u> function as a method. Analogously, we can define the <u><strong>AppFunctor</strong></u> trait as follows:</p>
+<pre><code class="scala">trait AppFunctor[A] {
+    def pure(a: A): AppFunctor[A]
+
+    // OOP version of apply[A,B](f: AppFunctor[A =&gt; B], fa: AppFunctor[A]): AppFunctor[B] 
+    // We'll use "this" instead of the second parameter "fa".
+    def apply[A,B](f: AppFunctor[A =&gt; B]): AppFunctor[B] 
+
+    // We can also implement map (from the definition of a Functor) 
+    // through the other two methods:
+    def map[A,B](f: A =&gt; B): AppFunctor[B] =
+        apply(pure(f))
+}
+</code></pre>
+<p><!--- =============================== References =============================== --></p>
+<div id="references">
+<h1>References</h1>
+<ul>
+<li><a href="https://github.com/dcapwell/scala-tour/blob/master/Applicative%20Functor.md">https://github.com/dcapwell/scala-tour/blob/master/Applicative%20Functor.md</a></li>
+<li><a href="https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch10.html">https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch10.html</a></li>
+<li><a href="http://808fabrik.com/scala/functor-monad-in-scala-handout.pdf">http://808fabrik.com/scala/functor-monad-in-scala-handout.pdf</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

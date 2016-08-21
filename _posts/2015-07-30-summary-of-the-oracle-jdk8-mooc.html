@@ -1,0 +1,291 @@
+---
+layout: post
+title: Summary of the Oracle JDK8 MOOC
+date: 2015-07-30 19:49:35.000000000 +10:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- java
+- jdk8
+- MOOC
+- Oracle
+meta:
+  _wpas_done_all: '1'
+  _wpcom_is_markdown: '1'
+  geo_public: '0'
+  _wpas_skip_5385652: '1'
+  _wpas_skip_5385644: '1'
+  _wpas_skip_5385639: '1'
+  _publicize_job_id: '13232733361'
+  _edit_last: '1'
+  _kad_blog_head: default
+  _kad_post_summery: default
+  _kad_post_sidebar: 'yes'
+  _kad_sidebar_choice: sidebar-primary
+  _kad_blog_author: default
+  _kad_blog_carousel_similar: default
+  _thumbnail_id: '478'
+author:
+  login: nikolaygrozev
+  email: nikolay.grozev@gmail.com
+  display_name: nikolaygrozev
+  first_name: ''
+  last_name: ''
+---
+<h1>Introduction</h1>
+<p>In a <a href="www.nikgrozev.org/2014/03/21/java-8-in-a-nutshell/">previous post</a> I summarised the new functional features of Java 8. Oracle has recently released a 3-week <a href="https://blogs.oracle.com/thejavatutorials/entry/jdk_8_massive_open_and">JDK 8 Massive Open and Online Course called "Lambdas and Streams</a>”, which discusses the new JDK8 functional features in much more details. It's a great course and if you're interested in Java and new JDK8 it can help you get started. This article summarises the course and my previous post and can be used as a quick ref-card.</p>
+<p><!-- ---------------------------------------------------------------------- --></p>
+<h1>Lecture 1: Lambda Expressions</h1>
+<h2>Lambda Syntax</h2>
+<p>To understand lambdas, first we need to understand functional interfaces. In Java 8, an interface is called functional, if it has only one abstract method. In previous Java versions, all interface methods were abstract. In Java 8 interfaces can have default and static methods as well. In order for an interface to be function it should have exactly one abstract method regardless if any default or static methods are defined. It is recommended to annotate functional interfaces with the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html">@FunctionalInterface</a> annotation so that the compiler can check if they meet the requirement.</p>
+<p>In Java, a lambda function can be thought of as a syntactic short-cut for defining anonymous instances of functional interfaces. Lambda expressions are defined with the following pattern:</p>
+<pre><code>(param1, param2, ... , paramN) -&gt; expression | block of code
+</code></pre>
+<p>If the parameter list has only one parameter, the brackets can be omitted. Note that there are no types in the lambda definitions, as types are automatically inferred from the functional interface definition. Types can be defined explicitly, but this is not required. The body of the lambda expressions can be either a single expression (whose evaluation is the result of the function call) or a block of code, similar to a method definition. The following examples demonstrate functionally equivalent definitions:</p>
+<pre><code class="java">Comparator &lt;Integer&gt; cmp1 = (x, y) -&gt; x.compareTo(y);   // Expression body. Types NOT specified
+Comparator &lt;Integer&gt; cmp2 = (Integer x, Integer y) -&gt; { // Block of code body. Types specified
+    return x.compareTo(y);
+};
+Comparator &lt;Integer&gt; cmp3 = new Comparator&lt;Integer&gt;() { // Java 7 style
+    public int compare(Integer x, Integer y) {
+        return x.compareTo(y);
+    }
+};
+
+Runnable r1 = () -&gt; System.out.println("Test");         // Expression body
+Runnable r2 = () -&gt; { System.out.println("Test"); };    // Block of code body
+Runnable r3 = new Runnable() {                          // Java 7 style
+    public void run() {
+        System.out.println("Test");
+    }
+};
+</code></pre>
+<p>Alike anonymous classes, lambdas can use the variables of their environment. When using local variables in lambdas, the must be <u>effectively final</u>, which means they are not assigned to from anywhere, regardless if they are actually marked as final.</p>
+<h2>Method References</h2>
+<p>Lambdas are a neat way to implement functional interfaces, but often all they do is call an existing method. To make things simpler Java 8 introduces method references. Method references are a shorthand for implementing functional interfaces by calling already defined methods.</p>
+<p>There are four types of method references:</p>
+<table style="width:100%;">
+<thead>
+<tr>
+<th>Reference to</th>
+<th>Syntax</th>
+<th>Lambda Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static method</td>
+<td>Class::staticMethod</td>
+<td>(param1, ... paramN) -&gt; Class.staticMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Specific instance's method</td>
+<td>var::instanceMethod</td>
+<td>(param1, ... paramN) -&gt; var.instanceMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Instance method</td>
+<td>Class::instanceMethod</td>
+<td>(var, param1, ... paramN) -&gt; var.instanceMethod(param1, ... paramN)</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Class::new</td>
+<td>(param1, ... paramN) -&gt; new Class(param1, ... paramN)</td>
+</tr>
+</tbody>
+</table>
+<p>The following examples demonstrate equivalent definitions with method references and lambdas:</p>
+<pre><code class="java">Predicate &lt;String&gt; p1 = Boolean::getBoolean;         // Static method reference
+Predicate &lt;String&gt; p2 = s -&gt; Boolean.getBoolean(s);  // Equivalent lambda
+
+String var = "TestEquality";
+Predicate &lt;String&gt; p1 = var::equals;         // Specific instance's method reference
+Predicate &lt;String&gt; p2 = s -&gt; var.equals(s);  // Equivalent lambda
+
+Predicate &lt;String&gt; p1 = String::isEmpty;     // Instance method reference
+Predicate &lt;String&gt; p2 = s -&gt; s.isEmpty();    // Equivalent lambda
+
+Predicate &lt;String&gt; p1 = Boolean::new;           // Constructor reference
+Predicate &lt;String&gt; p2 = s -&gt; new Boolean(s);    // Equivalent lambda
+</code></pre>
+<h2>Functional Interfaces in the standard library</h2>
+<p>The standard library has always had a bunch of functional interfaces – Runnable, Callable, Comparator etc. Java 8 introduces a whole new package of functional interfaces called <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html">java.util.function</a>. In Java there are two kinds of types – referential and primitives. Java generics can only be used with referential types – e.g. List<int> is invalid. Thus, the <u>java.util.function</u> package contains multiple versions of each interface – a generic version for referential types, and specialised versions for the primitives. For example we've got <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html">Consumer<t /></a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/IntConsumer.html">IntConsumer</a>. In the rest of the article we'll look at the generic interface only.</p>
+<p>The main functional interfaces in the package are:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html">Consumer<t /></a> - takes an argument of type T returns void;</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html">BiConsumer&lt;T,U></a> - a consumer with 2 arguments;</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html">Supplier</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html"><t /></a> - takes no argument and returns T;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html">Function&lt;T,R></a> - takes an argument of type T and returns R;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html">BiFunction&lt;T,U,R></a> - a function of two arguments;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/UnaryOperator.html">UnaryOperator<t /></a> - shorthand for Function&lt;T,T>;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BinaryOperator.html">BinaryOperator<t /></a> - shorthand for BiFunction&lt;T,T>;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">Predicate</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html"><t /></a> - given an argument of type T returns a boolean;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiPredicate.html">BiPredicate&lt;T,U></a> - given arguments of types T and U, returns a boolean.</p>
+</li>
+</ul>
+<p>The consumer interfaces in the above list have a default method <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html#andThen-java.util.function.Consumer-">andThen</a>, which takes as an argument another consumer. The result is a new consumer instance, which runs the two consumers one after the other, as in the example:</p>
+<pre><code class="java">//Define two consumers
+Consumer &lt;String&gt; helloConsumer = name -&gt; System.out.println("Hello, " + name);
+Consumer &lt;String&gt; byeConsumer = name -&gt; System.out.println("Bye, " + name);
+
+//Create and call a composite consumer which “chains” the previous two
+Consumer &lt;String&gt; helloByeConsumer = helloConsumer.andThen(byeConsumer);
+
+// Prints "Hello, Guest\nBye, Guest"
+helloByeConsumer.accept("Guest");
+</code></pre>
+<p>The <u>andThen</u> default method of the function interfaces works similarly – it chains the function invocation as in <u>f(g(x))</u>. The <u>compose</u> method does the same, but swaps the functions – i.e. <u>g(f(x))</u> instead of <u>f(g(x))</u>. The following example demonstrates this:</p>
+<pre><code class="java">UnaryOperator &lt;Integer&gt; plus1 = x -&gt; x + 1;
+UnaryOperator &lt;Integer&gt; mult2 = x -&gt; x * 2;
+
+//Create a new function with andThen
+Function &lt;Integer, Integer&gt; plus1Mult2 = plus1.andThen(mult2);
+System.out.println(plus1Mult2.apply(1));// Prints 4
+
+//Create a new function with compose
+Function &lt;Integer, Integer&gt; mult2Plus1 = plus1.compose(mult2);
+System.out.println(mult2Plus1.apply(1)); // Prints 3
+</code></pre>
+<p><strong>Note</strong>: in the above example you may wish to use <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/IntUnaryOperator.html">IntUnaryOperator</a> instead of UnaryOperator<integer> to avoid excessive boxing/unboxing.</p>
+<p>Similarly, the predicate interfaces have default methods <u>and</u>, <u>or</u> and <u>negate</u>, which can be used to create new predicates with combined logic.</p>
+<h2>New Methods in JDK 8</h2>
+<p>The Java 8 standard collections library introduces several new methods which use functional interfaces:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html#forEach-java.util.function.Consumer-">Iterable.forEach(Consumer c)</a> – iterates and applies the consumer to each element;</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html#removeIf-java.util.function.Predicate-">Collection.removeIf(Predicate p)</a> – removes all elements for which the predicate returns true;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html#replaceAll-java.util.function.UnaryOperator-">List.replaceAll(UnaryOperator o)</a> – replaces all elements with the result of the argument operator;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html#sort-java.util.Comparator-">List.sort(Comparator c)</a> - replaces <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#sort-java.util.List-">Collections.sort</a>.</p>
+</li>
+</ul>
+<p>Also, many methods of the standard <a href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html">Logger</a> have been overloaded to take as an argument a <u>Supplier<string /></u> instance, instead of string. For example, when the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#fine-java.util.function.Supplier-">Logger.fine(Supplier<string>)</string></a> method is invoked it will only call the provided supplier if the logging level is below or equal to <u>Fine</u>. Otherwise, the supplier will not be called leading to fewer operations like string concatenation and formatting.</p>
+<p><!-- ---------------------------------------------------------------------- --></p>
+<h1>Lecture 2: The Streams API</h1>
+<h2>Streams</h2>
+<p>JDK 8 defines a stream as a sequence of elements. Streams of referential elements inherit from the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Stream<t /></a> interface, and there are specialised interfaces for streams of primitives. Once again we'll only consider the generic types, as the primitive streams offer analogous functionalities.</p>
+<p>Streams are usually used in a pipeline of operations, where each operation produces or transforms a stream until a result is derived. Hence, each stream operation can be can be classified as:</p>
+<ul>
+<li>Stream source – generates a stream;</li>
+<li>
+<p>Inermediate operation – processes a stream;</p>
+</li>
+<li>
+<p>Terminal operation – given a stream, yields the final result.</p>
+</li>
+</ul>
+<p>[caption id="attachment_478" align="alignnone" width="946"]<img src="{{ site.baseurl }}/assets/streamoverview.png" alt="Working with streams" width="946" height="85" class="size-full wp-image-478" /> Working with streams[/caption]</p>
+<p>Sources of streams can be collections and arrays through the following methods and their overloads:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html#stream--">Collection.stream()</a> - converts the collection to a stream;</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html#parallelStream--">Collection.parallelStream()</a> - converts to a stream, which can be subjected to parallel processing;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#stream-T:A-">Arrays.stream(</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#stream-T:A-">T[]</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#stream-T:A-">)</a> - utility method converting the provided array to a stream;</p>
+</li>
+</ul>
+<p>Other typical sources of streams are random number generators (see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Random.html">Random</a>), lists of file paths (see <a>Files</a>) and list of lines in a text (see <a href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html">BufferedReader</a>).</p>
+<p>The generic <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Stream<t /></a> interface and its primitive counterparts provide several utility source functions for creating or transforming streams:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#concat-java.util.stream.Stream-java.util.stream.Stream-">Stream.concat(Stream, Stream)</a> - returns the concatenation of the two streams.</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#empty--">Stream.empty()</a> - creates an empty stream;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#of-">Stream.of(T... values)</a> - a new stream with the specified values;</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/IntStream.html#of-">IntStream.range(int, int)</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/IntStream.html#rangeClosed-int-int-">Int</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/IntStream.html#rangeClosed-int-int-">Stream.rangeClosed(int, int)</a> – a new integer stream representing a range.</p>
+</li>
+</ul>
+<p>The intermediate operations are usually implemented as methods of the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Stream<t /></a> interface and its primitive counterparts. The most important are:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#distinct--">Stream.distinct()</a> - returns a stream with the unique elements.</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#filter-java.util.function.Predicate-">Stream.filter(Predicate p)</a> - returns a stream with the elements for which the predicate returns true.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#map-java.util.function.Function-">Stream.map(Function f)</a> - returns a stream with the result of the function application on each element.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#flatMap-java.util.function.Function-">Stream.flatMap(Function f)</a> – if the return type of the function is another stream, then <u>map(f)</u> will return a stream of streams, which may not be convenient. The <u>flatMap</u> method resolves this problem by flattening/combining the results into a single result stream.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-">Stream.</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-">sorted</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-">(</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-">Comparator c</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-">)</a> – returns a sorted stream.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-">Stream.</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-">skip</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-">(</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-">long n</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-">)</a> – returns a new stream, which does not contain the first n elements.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-">Stream.</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-">limit</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-">(</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-">long n</a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-">)</a> – returns a new stream, which contains the first n elements.</p>
+</li>
+</ul>
+<p>The methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#mapToInt-java.util.function.ToIntFunction-">mapToInt</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#mapToDouble-java.util.function.ToDoubleFunction-">mapToDouble</a>, and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#mapToLong-java.util.function.ToLongFunction-">mapToLong</a> are handy when converting/mapping a stream of objects to a stream of primitives.</p>
+<p>The terminal operations are special, as they cause the pipeline to be evaluated. Prior a terminal operation, the stream operations are only “accumulated” or delayed. This allows the terminal operation to execute effectively (e.g. in parallel) on the aggregated stream.</p>
+<p>Most often you would probably use one of the following terminal operations:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#collect-java.util.stream.Collector-">Stream.collect(Collector c)</a> - collects all elements - e.g. in a list or concatenates them in a string.</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#toArray--">Stream.toArray()</a> - converts the stream to array.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#reduce-U-java.util.function.BiFunction-java.util.function.BinaryOperator-">Stream.reduce(BinaryOperator accumulator)</a> – consequently applies the accummulator over all elements until it yields a single value. Example: multiply all integers.</p>
+</li>
+</ul>
+<p>Other frequently used terminal methods are <u>count</u>, <u>max</u>, and <u>min,</u> which return <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a> instances.</p>
+<h2>Optionals</h2>
+<p>In Java 8, <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><u>Optiona</u></a><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">l<t /></a> is a container which holds a reference to an object or <u>null</u>. It is used to avoid excessive null checks throughout the code. It can also be thought of as a stream which has either 0 or 1 elements. In that sense, it is a generalisation of the rule that you should prefer to return empty collections and arrays from methods, rather than null.</p>
+<p>The count, max and min methods from the previous section all return optionals, whose embedded value is null if the stream is empty.</p>
+<p>Instead of doing a <u>null</u> check, you can use the <u>ifPresent(Consumer c)</u> method to run code if the optional contains a value:</p>
+<pre><code class="java">Optional &lt;String&gt; opt = …
+
+// Will print only if opt refers to a non-null value
+opt.ifPresent(System.out::println);
+</code></pre>
+<p>You can also use the <u>filter</u> and <u>map</u> methods, as you would do with streams.</p>
+<p><!-- ---------------------------------------------------------------------- --></p>
+<h1>Lecture 3: More Advanced Lambdas and Stream Concepts</h1>
+<p>The <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#reduce-java.util.function.BinaryOperator-">Stream.reduce(BinaryOperator)</a> method is a terminal operation which aggregates the stream to a single value. The provided operator is applied to <u>null</u> and the first element, then its result and the second element are fed in the operator and so on … until a single value is achieved. There is no guarantee as to the actual sequence of execution, but the result is always as if the aforementioned procedure is executed. This can be used to implement things like computing the min, max or sum of all elements. In fact, streams already have predefined short-cut methods for these functionalities. The reduction mechanism is a generalisation of this concept, and the reduce method has overloads providing additional parameters.</p>
+<p>Given an infinite stream, the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#findFirst--">Stream.findFirst</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#findAny--">Stream.findAny</a> methods are typically used to terminate it and return a value matching the specified predicate wrapped in an Optional. The <u>findFirst</u> method returns the first match, while <u>findAny</u> can return any match thus allowing for parallelism behind the scenes.</p>
+<pre><code class="java">// Find a random positive and even integer
+int r = Random.ints().findFirst(i -&gt; i &gt; 0 &amp;&amp; i % 2 == 0);
+
+int[] a = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+// Can return either 2, 4, 6, 8, or 10
+int i = Arrays.stream(a).findAny(i -&gt; i % 2 == 0);
+</code></pre>
+<p>Another terminal operation is <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#collect-java.util.stream.Collector-">Stream.collect(Collector)</a> which converts the stream to a container – usually this is a collection or a string. The collector parameter defines how the stream elements will be converted to the resulting container. The <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html">Collectors</a> class defines utility methods for instantiating and combining common collectors.</p>
+<pre><code class="java">Stream &lt;Integer&gt; s = Arrays.stream (new Integer[] {1, 2, 3, 4});
+
+// To list and set
+List &lt;Integer&gt; lst = s.collect(Collectors.toList());
+Set &lt;Integer&gt; set = s.collect(Collectors.toSet());
+
+// Map of same keys and values
+Map &lt;Integer, Integer&gt; map = s.collect(Collectors.map(Function.identity(), Function.identity()));
+
+// A string of all values with a separator
+String toString = s.collect(Collectors.joining(","));
+</code></pre>
+<p>Streams can be serial or parallel. All operations on a sequential stream are run in sequence on a single thread. Operations on a parallel streams are run in a thread pool using the <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html">Fork Join framework</a>. The size of the thread pool is determined by the number of available processors, but could be overridden by setting a system property.</p>
+<p>Parallel streams can be created directly from collections through the <u>parallelStream</u> method. Every stream can be made parallel or sequential with the respective stream methods.</integer></int></p>

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Image Gallery
+   ========================================================================== */
+
+ div.img {
+    margin: 5px;
+    border: 1.5px solid #ccc;
+    float: left;
+    width: 23%;
+}
+
+div.img:hover {
+    border: 1.5px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 0.5em;
+    text-align: center;
+}
