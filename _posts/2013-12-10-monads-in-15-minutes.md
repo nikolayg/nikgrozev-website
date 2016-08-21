@@ -5,6 +5,11 @@ date: 2013-12-10 11:28:29.000000000 +11:00
 type: post
 published: true
 status: publish
+excerpt: 
+    This tutorial explains the 
+    intuition behind Monads and demonstrates them with a few simple and short python examples. 
+    Its goal is to explain Monads simply in less than 15 minutes and thus it refrains from making 
+    insightful philosophical and theoretical reflections ...
 categories:
 - Miscellaneous
 tags:
