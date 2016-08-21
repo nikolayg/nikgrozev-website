@@ -13,6 +13,7 @@ excerpt:
 categories:
 - CloudStone
 tags:
+- AWS
 - Bash
 - Benchmark
 - CloudSuite

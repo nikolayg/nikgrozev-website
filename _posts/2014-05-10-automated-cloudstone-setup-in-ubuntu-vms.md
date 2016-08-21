@@ -16,6 +16,7 @@ excerpt:
 categories:
 - CloudStone
 tags:
+- AWS
 - Bash
 - Benchmark
 - CloudStone
