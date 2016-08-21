@@ -19,6 +19,7 @@ tags:
 - Java
 - Maven
 - Simulation
+- Eclipse
 author:
   login: nikolaygrozev
   email: nikolay.grozev@gmail.com
