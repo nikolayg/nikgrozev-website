@@ -44,16 +44,16 @@ author:
     * [Further Reading](#further_reading)
 
 
+<div id="introduction"/>
 # Introduction 
-<a name="introduction"></a>
 
 This article overviews how to quickly set up and get started with the 
 [pandas data analysis library](http://pandas.pydata.org/). It also lists common code snippets for 
 parsing, loading, and transforming data. For more detailed documentation on pandas' more advanced 
 features (e.g. plot styling and combining data frames) you'll need to refer to other sources.
 
+<div id="installing_and_importing"/>
 # Installing and Importing
-<a name="installing_and_importing"></a>
 
 First we need to install python and the [pip](https://pip.pypa.io/en/stable/) package manger. 
 If you don't already have them, you can use [pyenv](https://github.com/yyuu/pyenv) to easily 
@@ -97,8 +97,8 @@ Next, we need to import pandas in the first cell of the jupyter notebook.:
 import pandas
 ```
 
+<div id="toc"/>
 # Table Of Contents
-<a name="toc"></a>
 
 When we have a long notebook, it is useful to have an automatically generated table of contents (TOC). 
 The following code (Borrowed from this 
@@ -128,15 +128,15 @@ Then we need to restart the kernel and make the first cell "Markdown" type and a
 When you save the TOC should appear.
 
 
+<div id="creating_data_frames"/>
 # Creating Data Frames
-<a name="creating_data_frames"></a>
 
 [Data frames](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) are the 
 central concept in pandas. In essence, a data frame is table with labeled rows and columns. 
 Data frames can be created from multiple sources - e.g. CSV files, excel files, and JSON.
 
+<div id="loading_csv_files"/>
 ## Loading CSV files
-<a name="loading_csv_files"></a>
 
 Loading a CSV file as a data frame is pretty easy:
 
@@ -160,8 +160,8 @@ pandas.read_csv('file.csv', sep='\s*;\s*', skipinitialspace=True, engine='python
 Sometimes we need to sample the data before loading it, as it is too big to fit in memory. 
 This can be achieved following [this approach](www.nikgrozev.org/2015/06/16/fast-and-simple-sampling-in-pandas-when-loading-data-from-files/).
 
+<div id="hardcoded_dataframes"/>
 ## Hardcoded Dataframes
-<a name="hardcoded_dataframes"></a>
 
 Hardcoded data frames can be constructed by providing a hash of columns and their values.
 
@@ -176,8 +176,8 @@ df = pandas.DataFrame({
 We will reuse this data frame in some of the subsequent examples.
 
 
+<div id="previewing_data"/>
 # Previewing Data 
-<a name="previewing_data"></a>
 
 To preview the data and the metadata of a dataframe you can use the following functions:
 
@@ -208,8 +208,8 @@ df.describe()
 ```
 
 
+<div id="sorting"/>
 # Sorting
-<a name="sorting"></a>
 
 The *sort_index* method is used to sort the frame by one of its axis indices. The axis is either 0 or 1 - row/column axis respectively:
 
@@ -224,8 +224,8 @@ We can also sort by one or multiple columns:
 df.sort_values(by=['col2', 'col1'], ascending=False)
 ```
 
+<div id="selecting_querying"/>
 # Selecting/Querying
-<a name="selecting_querying"></a>
 
 
 Individual columns can be selected with the [] operator or directly as attributes:
@@ -283,8 +283,8 @@ df[(df['col3'] > 0) | (df['col2'] == 'Silver')]
 df[df.col2.str.contains('ilver')]
 ```
 
+<div id="#modifying_data_frames"/>
 # Modifying Data Frames
-<a name="#modifying_data_frames"></a>
 
 
 Pandas' operations tend to produce new data frames instead of modifying the provided ones. 
@@ -331,8 +331,8 @@ def g(x, y):
 df.col4 = g(df.col3, df.col2)
 ```
 
+<div id="dates_and_time"/>
 # Dates and Time
-<a name="dates_and_time"></a>
 
 When loading data from a CSV, we can tell pandas to look for and parse dates. 
 The [parse_dates](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html) 
@@ -387,11 +387,11 @@ We can also convert time/timestamp data to Unix epoch numbers:
 dates_df.col4 = pandas.to_numeric(dates_df.col3)
 ```
 
+<div id="plotting"/>
 # Plotting
-<a name="plotting"></a>
 
+<div id="set_up"/>
 ## Set Up
-<a name="set_up"></a>
 
 Pandas uses [matplotlib](http://matplotlib.org/) to render graphs, so you need to install it:
 
@@ -433,8 +433,8 @@ To do so, type the following command in one of the notbook cells:
 %matplotlib inline
 ```
 
+<div id="basic_plotting"/>
 ## Basic Plotting
-<a name="basic_plotting"></a>
 
 In the rest of this section we'll use the following data frame:
 
@@ -494,8 +494,8 @@ plot_df.plot(kind='box')
 [gallery ids="536,535,534"]
 
 
+<div id="further_reading"/>
 # Further Reading
-<a name="further_reading"></a>
 
 * [Official pandas quickstart tutorial](http://pandas.pydata.org/pandas-docs/version/0.15.2/10min.html)
 * [Official pandas plotting guide](http://pandas.pydata.org/pandas-docs/stable/visualization.html)
