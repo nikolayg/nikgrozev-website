@@ -165,7 +165,7 @@ When a functor **<u>F</u>** transforms a category **<u>A</u>** into itself, we c
 <div id='functors-in-fp' />
 ## Functors in FP
 
-Before we delve into Functors and FP, we need to introduce the concept of a <u>*type constructor*</u>. 
+Before we delve into Functors and FP, we need to introduce the concept of a *<u>type constructor</u>*. 
 Essentially, a type constructor is a generic type definition, which takes another type as a parameter. 
 For example, in Scala **<u>List[T]</u>**, **<u>Vector[T]</u>**, and **<u>Option[T]</u>** are type constructor. 
 You need to specify the value of the type parameter **<u>T</u>** in order to produce a concrete type. 
