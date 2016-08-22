@@ -6,7 +6,7 @@ type: post
 excerpt: 
     GNU Octave is a powerful open source alternative to Matlab. 
     The latest version 3.7 of Octave introduces a new GUI front-end with an integrated debugger. 
-    Octave 3.7 has not been officially released, but you can download the code, build and test it locally. ...
+    Octave 3.7 has not been officially released, but you can download the code, build and test it locally ...
 published: true
 status: publish
 categories:
