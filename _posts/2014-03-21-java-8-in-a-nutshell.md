@@ -75,7 +75,7 @@ public interface Student {
 }
 ```
 
-An interface with a single abstract method (i.e. which is not static or default) is called a <u>**functional interface**</u>, 
+An interface with a single abstract method (i.e. which is not static or default) is called a **<u>functional interface</u>**, 
 since it is essentially an abstract definition of a function. Standard examples are 
 [Runnable](http://download.java.net/jdk8/docs/api/java/lang/Runnable.html), 
 [Callable](http://download.java.net/lambda/b78/docs/api/java/util/concurrent/Callable.html), 

@@ -218,7 +218,7 @@ broker.submitCloudletList(Arrays.asList(cloudlet1_1, cloudlet2_2));
 
 # Relation to CloudSim storage
 
-The core CloudSim code already defines some storage related attributes. <u>**They are not related to the above functionalities**</u>!
+The core CloudSim code already defines some storage related attributes. **<u>They are not related to the above functionalities</u>**!
 
 For example each data centre can have a <u>List<Storage></u> property. 
 Storages like SAN storage are supported in CloudSim. 
