@@ -14,6 +14,7 @@ excerpt:
 categories:
 - Miscellaneous
 tags:
+- Actors
 - Coroutine
 - Fiber
 - Goroutine
