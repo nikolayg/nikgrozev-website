@@ -5,77 +5,68 @@ date: 2016-05-22 08:51:23.000000000 +10:00
 type: post
 published: true
 status: publish
+excerpt: 
+    This post is a cheat sheet of commonly used shell commands and tools. 
+    It is meant to serve as a quick reference guide that you can consult when developing scripts or when working 
+    extensively with the Bash shell ...
 categories:
 - Bash
 tags:
 - Bash
-- cheatsheet
-- shell
-- tmux
-meta:
-  _wpcom_is_markdown: '1'
-  _edit_last: '1'
-  _kad_blog_head: default
-  _kad_post_summery: default
-  _kad_post_sidebar: 'yes'
-  _kad_sidebar_choice: sidebar-primary
-  _kad_blog_author: default
-  _kad_blog_carousel_similar: default
-  _wpas_done_all: '1'
+- Cheatsheet
+- Shell
+- Tmux
 author:
   login: nikolay.grozev@gmail.com
   email: nikolay.grozev@gmail.com
   display_name: nikolay.grozev@gmail.com
-  first_name: ''
-  last_name: ''
+  first_name: 'Nikolay'
+  last_name: 'Grozev'
 ---
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#common-bash-commands">Common Bash Commands</a>
-<ul>
-<li><a href="#finding-files-find-egrep">Finding Files (find, egrep)</a></li>
-<li><a href="#interacting-with-servers-curl">Interacting with Servers (curl)</a></li>
-<li><a href="#inspect-ports-and-file-handles-lsof">Inspect Ports and File Handles (lsof)</a></li>
-<li><a href="#pattern-matching-and-replacing-sed">Pattern Matching and Replacing (sed)</a></li>
-<li><a href="#working-with-tabular-data-awk">Working with Tabular Data (awk)</a></li>
-<li><a href="#working-with-json-jq">Working with JSON (jq)</a></li>
-<li><a href="#working-with-archives-tar-zip-unzip">Working with Archives (tar, zip, unzip)</a></li>
-<li><a href="#file-permissions-ls-chmod-chown">File Permissions (ls, chmod, chown)</a></li>
-<li><a href="#ssh-connection-ssh-scp">SSH Connection (ssh, scp)</a></li>
-<li><a href="#miscellaneous-commands">Miscellaneous Commands</a></li>
-</ul>
-</li>
-<li><a href="#the-bash-language">The Bash Language</a>
-<ul>
-<li><a href="#data-structures-array-hash">Data Structures (array, hash)</a></li>
-<li><a href="#control-follow">Control Follow</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#invoking-a-script">Invoking a Script</a></li>
-<li><a href="#writing-a-script">Writing a Script</a></li>
-</ul>
-</li>
-<li><a href="#managing-services-in-systemd">Managing Services in systemd</a>
-<ul>
-<li><a href="#service-lifecycle-systemctl-journalctl">Service Lifecycle (systemctl, journalctl)</a></li>
-<li><a href="#creating-a-new-service-script-in-etc-init-d">Creating a new Service (script in /etc/init.d)</a></li>
-</ul>
-</li>
-<li><a href="#tmux-commands">Tmux Commands</a>
-<ul>
-<li><a href="#manage-sessions">Manage Sessions</a></li>
-<li><a href="#windowstabs">Windows/Tabs</a></li>
-<li><a href="#panessplits">Panes/Splits</a></li>
-</ul>
-</li>
-</ul>
-<div id="introduction">
-<h1>Introduction</h1>
-<p>This post is a cheat sheet of commonly used shell commands and tools. It is meant to serve as a quick reference guide that you can consult when developing scripts or when working extensively with the Bash shell. It refers to tools which are usually present in all Linux distributions and OS X, or which can be easily installed with the usual package managers. The only exception is <strong>systemd</strong> which is present on most modern Linux distributions (with a few exceptions).</p>
-<div id="common-bash-commands">
-<h1>Common Bash Commands</h1>
-<div id="finding-files-find-egrep">
-<h2>Finding Files (find, egrep)</h2>
-<pre><code class="bash"># Find file recursively
+
+- [Introduction](#introduction)
+- [Common Bash Commands](#common-bash-commands)
+    - [Finding Files (find, egrep)](#finding-files-find-egrep)
+    - [Interacting with Servers (curl)](#interacting-with-servers-curl)
+    - [Inspect Ports and File Handles (lsof)](#inspect-ports-and-file-handles-lsof)
+    - [Pattern Matching and Replacing (sed)](#pattern-matching-and-replacing-sed)
+    - [Working with Tabular Data (awk)](#working-with-tabular-data-awk)
+    - [Working with JSON (jq)](#working-with-json-jq)
+    - [Working with Archives (tar, zip, unzip)](#working-with-archives-tar-zip-unzip)
+    - [File Permissions (ls, chmod, chown)](#file-permissions-ls-chmod-chown)
+    - [SSH Connection (ssh, scp)](#ssh-connection-ssh-scp)
+    - [Miscellaneous Commands](#miscellaneous-commands)
+- [The Bash Language](#the-bash-language)
+    - [Data Structures (array, hash)](#data-structures-array-hash)
+    - [Control Follow](#control-follow)
+    - [Functions](#functions)
+    - [Invoking a Script](#invoking-a-script)
+    - [Writing a Script](#writing-a-script)
+- [Managing Services in systemd](#managing-services-in-systemd)
+    - [Service Lifecycle (systemctl, journalctl)](#service-lifecycle-systemctl-journalctl)
+    - [Creating a new Service (script in /etc/init.d)](#creating-a-new-service-script-in-etc-init-d)
+- [Tmux Commands](#tmux-commands)
+    - [Manage Sessions](#manage-sessions)
+    - [Windows/Tabs](#windowstabs)
+    - [Panes/Splits](#panessplits)
+
+<div id='introduction' />
+# Introduction
+
+This post is a cheat sheet of commonly used shell commands and tools. 
+It is meant to serve as a quick reference guide that you can consult when developing scripts or when working 
+extensively with the Bash shell. It refers to tools which are usually present in all Linux distributions and OS X, 
+or which can be easily installed with the usual package managers. The only exception is **systemd** which is 
+present on most modern Linux distributions (with a few exceptions).
+
+<div id='common-bash-commands' />
+# Common Bash Commands
+
+<div id='finding-files-find-egrep' />
+## Finding Files (find, egrep)
+
+```bash
+# Find file recursively
 find . -name test.txt
 
 # -iname makes it case insensitive
@@ -115,12 +106,14 @@ find . -type f -exec egrep -l "^.*pattern" /dev/null {} \;
 # The same as the above two with the grep command
 egrep -r '^.*pattern'
 egrep -lr '^.*pattern'
-</code></pre>
-<div id="interacting-with-servers-curl">
-<h2>Interacting with Servers (curl)</h2>
-<pre><code class="bash"># Downloads the content. Tries to guess the protocol - e.g. HTTP, FTP
-curl example.com &gt; example.txt
-curl ftp://myftpsite.com --user myname:mypassword  &gt; example.txt
+```
+
+<div id='interacting-with-servers-curl' />
+## Interacting with Servers (curl)
+```bash
+# Downloads the content. Tries to guess the protocol - e.g. HTTP, FTP
+curl example.com > example.txt
+curl ftp://myftpsite.com --user myname:mypassword  > example.txt
 
 # Curl plays well with the tidy command, which pretty-prints HTML:
 curl example.com | tidy -qi
@@ -146,10 +139,13 @@ curl -u 'username:password' example.com/auth
 
 # To access insecure HTTPS connections
 curl -k https://example.com/secure.php
-</code></pre>
-<div id="inspect-ports-and-file-handles-lsof">
-<h2>Inspect Ports and File Handles (lsof)</h2>
-<pre><code class="bash"># List all current network connections
+```
+
+<div id='inspect-ports-and-file-handles-lsof' />
+## Inspect Ports and File Handles (lsof)
+
+```bash
+# List all current network connections
 lsof -i
 
 # List processes listening on a given port
@@ -158,11 +154,14 @@ lsof -i :25
 # Inspect what files/network resources a process or command is using
 lsof -p 10075
 lsof -c ls
-</code></pre>
-<div id="pattern-matching-and-replacing-sed">
-<h2>Pattern Matching and Replacing (sed)</h2>
-<pre><code class="bash"># Removing lines (1st and 3rd) from a file
-sed -e '1d' -e '3d' 'test.txt' &gt; 'result.txt'
+```
+
+<div id='pattern-matching-and-replacing-sed' />
+## Pattern Matching and Replacing (sed)
+
+```bash
+# Removing lines (1st and 3rd) from a file
+sed -e '1d' -e '3d' 'test.txt' > 'result.txt'
 
 # Replace all occurrences of a word with another
 sed -e 's/cat/dog/g' 'input.txt'
@@ -174,11 +173,14 @@ sed -e 's/cat/dog/ig' 'input.txt'
 sed -r 's/(\s+|,|\.)/-/g' 'test.txt'
 
 # Replace by regex using groups
-sed -r 's/(\w+)/ () /g' 'test.txt'
-</code></pre>
-<div id="working-with-tabular-data-awk">
-<h2>Working with Tabular Data (awk)</h2>
-<pre><code class="bash"># Getting columns from tabular data
+sed -r 's/(\w+)/ (\1) /g' 'test.txt'
+```
+
+<div id='working-with-tabular-data-awk' />
+## Working with Tabular Data (awk)
+
+```bash
+# Getting columns from tabular data
 awk '{ print $2, $4 }' text.txt
 ls -l | awk '{ print $2, $4 }'
 
@@ -189,15 +191,18 @@ echo "1,2,3,4,5" | awk -F, '{ print $2, $4 }'
 echo "1 2 3 4 5" | awk '{ printf "%.2f - %.2f - %.2f\n", $2, $2 + $3, $4 }'
 
 # Skip initial rows (e.g. a header)
-ls -l | awk 'FNR &gt; 1 { print $1 }'
+ls -l | awk 'FNR > 1 { print $1 }'
 
 # Select a specific row
 ls -l | awk 'FNR == 2 { print $1 }'
-</code></pre>
-<div id="working-with-json-jq">
-<h2>Working with JSON (jq)</h2>
-<pre><code class="bash"># Sample JSON data
-read -r -d '' jsonTxt &lt;&lt; EOM
+```
+
+<div id='working-with-json-jq' />
+## Working with JSON (jq)
+
+```bash
+# Sample JSON data
+read -r -d '' jsonTxt << EOM
 {"employees":[
     {"firstName":"John", "lastName":"Doe"},
     {"firstName":"Anna", "lastName":"Smith"},
@@ -226,10 +231,12 @@ echo $jsonTxt | jq '.employees[] | select(.firstName == "John")'
 
 # Filter an array by regex
 echo $jsonTxt | jq '.employees[] | select(.firstName | match(["jo.+", "gi"]))'
-</code></pre>
-<div id="working-with-archives-tar-zip-unzip">
-<h2>Working with Archives (tar, zip, unzip)</h2>
-<pre><code class="bash"># Archive a folder
+```
+
+<div id='working-with-archives-tar-zip-unzip' />
+## Working with Archives (tar, zip, unzip)
+```bash
+# Archive a folder
 tar cvf archive_name.tar dirname/
 
 # Archive and compress a folder
@@ -252,10 +259,12 @@ zip -j file.zip filepath
 # Unzip/Extract
 unzip file.zip
 unzip file.zip ./destination
-</code></pre>
-<div id="file-permissions-ls-chmod-chown">
-<h2>File Permissions (ls, chmod, chown)</h2>
-<pre><code class="bash"># Check permissions - prints r/w/x flags for owner-user/group/others
+```
+
+<div id='file-permissions-ls-chmod-chown' />
+## File Permissions (ls, chmod, chown)
+```bash
+# Check permissions - prints r/w/x flags for owner-user/group/others
 # Also prints the owner user and groups
 ls -l path
 
@@ -277,10 +286,12 @@ chmod o-x file
 
 # Chmod recursively
 chmod -R g+w directory
-</code></pre>
-<div id="ssh-connection-ssh-scp">
-<h2>SSH Connection (ssh, scp)</h2>
-<pre><code class="bash"># Connect as a user
+```
+
+<div id='ssh-connection-ssh-scp' />
+## SSH Connection (ssh, scp)
+```bash
+# Connect as a user
 ssh user@server-address
 
 # Connect with a pem file
@@ -294,10 +305,12 @@ scp ~/local_file username@server.org:~/destination
 
 # Download over SCP
 scp username@server.org:remote_file local_file
-</code></pre>
-<div id="miscellaneous-commands">
-<h2>Miscellaneous Commands</h2>
-<pre><code class="bash"># Move back to the previously visited folder
+```
+
+<div id='miscellaneous-commands' />
+## Miscellaneous Commands
+```bash
+# Move back to the previously visited folder
 cd -
 
 # Exit status of the last command
@@ -318,12 +331,16 @@ tree -h -L 1
 # Inspect the file system - mounted volumes etc.
 df -h
 
-</code></pre>
-<div id="the-bash-language">
-<h1>The Bash Language</h1>
-<div id="data-structures-array-hash">
-<h2>Data Structures (array, hash)</h2>
-<pre><code class="bash"># Define an array
+```
+
+<div id='the-bash-language' />
+# The Bash Language
+
+<div id='data-structures-array-hash' />
+## Data Structures (array, hash)
+
+```bash
+# Define an array
 arr=(1 "two" 3 'four' 5 'six')
 
 # Get an element by index
@@ -350,11 +367,14 @@ echo ${h["one"]}
 # Set and delete from hash
 h["one"]="Uno"
 unset h["one"]
-</code></pre>
-<div id="control-follow">
-<h2>Control Follow</h2>
-<pre><code class="bash"># If-Then-Else - watch your spaces!
-if [[ 3 &gt; $((1 + 1)) || 'a' == 'b' ]]
+```
+
+<div id='control-follow' />
+## Control Follow
+
+```bash
+# If-Then-Else - watch your spaces!
+if [[ 3 > $((1 + 1)) || 'a' == 'b' ]]
 then
   echo "Correct"
 else
@@ -375,7 +395,7 @@ fi
 # For loop with sequence/range of numbers
 for i in $(seq 1 10);
 do
-  if [[ $i &lt; 5 ]]
+  if [[ $i < 5 ]]
   then
     echo $i
   else
@@ -400,10 +420,13 @@ for k in "${!h[@]}"
 do
   echo "$k = ${h[$k]}"
 done
-</code></pre>
-<div id="functions">
-<h2>Functions</h2>
-<pre><code class="bash"># Example functions with params
+```
+
+<div id='functions' />
+## Functions
+
+```bash
+# Example functions with params
 function prettyPrint {
   #Parameters are indexed from 1
   local x=$1
@@ -425,12 +448,15 @@ function customEcho {
 # Invoke functions
 prettyPrint 12.5 13.4
 customEcho 1 2 3
-</code></pre>
-<div id="invoking-a-script">
-<h1>Bash Scripts</h1>
-<div id="writing-a-script">
-<h2>Invoking a Script</h2>
-<pre><code class="bash"># Run a script in a new child process
+```
+
+<div id='invoking-a-script' />
+# Bash Scripts
+
+<div id='writing-a-script' />
+## Invoking a Script
+```bash
+# Run a script in a new child process
 bash script.sh
 ./script.sh       # If executable
 
@@ -452,10 +478,13 @@ bash -u script.sh
 
 # Fails immediately if a command returns an error code
 bash -e script.sh
-</code></pre>
-<div id="writing-a-script">
-<h2>Writing a Script</h2>
-<pre><code class="bash">#!/usr/bin/env bash
+```
+
+<div id='writing-a-script' />
+## Writing a Script
+
+```bash
+#!/usr/bin/env bash
 
 # Display commands and their args before running them
 set -x
@@ -478,12 +507,15 @@ echo $@
 
 # Number of params
 echo $#
-</code></pre>
-<div id="managing-services-in-systemd">
-<h1>Managing Services in systemd</h1>
-<div id="service-lifecycle-systemctl-journalctl">
-<h2>Service Lifecycle (systemctl, journalctl)</h2>
-<pre><code class="bash"># List all services
+```
+
+<div id='managing-services-in-systemd' />
+# Managing Services in systemd
+
+<div id='service-lifecycle-systemctl-journalctl' />
+## Service Lifecycle (systemctl, journalctl)
+```bash
+# List all services
 systemctl list-unit-files --type=service
 
 # Start/stop/restart/reload/enable a Services
@@ -509,11 +541,18 @@ journalctl --since=today
 
 # View error events
 journalctl -p err
-</code></pre>
-<div id="creating-a-new-service-script-in-etc-init-d">
-<h2>Creating a new Service (script in /etc/init.d)</h2>
-<p>To create a service, place its script in - <strong>"/etc/init.d"</strong> (on some distros in <strong>"/etc/rc.d/init.d/"</strong>). The code of the script should handle start, stop, restart, etc. The following example (taken from <a href="http://unix.stackexchange.com/questions/20357/how-can-i-make-a-script-in-etc-init-d-start-at-boot">here</a>) demonstrates a skeleton of such a script:</p>
-<pre><code class="bash">#!/usr/bin/env bash
+```
+
+<div id='creating-a-new-service-script-in-etc-init-d' />
+## Creating a new Service (script in /etc/init.d)
+
+To create a service, place its script in - **"/etc/init.d"** (on some distros in **"/etc/rc.d/init.d/"**). 
+The code of the script should handle start, stop, restart, etc. The following example 
+(taken from [here](http://unix.stackexchange.com/questions/20357/how-can-i-make-a-script-in-etc-init-d-start-at-boot)) 
+demonstrates a skeleton of such a script:
+
+```bash
+#!/usr/bin/env bash
 # === Sample Script ===
 
 # Source function library.
@@ -521,7 +560,7 @@ journalctl -p err
 
 start() {
     # code to start app comes here
-    # example: daemon program_name &amp;
+    # example: daemon program_name &
 }
 
 stop() {
@@ -549,12 +588,15 @@ case "$1" in
 esac
 
 exit 0
-</code></pre>
-<div id="tmux-commands">
-<h1>Tmux Commands</h1>
-<div id="manage-sessions">
-<h2>Manage Sessions</h2>
-<pre><code class="bash"># Start a new session
+```
+
+<div id='tmux-commands' />
+# Tmux Commands
+
+<div id='manage-sessions' />
+## Manage Sessions
+```bash
+# Start a new session
 tmux new -s session_name
 
 # Attach to a running session
@@ -571,10 +613,13 @@ tmux detach
 
 # Kill/terminate a sessions
 tmux kill-session -t session_name
-</code></pre>
-<div id="windowstabs">
-<h2>Windows/Tabs</h2>
-<pre><code># Create window/tab (shortcut)
+```
+
+<div id='windowstabs' />
+## Windows/Tabs
+
+```
+# Create window/tab (shortcut)
 ctrl+b+c
 
 # Rename a window/tab (shortcut)
@@ -584,11 +629,14 @@ ctrl+b+,
 ctrl+b+w
 
 # Close window/tab (shortcut)
-ctrl+b+&amp;
-</code></pre>
-<div id="panessplits">
-<h2>Panes/Splits</h2>
-<pre><code># Split window vertically (shortcut)
+ctrl+b+&
+```
+
+<div id='panessplits' />
+## Panes/Splits
+
+```
+# Split window vertically (shortcut)
 ctrl+b+%
 
 # Split window horizontally (shortcut)
@@ -602,30 +650,4 @@ ctrl+b+o
 
 # Navigate to next pane with arrow key (shortcut)
 ctrl+b+[arrow-key]
-</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+```
