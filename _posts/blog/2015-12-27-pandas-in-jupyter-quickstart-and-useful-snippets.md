@@ -495,8 +495,6 @@ plot_df.plot(kind='box')
 </figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
-[gallery ids="536,535,534"]
-
 
 <div id="further_reading"/>
 # Further Reading
