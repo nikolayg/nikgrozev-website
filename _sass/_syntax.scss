@@ -226,3 +226,19 @@ ol.CodeRay li { white-space: pre }
 	.change .change { color: #66f; }
 	.head .head { color: #f4f; }
 }
+
+/* ========== Custom syntax highlighting ========== */
+.highlight {
+	overflow:auto;
+	width: 100%;
+}
+td.gutter {
+	border-right: 1px solid lightgray;
+	max-width: 2em;
+	min-width: 2em;
+	width: 2em;
+	.lineno {
+		padding: 0.5em;
+	}
+}
+
