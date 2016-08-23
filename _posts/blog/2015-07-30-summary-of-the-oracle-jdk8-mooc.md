@@ -28,7 +28,7 @@ author:
 
 # Introduction
 
-In a [previous post](www.nikgrozev.org/2014/03/21/java-8-in-a-nutshell/) 
+In a [previous post](/2014/03/21/java-8-in-a-nutshell/) 
 I summarised the new functional features of Java 8. Oracle has recently released a 3-week 
 [JDK 8 Massive Open and Online Course called "Lambdas and Streams"](https://blogs.oracle.com/thejavatutorials/entry/jdk_8_massive_open_and), 
 which discusses the new JDK8 functional features in much more details. It's a great course and if 

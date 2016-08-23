@@ -159,7 +159,7 @@ pandas.read_csv('file.csv', sep='\s*;\s*', skipinitialspace=True, engine='python
 ```
 
 Sometimes we need to sample the data before loading it, as it is too big to fit in memory. 
-This can be achieved following [this approach](www.nikgrozev.org/2015/06/16/fast-and-simple-sampling-in-pandas-when-loading-data-from-files/).
+This can be achieved following [this approach](/2015/06/16/fast-and-simple-sampling-in-pandas-when-loading-data-from-files/).
 
 <div id="hardcoded_dataframes"/>
 ## Hardcoded Dataframes

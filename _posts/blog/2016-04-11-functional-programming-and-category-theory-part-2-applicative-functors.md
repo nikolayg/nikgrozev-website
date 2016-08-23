@@ -50,7 +50,7 @@ author:
 <div id='introduction' />
 # Introduction
 
-In a [previous post](www.nikgrozev.org/2016/03/14/functional-programming-and-category-theory-part-1-categories-and-functors/) 
+In a [previous post](/2016/03/14/functional-programming-and-category-theory-part-1-categories-and-functors/) 
 I talked about the basic concepts in Category Theory and Functional Programming (FP) - namely Categories and Functors. 
 This post introduces a type of functors called *Applicative Functors*. Unlike the ordinary functors, applicatives allow 
 us to work with multi-arguement functions and thus turn out to be quite useful in FP. 
