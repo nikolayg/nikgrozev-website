@@ -245,35 +245,41 @@ so you can run and debug your app from there.
 First you need to set up the Eclipse maven environment:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/4-mvn.png" 
-    title="Go to Window->Preferences, then select Maven->Installations. Add a new installation.">
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/4-mvn.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/5-mvn.png" 
-    title='Browse to the location of your system Maven installation.'>
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/5-mvn.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/6-mvn.png" 
-    title="Set your system Maven as default for Eclipse.">
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/6-mvn.png" width="31%">
-</a>
+<figure class="third">
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/4-mvn.png" 
+        title="Go to Window->Preferences, then select Maven->Installations. Add a new installation.">
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/4-mvn.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/5-mvn.png" 
+        title='Browse to the location of your system Maven installation.'>
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/5-mvn.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/6-mvn.png" 
+        title="Set your system Maven as default for Eclipse.">
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/6-mvn.png">
+    </a>
+    <figcaption>Setup Maven in Eclipse.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 Then you need to import the project:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/1-importdialog.png" 
-    title="Go to File->Import. Then select Maven->Existing Maven Project.">
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/1-importdialog.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/2-importdialog.png" 
-    title='Browse to the location of the project.'>
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/2-importdialog.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/3-importdialog.png" 
-    title="Select the project.">
-	<img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/3-importdialog.png" width="31%">
-</a>
+<figure class="third">
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/1-importdialog.png" 
+        title="Go to File->Import. Then select Maven->Existing Maven Project.">
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/1-importdialog.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/2-importdialog.png" 
+        title='Browse to the location of the project.'>
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/2-importdialog.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/3-importdialog.png" 
+        title="Select the project.">
+        <img src="/assets/images/REST with Embedded Jetty and Jersey in a Single Jar - Step by Step/3-importdialog.png">
+    </a>
+    <figcaption>Import new project in Eclipse.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 

@@ -183,18 +183,21 @@ Then you need to schedule a new run, as in the previous post. The only differenc
 the NFS server as a filestore server. The following screenshots give an overview:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
-	<img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
-	<img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
-	<img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
-	<img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png" width="23%">
-</a>
+<figure class="half">
+  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
+    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
+    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
+    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
+    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
+  </a>
+  <figcaption>CloudStone overview.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 

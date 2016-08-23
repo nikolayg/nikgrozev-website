@@ -97,18 +97,21 @@ Now we can import the CloudSim project into Eclipse. Go to <u>File</u> -> <u>Imp
 and follow the wizard. You can use the following screenshots as a guideline:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png" width="23%">
-</a>
+<figure class="third">
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
+    </a>
+    <figcaption>CloudSim import in Eclipse.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 
@@ -136,15 +139,18 @@ follow the wizard to create a simple maven project. You can use the following sc
 
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project1.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project2.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project3.png">
-	<img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png" width="31%">
-</a>
+<figure class="third">
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project1.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project2.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project3.png">
+        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+    </a>
+    <figcaption>Test project in Eclipse.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 

@@ -481,15 +481,18 @@ plot_df.plot(kind='box')
 ```
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
-	<img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
-	<img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png" width="31%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
-	<img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png" width="31%">
-</a>
+<figure class="third">
+    <a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
+        <img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
+        <img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
+    </a>
+    <a class="image-popup-fit-width" href="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
+        <img src="/assets/images/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
+    </a>
+    <figcaption>Various plots.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 [gallery ids="536,535,534"]

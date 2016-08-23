@@ -179,18 +179,21 @@ you need to define the details of the CloudStone setup and the executed workload
 You can use the following screenshots as a guide:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png" width="23%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png" width="23%">
-</a>
+<figure class="half">
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
+  </a>
+  <figcaption>CloudStone config wizard.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 
@@ -198,14 +201,17 @@ After setting up the benchmark click OK to start it. You can view the benchmark 
 eventually the result from the "View Results" menu.
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png" 
-    title="The Logs during execution.">
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png" width="40%">
-</a>
-<a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png" 
-    title='Once the execution is done - you can see the results.'>
-	<img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png" width="40%">
-</a>
+<figure class="half">
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png" 
+      title="The Logs during execution.">
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png">
+  </a>
+  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png" 
+      title='Once the execution is done - you can see the results.'>
+    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png">
+  </a>
+  <figcaption>CloudStone sample results.</figcaption>
+</figure>
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 
