@@ -13,6 +13,7 @@ excerpt:
     However, there are some quite fundamental philosophical differences, which can be mind-boggling for a Java programmer ...
 categories:
 - C#
+- blog
 tags:
 - C++
 - Java

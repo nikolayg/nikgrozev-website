@@ -14,6 +14,7 @@ excerpt:
     so we can develop and debug there ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - Eclipse
 - Java

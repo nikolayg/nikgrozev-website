@@ -11,6 +11,7 @@ published: true
 status: publish
 categories:
 - Miscellaneous
+- blog
 tags:
 - GNU Octave
 - Octave

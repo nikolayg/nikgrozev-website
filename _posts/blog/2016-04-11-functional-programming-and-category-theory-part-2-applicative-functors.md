@@ -12,6 +12,7 @@ excerpt:
 categories:
 - Functional programming
 - Scala
+- blog
 tags:
 - Applicative Functor
 - Functional programming

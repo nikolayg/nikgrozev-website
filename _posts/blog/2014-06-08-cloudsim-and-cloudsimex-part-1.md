@@ -13,6 +13,7 @@ excerpt:
     modelling of new types of applications, not supported by CloudSim ...
 categories:
 - CloudSimEx
+- blog
 tags:
 - CloudSim
 - CloudSimEx

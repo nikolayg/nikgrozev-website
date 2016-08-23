@@ -13,6 +13,7 @@ excerpt:
     like green threads, fibres, goroutine, actors etc ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - Actors
 - Coroutine

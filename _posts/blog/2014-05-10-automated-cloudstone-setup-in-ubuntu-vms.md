@@ -15,6 +15,7 @@ excerpt:
     14.04 virtual machines ...
 categories:
 - CloudStone
+- blog
 tags:
 - AWS
 - Bash

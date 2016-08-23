@@ -14,6 +14,7 @@ excerpt:
     Apache LibCloud and Apache JClouds I could finally implement this in JClouds ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - AWS
 - Java

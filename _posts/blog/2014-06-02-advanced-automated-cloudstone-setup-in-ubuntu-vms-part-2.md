@@ -12,6 +12,7 @@ excerpt:
     across all of them ...
 categories:
 - CloudStone
+- blog
 tags:
 - AWS
 - Bash

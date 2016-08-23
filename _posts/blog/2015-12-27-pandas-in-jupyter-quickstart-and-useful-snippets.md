@@ -12,6 +12,7 @@ status: publish
 categories:
 - DataScience
 - Python
+- blog
 tags:
 - Jupyter
 - Pandas

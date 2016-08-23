@@ -13,6 +13,7 @@ categories:
 - Category Theory
 - Functional programming
 - Scala
+- blog
 tags:
 - Category Theory
 - Functional programming

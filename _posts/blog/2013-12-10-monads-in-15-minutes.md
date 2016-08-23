@@ -12,6 +12,7 @@ excerpt:
     insightful philosophical and theoretical reflections ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - Functional programming
 - Monad

@@ -12,6 +12,7 @@ excerpt:
     In this post I'll overview a setup procedure for Ubuntu (tested with version 14.04) ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - C++
 - NuPIC

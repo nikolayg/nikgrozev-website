@@ -11,6 +11,7 @@ excerpt:
     of the new functional programming features in Java ...
 categories:
 - Miscellaneous
+- blog
 tags:
 - Java
 - Jdk

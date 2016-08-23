@@ -10,6 +10,7 @@ excerpt:
     without going into too much technical details...
 categories:
 - Miscellaneous
+- blog
 tags:
 - BGP
 - Network

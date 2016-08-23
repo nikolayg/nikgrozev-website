@@ -10,6 +10,7 @@ excerpt:
     for a Java programmer. In this post we'll look into it ...
 categories:
 - C#
+- blog
 tags:
 - C#
 - Generics

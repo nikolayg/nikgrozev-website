@@ -12,6 +12,7 @@ categories:
 - DataScience
 - Miscellaneous
 - Python
+- blog
 tags:
 - Pandas
 - Python
