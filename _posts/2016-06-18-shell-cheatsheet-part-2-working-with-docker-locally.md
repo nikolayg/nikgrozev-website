@@ -5,62 +5,59 @@ date: 2016-06-18 15:22:09.000000000 +10:00
 type: post
 published: true
 status: publish
+excerpt: 
+    This post is a cheat sheet of commonly used 
+    Docker shell commands....
 categories:
 - Bash
 - Docker
 tags:
 - Bash
 - Docker
-meta:
-  _wpcom_is_markdown: '1'
-  _edit_last: '1'
-  _kad_blog_head: default
-  _kad_post_summery: default
-  _kad_post_sidebar: 'yes'
-  _kad_sidebar_choice: sidebar-primary
-  _kad_blog_author: default
-  _kad_blog_carousel_similar: default
-  _wpas_done_all: '1'
+- Cheatsheet
+- Shell
 author:
   login: nikolay.grozev@gmail.com
   email: nikolay.grozev@gmail.com
   display_name: nikolay.grozev@gmail.com
-  first_name: ''
-  last_name: ''
+  first_name: 'Nikolay'
+  last_name: 'Grozev'
 ---
-<h1>Table of Contents</h1>
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#docker-101-managing-a-single-container">Docker 101 - Managing a Single Container</a>
-<ul>
-<li><a href="#inventory-of-containers-and-images">Inventory of Containers and Images</a></li>
-<li><a href="#start-containers-run-commands-and-shell-ssh-style">Start Containers, Run Commands and Shell (SSH-style)</a></li>
-<li><a href="#networking-and-persistent-volumes">Networking and Persistent Volumes</a></li>
-<li><a href="#restart-stop-and-delete-containers">Restart, Stop, and Delete Containers</a></li>
-<li><a href="#diff-a-container-and-create-an-image">Diff a Container and Create an Image</a></li>
-</ul>
-</li>
-<li><a href="#dockerfile-create-a-new-image">Dockerfile - Create a New Image</a>
-<ul>
-<li><a href="sample-dockerfile">Sample Dockerfile</a></li>
-<li><a href="#working-with-dockerfile">Working with Dockerfile</a></li>
-</ul>
-</li>
-<li><a href="#docker-compose">Docker Compose</a>
-<ul>
-<li><a href="#sample-docker-compose-yml-file">Sample docker-compose.yml File</a></li>
-<li><a href="#run-docker-compose">Run Docker Compose</a></li>
-</ul>
-</li>
-</ul>
-<div id="introduction">
-<h1>Introduction</h1>
-<p>Docker used to run "out of the box" only on Linux-based systems, but now it is available for <a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">Windows and OS X</a> as well, without the need for third party tools. This makes it worthwhile to create a quick reference for often used docker commands and tools. This post is a cheat sheet of commonly used <a href="https://www.docker.com/">Docker</a> shell commands. It is meant to serve as a quick reference that you can consult when developing scripts or debugging. It is not a tutorial - if you haven't used docker before please refer to the <a href="https://docs.docker.com/">official learning materials and documentation</a>.</p>
-<div id="docker-101-managing-a-single-container">
-<h1>Docker 101 - Managing a Single Container</h1>
-<div id="inventory-of-containers-and-images">
-<h2>Inventory of Containers and Images</h2>
-<pre><code class="bash"># Check Docker hub for images with a given name
+
+# Table of Contents
+
+- [Introduction](#introduction)
+- [Docker 101 - Managing a Single Container](#docker-101-managing-a-single-container)
+  - [Inventory of Containers and Images](#inventory-of-containers-and-images)
+  - [Start Containers, Run Commands and Shell (SSH-style)](#start-containers-run-commands-and-shell-ssh-style)
+  - [Networking and Persistent Volumes](#networking-and-persistent-volumes)
+  - [Restart, Stop, and Delete Containers](#restart-stop-and-delete-containers)
+  - [Diff a Container and Create an Image](#diff-a-container-and-create-an-image)
+- [Dockerfile - Create a New Image](#dockerfile-create-a-new-image)
+  - [Sample Dockerfile](sample-dockerfile)
+  - [Working with Dockerfile](#working-with-dockerfile)
+- [Docker Compose](#docker-compose)
+  - [Sample docker-compose.yml File](#sample-docker-compose-yml-file)
+  - [Run Docker Compose](#run-docker-compose)
+
+<div id='introduction'/>
+# Introduction
+
+Docker used to run "out of the box" only on Linux-based systems, but now it is available for 
+[Windows and OS X](https://blog.docker.com/2016/03/docker-for-mac-windows-beta/) as well, without 
+the need for third party tools. This makes it worthwhile to create a quick reference for often used 
+docker commands and tools. This post is a cheat sheet of commonly used 
+[Docker](https://www.docker.com/) shell commands. It is meant to serve as a quick reference that you 
+can consult when developing scripts or debugging. It is not a tutorial - if you haven't used docker 
+before please refer to the [official learning materials and documentation](https://docs.docker.com/). 
+
+<div id='docker-101-managing-a-single-container'/>
+# Docker 101 - Managing a Single Container
+
+<div id='inventory-of-containers-and-images'/>
+## Inventory of Containers and Images
+```bash
+# Check Docker hub for images with a given name
 docker search ubuntu
 
 # Pull a container from Docker hub. To use an image tag - use [image-name]:[tag]
@@ -79,10 +76,12 @@ docker ps -a
 
 # List what is running in a container. Id/Name is taken from ps.
 docker top 32c5a521c664
-</code></pre>
-<div id="start-containers-run-commands-and-shell-ssh-style">
-<h2>Start Containers, Run Commands and Shell (SSH-style)</h2>
-<pre><code class="bash"># Start a container - pull it from Docker hub if not present. You can name it.
+```
+
+<div id='start-containers-run-commands-and-shell-ssh-style'/>
+## Start Containers, Run Commands and Shell (SSH-style)
+```bash
+# Start a container - pull it from Docker hub if not present. You can name it.
 # Standard output/error will be redirected to the current terminal
 docker run hello-world
 docker run --name=test-container-name hello-world
@@ -112,10 +111,12 @@ docker attach 32c5a521c664
 
 # Run an arbitrary command within a running container
 docker exec b3a04a93f46f /bin/echo "Hello again"
-</code></pre>
-<div id="networking-and-persistent-volumes">
-<h2>Networking and Persistent Volumes</h2>
-<pre><code class="bash"># Start a web server in a container; map its port (80) to a localhost port (8080)
+```
+
+<div id='networking-and-persistent-volumes'/>
+## Networking and Persistent Volumes
+```bash
+# Start a web server in a container; map its port (80) to a localhost port (8080)
 docker run -p 8080:80 nginx
 
 # If containers can't access the hosts networking (run on host)
@@ -126,10 +127,12 @@ docker run --dns 8.8.8.8 ubuntu
 
 # Mount a host folder '~/test-vol' to a container as '/host-test-vol'
 docker run -it -v ~/test-vol:/host-test-vol ubuntu /bin/bash
-</code></pre>
-<div id="restart-stop-and-delete-containers">
-<h2>Restart, Stop, and Delete Containers</h2>
-<pre><code class="bash"># Start/restart a stopped/running container
+```
+
+<div id='restart-stop-and-delete-containers'/>
+## Restart, Stop, and Delete Containers
+```bash
+# Start/restart a stopped/running container
 docker start 33712928d6c5
 docker restart 33712928d6c5
 
@@ -145,20 +148,26 @@ docker rm b3a04a93f46f
 
 # Remove a container regardless of its state (i.e. running, stopped)
 docker rm -f b3a04a93f46f
-</code></pre>
-<div id="diff-a-container-and-create-an-image">
-<h2>Diff a Container and Create an Image</h2>
-<pre><code class="bash"># Check the changes in a container, since it was started from an image
+```
+
+<div id='diff-a-container-and-create-an-image'/>
+## Diff a Container and Create an Image
+```bash
+# Check the changes in a container, since it was started from an image
 docker diff 60b4f89dfc7f
 
 # Create an image from a container - it will include all new changes
 docker commit 60b4f89dfc7f test-image-name
-</code></pre>
-<div id="dockerfile-create-a-new-image">
-<h1>Dockerfile - Create a New Image</h1>
-<div id="sample-dockerfile">
-<h2>Sample Dockerfile</h2>
-<pre><code class="bash"># Define base docker image - will be pulled from the repo if not present
+```
+
+<div id='dockerfile-create-a-new-image'/>
+# Dockerfile - Create a New Image
+
+<div id='sample-dockerfile'/>
+## Sample Dockerfile
+
+```bash
+# Define base docker image - will be pulled from the repo if not present
 FROM ubuntu:16.04
 
 # Metadata - Let people know who build this
@@ -193,22 +202,31 @@ CMD service nginx start
 
 # Like CMD, but can't be overridden if the caller passes a command!
 ENTRYPOINT service nginx start
-</code></pre>
-<div id="working-with-dockerfile">
-<h2>Working with Dockerfile</h2>
-<pre><code class="bash"># Build a docker image from Dockerfile in the current folder
+```
+
+<div id='working-with-dockerfile'/>
+## Working with Dockerfile
+
+```bash
+# Build a docker image from Dockerfile in the current folder
 docker build .
 
 # Build a docker image from Dockerfile and name it
 docker build -t nikolay/testimage .
 docker build -t nikolay/testimage:ver1 .
-</code></pre>
-<div id="docker-compose">
-<h1>Docker Compose</h1>
-<p>Example borrowed from the official <a href="https://docs.docker.com/compose/django/">documentation</a>:</p>
-<div id="sample-docker-compose-yml-file">
-<h2>Sample docker-compose.yml File</h2>
-<pre><code class="yml"># Use the latest version of docker compose
+```
+
+<div id='docker-compose'/>
+
+# Docker Compose
+
+Example borrowed from the official [documentation](https://docs.docker.com/compose/django/):
+
+<div id='sample-docker-compose-yml-file'/>
+
+## Sample docker-compose.yml File
+```yml
+# Use the latest version of docker compose
 version: '2'
 
 # Define each container in the services section
@@ -229,10 +247,14 @@ services:
     depends_on:
       - db
 
-</code></pre>
-<div id="run-docker-compose">
-<h2>Run Docker Compose</h2>
-<pre><code class="bash"># From the same folder - start all containers defined in docker-compose.yml.
+```
+
+<div id='run-docker-compose'/>
+
+## Run Docker Compose
+
+```bash
+# From the same folder - start all containers defined in docker-compose.yml.
 # If some of the containers are running - starts only the needed ones
 docker-compose up
 
@@ -241,17 +263,4 @@ docker-compose up --force-recreate
 
 # Stop all containers
 docker-compose stop
-</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+```
