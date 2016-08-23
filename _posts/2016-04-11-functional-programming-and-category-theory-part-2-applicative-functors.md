@@ -5,13 +5,13 @@ date: 2016-04-11 23:54:06.000000000 +10:00
 type: post
 published: true
 status: publish
-categories:
-- Functional programming
-- Scala
 excerpt: 
     This post introduces a type of functors called Applicative Functors. 
     Unlike the ordinary functors, applicatives allow 
     us to work with multi-arguement functions and thus turn out to be quite useful in FP.
+categories:
+- Functional programming
+- Scala
 tags:
 - Applicative Functor
 - Functional programming
