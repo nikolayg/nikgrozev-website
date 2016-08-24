@@ -95,7 +95,7 @@ Method references are a shorthand for implementing functional interfaces by call
 
 There are four types of method references:
 
-<table style="width:100%;">
+<table>
     <thead>
         <tr>
             <th>Reference to</th>

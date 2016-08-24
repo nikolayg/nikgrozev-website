@@ -167,7 +167,22 @@ figcaption {
 // Tables
 // --------------------------------------------------
 table {
-  width: 100%;
+	padding-top: 1em;
+	padding-bottom: 2em;
+	margin-top: 1em;
+	margin-bottom: 2em;
+	border-collapse: collapse;
+    width: 100%;
+}
+thead, th {
+	background: lightgray;
+	font-size:.95em;
+}
+table, th, td, thead {
+	border: 1px solid gray;
+}
+td {
+	font-size:.85em;
 }
 
 

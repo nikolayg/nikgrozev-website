@@ -229,16 +229,35 @@ ol.CodeRay li { white-space: pre }
 
 /* ========== Custom syntax highlighting ========== */
 .highlight {
-	overflow:auto;
+    overflow:auto;
 	width: 100%;
+    table {
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    table, th, td, thead {
+        border: 0;
+    }
+    td {
+        font-size:1em;
+        pre {
+            padding: 0.25em;
+        }
+    }
+    td.gutter {
+        border-right: 1px solid lightgray;
+        max-width: 2em;
+        min-width: 2em;
+        width: 2em;
+        .lineno {
+            padding: 0.5em;
+            text-align: right;
+	    }
+    }
 }
-td.gutter {
-	border-right: 1px solid lightgray;
-	max-width: 2em;
-	min-width: 2em;
-	width: 2em;
-	.lineno {
-		padding: 0.5em;
-	}
-}
+
 

@@ -153,7 +153,7 @@ functional interfaces by calling already defined methods.
 
 There are four types of method references:
 
-<table style="width:60em;">
+<table>
     <thead>
         <tr>
             <th>Reference to</th>

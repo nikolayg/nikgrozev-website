@@ -107,7 +107,7 @@ d.G();
 
 Many will be surprised to see that the results are different, as per the following table.
 
-<table style="witdh:60em">
+<table style="width:30em;">
     <thead>
         <tr>
             <th>Command / Language</th>

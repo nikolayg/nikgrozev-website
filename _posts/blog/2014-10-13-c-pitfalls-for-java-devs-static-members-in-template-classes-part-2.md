@@ -91,9 +91,9 @@ Many will be surprised to see that the results are different, as per the followi
 <table style="width:20em">
     <thead>
         <tr>
-            <th>Command / Language</td>
-            <th>C#</td>
-            <th>Java</td>
+            <th>Command / Language</th>
+            <th>C#</th>
+            <th>Java</th>
         </tr>
     </thead>
 
