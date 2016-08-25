@@ -12,6 +12,7 @@
 .post-list {
   margin: 0;
   padding: 0;
+  width: 100%;
   list-style-type: none;
   li {
     padding: 8px 0;
@@ -38,12 +39,14 @@
   .excerpt {
     display: block;
     float: none;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     @include font-size(14, no, 16);
     @include media($medium) {
-      width: 70%;
+      width: 80%;
     }
     @include media($large) {
-      width: 60%;
+      width: 70%;
     }
   }
 }
