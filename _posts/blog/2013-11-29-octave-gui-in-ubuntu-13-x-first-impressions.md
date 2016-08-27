@@ -75,34 +75,34 @@ are already there :-). Here are some screen-shots:
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="third">
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/1-welcome-screen.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/1-welcome-screen.png" 
         title="Welcome Screen.">
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/1-welcome-screen.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/1-welcome-screen.png">
     </a>
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/2-command-window.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/2-command-window.png" 
         title='A standard terminal for invoking commands. Session variables are listed in the "Workspace" panel'>
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/2-command-window.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/2-command-window.png">
     </a>
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/3-text-editor-and-automcomplete1.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/3-text-editor-and-automcomplete1.png" 
         title="The code editor offers code completion.">
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/3-text-editor-and-automcomplete1.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/3-text-editor-and-automcomplete1.png">
     </a>
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/4-graphics.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/4-graphics.png" 
         title="Graphics.">
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/4-graphics.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/4-graphics.png">
     </a>
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/5-debugging.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/5-debugging.png" 
         title="Debugging! The breakpoint is in red, the yellow arrow indicates curren line in the code.">
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/5-debugging.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/5-debugging.png">
     </a>
     <a class="image-popup-fit-width" 
-        href="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/6-documentation.png" 
+        href="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/6-documentation.png" 
         title="The documentation/help is organised hierarchically.">
-        <img src="/assets/images/Octave GUI in Ubuntu 13.x - First Impressions/6-documentation.png">
+        <img src="/images/blog/Octave GUI in Ubuntu 13.x - First Impressions/6-documentation.png">
     </a>
     <figcaption>Overview of Octave GUI.</figcaption>
 </figure>

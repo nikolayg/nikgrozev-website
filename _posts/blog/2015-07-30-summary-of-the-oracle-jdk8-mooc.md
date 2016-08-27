@@ -247,7 +247,7 @@ until a result is derived. Hence, each stream operation can be can be classified
 
 
 <figure>
-  <img src="/assets/images/Summary of the Oracle JDK8 MOOC/streamoverview.png" alt="Working with streams." >
+  <img src="/images/blog/Summary of the Oracle JDK8 MOOC/streamoverview.png" alt="Working with streams." >
   <figcaption>Working with streams.</figcaption>
 </figure>
 

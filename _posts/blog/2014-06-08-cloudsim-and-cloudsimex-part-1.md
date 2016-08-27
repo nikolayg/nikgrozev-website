@@ -89,7 +89,7 @@ If not go to <u>Window</u> -> <u>Preferences</u> -> <u>Maven</u> -> <u>Installat
 and add the location of your maven installation:
 
 <figure>
-  <img src="/assets/images/CloudSim and CloudSimEx Part 1/mavenineclipse.png" alt="Maven Setup in Eclipse" width="75%">
+  <img src="/images/blog/CloudSim and CloudSimEx Part 1/mavenineclipse.png" alt="Maven Setup in Eclipse" width="75%">
   <figcaption>Maven Setup in Eclipse.</figcaption>
 </figure>
 
@@ -98,17 +98,17 @@ and follow the wizard. You can use the following screenshots as a guideline:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="third">
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
     </a>
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
     </a>
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
     </a>
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim4.png">
     </a>
     <figcaption>CloudSim import in Eclipse.</figcaption>
 </figure>
@@ -140,14 +140,14 @@ follow the wizard to create a simple maven project. You can use the following sc
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="third">
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project1.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/new-maven-project1.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim1.png">
     </a>
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project2.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/new-maven-project2.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim2.png">
     </a>
-    <a class="image-popup-fit-width" href="/assets/images/CloudSim and CloudSimEx Part 1/new-maven-project3.png">
-        <img src="/assets/images/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
+    <a class="image-popup-fit-width" href="/images/blog/CloudSim and CloudSimEx Part 1/new-maven-project3.png">
+        <img src="/images/blog/CloudSim and CloudSimEx Part 1/import-cloudsim3.png">
     </a>
     <figcaption>Test project in Eclipse.</figcaption>
 </figure>
@@ -192,7 +192,7 @@ Right click on the test project in the explorer, select <u>Properties</u>, and e
 Java compiler compliance level is set to 1.7, as in the following screenshot:
 
 <figure>
-  <img src="/assets/images/CloudSim and CloudSimEx Part 1/test-project-properties.png" alt="Test Project Properties" width="75%">
+  <img src="/images/blog/CloudSim and CloudSimEx Part 1/test-project-properties.png" alt="Test Project Properties" width="75%">
   <figcaption>Test Project Properties.</figcaption>
 </figure>
 

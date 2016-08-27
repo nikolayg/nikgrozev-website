@@ -63,7 +63,7 @@ system (i.e. good parallelism) you need scalable and flexible design with no bot
 (i.e. good concurrency).
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/concurrent_vs_parallel.png" alt="Concurrent vs. Parallel" >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/concurrent_vs_parallel.png" alt="Concurrent vs. Parallel" >
   <figcaption>Concurrent vs. Parallel.</figcaption>
 </figure>
 
@@ -103,7 +103,7 @@ schedules all threads.
 
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/threads.png" alt="Each thread in a process has its own stack" >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/threads.png" alt="Each thread in a process has its own stack" >
   <figcaption>Each thread in a process has its own stack.</figcaption>
 </figure>
 
@@ -172,7 +172,7 @@ In other words, multiple execution paths can coexists in the form of fibers (i.e
 not actually run at the same time (parallelism).
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/fiber.png" alt="Multiple Fibers in a thread." >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/fiber.png" alt="Multiple Fibers in a thread." >
   <figcaption>Multiple Fibers in a thread.</figcaption>
 </figure>
 
@@ -355,7 +355,7 @@ The overall goal is to minimise the time threads are blocked, and thus serve the
 with fewer threads and context switches.
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/goroutine.png" alt="Goroutines." >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/goroutine.png" alt="Goroutines." >
   <figcaption>Goroutines.</figcaption>
 </figure>
 
@@ -414,7 +414,7 @@ messages among them. This can increase availability and responsiveness. Finally,
 distributed on [multiple machines or a cluster](http://www.typesafe.com/activator/template/akka-distributed-workers).
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/actors.png" alt="Actors." >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/actors.png" alt="Actors." >
   <figcaption>Actors.</figcaption>
 </figure>
 
@@ -467,7 +467,7 @@ of pipeline or workflow systems. As one node is continuously producing/streaming
 nodes can consume it in real time with minimal latency.
 
 <figure>
-  <img src="/assets/images/Overview of Modern Concurrency and Parallelism Concepts/disruptor.png" alt="LMAX Disruptor." >
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/disruptor.png" alt="LMAX Disruptor." >
   <figcaption>LMAX Disruptor.</figcaption>
 </figure>
 

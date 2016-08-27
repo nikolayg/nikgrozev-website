@@ -66,7 +66,7 @@ In other words, the client does not "know" of its existence, and only sees the l
 This allows us to dynamically provision more instances of the web server VM and to transparently associate them with the load balancer.
 
 <figure>
-  <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/cloudstoneoverviewwithloadbalancer1.png" alt="CloudStone Architecture with a load balancer and a NFS server" >
+  <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/cloudstoneoverviewwithloadbalancer1.png" alt="CloudStone Architecture with a load balancer and a NFS server" >
   <figcaption>CloudStone Architecture with a load balancer and a NFS server.</figcaption>
 </figure>
 
@@ -83,7 +83,7 @@ into each other without any prompts. Hence, our scripts need to copy the key (i.
 across all machines. Thus, it is advised to **<u>create a new pem file only for running CloudStone</u>**.
 
 <figure>
-  <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/securitygroup-1024x538.png" alt="CloudStone security Group in AWS" >
+  <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/securitygroup-1024x538.png" alt="CloudStone security Group in AWS" >
   <figcaption>CloudStone security Group in AWS.</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ We will call it the **Installer** machine. This could be just a PC/laptop or a d
 It uses SSH and SCP to configure appropriately and start all servers. The next diagram depicts the setup topology.
 
 <figure>
-  <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/cloudstoneinstallationtopologywithloadbalancer.png" alt="CloudStone topology with a load balancer" >
+  <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/cloudstoneinstallationtopologywithloadbalancer.png" alt="CloudStone topology with a load balancer" >
   <figcaption>The installer Linux machine uses SSH and SCP to configure the CloudStone VMs. All CloudStone VMs run 64bit Ubuntu 14.04, have the same pem file (e.g. CloudStone.pem) and the same permissive security group (e.g. named CloudStone).</figcaption>
 </figure>
 
@@ -173,7 +173,7 @@ Just like in the [previous post](/2014/05/10/automated-cloudstone-setup-in-ubunt
 to run CloudStone you need to point your web browser to <u>http:// [ client-vm-address ] :9980</u> to see the following screen:
 
 <figure>
-  <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/fabanoliomainscreen-1024x703.png" alt="Faban Main Screen" >
+  <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/fabanoliomainscreen-1024x703.png" alt="Faban Main Screen" >
   <figcaption>Faban Main Screen.</figcaption>
 </figure>
 
@@ -184,17 +184,17 @@ the NFS server as a filestore server. The following screenshots give an overview
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="half">
-  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
-    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
+  <a class="image-popup-fit-width" href="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
+    <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-javaadvanced.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
-    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
+  <a class="image-popup-fit-width" href="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
+    <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-driveradvanced.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
-    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
+  <a class="image-popup-fit-width" href="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
+    <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-web-serveradvanced1.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
-    <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
+  <a class="image-popup-fit-width" href="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
+    <img src="/images/blog/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/wizard-data-serversadvanced.png">
   </a>
   <figcaption>CloudStone overview.</figcaption>
 </figure>

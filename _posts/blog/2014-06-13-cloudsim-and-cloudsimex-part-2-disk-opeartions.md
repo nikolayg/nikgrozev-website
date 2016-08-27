@@ -78,7 +78,7 @@ In fact, under the hood a `VmDiskScheduler` uses a dedicated `VmScheduler` to ma
 The following diagram depicts the above concepts.
 
 <figure>
-  <img src="/assets/images/CloudSim and CloudSimEx Part 2 Disk operations/hostdisksched2.png" alt="Scheduling of VMs load to the host.">
+  <img src="/images/blog/CloudSim and CloudSimEx Part 2 Disk operations/hostdisksched2.png" alt="Scheduling of VMs load to the host.">
   <figcaption>
     HddHost – uses VmScheduler and VmDiskScheduler to assign CPU and disk operations to its disk enable VMs (i.e. HddVm). 
     Each disk has a set of disk items (e.g. files).
@@ -106,7 +106,7 @@ available to the VM. Otherwise, the cloudlet will fail.
 The following diagram depicts the above concepts:
 
 <figure>
-  <img src="/assets/images/CloudSim and CloudSimEx Part 2 Disk operations/vmdisksched2.png" alt="Cloud scheduling.">
+  <img src="/images/blog/CloudSim and CloudSimEx Part 2 Disk operations/vmdisksched2.png" alt="Cloud scheduling.">
   <figcaption>
     HddVm: A HddCloudletSchedulerTimeShared isntance allocates CPU & disk resources to cloudlets. 
     Each cloudlet is associated to a data item and requries a number of I/O operations

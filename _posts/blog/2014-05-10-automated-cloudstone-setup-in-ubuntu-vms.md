@@ -67,7 +67,7 @@ through which it monitors their performance throughout the benchmark execution.
 The following diagram depicts the target setup of CloudStone:
 
 <figure>
-  <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/cloudstoneoverview.png" alt="CloudStone Architecture" >
+  <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/cloudstoneoverview.png" alt="CloudStone Architecture" >
   <figcaption>CloudStone Architecture.</figcaption>
 </figure>
 
@@ -84,7 +84,7 @@ all machines. Thus, it is advised to **create a new pem file only for running Cl
 
 
 <figure>
-  <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/securitygroup-1024x538.png" alt="CloudStone security Group in AWS" >
+  <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/securitygroup-1024x538.png" alt="CloudStone security Group in AWS" >
   <figcaption>CloudStone security Group in AWS.</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ If you don't have a Linux machine available, you could use a dedicated VM in the
 It uses SSH and SCP to configure appropriately and start all servers. The next diagram depicts the setup topology.
 
 <figure>
-  <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/cloudstoneinstallationtopology.png" alt="CloudStone installation topology" >
+  <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/cloudstoneinstallationtopology.png" alt="CloudStone installation topology" >
   <figcaption>
     The installer Linux machine uses SSH and SCP to configure the CloudStone VMs. 
     All CloudStone VMs run 64bit Ubuntu 14.04, have the same pem file (e.g. CloudStone.pem) and the same 
@@ -170,7 +170,7 @@ To run CloudStone point your browser to <u>http:// [ client-vm-address ] :9980</
 where <u>[client-vm-address]</u> is the address of the Client VM. You should see a screen like the following one:
 
 <figure>
-  <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/fabanoliomainscreen-1024x703.png" alt="Faban Main Screen" >
+  <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/fabanoliomainscreen-1024x703.png" alt="Faban Main Screen" >
   <figcaption>Faban Main Screen.</figcaption>
 </figure>
 
@@ -180,17 +180,17 @@ You can use the following screenshots as a guide:
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="half">
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-java1.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-driver.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-web-server.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/wizard-data-servers.png">
   </a>
   <figcaption>CloudStone config wizard.</figcaption>
 </figure>
@@ -202,13 +202,13 @@ eventually the result from the `View Results` menu.
 
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="half">
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png" 
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png" 
       title="The Logs during execution.">
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/benchmark-log.png">
   </a>
-  <a class="image-popup-fit-width" href="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png" 
+  <a class="image-popup-fit-width" href="/images/blog/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png" 
       title='Once the execution is done - you can see the results.'>
-    <img src="/assets/images/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png">
+    <img src="/images/blog/Automated CloudStone Setup in Ubuntu VMs/detailedresults.png">
   </a>
   <figcaption>CloudStone sample results.</figcaption>
 </figure>

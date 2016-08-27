@@ -245,7 +245,7 @@ This sets the stage for an invocation of the **apply** function which transforms
 into the applicative functor. This computation is depicted in the next figure.
 
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 2 - Applicative Functors/applicativefunctor1.jpg" alt="Computational process of applying an Applicative functor." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 2 - Applicative Functors/applicativefunctor1.jpg" alt="Computational process of applying an Applicative functor." >
   <figcaption>Computational process of applying an Applicative functor.</figcaption>
 </figure>
 
@@ -259,7 +259,7 @@ following form **f ': F[A<sub>1</sub>] &rarr; ... &rarr; F[A<sub>n</sub>]**.
 
 
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 2 - Applicative Functors/applicativefunctorhask.jpg" alt="An Applicative Functor in Hask" >
+  <img src="/images/blog/Functional Programming and Category Theory Part 2 - Applicative Functors/applicativefunctorhask.jpg" alt="An Applicative Functor in Hask" >
   <figcaption>An Applicative Functor in Hask.</figcaption>
 </figure>
 

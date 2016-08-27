@@ -55,7 +55,7 @@ table are taken from column given as the <u>values</u> parameter.
 A bit foggy? Let's give an example. Assume that we are given the following small table:
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/table.png" alt="Table" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/table.png" alt="Table" >
 </figure>
 
 Although the semantics doesn't matter in this example, you can think of it as a table of items we want to sell. 
@@ -99,7 +99,7 @@ of the USD column in the original table corresponding to the same Item and CType
 illustrates this. Column and row indices are marked in red.
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple1.png" alt="Pivoting in action" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple1.png" alt="Pivoting in action" >
   <figcaption>Pivoting in action.</figcaption>
 </figure>
 
@@ -140,7 +140,7 @@ The second level of the index defines the unique value of the corresponding colu
 
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple_multicolumn.png" alt="Multi-column pivoting" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple_multicolumn.png" alt="Multi-column pivoting" >
   <figurecaption>Multi-column pivoting</figurecaption>
 </figure>
 
@@ -171,7 +171,7 @@ for these columns? How will the pivot method determine the value of the correspo
 pivoted table? The following diagram depicts the problem:
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple_error.png" alt="Common error in pivoting" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_simple_error.png" alt="Common error in pivoting" >
   <figurecaption>Common error in pivoting</figurecaption>
 </figure>
 
@@ -207,7 +207,7 @@ this problem. It works like pivot, but it aggregates the values from rows with d
 In other words, in the previous example we could have used the mean, the median or another aggregation function to compute a single value from the conflicting entries. This is depicted in the example below.
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_table_simple1.png" alt="Pivoting by a single column" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/pivoting_table_simple1.png" alt="Pivoting by a single column" >
   <figurecaption>Pivoting by a single column</figurecaption>
 </figure>
 
@@ -240,7 +240,7 @@ The inverse operation is called unstacking. It means moving the innermost row in
 innermost column index. The following diagram depicts the operations:
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-unstack1.png" alt="Stack and Unstack" >
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-unstack1.png" alt="Stack and Unstack" >
   <figurecaption>Stack and Unstack</figurecaption>
 </figure>
 
@@ -280,7 +280,7 @@ if unstacking) and its values are nested in the other index, which is now a Mult
 Therefore, the result is always a Series with a hierarchical index. The following example demonstrates this:
 
 <figure>
-  <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png" width="100%">
+  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png" width="100%">
   <figurecaption>Stack and Unstack</figurecaption>
 </figure>
 

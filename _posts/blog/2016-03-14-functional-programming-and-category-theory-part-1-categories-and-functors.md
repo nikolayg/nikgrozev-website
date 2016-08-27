@@ -74,7 +74,7 @@ A collection of objects and arrows qualifies as a category only if:
 
 [//]: # (====================================================================== Category.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/category.jpg" alt="A Category." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/category.jpg" alt="A Category." >
   <figcaption>A category of 4 objects. For every object there must be an identity arrow (i.e. loop). The order of composition should not matter.</figcaption>
 </figure>
 
@@ -90,7 +90,7 @@ then we can do so from **A** to **C**. Hence, we can compose arrows.
 
 [//]: # (====================================================================== Category_Roads.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/category_roads.jpg" alt="The road network forms a category." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/category_roads.jpg" alt="The road network forms a category." >
   <figcaption>The road network forms a category.</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ identity arrows as well. This is depicted in the following figure.
 
 [//]: # (====================================================================== Category_OOP.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/category_oop.jpg" alt="Category of types." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/category_oop.jpg" alt="Category of types." >
   <figcaption>Category of types.</figcaption>
 </figure>
 
@@ -126,7 +126,7 @@ The following diagram depicts a portion of the **Hask** category.
 
 [//]: # (====================================================================== Hask.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/hask.jpg" alt="The Hask Category." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/hask.jpg" alt="The Hask Category." >
   <figcaption>The Hask Category.</figcaption>
 </figure>
 
@@ -148,7 +148,7 @@ More formally:
  
 [//]: # (====================================================================== Functor.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/functor.jpg" alt="A Functor from A to B." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/functor.jpg" alt="A Functor from A to B." >
   <figcaption>A Functor from A to B.</figcaption>
 </figure>
 
@@ -158,7 +158,7 @@ When a functor **F** transforms a category **A** into itself, we call it an *end
 
 [//]: # (====================================================================== EndoFunctor.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/endofunctor.jpg" alt="An Endofunctor." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/endofunctor.jpg" alt="An Endofunctor." >
   <figcaption>An Endofunctor.</figcaption>
 </figure>
 
@@ -189,7 +189,7 @@ The following diagram depicts a functor, whose type constructor is **List[_]**.
 
 [//]: # (====================================================================== HaskFunctor.pdf)
 <figure>
-  <img src="/assets/images/Functional Programming and Category Theory Part 1 - Categories and Functors/haskfunctor1.jpg" alt="The List functor." >
+  <img src="/images/blog/Functional Programming and Category Theory Part 1 - Categories and Functors/haskfunctor1.jpg" alt="The List functor." >
   <figcaption>The List functor.</figcaption>
 </figure>
 

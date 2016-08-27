@@ -58,7 +58,7 @@ Microsoft announced it will open source .Net core (the fundamental part of .Net)
 
 
 <figure>
-  <img src="/assets/images/NET for Java Devs in a nutshell/dot_net.jpg" alt="Relationship between specifications" >
+  <img src="/images/blog/NET for Java Devs in a nutshell/dot_net.jpg" alt="Relationship between specifications" >
   <figcaption>Relationship between specifications.</figcaption>
 </figure>
 

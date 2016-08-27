@@ -116,7 +116,7 @@ By `v1`, `v2` and `v3` we denote the interim values resulting from calling unit 
 
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/example11.png" alt="Example 1 – Computational process of the monadic solution" >
+  <img src="/images/blog/Monads in 15 minutes/example11.png" alt="Example 1 – Computational process of the monadic solution" >
   <figcaption>Example 1 – Computational process of the monadic solution.</figcaption>
 </figure>
 
@@ -191,7 +191,7 @@ The following diagram depicts the computational process when `x=0`. Again `v1`, 
 the interim values resulting from calling `unit` and `bind`:
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/example21.png" alt="Example 2 – Computational process of the monadic solution" >
+  <img src="/images/blog/Monads in 15 minutes/example21.png" alt="Example 2 – Computational process of the monadic solution" >
   <figcaption>Example 2 – Computational process of the monadic solution.</figcaption>
 </figure>
 
@@ -271,7 +271,7 @@ solution later on. Also, note that in python methods can be used as simple funct
 The following diagram illustrates the computational process if `john` does not have a boss (i.e. `john.get_boss()` returns `None`):
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/example31.png" alt="Example 3 – Computational process of the monadic solution" >
+  <img src="/images/blog/Monads in 15 minutes/example31.png" alt="Example 3 – Computational process of the monadic solution" >
   <figcaption>Example 3 – Computational process of the monadic solution.</figcaption>
 </figure>
 
@@ -283,7 +283,7 @@ we can simply use `fn(... f2(f1(x)) ...)`. The following diagram depicts the und
 `v1`, `v2` ... `vn` represent the interim results of the function invocation.
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/dierct_composition1.png" alt="Direct Composition – Computational model" >
+  <img src="/images/blog/Monads in 15 minutes/dierct_composition1.png" alt="Direct Composition – Computational model" >
   <figcaption>Direct Composition – Computational model.</figcaption>
 </figure>
 
@@ -297,7 +297,7 @@ we wanted to aggregate the interim values and in example 3 we wanted to insert N
 In the above examples we first defined a straightforward imperative approach, which is depicted below:
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/imperativecomposition2.png" alt="Imperative Composition - Computational model" >
+  <img src="/images/blog/Monads in 15 minutes/imperativecomposition2.png" alt="Imperative Composition - Computational model" >
   <figcaption>Imperative Composition - Computational model.</figcaption>
 </figure>
 
@@ -323,7 +323,7 @@ The following diagram displays the computational process:
 
 
 <figure>
-  <img src="/assets/images/Monads in 15 minutes/monad1.png" alt="Monad - Computational Model" >
+  <img src="/images/blog/Monads in 15 minutes/monad1.png" alt="Monad - Computational Model" >
   <figcaption>Monad - Computational Model.</figcaption>
 </figure>
 

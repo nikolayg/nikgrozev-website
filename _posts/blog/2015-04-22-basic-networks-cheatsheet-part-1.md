@@ -113,7 +113,7 @@ exchanged periodically (usually every 30 seconds). Its first version was classfu
 the later ones are classless.
 
 <figure>
-  <img src="/assets/images/Basic Networks Cheatsheet Part 1/as.jpg" alt="Autonomous Systems" >
+  <img src="/images/blog/Basic Networks Cheatsheet Part 1/as.jpg" alt="Autonomous Systems" >
   <figcaption>Autonomous Systems.</figcaption>
 </figure>
 
@@ -164,7 +164,7 @@ outside the NAT-ed network can not start communication with a machine behind NAT
 it first. Otherwise, the external server would not know which port to send to.
 
 <figure>
-  <img src="/assets/images/Basic Networks Cheatsheet Part 1/nat.jpg" alt="NAT" >
+  <img src="/images/blog/Basic Networks Cheatsheet Part 1/nat.jpg" alt="NAT" >
   <figcaption>NAT.</figcaption>
 </figure>
 
