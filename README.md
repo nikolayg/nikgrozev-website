@@ -1,28 +1,43 @@
-# So Simple Theme
+# Personal website
 
-Looking for a simple, responsive, theme for your Jekyll powered blog? Well look no further. Here be **So Simple Theme**, the followup to [**Minimal Mistakes**](http://mmistakes.github.io/minimal-mistakes/) -- by designer slash illustrator [Michael Rose](http://mademistakes.com).
+A Jekyll website and blog based on the [So Simple theme](https://mmistakes.github.io/so-simple-theme/).
 
-## Notable features:
+# Setup
 
-* Compatible with Jekyll 3 and GitHub Pages.
-* Responsive templates. Looks good on mobile, tablet, and desktop devices.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 9+ and all modern browsers.
-* Minimal embellishments and subtle animations.
-* Optional large feature images for posts and pages.
-* [Custom 404 page](http://mmistakes.github.io/so-simple-theme/404.html) to get you started.
-* Basic [search capabilities](https://github.com/mathaywarduk/jekyll-search)
-* Support for Disqus Comments
+To setup a local environment, follow these steps:
 
-![screenshot of So Simple Theme](http://mmistakes.github.io/so-simple-theme/images/so-simple-theme-preview.jpg)
+1. Install ruby 2.3.1 or later. On Linux/OSX use [RVM](https://rvm.io/rvm/install) to set it up:
+```bash
+# Install RVM
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
 
-See a [live version of So Simple](http://mmistakes.github.io/so-simple-theme/) hosted on GitHub.
+# Install the ruby itself
+rvm install 2.3.1
 
----
+# Set 2.3.1 as default ruby
+rvm use --default 2.3.1
+```
 
-## Getting Started
+2. Install the Bundler gem:
+```bash
+gem install bundler
+```
 
-So Simple takes advantage of Sass and data files to make customizing easier and requires Jekyll 3.x.
+3. Clone and navigate to the repo.
 
-To learn how to install and use this theme check out the [Setup Guide](http://mmistakes.github.io/so-simple-theme/theme-setup/) for more information.
+4. Install all gems:
+```bash
+bundle update && bundle install
+```
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mmistakes/so-simple-theme/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+5. Start the Jekyll server:
+```bash
+bundle exec jekyll serve --watch
+```
+
+6. Open http://localhost:4000 in your browser.
+
+# Gotchas
+
+Running `exec jekyll serve` provides hot swapping - i.e. code changes are automatically rebuilt and
+deployed locally. However, changes to `_config.yml` require the server to be restarted.
