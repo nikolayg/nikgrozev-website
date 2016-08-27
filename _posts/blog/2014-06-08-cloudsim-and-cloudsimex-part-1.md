@@ -39,7 +39,7 @@ last year.
 Thus, I've started the [CloudSimEx](https://github.com/Cloudslab/CloudSimEx) project, which brings some of these extensions 
 together. In a series of posts I'll demo some of its functionalities.
 
-**<u>So what is CloudSimEx</u>?** CloudSimEx is a set of CloudSim extensions making simulation development easier and enabling the 
+**So what is CloudSimEx?** CloudSimEx is a set of CloudSim extensions making simulation development easier and enabling the 
 modelling of new types of applications, not supported by CloudSim. Currently the following features are included:
 
 *   Web session modelling;
@@ -58,7 +58,7 @@ In this part I'll explain how to set up CloudSim and CloudSimEx in Eclipse and h
 Before following this tutorial you should have JDK 7 and Maven 3.2 or later installed on your system. 
 <del>CloudSim currently can not be built with Java 8, because of 
 [some issues in the integration of Java 8 and Maven](https://cwiki.apache.org/confluence/display/MAVEN/Java+8+Upgrade).</del>
-**<span style="color:#ff0000;">Edit:</span>** Both CloudSim and CloudSimEx now compile with Java 7 and 8 as well.
+**<span style="color:red;">Edit:</span>** Both CloudSim and CloudSimEx now compile with Java 7 and 8 as well.
 
 Installation instructions for Java 7 and Maven can be found here:
 
@@ -154,8 +154,8 @@ follow the wizard to create a simple maven project. You can use the following sc
 <!-------------------------------------------- Image Galery -------------------------------------------->
 
 
-After the project is created, open its <u>pom.xml</u> file and add the following dependencies inside 
-the <u><project></u> section:
+After the project is created, open its pom.xml file and add the following dependencies inside 
+the `<project>` section:
 
 ```xml
 <dependencies>
@@ -285,8 +285,8 @@ System.out.println(TextUtil.getCaptionLine(Vm.class, props));
 System.out.println(TextUtil.getTxtLine(vm, props));
 ```
 
-This code will only print the "<u>Bw</u>" and "<u>CurrentRequestedRam</u>" properties, 
-defined by the <u>getBw</u> and <u>getCurrentRequestedRam</u> methods:
+This code will only print the `Bw` and `CurrentRequestedRam` properties, 
+defined by the `getBw` and `getCurrentRequestedRam` methods:
 
 ```
      Bw;CurrentRequestedRam
@@ -350,20 +350,20 @@ CustomLog.configLogger(props);
 
 The important properties are:
 
-*   FilePath - if present this property has the value of the target log file. 
+*   `FilePath` - if present this property has the value of the target log file. 
 If this property is not present, the log is written to the standard output.
-*   LogLevel - each log message has a level. 
+*   `LogLevel` - each log message has a level. 
 This property identifies the minimal log level that will be printed. Levels are as in standard java logging - see [LogLevel](http://docs.oracle.com/javase/7/docs/api/java/util/logging/Level.html). If this property is not present, a default log level INFO is used.
-*   LogCloudSimClock - a boolean proeprty. 
+*   `LogCloudSimClock` - a boolean proeprty. 
 If "true" the current CloudSim simulation time will be included in every log entry.
-*   LogReadableSimClock - a boolean property. If "true" the current CloudSim simulation time will be 
+*   `LogReadableSimClock` - a boolean property. If "true" the current CloudSim simulation time will be 
 included in every log entry and it will be formatted in the "_days:hours:minutes:seconds_" format.
-*   LogRealTimeClock - a boolean property. If "true" the actual system/computer time will be included in every log entry.
-*   LogFormat - a list of get method names of the class 
+*   `LogRealTimeClock` - a boolean property. If "true" the actual system/computer time will be included in every log entry.
+*   `LogFormat` - a list of get method names of the class 
 [LogRecord](http://docs.oracle.com/javase/7/docs/api/java/util/logging/LogRecord.html). 
 It allows you to specify what should compose your log entries. 
-Typically, you would specify just "_<u>getMessage</u>_" or "_<u>getLevel;getMessage</u>_".
-*   ShutStandardLogger - a boolean property. If "true" it will shut CloudSim's standard logger. 
+Typically, you would specify just `getMessage` or `getLevel;getMessage`.
+*   `ShutStandardLogger` - a boolean property. If "true" it will shut CloudSim's standard logger. 
 This is useful, when the standard logger generates too many log messages and causes the simulation execution 
 to slow down significantly.
 
@@ -381,7 +381,7 @@ ShutStandardLogger=true
 
 Given this configuration, CustomLog will output only log entries with level higher than INFO, 
 will print the current time, and the current CloudSim simulation time and will shut the standard CloudSim logger. 
-The output will be written to the file <u>/mydesktop/log.log</u>. Thus, if you call:
+The output will be written to the file `/mydesktop/log.log`. Thus, if you call:
 
 ```java
 CustomLog.printf("Hello %s", "World");
@@ -393,7 +393,7 @@ the output in the file will be something like this.
 22:42:51          0.00    Hello World
 ```
 
-If all you want to see is the message and not the current time, you need to switch <u>LogCloudSimClock</u> and <u>LogRealTimeClock</u> to "false".
+If all you want to see is the message and not the current time, you need to switch `LogCloudSimClock` and `LogRealTimeClock` to "false".
 
 At any point during the simulation you can redirect CustomLog to another file or the standard output, 
 by simply calling one of the following:
@@ -412,7 +412,7 @@ CustomLog.redirectToFile("...your file...", true);
 CustomLog has a lot of convenient methods for printing and formatting log messages and you can explore to see what's there. 
 As I mentioned it can use TextUtil to print well formatted CSV files. 
 So if you have a list of objects (e.g. cloudlets or VMs) you can convert them to a CSV with a single line of code, 
-by using the <u>printResults</u> method. The following example demonstrates this:
+by using the `printResults` method. The following example demonstrates this:
 
 ```java
 List <Vm> vms = ......
@@ -421,7 +421,7 @@ CustomLog.redirectToFile("... your CSV file ...");
 CustomLog.printResults(Vm.class, vms);
 ```
 
-The <u>printResults</u> method is overloaded, so it can take property names and virtual properties, analogously to TextUtil.
+The `printResults` method is overloaded, so it can take property names and virtual properties, analogously to TextUtil.
 
 # Conclusion
 

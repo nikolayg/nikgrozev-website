@@ -28,7 +28,7 @@ author:
 
 # Introduction
 
-In a [previous post](/2014/03/21/java-8-in-a-nutshell/) 
+In a [previous post](/2014/03/21/java-8-in-a-nutshell/), 
 I summarised the new functional features of Java 8. Oracle has recently released a 3-week 
 [JDK 8 Massive Open and Online Course called "Lambdas and Streams"](https://blogs.oracle.com/thejavatutorials/entry/jdk_8_massive_open_and), 
 which discusses the new JDK8 functional features in much more details. It's a great course and if 
@@ -84,7 +84,7 @@ Runnable r3 = new Runnable() {                          // Java 7 style
 ```
 
 Alike anonymous classes, lambdas can use the variables of their environment. 
-When using local variables in lambdas, the must be <u>effectively final</u>, 
+When using local variables in lambdas, they must be **effectively final**, 
 which means they are not assigned to from anywhere, regardless if they are actually marked as final.
 
 ## Method References
@@ -151,8 +151,8 @@ Java 8 introduces a whole new package of functional interfaces called
 [java.util.function](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html). 
 In Java there are two kinds of types – referential and primitives. 
 Java generics can only be used with 
-referential types – e.g. List\<int\> is invalid. 
-Thus, the <u>java.util.function</u> package contains 
+referential types – e.g. `List<int>` is invalid. 
+Thus, the `java.util.function` package contains 
 multiple versions of each interface – a generic version for referential types, and specialised versions 
 for the primitives. For example we've got 
 [Consumer\<T\>](https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html) and 
@@ -185,9 +185,9 @@ Consumer <String> helloByeConsumer = helloConsumer.andThen(byeConsumer);
 helloByeConsumer.accept("Guest");
 ```
 
-The <u>andThen</u> default method of the function interfaces works similarly – it chains the function invocation as 
-in <u>f(g(x))</u>. The <u>compose</u> method does the same, but swaps the functions – 
-i.e. <u>g(f(x))</u> instead of <u>f(g(x))</u>. The following example demonstrates this:
+The `andThen` default method of the `Function` interfaces works similarly – it chains the function invocation as 
+in `f(g(x))`. The `compose` method does the same, but swaps the functions – 
+i.e. `g(f(x))` instead of `f(g(x))`. The following example demonstrates this:
 
 ```java
 UnaryOperator <Integer> plus1 = x -> x + 1;
@@ -205,7 +205,7 @@ System.out.println(mult2Plus1.apply(1)); // Prints 3
 **Note**: in the above example you may wish to use 
 [IntUnaryOperator](https://docs.oracle.com/javase/8/docs/api/java/util/function/IntUnaryOperator.html) instead of UnaryOperator<Integer> to avoid excessive boxing/unboxing.
 
-Similarly, the predicate interfaces have default methods <u>and</u>, <u>or</u> and <u>negate</u>, which 
+Similarly, the predicate interfaces have default methods `and`, `or`, and `negate`, which 
 can be used to create new predicates with combined logic.
 
 ## New Methods in JDK 8
@@ -221,8 +221,9 @@ The Java 8 standard collections library introduces several new methods which use
 *   [List.sort(Comparator c)](https://docs.oracle.com/javase/8/docs/api/java/util/List.html#sort-java.util.Comparator-) - replaces [Collections.sort](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#sort-java.util.List-).
 
 Also, many methods of the standard [Logger](https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html) 
-have been overloaded to take as an argument a _Supplier\<String\>_ instance, instead of string. For example,
- when the [Logger.fine(Supplier\<String\>)](https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#fine-java.util.function.Supplier-) method is invoked it will only call the provided supplier if the logging level is below or equal to <u>Fine</u>. Otherwise, the supplier will not be called leading to fewer operations like string concatenation and formatting.
+have been overloaded to take as an argument a _Supplier\<String\>_ instance, instead of string. For example, 
+when the [Logger.fine(Supplier\<String\>)](https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#fine-java.util.function.Supplier-) 
+method is invoked it will only call the provided supplier if the logging level is below or equal to `Fine`. Otherwise, the supplier will not be called leading to fewer operations like string concatenation and formatting.
 
 
 
@@ -286,7 +287,7 @@ primitive counterparts. The most important are:
 
 *   [Stream.map(Function f)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#map-java.util.function.Function-) - returns a stream with the result of the function application on each element.
 
-*   [Stream.flatMap(Function f)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#flatMap-java.util.function.Function-) – if the return type of the function is another stream, then <u>map(f)</u> will return a stream of streams, which may not be convenient. The <u>flatMap</u> method resolves this problem by flattening/combining the results into a single result stream.
+*   [Stream.flatMap(Function f)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#flatMap-java.util.function.Function-) – if the return type of the function is another stream, then `map(f)` will return a stream of streams, which may not be convenient. The `flatMap` method resolves this problem by flattening/combining the results into a single result stream.
 
 *   [Stream.](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-)[sorted](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-)[(](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-)[Comparator c](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-)[)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#sorted-java.util.Comparator-) – returns a sorted stream.
 
@@ -309,19 +310,20 @@ Most often you would probably use one of the following terminal operations:
 
 *   [Stream.reduce(BinaryOperator accumulator)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#reduce-U-java.util.function.BiFunction-java.util.function.BinaryOperator-) – consequently applies the accummulator over all elements until it yields a single value. Example: multiply all integers.
 
-Other frequently used terminal methods are <u>count</u>, <u>max</u>, and <u>min,</u> which return 
+Other frequently used terminal methods are `count`, `max`, and `min,` which return 
 [Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) instances.
 
 ## Optionals
 
-In Java 8, [<u>Optiona</u>](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)[l<T>](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) is a container which holds a reference to an object or <u>null</u>. It is used to avoid excessive null checks throughout the code. It can also be thought of as a stream which has either 0 or 1 elements. 
+In Java 8, [Optional\<T\>](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+is a container which holds a reference to an object or `null`. It is used to avoid excessive null checks throughout the code. It can also be thought of as a stream which has either 0 or 1 elements. 
 In that sense, it is a generalisation of the rule that you should prefer to return empty 
 collections and arrays from methods, rather than null.
 
 The count, max and min methods from the previous section all return optionals, whose 
 embedded value is null if the stream is empty.
 
-Instead of doing a <u>null</u> check, you can use the <u>ifPresent(Consumer c)</u> 
+Instead of doing a `null` check, you can use the `ifPresent(Consumer c)` 
 method to run code if the optional contains a value:
 
 ```java
@@ -331,7 +333,7 @@ Optional <String> opt = …
 opt.ifPresent(System.out::println);
 ```
 
-You can also use the <u>filter</u> and <u>map</u> methods, as you would do with streams.
+You can also use the `filter` and `map` methods, as you would do with streams.
 
 
 
@@ -339,7 +341,7 @@ You can also use the <u>filter</u> and <u>map</u> methods, as you would do with 
 
 The [Stream.reduce(BinaryOperator)](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#reduce-java.util.function.BinaryOperator-) 
 method is a terminal operation which aggregates the stream to a single value. 
-The provided operator is applied to <u>null</u> and the first element, then its result and the 
+The provided operator is applied to `null` and the first element, then its result and the 
 second element are fed in the operator and so on … until a single value is achieved. There is no guarantee 
 as to the actual sequence of execution, but the result is always as if the aforementioned procedure is executed. 
 This can be used to implement things like computing the min, max or sum of all elements. In fact, streams 
@@ -350,7 +352,7 @@ Given an infinite stream, the
 [Stream.findFirst](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#findFirst--) and 
 [Stream.findAny](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#findAny--) methods are 
 typically used to terminate it and return a value matching the specified predicate wrapped in an Optional. 
-The <u>findFirst</u> method returns the first match, while <u>findAny</u> can return any match thus allowing 
+The `findFirst` method returns the first match, while `findAny` can return any match thus allowing 
 for parallelism behind the scenes.
 
 ```java
@@ -389,5 +391,5 @@ Operations on a parallel streams are run in a thread pool using the
 [Fork Join framework](https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html). 
 The size of the thread pool is determined by the number of available processors, but could be overridden by setting a system property.
 
-Parallel streams can be created directly from collections through the <u>parallelStream</u> method
-. Every stream can be made parallel or sequential with the respective stream methods.
+Parallel streams can be created directly from collections through the `parallelStream` method. 
+Every stream can be made parallel or sequential with the respective stream methods.

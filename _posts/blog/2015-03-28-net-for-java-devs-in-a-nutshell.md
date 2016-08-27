@@ -72,10 +72,10 @@ A JAR file also has a manifest, but is not required to contain name, version and
 Some component models (e.g. [OSGI](http://en.wikipedia.org/wiki/OSGi)) demand that jar files' manifests contain such information.
 
 A Jar file is in fact a zip archive, and can be easily opened and explored. 
-A .Net assembly on the hand can be explored with a tool called <u>ildasm.exe</u>, which ships with .Net.
+A .Net assembly on the hand can be explored with a tool called *ildasm.exe*, which ships with .Net.
 
-Assemblies can be built with the respective compiler for the used language (e.g. <u>csc</u>_ for C#), similar to 
-the <u>javac</u> and <u>jar</u> utilities. A response file (*.rsp) can contain multiple build instructions 
+Assemblies can be built with the respective compiler for the used language (e.g. *csc* for C#), similar to 
+the *javac* and *jar* utilities. A response file (*.rsp) can contain multiple build instructions 
 and configurations. Assemblies can also be built with an IDE like Visual Studio, SharpDevelop or MonoDevelop.
 
 The **Global Assembly Cache** (GAC) is a repository, which contains assemblies reusable between 
@@ -90,8 +90,8 @@ Integration with Mono on non-Windows systems seems to be in progress.
 It also allows you to build Visual Studio solutions and projects without Visual Studio.
 
 In .Net, assemblies are not only deployment artefacts – they are also logical entities. 
-For example C# defines an access modifier called <u>internal</u>, which denotes that the respective member 
-can only be accessed from the same assembly. Similarly, members with modifier <u>protected internal</u> 
+For example C# defines an access modifier called `internal`, which denotes that the respective member 
+can only be accessed from the same assembly. Similarly, members with modifier `protected internal` 
 can be accessed either from the assembly or through inheritance. There does not seem to be an alternative 
 to this in Java. In OSGI you can achieve similar access restriction by specifying which JAR/bundle packages 
 are visible to the outside world.

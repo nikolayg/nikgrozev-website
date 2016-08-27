@@ -319,9 +319,9 @@ print(g.send(3))
 
 
 In Python 2 there are some syntactic specifics. When you call a coroutine for the first time, 
-you have to use <u>next</u>, just like with generators. Subsequent calls must use the <u>send</u> 
+you have to use `next`, just like with generators. Subsequent calls must use the `send` 
 method, providing the actual value. This is needed, because in the beginning the coroutine is not 
-halted/paused on a yield statement. The invocation of <u>next</u> intialises it to such a state. 
+halted/paused on a yield statement. The invocation of `next` intialises it to such a state. 
 Subsequent invocations of send actually illustrate the invocation of the coroutine.
 
 Philosophically speaking, subroutines and coroutines are two different ways to structure a program. 

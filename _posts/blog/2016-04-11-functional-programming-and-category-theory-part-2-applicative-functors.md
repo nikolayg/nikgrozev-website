@@ -61,8 +61,8 @@ us to work with multi-arguement functions and thus turn out to be quite useful i
 <div id='curried-functions' />
 # Motivating Example
 
-We can reason about a functor as a context for values of a given type **<u>A</u>** - e.g. **<u>List[A], Vector[A], Option[A]</u>**. 
-A functor allows us to transfer/map a function **<u>f:A &rarr; B</u>** to that context. For example:
+We can reason about a functor as a context for values of a given type **A** - e.g. **List[A], Vector[A], Option[A]**. 
+A functor allows us to transfer/map a function **f:A &rarr; B** to that context. For example:
 
 - **map[List]: (A &rarr; B) &rarr; (List[A] &rarr; List[B])**
 - **map[Option]: (A &rarr; B) &rarr; (Option[A] &rarr; Option[B])**
@@ -133,10 +133,10 @@ fCurried(1)(2)
 ```
 Curried and non-curried functions are equivalent. As we just showed, we can convert each function to a curried one. 
 The opposite is also true. In terms of notation, we'll denote the non-curried version of a function as 
-**<u>f: (A<sub>1</sub> &times; A<sub>2</sub> &times; ... &times; A<sub>n-1</sub>) &rarr; A<sub>n</sub></u>**, 
-or we could just write: **<u>f: (A<sub>1</sub>, A<sub>2</sub>, ...,A<sub>n-1</sub>) &rarr; A<sub>n</sub></u>**.
+**f: (A<sub>1</sub> &times; A<sub>2</sub> &times; ... &times; A<sub>n-1</sub>) &rarr; A<sub>n</sub>**, 
+or we could just write: **f: (A<sub>1</sub>, A<sub>2</sub>, ...,A<sub>n-1</sub>) &rarr; A<sub>n</sub>**.
 
-The curried version will be written as: **<u>f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub></u>**.
+The curried version will be written as: **f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub>**.
 
 Currying is a simple but powerful method to represent a function with multiple arguements as a single-arg function. 
 This allows us to generalise everything that works for single arguement functions to the multi-arguement case.
@@ -148,18 +148,18 @@ This allows us to generalise everything that works for single arguement function
 
 An applicative functor is defined by:
 
-- A type constructor **<u>F[ _ ]</u>** - e.g. **<u>List</u>**, **<u>Option</u>**;
-- A function **<u>pure : A &rarr; F[A]</u>**, where **<u>A</u>** can be any type (including types of functions);
-- A function **<u>apply: F[A &rarr; B] &rarr; (F[A] &rarr; F[B])</u>**, where **<u>A</u>** and **<u>B</u>** can 
+- A type constructor **F[ _ ]** - e.g. **List**, **Option**;
+- A function **pure : A &rarr; F[A]**, where **A** can be any type (including types of functions);
+- A function **apply: F[A &rarr; B] &rarr; (F[A] &rarr; F[B])**, where **A** and **B** can 
 be any types (including types of functions);
 
 <div id='function-pure' />
 ## Function "Pure"
 
-The **<u>pure</u>** function is also known as **<u>point</u>** in some languages and libraries. Essentially, 
-it is a constructor which can convert a value of any type **<u>A</u>** to a value of **<u>F[A]</u>**. 
-We often say that **<u>pure</u>** "lifts" its arguement to the corresponding type defined by the type constructor 
-(e.g. from **<u>Int</u>** to **<u>List[Int]</u>**). Here is a sample implementation for **<u>Option</u>**.
+The **pure** function is also known as **point** in some languages and libraries. Essentially, 
+it is a constructor which can convert a value of any type **A** to a value of **F[A]**. 
+We often say that **pure** "lifts" its arguement to the corresponding type defined by the type constructor 
+(e.g. from **Int** to **List[Int]**). Here is a sample implementation for **Option**.
 
 ```scala
 // Implementation for Options
@@ -171,7 +171,7 @@ pure("Text") // Some("Text")
 pure(x:Int => x.toString) //Some(Int => String)
 ```
 
-Similarly, an implementation of **<u>pure</u>** for **<u>List</u>** would just wrap it in a list:
+Similarly, an implementation of **pure** for **List** would just wrap it in a list:
 
 ```scala
 // Implementation for List
@@ -184,9 +184,9 @@ pure(x:Int => x + 1) //List(Int => Int)
 <div id='function-apply' />
 ## Function "Apply"
 
-The **<u>apply</u>** function takes a function, which is embedded into the context defined by the type 
-constructor (e.g. **<u>Option[A &rarr; B]</u>**), and lifts/converts it to a function in the realm of the type 
-constructor (e.g. **<u>Option[A] &rarr; Option[B]</u>**). Here is a sample implementation for **<u>Option</u>**:
+The **apply** function takes a function, which is embedded into the context defined by the type 
+constructor (e.g. **Option[A &rarr; B]**), and lifts/converts it to a function in the realm of the type 
+constructor (e.g. **Option[A] &rarr; Option[B]**). Here is a sample implementation for **Option**:
 
 ```scala
   // Implementation for Option
@@ -200,8 +200,8 @@ constructor (e.g. **<u>Option[A] &rarr; Option[B]</u>**). Here is a sample imple
 ```
 
 Implementing "apply" for List is somewhat less straigthforward. Given a list of functions 
-(i.e. **<u>List[A &rarr; B]</u>**), we need to return a function that converts from one list to another 
-(i.e. **<u>List[A] &rarr; List[B]</u>**). One approach is to return a function, which applies all functions 
+(i.e. **List[A &rarr; B]**), we need to return a function that converts from one list to another 
+(i.e. **List[A] &rarr; List[B]**). One approach is to return a function, which applies all functions 
 in the given list to all elements in its input parameter:
 
 ```scala
@@ -221,27 +221,27 @@ in the given list to all elements in its input parameter:
 <div id='variations' />
 ## Variations
 
-The **<u>apply</u>** function returns a function as a result. One would usually take this result and invoke 
-it with some parameter. Hence, it often makes sense to use an alternative signature for the **<u>apply</u>** function:
+The **apply** function returns a function as a result. One would usually take this result and invoke 
+it with some parameter. Hence, it often makes sense to use an alternative signature for the **apply** function:
 
 ```scala
 def apply[A,B](f: F[A=>B], fa: F[A]): F[B]
 ``` 
 
-This definition does both at the same time - it converts/maps the lifted function **<u>f: F[A=&gt;B]</u>** 
-to a function of type **<u>F[A]=&gt;F[B]</u>** and then applies it to the second arguement **<u>fa</u>**. 
-It is a convenience "wrapper" for the previous definition of **<u>apply</u>**. In the rest of the article 
+This definition does both at the same time - it converts/maps the lifted function **f: F[A=&gt;B]** 
+to a function of type **F[A]=&gt;F[B]** and then applies it to the second arguement **fa**. 
+It is a convenience "wrapper" for the previous definition of **apply**. In the rest of the article 
 we'll use both definitions interchangeably in accordance with the needs of each example. 
 
 <div id='putting-pieces-together' />
 ## Putting the Pieces Together
 
-Let's consider a multi-argument curried function **<u>f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub></u>**. 
-The function **<u>pure</u>** can embed **<u>f</u>** into an instance of **<u>F[A<sub>1</sub> &rarr; 
-A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</u>**. 
+Let's consider a multi-argument curried function **f: A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>n</sub>**. 
+The function **pure** can embed **f** into an instance of **F[A<sub>1</sub> &rarr; 
+A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]**. 
 
-This sets the stage for an invocation of the **<u>apply</u>** function which transforms 
-**<u>F[A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</u>** to **<u>F[A<sub>1</sub>] &rarr; F[A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]</u>**. We can further use **<u>apply</u>** repeatedly to transform this to **<u>F[A<sub>1</sub>] &rarr; F[A<sub>2</sub>] &rarr; ... &rarr; F[A<sub>N</sub>]</u>**, and hence we have been able to *"lift"* the **<u>f</u>** function 
+This sets the stage for an invocation of the **apply** function which transforms 
+**F[A<sub>1</sub> &rarr; A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]** to **F[A<sub>1</sub>] &rarr; F[A<sub>2</sub> &rarr; ... &rarr; A<sub>N</sub>]**. We can further use **apply** repeatedly to transform this to **F[A<sub>1</sub>] &rarr; F[A<sub>2</sub>] &rarr; ... &rarr; F[A<sub>N</sub>]**, and hence we have been able to *"lift"* the **f** function 
 into the applicative functor. This computation is depicted in the next figure.
 
 <figure>
@@ -251,11 +251,11 @@ into the applicative functor. This computation is depicted in the next figure.
 
 
 The following diagram depicts how an Applicative Functor acts as an endofunctor in the **Hask** category. 
-It shows how the generic function **<u>pure</u>** maps each type (i.e **<u>A<sub>1</sub> ... A<sub>n</sub></u>**) 
-to the corresponding type defined by the type constructor (i.e **<u>F[A<sub>1</sub>] ... F[A<sub>n</sub>]</u>**). 
-By composing the **<u>apply</u>** and **<u>pure</u>** functions, 
-we can map any function **<u>f: A<sub>1</sub> &rarr; ... &rarr; A<sub>n</sub></u>** to a function with the 
-following form **<u>f ': F[A<sub>1</sub>] &rarr; ... &rarr; F[A<sub>n</sub>]</u>**.
+It shows how the generic function **pure** maps each type (i.e **A<sub>1</sub> ... A<sub>n</sub>**) 
+to the corresponding type defined by the type constructor (i.e **F[A<sub>1</sub>] ... F[A<sub>n</sub>]**). 
+By composing the **apply** and **pure** functions, 
+we can map any function **f: A<sub>1</sub> &rarr; ... &rarr; A<sub>n</sub>** to a function with the 
+following form **f ': F[A<sub>1</sub>] &rarr; ... &rarr; F[A<sub>n</sub>]**.
 
 
 <figure>
@@ -275,7 +275,7 @@ val yOpt : Option[Int] = Some(2)
 apply(apply(pure(sum), xOpt), yOpt)
 ```
 
-For convenience, some languages and libraries alias the **<u>apply</u>** function with the left associative **<u>&lt;*&gt;</u>** operator, which allows for the more succinct expression:
+For convenience, some languages and libraries alias the **apply** function with the left associative **&lt;*&gt;** operator, which allows for the more succinct expression:
 
 ```scala
 pure(sum) <*> xOpt <*> yOpt
@@ -285,12 +285,12 @@ pure(sum) <*> xOpt <*> yOpt
 <div id='laws' />
 # Laws
 
-This section is a bit less intuitive and you may wish to skip it when reading for the first time. To qualify as an Applicative Functor, a pair of **<u>apply</u>** and **<u>pure</u>** functions must obey several laws. In this section, we'll formulate and demonstrate them using the aforementioned Applicative Functor for Option.
+This section is a bit less intuitive and you may wish to skip it when reading for the first time. To qualify as an Applicative Functor, a pair of **apply** and **pure** functions must obey several laws. In this section, we'll formulate and demonstrate them using the aforementioned Applicative Functor for Option.
  
 <div id='identity-law' />
 ## Identity Law
 
-The identity law states that **<u>pure(id) &lt;*&gt; v = v</u>** for every **<u>v</u>**, where **<u>id</u>** is an identity function. This rule implies that **<u>pure</u>** preserves the identity function. The following snippet exemplifies this law for the Option's applicative functor:
+The identity law states that **pure(id) &lt;*&gt; v = v** for every **v**, where **id** is an identity function. This rule implies that **pure** preserves the identity function. The following snippet exemplifies this law for the Option's applicative functor:
 
 ```scala
 // Identity Function
@@ -307,7 +307,7 @@ pure(id[Int]) <*> v == v
 <div id='composition-law' />
 ## Composition Law
 
-The composition law states that **<u>pure(f) &lt;*&gt; pure(x)=pure(f(x))</u>** meaning that for every function **<u>f</u>** and value **<u>x</u>**, applying the lifted/mapped function to the lifted value is the same as lifting the function's result, as in the following snippet: 
+The composition law states that **pure(f) &lt;*&gt; pure(x)=pure(f(x))** meaning that for every function **f** and value **x**, applying the lifted/mapped function to the lifted value is the same as lifting the function's result, as in the following snippet: 
 
 ```scala
 // Any function f. For example: x+1
@@ -324,7 +324,7 @@ pure(f) <*> x == pure(f(x))
 <div id='homomorphism-law' />
 ## Homomorphism Law
 
-The homomorphism law states that **<u>pure(&#8728;) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w =  u &lt;*&gt; (v &lt;*&gt; w)</u>**. Here, "&#8728;" is function composition, which is a function of two arguements (the functions it composes). This law states that function composition is preserved by the applicative functor. The following snippet illustrates:
+The homomorphism law states that **pure(&#8728;) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w =  u &lt;*&gt; (v &lt;*&gt; w)**. Here, "&#8728;" is function composition, which is a function of two arguements (the functions it composes). This law states that function composition is preserved by the applicative functor. The following snippet illustrates:
 
 ```scala
 // Composition Function
@@ -346,7 +346,7 @@ pure(compose) <*> u <*> v <*> w == u <*> (v <*> w)
 <div id='interchange-law' />
 ## Interchange Law
 
-The interchange law states that **<u>u &lt;*&gt; pure x = pure (f =&gt; f(x)) &lt;*&gt; u</u>**. Therefore, we should be able to change the order of **<u>apply</u>**'s the parameters. To do so, however, we need to convert the second parameter to a higher order function, as in the following snippet:
+The interchange law states that **u &lt;*&gt; pure x = pure (f =&gt; f(x)) &lt;*&gt; u**. Therefore, we should be able to change the order of **apply**'s the parameters. To do so, however, we need to convert the second parameter to a higher order function, as in the following snippet:
 
 ```scala
 // Any function u. For example: x+1
@@ -364,9 +364,9 @@ u <*> x == pure(f:(Option[Int] => Option[Int]) => f(x)) <*> u
 <div id='app-functor-is-functor' />
 # Applicative Functors are Functors
 
-So far we have defined an applicative functor, as a pair of two functions - **<u>pure</u>** and **<u>apply</u>**. 
+So far we have defined an applicative functor, as a pair of two functions - **pure** and **apply**. 
 However, we have not yet shown that it is indeed a type of functor. We can do so by 
-implementing a **<u>map</u>** function as follows:
+implementing a **map** function as follows:
 
 ```scala
 def map[F[]]map(f: A => B, fa:F[A]) =
@@ -376,8 +376,8 @@ def map[F[]]map(f: A => B, fa:F[A]) =
 The previous laws ensure that this implementation conforms to the functor laws.
 
 In the [previous post](www.nikygrozev.org/2016/03/14/functional-programming-and-category-theory-part-1-categories-and-functors/) 
-we saw that a Functor can be defined as a trait representing the type constructor and defining the **<u>map</u>** function as a method. 
-Analogously, we can define the **<u>AppFunctor</u>** trait as follows: 
+we saw that a Functor can be defined as a trait representing the type constructor and defining the **map** function as a method. 
+Analogously, we can define the **AppFunctor** trait as follows: 
 
 ```scala
 trait AppFunctor[A] {

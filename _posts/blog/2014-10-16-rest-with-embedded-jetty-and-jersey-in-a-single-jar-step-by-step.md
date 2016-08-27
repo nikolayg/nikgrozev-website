@@ -54,8 +54,8 @@ If you plan to work with Eclipse, you will need [Eclipse IDE Java EE Developers]
 # Maven Project
 
 First, we need to create a simple maven project called 
-<u>restprj</u>. We do so by using the simplest <u>quickstart</u> maven archetype. 
-It creates a simple <u>App</u> java class and an <u>AppTest</u> unit test for us. 
+*restprj*. We do so by using the simplest `quickstart` maven archetype. 
+It creates a simple `App` java class and an `AppTest` unit test for us. 
 We'll delete the test, as we won't need it for now:
 
 ```bash

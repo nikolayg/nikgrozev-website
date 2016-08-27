@@ -77,7 +77,7 @@ Network devices (like routers) typically communicate through
 [TCP](http://en.wikipedia.org/wiki/Transmission_Control_Protocol) or 
 [UDP](http://en.wikipedia.org/wiki/User_Datagram_Protocol). In case something goes wrong, 
 network admins need a way to “debug” what has happened. Enter Internet Control Message Protocol (ICMP) 
-which is used just for that. One notable example is the <u>ping</u> command, which uses ICMP to 
+which is used just for that. One notable example is the *ping* command, which uses ICMP to 
 check the connection to a host.
 
 ## Large scale routing (Exterior Gateway Protocol)

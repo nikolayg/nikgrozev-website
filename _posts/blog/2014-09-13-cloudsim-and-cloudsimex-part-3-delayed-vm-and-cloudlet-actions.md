@@ -62,14 +62,14 @@ First we need to use a broker of type
 DatacenterBrokerEX broker = new DatacenterBrokerEX("Broker", 1000);
 ```
 
-Note that the new broker has an additional parameter called <u>lifeLength</u>. 
+Note that the new broker has an additional parameter called `lifeLength`. 
 Standard CloudSim brokers are terminated whenever there are no more running cloudlets/jobs. 
 If the simulated system becomes idle for a time period (i.e. no cloudlets are run) the broker 
 and the simulation will be terminated! To overcome this issues 
 [DatacenterBrokerEX](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/DatacenterBrokerEX.java) 
-introduces this new parameter called <u>lifeLength</u>, and ensures that the simulation and the broker are not terminated before 
-<u>lifeLength</u> seconds have passed, even if there are no running cloudlets. In the previous code we want the 
-broker to be alive for <u>lifeLength=1000</u>> secs, even if there is an idle period.
+introduces this new parameter called `lifeLength`, and ensures that the simulation and the broker are not terminated before 
+`lifeLength` seconds have passed, even if there are no running cloudlets. In the previous code we want the 
+broker to be alive for `lifeLength=1000` secs, even if there is an idle period.
 
 After creating the broker, we can go on to instantiate the VM and the clouldlet, 
 as we would in a typical CloudSim program. The interesting part is the creation and destruction of VMs with a delay:
@@ -100,7 +100,7 @@ If we look at the standard output of CloudSim, we can verify that:
 ```
 
 Moreover, if we schedule the termination of the VM before the completion of the cloudlet, 
-its status will be set appropriately to <u>Cloudlet.FAILED_RESOURCE_UNAVAILABLE</u>.
+its status will be set appropriately to `Cloudlet.FAILED_RESOURCE_UNAVAILABLE`.
 
 # Use Cases
 

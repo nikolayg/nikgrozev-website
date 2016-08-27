@@ -139,38 +139,38 @@ Many will be surprised to see that the results are different, as per the followi
     </tbody>
 </table>
 
-Java <u>always</u> invokes the method of the **<u>actual class</u>** of the object. 
+Java **always** invokes the method of the **actual class** of the object. 
 In other words, the actual method is not known by the compiler - it is decided on at runtime. 
-C# has this behaviour only if the method is declared as virtual (e.g. F()). 
-The invocation of non-virtual methods (e.g. G()) is decided by the compiler, before the execution.
+C# has this behaviour only if the method is declared as virtual (e.g. `F()`). 
+The invocation of non-virtual methods (e.g. `G()`) is decided by the compiler, before the execution.
 
 In other words, Java keeps it simple, by always deferring the decision until runtime. 
-This is called <u>Dynamic binding</u>, and causes a certain performance penalty, because of 
+This is called *Dynamic binding*, and causes a certain performance penalty, because of 
 the runtime object inspection. In contrast, C# does it the C++ way, and supports both dynamic 
 and static binding. By default, methods are bound statically at compile time, unless they are marked as virtual.
 
 # Syntax specifics
 
-In Java, it is a good practice to annotate overriding methods with the <u>@Override</u> annotation. 
+In Java, it is a good practice to annotate overriding methods with the `@Override` annotation. 
 This signals the compiler to validate that the method indeed overrides properly. 
 Even if the annotation is not specified, the behaviour remains the same.
 
-In C#, the <u>override</u> keyword has a similar role - it tells the compiler that an 
-overriding takes place. However, if the programmer does not specify the <u>override</u> keyword, 
+In C#, the `override` keyword has a similar role - it tells the compiler that an 
+overriding takes place. However, if the programmer does not specify the `override` keyword, 
 the method can not be dynamically invoked from a base class reference! In other words, in the 
-previous example if we had omitted the override keyword, the invocation of <u>d.F()</u> would 
-call <u>Base::F()</u>, even though it is a virtual method and the actual instance type is <u>Der</u>.
+previous example if we had omitted the override keyword, the invocation of `d.F()` would 
+call `Base::F()`, even though it is a virtual method and the actual instance type is `Der`.
 
-In C# you can explicitly mark methods with the <u>new</u> keyword, to indicate that they are redefining, 
-rather than overriding a base class method. Specifying <u>new</u>, is semantically the same as not specifying 
-override (as in the previous paragraph). The <u>new</u> keyword just makes it clearer for the reader.
+In C# you can explicitly mark methods with the `new` keyword, to indicate that they are redefining, 
+rather than overriding a base class method. Specifying `new`, is semantically the same as not specifying 
+override (as in the previous paragraph). The `new` keyword just makes it clearer for the reader.
 
 # A huge difference
 
 Java's default dynamic binding behaviour can be implemented in C# by specifying all instance 
-methods as <u>virtual</u>, and annotating all their redefinitions with <u>override</u>. 
+methods as `virtual`, and annotating all their redefinitions with `override`. 
 The opposite is not possible. Java can't implement static binding. The closest you can achieve is 
-to define a method as <u>final</u>, which forbids subclasses from re-implementing it altogether.
+to define a method as `final`, which forbids subclasses from re-implementing it altogether.
 
 This is a huge philosophical difference. In Java an object behaves identically, no matter what the 
 type of the reference actually is. Conversely, in C# the behaviour of a single object may change 

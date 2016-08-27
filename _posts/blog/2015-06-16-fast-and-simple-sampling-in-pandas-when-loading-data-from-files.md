@@ -57,7 +57,7 @@ In this article I'll describe a simple and fast approach for sampling data as it
 
 # Solution: skiprows
 
-In the later versions of Pandas its developers have introduced a new parameter <u>skiprows</u> 
+In the later versions of Pandas its developers have introduced a new parameter `skiprows` 
 of the [read_csv](http://pandas.pydata.org/pandas-docs/stable/io.html#io-read-csv-table) and function. 
 It allows you to specify a list of line/row indices, which will not be loaded by pandas. 
 In essence, what we can to do is generate the list of line ids which pandas will ignore.
@@ -66,7 +66,7 @@ In essence, what we can to do is generate the list of line ids which pandas will
 
 Often it is reasonable to select every N-th line in the file and ignore the rest. 
 This makes sense if the data is already ordered by an important parameter (e.g. time of event occurrence) 
-and thus such sampling will result in a representative sample. Generating the list of <u>skiprows</u> is 
+and thus such sampling will result in a representative sample. Generating the list of `skiprows` is 
 trivial once we know the number of lines in the file. We can obtain the latter with a simple scan of the 
 file we can just use an upper bound of the number of lines we expect in the file. The following code illustrates the approach:
 
@@ -92,7 +92,7 @@ data = pd.read_csv(f, skiprows=skip_idx, ... )
 **<u>Note!</u>** If your data has a header you should make sure that 0 is not included in your skiprows list. 
 Otherwise, the header will be ignored. **<u>Note!</u>** You may be tempted to use a generator instead of a 
 list for the skiprows parameter value, in order to save some memory. Although this would work, my experiments 
-show that the performance of <u>read_csv</u> degrades when <u>skiprows</u> uses generators.
+show that the performance of `read_csv` degrades when `skiprows` uses generators.
 
 ## Approach 2 - random selection
 

@@ -52,7 +52,7 @@ the standard imperative way and the monad way. Then we'll compare the approaches
 
 ## 1. Logging
 
-Let's assume we have the unary (single argument) functions f1, f2 and f3, each of which returns 
+Let's assume we have the unary (single argument) functions `f1`, `f2` and `f3`, each of which returns 
 an increment of its integer parameter. Additionally, each of them generates a readable log message, 
 representing its arithmetic operation:
 
@@ -67,7 +67,7 @@ def f3(x):
     return (x + 3, str(x) + "+3")
 ```
 
-Now we would like to chain the functions f1, f2 and f3 given a parameter x - i.e. we want to compute x+1+2+3. 
+Now we would like to chain the functions `f1`, `f2` and `f3` given a parameter `x` - i.e. we want to compute `x+1+2+3`. 
 Additionally we want to have a readable description of all applied functions.
 
 One way to achieve this is:
@@ -88,12 +88,12 @@ print(res, log)
 ```
 
 This solution is far from perfect, as we have repeated "glue code", which accumulates the overall result and 
-prepares the input of the functions. If we add a new function f4 to the sequence, we'll have to repeat the 
-glue code again. Moreover, manipulating the state of the variables <u>res</u> and <u>log</u> makes the code 
+prepares the input of the functions. If we add a new function `f4` to the sequence, we'll have to repeat the 
+glue code again. Moreover, manipulating the state of the variables `res` and `log` makes the code 
 less readable, and is not essential to the program logic.
 
-Ideally, we would like to have something as simple as the chain invocation <u>f3(f2(f1(x)))</u>. 
-Unfortunately, the return types of f1 and f2 are incompatible with the input parameter types of f2 and f3. 
+Ideally, we would like to have something as simple as the chain invocation `f3(f2(f1(x)))`. 
+Unfortunately, the return types of `f1` and `f2` are incompatible with the input parameter types of `f2` and `f3`. 
 To solve the problem we introduce two new functions:
 
 ```python
@@ -111,8 +111,8 @@ Hence, we can solve the problem with a single chained function invocation:
 print( bind(bind(bind(unit(x), f1), f2), f3) )
 ```
 
-The following diagram depicts the computational process when <u>x=0</u>. 
-By v1, v2 and v3 we denote the interim values resulting from calling unit and bind:
+The following diagram depicts the computational process when `x=0`. 
+By `v1`, `v2` and `v3` we denote the interim values resulting from calling unit and bind:
 
 
 <figure>
@@ -121,14 +121,14 @@ By v1, v2 and v3 we denote the interim values resulting from calling unit and bi
 </figure>
 
 
-The <u>unit</u> function converts the input parameter <u>x</u> into a tuple/pair of 
-an integer and a string. The subsequent invocations of <u>bind</u> call their parameter 
-function <u>f</u> and accumulate its result with the interim value represented by the <u>t</u> 
+The `unit` function converts the input parameter `x` into a tuple/pair of 
+an integer and a string. The subsequent invocations of `bind` call their parameter 
+function `f` and accumulate its result with the interim value represented by the `t` 
 formal parameter.
 
-This avoids the shortcomings of our previous approach because the <u>bind</u> function implements 
-all the glue code and we don't have to repeat it. We can add a new function f4 by just including 
-it in the sequence as <u>bind(f4, bind(f3, ... ))</u> and we won't have to do other changes.
+This avoids the shortcomings of our previous approach because the `bind` function implements 
+all the glue code and we don't have to repeat it. We can add a new function `f4` by just including 
+it in the sequence as `bind(f4, bind(f3, ... ))` and we won't have to do other changes.
 
 ## 2. List of Interim Values
 
@@ -142,11 +142,11 @@ def f2(x): return x + 2
 def f3(x): return x + 3
 ```
 
-As in the previous example we would like to compose them in order to compute x+1+2+3. 
-Additionally we would like to generate a list of all interim and final values - i.e. x, x+1, x+1+2 and x+1+2+3.
+As in the previous example we would like to compose them in order to compute `x+1+2+3`. 
+Additionally we would like to generate a list of all interim and final values - i.e. `x`, `x+1`, `x+1+2`, and `x+1+2+3`.
 
 Unlike the previous example, in this one the functions are composable as their parameter and result types match. 
-Therefore the simple invocation <u>f3(f2(f1(x)))</u> will give us the desired value of x+1+2+3. 
+Therefore the simple invocation `f3(f2(f1(x)))` will give us the desired value of `x+1+2+3`. 
 However, this won't generate the interim values.
 
 A straightforward approach is:
@@ -187,8 +187,8 @@ Now we can write the entire program as a single sequence of invocations:
 print( bind(bind(bind(unit(x), f1), f2), f3) )
 ```
 
-The following diagram depicts the computational process when <u>x=0</u>. Again v1, v2 and v3 are 
-the interim values resulting from calling <u>unit</u> and <u>bind</u>:
+The following diagram depicts the computational process when `x=0`. Again `v1`, `v2` and `v3` are 
+the interim values resulting from calling `unit` and `bind`:
 
 <figure>
   <img src="/assets/images/Monads in 15 minutes/example21.png" alt="Example 2 – Computational process of the monadic solution" >
@@ -210,10 +210,10 @@ class Employee:
         # Compute the wage
 ```
 
-Each employee instance has a boss of type <u>Employee</u> and a wage, which can be accessed through 
+Each employee instance has a boss of type `Employee` and a wage, which can be accessed through 
 the two methods. Both of these methods can return None (i.e. the wage is unknown, or the employee does not have a boss). 
-In this example we want to develop a program, which given an <u>Employee</u> instance <u>john</u> returns his boss's wage. 
-If the wage can no be determined or if <u>john</u> is <u>None</u>, we should return <u>None</u>.
+In this example we want to develop a program, which given an `Employee` instance `john` returns his boss's wage. 
+If the wage can no be determined or if `john` is `None`, we should return `None`.
 
 Ideally we would want to write something as simple as:
 
@@ -221,7 +221,7 @@ Ideally we would want to write something as simple as:
 print(john.get_boss().get_wage())
 ```
 
-However, as the methods can return <u>None</u>, this can result in an error. A simple workaround is:
+However, as the methods can return `None`, this can result in an error. A simple workaround is:
 
 ```python
 result = None
@@ -231,7 +231,7 @@ if john is not None and john.get_boss() is not None and john.get_boss().get_wage
 print(result)
 ```
 
-However, in this solution we are unnecessarily calling multiple times the <u>get_boss</u> and <u>get_wage</u> methods. 
+However, in this solution we are unnecessarily calling multiple times the `get_boss` and `get_wage` methods. 
 If they are computationally expensive (e.g. if they access a database) this may be undesirable. Hence, our solution should look like:
 
 ```python
@@ -263,12 +263,12 @@ Now we can write the program in one line:
 print( bind(bind(unit(john), Employee.get_boss), Employee.get_wage) )
 ```
 
-You probably noticed that we didn't actually need to call <u>unit(john)</u>, as it simply returns 
+You probably noticed that we didn't actually need to call `unit(john)`, as it simply returns 
 its input parameter. We did it to keep to the previous framework/pattern, so we can define a generalised 
 solution later on. Also, note that in python methods can be used as simple functions. That is, instead of 
-<u>john.get_boss()</u> we can write <u>Employee.get_boss(john)</u>, which allows us to write the code above.
+`john.get_boss()` we can write `Employee.get_boss(john)`, which allows us to write the code above.
 
-The following diagram illustrates the computational process if <u>john</u> does not have a boss (i.e. <u>john.get_boss()</u> returns <u>None</u>):
+The following diagram illustrates the computational process if `john` does not have a boss (i.e. `john.get_boss()` returns `None`):
 
 <figure>
   <img src="/assets/images/Monads in 15 minutes/example31.png" alt="Example 3 – Computational process of the monadic solution" >
@@ -279,8 +279,8 @@ The following diagram illustrates the computational process if <u>john</u> does 
 # Generalisation - Monads
 
 Lets assume we want to compose the functions f1, f2, ... fn. If all input parameters match all return types, 
-we can simply use <u>fn(... f2(f1(x)) ...)</u>. The following diagram depicts the underlying computational process. 
-v1, v2 ... vn represent the interim results of the function invocation.
+we can simply use `fn(... f2(f1(x)) ...)`. The following diagram depicts the underlying computational process. 
+`v1`, `v2` ... `vn` represent the interim results of the function invocation.
 
 <figure>
   <img src="/assets/images/Monads in 15 minutes/dierct_composition1.png" alt="Direct Composition – Computational model" >
@@ -309,7 +309,11 @@ In Example 3, the glue code checks if the interim values are Null/None.
 
 ## 2\. Enter Monads
 
-As we saw in the examples, this straightforward approach has some unpleasant effects - repeated glue code, multiple Null/None checks etc. In order to achieve more elegant solutions, in the examples above we used a design pattern with two functions (<u>unit</u> and <u>bind</u>). This pattern is called **<u>Monad</u>**. In essence the <u>bind</u> function implements the glue code and <u>unit</u> implements the initialisation code. This allows us to solve the problem in one line:
+As we saw in the examples, this straightforward approach has some unpleasant effects - repeated glue code, multiple Null/None checks etc. 
+In order to achieve more elegant solutions, in the examples above we used a design pattern with two functions (`unit` and `bind`). 
+This pattern is called **Monad**. 
+In essence, the `bind` function implements the glue code and `unit` implements the initialisation code. 
+This allows us to solve the problem in one line:
 
 ```python
 bind(bind( ... bind(bind(unit(x), f1), f2) ... fn-1), fn)
@@ -323,14 +327,15 @@ The following diagram displays the computational process:
   <figcaption>Monad - Computational Model.</figcaption>
 </figure>
 
-The <u>unit(x)</u> invocation generates an initial value v1\. Then <u>bind(v1, f1)</u> generates a new interim value v2, which is then used in the subsequent call to bind - <u>bind(v2, f2)</u>. 
-This continues until the final result is generated. Using this pattern, by using different <u>unit</u> and <u>bind</u> functions we can achieve various types of function compositions. 
-Standard Monad libraries provide predefined sets of ready to use monads (<u>unit</u> and <u>bind</u> functions), which can be used "out of the box" to implement different kinds of composition.
+The `unit(x)` invocation generates an initial value `v1`. Then `bind(v1, f1)` generates a new interim value `v2`, 
+which is then used in the subsequent call to bind - `bind(v2, f2)`. 
+This continues until the final result is generated. Using this pattern, by using different `unit` and `bind` functions we can achieve various types of function compositions. 
+Standard Monad libraries provide predefined sets of ready to use monads (`unit` and `bind` functions), which can be used "out of the box" to implement different kinds of composition.
 
-In order to compose the <u>bind</u> and <u>unit</u> functions, the return types of <u>unit</u> and <u>bind</u>, and the type of <u>bind</u>'s first parameter must be compatible. 
-This is called the Monadic Type. In terms of the previous computational diagram, the types of all interim values v1, v2 ... vn must be Monadic.
+In order to compose the `bind` and `unit` functions, the return types of `unit` and `bind`, and the type of `bind`'s first parameter must be compatible. 
+This is called the Monadic Type. In terms of the previous computational diagram, the types of all interim values `v1`, `v2` ... `vn` must be Monadic.
 
-Lastly, repeating the calls to <u>bind</u> again and again can be tedious and should be avoided. For the purpose we define an auxiliary function:
+Lastly, repeating the calls to `bind` again and again can be tedious and should be avoided. For the purpose we define an auxiliary function:
 
 ```python
 def pipeline(e, *functions):

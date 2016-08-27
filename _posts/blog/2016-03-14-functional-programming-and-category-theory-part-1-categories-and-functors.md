@@ -58,19 +58,19 @@ We will use simple Scala and pseudocode examples to illustrate the new terms.
 # Categories
 
 A **category** is a simple algebraic structure for modelling objects and their relationships. 
-A category **<u>C</u>** consists of a collection of objects **<u>ob(C)</u>** and a collection of 
-arrows/morphisms **<u>hom(C)</u>** connecting the objects. In other words, every arrow **<u>f</u>** 
-can be defined as a pair **<u>[a,b]</u>** of the objects it connects. We write **<u>f: a &rarr; b</u>**.
+A category **C** consists of a collection of objects **ob(C)** and a collection of 
+arrows/morphisms **hom(C)** connecting the objects. In other words, every arrow **f** 
+can be defined as a pair **[a,b]** of the objects it connects. We write **f: a &rarr; b**.
 
 A category also defines an operation for composing arrows, such that for every 
-**<u>f: a &rarr; b</u>** and **<u>g : b &rarr; c</u>**, their composition **<u>g &#8728; f</u>** 
-is also an arrow, which connects **<u>a</u>** and **<u>c</u>** - i.e. **<u>g &#8728; f: a &rarr; c</u>**. 
+**f: a &rarr; b** and **g : b &rarr; c**, their composition **g &#8728; f** 
+is also an arrow, which connects **a** and **c** - i.e. **g &#8728; f: a &rarr; c**. 
 
 A collection of objects and arrows qualifies as a category only if:
 
-- The composition is associative. More formally, **<u>h &#8728; (g &#8728; f) = (h &#8728; g) &#8728; f</u>** for every three arrows, and;
-- For every object **<u>a</u>** there is an identity arrow (i.e. a loop) **<u>i<sub>a</sub></u>** that connects it to itself: **<u>i<sub>a</sub>: a &rarr; a</u>**. 
-- The identities should have the obvious property that for every **<u>f: a &rarr; b</u>** the following is true **<u>i<sub>b</sub> &#8728; f = f = f &#8728; i<sub>a</sub></u>**. In other words, identities are *neutral* to composition.
+- The composition is associative. More formally, **h &#8728; (g &#8728; f) = (h &#8728; g) &#8728; f** for every three arrows, and;
+- For every object **a** there is an identity arrow (i.e. a loop) **i<sub>a</sub>** that connects it to itself: **i<sub>a</sub>: a &rarr; a**. 
+- The identities should have the obvious property that for every **f: a &rarr; b** the following is true **i<sub>b</sub> &#8728; f = f = f &#8728; i<sub>a</sub>**. In other words, identities are *neutral* to composition.
 
 [//]: # (====================================================================== Category.pdf)
 <figure>
@@ -85,8 +85,8 @@ An intuitive example of a category is the inter-city road infrastructure.
 A portion of this category is depicted in the diagram below. In it, the objects are all cities around the world. 
 We consider two cities to be connected with an arrow if one is reachable from the other. 
 We assume each city is reachable from itself which is represented with the identity arrows. 
-If we can travel from city **<u>A</u>** to **<u>B</u>**, and from **<u>B</u>** to **<u>C</u>**, 
-then we can do so from **<u>A</u>** to **<u>C</u>**. Hence, we can compose arrows.
+If we can travel from city **A** to **B**, and from **B** to **C**, 
+then we can do so from **A** to **C**. Hence, we can compose arrows.
 
 [//]: # (====================================================================== Category_Roads.pdf)
 <figure>
@@ -96,14 +96,14 @@ then we can do so from **<u>A</u>** to **<u>C</u>**. Hence, we can compose arrow
 
 
 More generally, every directed graph forms a category whose objects are the graph nodes. 
-In it, two nodes/objects **<u>a</u>** and **<u>b</u>** are connected with an arrow only if there is 
+In it, two nodes/objects **a** and **b** are connected with an arrow only if there is 
 *path* between them in the graph. We also consider that every node in the graph has an arrow to itself - i.e. it is reachable from itself.
 
 In Object Oriented Programming (OOP), a class hierarchy also forms a category. 
 The category objecta are the types (e.g. classes, traits, interfaces). We consider two 
-types **<u>A</u>** and **<u>B</u>** to be connected with an arrow if **<u>A</u>** is a subtype of **<u>B</u>**. 
-These arrows are composable, because if **<u>A</u>** is a subtype of **<u>B</u>**, and **<u>B</u>** of **<u>C</u>**, 
-then **<u>A</u>** is a subtype of **<u>C</u>**. Finally, each type is a subtype of itself and thus we have 
+types **A** and **B** to be connected with an arrow if **A** is a subtype of **B**. 
+These arrows are composable, because if **A** is a subtype of **B**, and **B** of **C**, 
+then **A** is a subtype of **C**. Finally, each type is a subtype of itself and thus we have 
 identity arrows as well. This is depicted in the following figure.
 
 
@@ -117,12 +117,12 @@ identity arrows as well. This is depicted in the following figure.
 <div id='categories-hask' />
 ## The Hask Category
 
-In Functional Programming, the **<u>Hask</u>** category has a special role. 
-The objects of **<u>Hask</u>** are all types of the Haskel programming language - i.e. **<u>Ob(Hask) = {Int, String, ...}</u>**. 
+In Functional Programming, the **Hask** category has a special role. 
+The objects of **Hask** are all types of the Haskel programming language - i.e. **Ob(Hask) = {Int, String, ...}**. 
 We can generalise that to the types of other languages, like Scala, as well. 
-For every function converting one type to another, in **<u>Hask</u>** there is an arrow between the two types. 
+For every function converting one type to another, in **Hask** there is an arrow between the two types. 
 Arrow composition is just function composition. The identity arrows correspond to the identity functions. 
-The following diagram depicts a portion of the **<u>Hask</u>** category.
+The following diagram depicts a portion of the **Hask** category.
 
 [//]: # (====================================================================== Hask.pdf)
 <figure>
@@ -134,17 +134,17 @@ The following diagram depicts a portion of the **<u>Hask</u>** category.
 <div id='functors' />
 # Functors
 
-In category theory, a Functor **<u>F</u>** is a transformation between two categories 
-**<u>A</u>** and **<u>B</u>**. We write **<u>F : A &rarr; B</u>**. **<u>F</u>** must map every 
-object and arrow from **<u>A</u>** to **<u>B</u>**. In other words, if **<u>a &isin; ob(A)</u>** 
-then **<u>F(a) &isin; ob(B)</u>**, and if **<u>f &isin; Hom(A)</u>** then **<u>F(f) &isin; Hom(B)</u>**. 
+In category theory, a Functor **F** is a transformation between two categories 
+**A** and **B**. We write **F : A &rarr; B**. **F** must map every 
+object and arrow from **A** to **B**. In other words, if **a &isin; ob(A)** 
+then **F(a) &isin; ob(B)**, and if **f &isin; Hom(A)** then **F(f) &isin; Hom(B)**. 
 
-We also require that **<u>F</u>** preserves the structure (i.e. identity arrows and composition) of the source category. 
+We also require that **F** preserves the structure (i.e. identity arrows and composition) of the source category. 
 More formally:
 
-- If **<u>f : a &rarr; b</u>** is an arrow in **<u>A</u>** then **<u>F(f):F(a) &rarr; F(B)</u>** is an arrow in **<u>B</u>**.
-- **<u>F(id<sub>X</sub>) = id<sub>(F(X))</sub></u>**, which means that each identity arrow in **<u>A</u>** is transformed to an identity arrow of the corresponding object in **<u>B</u>**.
-- **<u>F(g &#8728; f) = F(g) &#8728; F(f)</u>**, which means that the mapping of arrows' composition in **<u>A</u>** is a composition of their mappings in **<u>B</u>**.
+- If **f : a &rarr; b** is an arrow in **A** then **F(f):F(a) &rarr; F(B)** is an arrow in **B**.
+- **F(id<sub>X</sub>) = id<sub>(F(X))</sub>**, which means that each identity arrow in **A** is transformed to an identity arrow of the corresponding object in **B**.
+- **F(g &#8728; f) = F(g) &#8728; F(f)**, which means that the mapping of arrows' composition in **A** is a composition of their mappings in **B**.
  
 [//]: # (====================================================================== Functor.pdf)
 <figure>
@@ -153,7 +153,7 @@ More formally:
 </figure>
 
 
-When a functor **<u>F</u>** transforms a category **<u>A</u>** into itself, we call it an *endofunctor* and we write **<u>F:A &rarr; A</u>**.
+When a functor **F** transforms a category **A** into itself, we call it an *endofunctor* and we write **F:A &rarr; A**.
 
 
 [//]: # (====================================================================== EndoFunctor.pdf)
@@ -166,23 +166,23 @@ When a functor **<u>F</u>** transforms a category **<u>A</u>** into itself, we c
 <div id='functors-in-fp' />
 ## Functors in FP
 
-Before we delve into Functors and FP, we need to introduce the concept of a *<u>type constructor</u>*. 
+Before we delve into Functors and FP, we need to introduce the concept of a *type constructor*. 
 Essentially, a type constructor is a generic type definition, which takes another type as a parameter. 
-For example, in Scala **<u>List[T]</u>**, **<u>Vector[T]</u>**, and **<u>Option[T]</u>** are type constructor. 
-You need to specify the value of the type parameter **<u>T</u>** in order to produce a concrete type. 
+For example, in Scala **List[T]**, **Vector[T]**, and **Option[T]** are type constructor. 
+You need to specify the value of the type parameter **T** in order to produce a concrete type. 
 For example, **List[String]** is a type, while **List** itself is not - it is a type constructor. 
-We will write **TC[ _ ]** to denote that **<u>TC</u>** is a type constructor. 
+We will write **TC[ _ ]** to denote that **TC** is a type constructor. 
 
 Functors in Category Theory are a much more general concept than in functional programming (FP). 
-<u>All functors in FP are just endofunctors in Hask</u>. Furthermore, each functor **<u>F</u>** is 
-associated with a type constructor **TC[ _ ]**. Each type **<u>A</u>** in **<u>Hask</u>** is 
-transformed to **<u>TC[A]</u>**. For example, if **<u>TC = List</u>** then **<u>F: Int &rarr; List[Int]</u>**. 
-In other words, the type constructor uniquely defines the mapping of **<u>Hask</u>** objects. 
+**<u>All functors in FP are just endofunctors in Hask</u>**. Furthermore, each functor **F** is 
+associated with a type constructor **TC[ _ ]**. Each type **A** in **Hask** is 
+transformed to **TC[A]**. For example, if **TC = List** then **F: Int &rarr; List[Int]**. 
+In other words, the type constructor uniquely defines the mapping of **Hask** objects. 
 
-In order to define a functor, we also need to define the arrow mapping. The arrows in **<u>Hask</u>** are just functions. 
-Hence, we need to provide a function called **<u>map</u>** with the following signature: 
-**<u>map: (A &rarr; B) &rarr; (TC[A] &rarr; TC[B])</u>**. For every arrow/function **<u>f: A &rarr; B</u>** it 
-returns its projection/mapping which is also a function - **<u>F(f): TC[A] &rarr; TC[B]</u>**.
+In order to define a functor, we also need to define the arrow mapping. The arrows in **Hask** are just functions. 
+Hence, we need to provide a function called **map** with the following signature: 
+**map: (A &rarr; B) &rarr; (TC[A] &rarr; TC[B])**. For every arrow/function **f: A &rarr; B** it 
+returns its projection/mapping which is also a function - **F(f): TC[A] &rarr; TC[B]**.
 
 To summarise, a functor in FP is uniquely defined by a type constructor **TC[ _ ]** and a map function with the aforementioned signature. 
 The following diagram depicts a functor, whose type constructor is **List[_]**.
@@ -204,7 +204,7 @@ trait Functor[TC[_]] {
 }
 ```
 
-Note that the return type of **<u>map</u>** is a function. 
+Note that the return type of **map** is a function. 
 Often the caller just wants to apply/run this function to a given arguement, 
 instead of passing it on as an arguement or reusing it later on. 
 Thus, it is convenient to use another analogous definition of a functor, which also applies the resulting function:
@@ -215,7 +215,7 @@ trait Functor[TC[_]] {
 }
 ```
 This is essentially a *shortcut* for mapping a function and applying it in one go. 
-We can also define the **<u>map</u>** function as a method of the type constructor **TC** itself:
+We can also define the **map** function as a method of the type constructor **TC** itself:
 
 ```scala
 trait TC[A] {
@@ -280,5 +280,5 @@ in this example the return type is **Functor**, not the actual compile-time type
 This can be amended by defining a method type parameter for the arguement's type.
 
 
-> **<u>Update</u>**: updated with comments from [Ken Scambler](https://twitter.com/kenscambler) and other collegues from [REA](http://www.rea-group.com/IRM/content/default.aspx)
+> **Update**: updated with comments from [Ken Scambler](https://twitter.com/kenscambler) and other collegues from [REA](http://www.rea-group.com/IRM/content/default.aspx)
 

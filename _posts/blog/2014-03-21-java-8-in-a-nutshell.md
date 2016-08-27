@@ -76,16 +76,16 @@ public interface Student {
 }
 ```
 
-An interface with a single abstract method (i.e. which is not static or default) is called a **<u>functional interface</u>**, 
+An interface with a single abstract method (i.e. which is not static or default) is called a **functional interface**, 
 since it is essentially an abstract definition of a function. Standard examples are 
 [Runnable](http://download.java.net/jdk8/docs/api/java/lang/Runnable.html), 
 [Callable](http://download.java.net/lambda/b78/docs/api/java/util/concurrent/Callable.html), 
-[ActionListener](http://download.java.net/jdk8/docs/api/java/awt/event/ActionListener.html) and 
+[ActionListener](http://download.java.net/jdk8/docs/api/java/awt/event/ActionListener.html), and 
 [Comparator](http://download.java.net/jdk8/docs/api/java/util/Comparator.html). 
 The new package [java.util.function](http://download.java.net/jdk8/docs/api/java/util/function/package-summary.html) 
 introduces more standard functional interfaces like 
 [Predicate](http://download.java.net/jdk8/docs/api/java/util/function/Predicate.html), 
-[Function](http://download.java.net/jdk8/docs/api/java/util/function/Function.html) and 
+[Function](http://download.java.net/jdk8/docs/api/java/util/function/Function.html), and 
 [Consumer](http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html).
 
 Java 8 introduces an informative annotation 
@@ -218,17 +218,17 @@ The main interface in this package is [Stream](http://download.java.net/jdk8/doc
 which represents a sequence of elements supporting performing a sequence of actions - e.g. filtering, mapping, aggregation etc. 
 Each of these standard stream methods takes as a parameter an instance of a functional interface.
 
-Each standard collection in Java 8 can be converted to a stream through the <u>stream()</u> and <u>parallelStream()</u> methods. 
-The difference between them, is that if possible <u>parallelStream()</u> returns a Stream instance, whose operations 
-can be parallelised. Streams can also be converted to collections by the <u>collect()</u> method.
+Each standard collection in Java 8 can be converted to a stream through the **stream()** and **parallelStream()** methods. 
+The difference between them, is that if possible **parallelStream()** returns a Stream instance, whose operations 
+can be parallelised. Streams can also be converted to collections by the **collect()** method.
 
 The main functionalities/methods of Stream are:
 
-*   <u>filter</u> - given a predicate creates a new stream, whose elements match the predicate;
-*   <u>map</u> - given a function f, creates a new stream, whose elements are the result of applying the function over this stream's element;
-*   <u>reduce</u> - aggregates the stream elements into a single value by consecutively applying a provided binary function. 
+*   **filter** - given a predicate creates a new stream, whose elements match the predicate;
+*   **map** - given a function f, creates a new stream, whose elements are the result of applying the function over this stream's element;
+*   **reduce** - aggregates the stream elements into a single value by consecutively applying a provided binary function. 
 The result is wrapped in an [Optional](http://download.java.net/jdk8/docs/api/java/util/Optional.html) instance;
-*   <u>forEach</u>/<u>forEachOrdered</u> - executes a [Consumer](http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html) 
+*   **forEach**/**forEachOrdered** - executes a [Consumer](http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html) 
 instance's method for every element of the stream. The [Consumer](http://download.java.net/jdk8/docs/api/java/util/function/Consumer.html) 
 functional interface represents an arbitrary block of code.
 

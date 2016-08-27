@@ -109,17 +109,17 @@ public static List<List<String>> launchInstances(
 
 The input parameters of the method are:
 
-*   <u>providerId</u> - a JClouds specific ID of the provider (AWS, RightScale etc.);
-*   <u>userName</u> - the user name for the provider;
-*   <u>password</u> - the password or secret key;
-*   <u>locationId</u> - a JClouds specific ID of the location of the cloud data centre site;
-*   <u>imageId</u> - the ID of the VM Image or AMI in AWS;
-*   <u>hardwareId</u> - the type of the VM (e.g. m1.small);
-*   <u>securityGroupName</u> - the name of the predefined security group;
-*   <u>keyPairName</u> - the name of the predefined key-pair;
-*   <u>groupName</u> - a name pattern for the newly created VMs. <u>Must be lower case</u>;
-*   <u>numVMs</u> - how many VMs you want to create at once. If 1 - a single VM is created;
-*   <u>imageOwnerIdFilter</u> - by default some providers do not list private VM images. Thus, you need to specify a custom filter/query that will make them list your private images.
+*   `providerId` - a JClouds specific ID of the provider (AWS, RightScale etc.);
+*   `userName` - the user name for the provider;
+*   `password` - the password or secret key;
+*   `locationId` - a JClouds specific ID of the location of the cloud data centre site;
+*   `imageId` - the ID of the VM Image or AMI in AWS;
+*   `hardwareId` - the type of the VM (e.g. m1.small);
+*   `securityGroupName` - the name of the predefined security group;
+*   `keyPairName` - the name of the predefined key-pair;
+*   `groupName` - a name pattern for the newly created VMs. **Must be lower case**;
+*   `numVMs` - how many VMs you want to create at once. If 1 - a single VM is created;
+*   `imageOwnerIdFilter` - by default some providers do not list private VM images. Thus, you need to specify a custom filter/query that will make them list your private images.
 
 In the next section we'll see how all these parameters can be specified.
 
@@ -127,7 +127,7 @@ The above code is pretty self-evident and follows the standard JClouds templates
 The first interesting point is that we need to override the list of available VM images 
 (line 19) with a custom query, so that we can use our own private VM image. 
 Secondly JClouds does not support specifying key-pairs for all cloud providers and hence the 
-"keyPair" method is not present in any base class. To avoid using provider specific <u>ComputeService</u> 
+"keyPair" method is not present in any base class. To avoid using provider specific `ComputeService` 
 implementations we dynamically inspect if the current provider supports key-pairs (lines 35-36).
 
 As a result the method returns a list of the addresses for each instantiated VM.

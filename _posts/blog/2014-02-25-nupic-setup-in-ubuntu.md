@@ -42,17 +42,17 @@ Ubuntu (tested with version 14.04).
 
 # Setup Procedure
 
-> <u style="color:#003300;">**UPDATE 2**</u>: The Nupic team has changed the set-up procedure again, 
+> **<u style="color:red;">UPDATE 2</u>**: The Nupic team has changed the set-up procedure again, 
 so the script below is not longer valid with the latest code. Please follow the 
 [latest instructions](https://github.com/numenta/nupic#build-and-test-nupic) on GitHub instead. 
 <u>It is however still important to ensure you have sufficient RAM and CPU resources on your machine, as described below</u>.
 
-><u style="color:#003300;">**UPDATE 1**</u>: I've updated the installation instructions below, as 
+> **<u style="color:red;">UPDATE 1</u>**: I've updated the installation instructions below, as 
 the NuPIC team has made significant changes during the last 2-3 months. The following instructions 
 are tested on 64 bit Ubuntu 14.04 with the NuPIC trunk code from <u>11-Jun-2014</u>.
 
-Before starting, you should have _<u>python 2.7</u>_ installed which comes by default in most Ubuntu installations. 
-It is important to ensure that you have **<u>sufficient resource on your PC</u>!** If you don't you may be 
+Before starting, you should have **python 2.7** installed which comes by default in most Ubuntu installations. 
+It is important to ensure that you have **sufficient resource on your PC!** If you don't you may be 
 getting strange and completely unrelated errors during the build process - e.g. compile or configuration errors. 
 This may cause you to waste hours or even days in futile debugging. For example, running the installation procedure 
 completed successfully on a VirtuaBox Virtual Machine with 4 dedicated CPU cores and 2GB RAM. Running the same procedure 
@@ -63,11 +63,11 @@ After setting up python 2.7 you'll be ready to go with the installation script g
 You can also run the commands one by one to check for error messages.
 
 The script firstly installs all needed packages. Then it clones the [NuPIC](https://github.com/numenta/nupic)'s 
-code and installs all required python dependencies. <u>**NOTE**</u>: The script installs the python dependencies as 
+code and installs all required python dependencies. **<u>NOTE</u>**: The script installs the python dependencies as 
 global python-pip packages. If you are using python-pip for purposes other than running NuPIC you may prefer to install 
 them in [virtualenv](http://www.virtualenv.org/en/latest/) instead. Eventually, the script builds NuPIC's code and runs 
-all tests. The command "make -j3" (line 25) builds using 3 CPU cores. Depending on your system you may like to increase 
-or decrease this - e.g. "make -j4" if you can use 4 cores. After the installation and tests are over you should be able 
+all tests. The command `make -j3` (line 25) builds using 3 CPU cores. Depending on your system you may like to increase 
+or decrease this - e.g. `make -j4` if you can use 4 cores. After the installation and tests are over you should be able 
 to verify that all tests have completed successfully.
 
 ```bash
@@ -116,8 +116,8 @@ make tests_pyhtm
 make tests_all
 ```
 
-The above environment variables NUPIC, NTA, NTA_ROOTDIR and PYTHONPATH need to be set before running NuPIC. 
-You may wish to save them in /etc/profile or /etc/bash.bashrc so that they are always loaded. You may have 
+The above environment variables `NUPIC`, `NTA`, `NTA_ROOTDIR`, and `PYTHONPATH` need to be set before running NuPIC. 
+You may wish to save them in `/etc/profile` or `/etc/bash.bashrc` so that they are always loaded. You may have 
 to reboot afterwards so that the changes can take effect.
 
 ```bash

@@ -58,22 +58,22 @@ CPU cores and disks are similar concepts to model, since they both have some pre
 operations they can perform during a given time interval (either CPU or disk I/O operations) which needs to be 
 shared among the virtual machines. Thus, in CloudSimEx we represent a disk with the class 
 [HddPe](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/HddPe.java), 
-which extends _<u>Pe</u>_. The difference between a CPU core (<u>_Pe_</u>) and a disk (_<u>HddPe</u>_) is that 
+which extends `Pe`. The difference between a CPU core (`Pe`) and a disk (`HddPe`) is that 
 a disk has data items stored on it. A data items is a block of persistent storage used by an application - e.g. a file or a database shard.
 
 We also introduce new types of hosts 
 ([HddHost](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/HddHost.java)) 
 and virtual machines 
 ([HddVm](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/HddVm.java)) 
-that accommodate disks. A <u>_HddHost_</u> can have one or more disks (i.e. _<u>HddPe</u>_). A _<u>HddVm</u>_ has 
+that accommodate disks. A `HddHost` can have one or more disks (i.e. `HddPe`). A `HddVm` has 
 an additional property defining how many disk operations it requires from the hosts, similarly to the way 
-each _<u>Vm</u>_ has a number of CPU operations per second as a requirement. 
-Also, each _<u>HddVm</u>_ has a list of attached disks. Thus, a virtual machine 
-can have access to all or a subset of the disks of its host. Each _<u>HddHost</u>_ has a 
+each `Vm` has a number of CPU operations per second as a requirement. 
+Also, each `HddVm` has a list of attached disks. Thus, a virtual machine 
+can have access to all or a subset of the disks of its host. Each `HddHost` has a 
 [VmDiskScheduler](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/VmDiskScheduler.java) 
 which allocates the available throughput of its disks to the hosted virtual machines, 
-similarly to the way a _<u>VmScheduler</u>_ allocates CPU operations to VMs. 
-In fact, under the hood a _<u>VmDiskScheduler</u>_ uses a dedicated _<u>VmScheduler</u>_ to manage each disk.
+similarly to the way a `VmScheduler` allocates CPU operations to VMs. 
+In fact, under the hood a `VmDiskScheduler` uses a dedicated `VmScheduler` to manage each disk.
 
 The following diagram depicts the above concepts.
 
@@ -89,18 +89,18 @@ The following diagram depicts the above concepts.
 Once disk and CPU operations are distributed among the virtual machines, they in turn need to distribute 
 them to their cloudlets/jobs. Thus, CloudSimEx introduces a new type of cloudlet - 
 [HddCloudlet](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/HddCloudlet.java). 
-In addition to the number of CPU instructions (<u>mips</u>), it also has a number of disk I/O operations 
-(<u>miops</u>) and a data item. In CloudSim, a standard cloudlet is complete/finished only if <u>mips</u> 
-CPU instructions have been assigned to it by the virtual machine. In CloudSimEx a _<u>HddCloudlet</u>_ is 
-complete only if both <u>mips</u> CPU and <u>miops</u> disk operations have been provided by the VM. 
-In other words, a _<u>HddCloudlet</u>_ is finished only when it has executed all of its both CPU and disk instructions.
+In addition to the number of CPU instructions (*mips*), it also has a number of disk I/O operations 
+(*miops*) and a data item. In CloudSim, a standard cloudlet is complete/finished only if *mips* 
+CPU instructions have been assigned to it by the virtual machine. In CloudSimEx, a `HddCloudlet` is 
+complete only if both *mips* CPU and *miops* disk operations have been provided by the VM. 
+In other words, a `HddCloudlet` is finished only when it has executed all of its both CPU and disk instructions.
 
-To distribute disk and CPU operations, each _<u>HddVm</u>_ uses a dedicated scheduler - 
+To distribute disk and CPU operations, each `HddVm` uses a dedicated scheduler - 
 [HddCloudletSchedulerTimeShared](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/disk/HddCloudletSchedulerTimeShared.java). 
-It distributes the CPU and disk operations in a time-shared manner (i.e. similar to _<u>CloudletSchedulerTimeShared</u>_). 
+It distributes the CPU and disk operations in a time-shared manner (i.e. similar to `CloudletSchedulerTimeShared`). 
 However, when assigning disk operations to a cloudlet, it only uses instructions from the disk which hosts its data item. 
 If no such disk is accessible from the VM - the cloudlet fails. In other words if a cloudlet has a given data item (e.g. a file) 
-the _<u>HddCloudletSchedulerTimeShared</u>_ will only allocate operations from the disk which hosts it, if it is 
+the `HddCloudletSchedulerTimeShared` will only allocate operations from the disk which hosts it, if it is 
 available to the VM. Otherwise, the cloudlet will fail.
 
 The following diagram depicts the above concepts:
@@ -117,7 +117,7 @@ The following diagram depicts the above concepts:
 
 The samples below are extracted from 
 [CloudSimDisksExample](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-examples/src/main/java/org/cloudbus/cloudsimex/disk/examples/CloudSimDisksExample.java). 
-The code excerpts below assume you have defined all capital letter constants like HOST_MIPS, HOST_MIOPS etc. You can look at 
+The code excerpts below assume you have defined all capital letter constants like `HOST_MIPS`, `HOST_MIOPS` etc. You can look at 
 [CloudSimDisksExample](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-examples/src/main/java/org/cloudbus/cloudsimex/disk/examples/CloudSimDisksExample.java) 
 to see how these can be defined.
 
@@ -134,7 +134,7 @@ DataItem dataItem_2_2 = new DataItem(DATA_ITEM_SIZE);
 ```
 
 
-Next we can create lists of CPUs and disks - i.e. _<u>Pe</u>_ and _<u>HddPe</u>_. Disks are associated with data items in the constructor:
+Next we can create lists of CPUs and disks - i.e. `Pe` and `HddPe`. Disks are associated with data items in the constructor:
 
 ```java
 List <pe>peList = Arrays.asList(new Pe(Id.pollId(Pe.class), new PeProvisionerSimple(HOST_MIPS)));
@@ -157,7 +157,7 @@ HddHost host = new HddHost(new RamProvisionerSimple(HOST_RAM),
 ```
 
 After that you can create a data centre with this host and a broker. 
-This is standard CloudSim stuff. The only difference is that you need to use _<u>HddDataCenter</u>_ instead of just _<u>DataCenter</u>_:
+This is standard CloudSim stuff. The only difference is that you need to use `HddDataCenter` instead of just `DataCenter`:
 
 ```java
 // Build the data centre and a broker
@@ -221,7 +221,7 @@ broker.submitCloudletList(Arrays.asList(cloudlet1_1, cloudlet2_2));
 
 The core CloudSim code already defines some storage related attributes. **<u>They are not related to the above functionalities</u>**!
 
-For example each data centre can have a <u>List<Storage></u> property. 
+For example each data centre can have a `List<Storage>` property. 
 Storages like SAN storage are supported in CloudSim. 
 However, you can not use these CloudSim entities to represent contention 
 when accessing persistent data either at the VM or cloudlet/job level.
@@ -229,7 +229,8 @@ when accessing persistent data either at the VM or cloudlet/job level.
 # Extensibility
 
 CloudSimEx comes with default implementations of the scheduling policies. 
-However, you can implement your own _<u>VmDiskScheduler</u>_ and _<u>HddCloudletScheduler</u>_ extensions, which distribute CPU and disk operations with respect to your application's requirements.
+However, you can implement your own `VmDiskScheduler` and `HddCloudletScheduler` extensions, 
+which distribute CPU and disk operations with respect to your application's requirements.
 
 # References
 
