@@ -39,7 +39,7 @@
 /* tag listing in page header */
 
 .entry-tags {
-	margin: 2em 0 0;
+	margin: 2em 0 0 0;
   padding: 0;
 	text-transform: uppercase;
 	@include font-size(16);
@@ -74,8 +74,9 @@ span + .entry-title {
 .entry-title {
 	font-family: $alt-font;
 	font-style: italic;
+	margin-top: 0.25em;
 	@include font-size(36,yes,36);
-	font-weight: 400;
+	font-weight: 350;
 	line-height: 1;
 	letter-spacing: -3px;
 	a {
@@ -83,10 +84,10 @@ span + .entry-title {
 		text-decoration: underline;
 	}
 	@include media($medium) {
-		@include font-size(52,yes,54);
+		@include font-size(42,yes,44);
 	}
 	@include media($large) {
-		@include font-size(68,yes,72);
+		@include font-size(56,yes,58);
 	}
 }
 

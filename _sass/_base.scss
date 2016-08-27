@@ -60,8 +60,7 @@ header h1 {
 	border-style: none;
 }
 h1 {
-	@include font-size(36);
-	padding-top: 0.7em;
+	@include font-size(36);;
 	border-top: solid 1px #e5e5e5;
 }
 h2 {
