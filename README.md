@@ -6,7 +6,7 @@ A Jekyll website and blog based on the [So Simple theme](https://mmistakes.githu
 
 To setup a local environment, follow these steps:
 
-1. Install ruby 2.3.1 or later. On Linux/OSX use [RVM](https://rvm.io/rvm/install) to set it up:
+- Install ruby 2.3.1 or later. On Linux/OSX use [RVM](https://rvm.io/rvm/install) to set it up:
 ```bash
 # Install RVM
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -18,24 +18,24 @@ rvm install 2.3.1
 rvm use --default 2.3.1
 ```
 
-2. Install the Bundler gem:
+- Install the Bundler gem:
 ```bash
 gem install bundler
 ```
 
-3. Clone and navigate to the repo.
+- Clone and navigate to the repo.
 
-4. Install all gems:
+- Install all gems:
 ```bash
 bundle update && bundle install
 ```
 
-5. Start the Jekyll server:
+-  Start the Jekyll server:
 ```bash
 bundle exec jekyll serve --watch
 ```
 
-6. Open http://localhost:4000 in your browser.
+-  Open http://localhost:4000 in your browser.
 
 # Gotchas
 
