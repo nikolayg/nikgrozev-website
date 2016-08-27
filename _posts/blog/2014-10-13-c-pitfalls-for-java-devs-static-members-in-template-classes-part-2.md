@@ -122,7 +122,7 @@ for each template. Thus, in the previous example at runtime there is a single st
 all instances of Cage, independent of the type parameter.
 
 Conversely, the C# compiler (i.e. the Just In Time compiler - JIT) ensures that all closed types 
-(e.g. Cage<Lion>and Cage<Bear>) have their own static fields. Thus to the programmer they seem as different types/classes.
+(e.g. Cage<Lion>and Cage<Bear>) have their own static fields. Thus, to the programmer they seem as different types/classes.
 
 # Consequences
 
@@ -134,4 +134,4 @@ Cage<Lion>.instanceCount = 5;   // Valid in C#, Invalid in Java
 Cage<Bear>.instanceCount = 5;   // Valid in C#, Invalid in Java
 ```
 
-Also C# does not let you have an entry point (i.e. a Main method) in a template class.
+Also, C# does not let you have an entry point (i.e. a Main method) in a template class.

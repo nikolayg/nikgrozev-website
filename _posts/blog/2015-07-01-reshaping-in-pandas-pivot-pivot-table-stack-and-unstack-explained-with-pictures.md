@@ -85,7 +85,7 @@ d = DataFrame(table)
 
 In such a table, it is not easy to see how the USD price varies over different customer types. 
 We may like to reshape/pivot the table so that all USD prices for an item are on the row to compare more easily. 
-With Pandas we can do so with a single line:
+With Pandas, we can do so with a single line:
 
 ```python
 p = d.pivot(index='Item', columns='CType', values='USD')
@@ -119,7 +119,7 @@ print (p[p.index=='Item0'].Gold.values)
  
 
 **<u>Note</u>** that in this example the pivoted table does not contain any information about the EU column! 
-Indeed we can't see those euro symbols anywhere! Thus the pivoted table is a simplified version of the original 
+Indeed, we can't see those euro symbols anywhere! Thus, the pivoted table is a simplified version of the original 
 data and only contains information about the columns we specified as parameters to the pivot method.
 
 # Pivoting By Multiple Columns
@@ -136,7 +136,7 @@ In this case, Pandas will create a hierarchical column index
 You can think of a hierarchical index as a set of trees of indices. Each indexed column/row is identified 
 by a unique sequence of values defining the "path" from the topmost index to the bottom index. The first level 
 of the column index defines all columns that we have not specified in the pivot invocation - in this case USD and EU. 
-The second level of the index defines the unique value of the corresponding column. The following diagram depicts this:
+The second level of the index defines the unique value of the corresponding column. This is depicted in the following diagram:
 
 
 <figure>
@@ -178,7 +178,7 @@ pivoted table? The following diagram depicts the problem:
 
 In this example we have two rows with the same values ("_Item0"_ and "_Gold")_ for the <u>Item</u> and <u>CType</u> columns. 
 The pivot method can not know what should be the value of the corresponding value in the pivoted table. 
-Thus it throws an exception with the following message:
+Thus, it throws an exception with the following message:
 
 ```
 ValueError: Index contains duplicate entries, cannot reshape
@@ -249,7 +249,7 @@ In this example, we look at a DataFrame with 2-level hierarchical indices on bot
 Stacking takes the most-inner column index (i.e. c00, c01, c10), makes it the most inner row index 
 and reshuffles the cell values accordingly. Inversely, unstacking moves the inner row indices (i.e. r00, r01) to the columns.
 
-Typically stacking makes the DataFrame taller, as it is "stacking" data in fewer columns and more rows. 
+Typically, stacking makes the DataFrame taller, as it is "stacking" data in fewer columns and more rows. 
 Similarly, unstacking usually makes it shorter and wider or broader. The following reproduces the example:
 
 ```python
@@ -272,12 +272,12 @@ u = d.unstack()
 
 In fact Pandas allows us to stack/unstack on any level of the index so our previous explanation was a bit simplified :). 
 Thus, in the previous example we could have stacked on the outermost index level as well! 
-However the default (and most typical case) is to stack/unstack on the innermost index level.
+However, the default (and most typical case) is to stack/unstack on the innermost index level.
 
 Stacking and unstacking can also be applied to data with flat (i.e. non-hierchical) indices. 
 In this case, one of the indices is de facto removed (the columns index if stacking, and the rows 
 if unstacking) and its values are nested in the other index, which is now a MultiIndex. 
-Therefore the result is always a Series with a hierarchical index. The following example demonstrates this:
+Therefore, the result is always a Series with a hierarchical index. The following example demonstrates this:
 
 <figure>
   <img src="/assets/images/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png" width="100%">

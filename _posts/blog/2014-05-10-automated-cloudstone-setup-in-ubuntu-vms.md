@@ -54,7 +54,7 @@ other Infrastructure as a Service (IaaS) environments as well.
 In its simplest form CloudStone is composed of three Virtual Machines (VMs) running 
 the _<u>Olio</u>_ application - a client/driver, a web/application server (AS) and a database server (DB). 
 The client machine executes the workload, consisting of multiple users' actions, against the AS server. 
-The web server VM runs the application itself in an _Nginx_ server. It also hosts a _filestore_ with users' 
+The web server VM runs the application itself in a _Nginx_ server. It also hosts a _filestore_ with users' 
 multimedia content (e.g. images). The DB server provides access to a _MySql_ database with the application data. 
 It also hosts a _GeoCoder_ service hosted in an _Apache Tomcat_ instance providing geocoding services 
 (e.g. mapping latitude/longitude to zip codes) to the application server.
@@ -79,8 +79,8 @@ hus you should create a separate firewall setting (i.e. a Security Group), which
 <u>used only for running CloudStone</u>. The following screenshot shows the security group used in this tutorial, 
 which allows pinging and access to all TCP ports from anywhere. Alternatively, you can create a security group allowing 
 such access only from the CloudStone VMs' addresses. Furthermore, CloudStone assumes that all machines can ssh 
-into each other without any prompts. Hence our scripts need to copy the key (i.e. the <u>_pem_</u> file) across 
-all machines. Thus it is advised to <u>create a new pem file only for running CloudStone</u>.
+into each other without any prompts. Hence, our scripts need to copy the key (i.e. the <u>_pem_</u> file) across 
+all machines. Thus, it is advised to <u>create a new pem file only for running CloudStone</u>.
 
 
 <figure>
@@ -111,7 +111,7 @@ It uses SSH and SCP to configure appropriately and start all servers. The next d
 
 # Installation
 
-Once you have configured the CloudStone VMs you can continue with the installation. 
+After configuring the CloudStone VMs, you can continue with the installation. 
 The installation scripts are hosted in a 
 [GitHub repository called CloudStoneSetupOnUbuntu](https://github.com/nikolayg/CloudStoneSetupOnUbuntu). 
 From the installer machine you can either clone the GIT repository, or download the archive and extract it. 
@@ -246,12 +246,12 @@ the official installation procedure.
 The main differences are:
 
 *   CloudStone comes with a distribution of Faban, which according to the documentation should be 
-deployed and used. However this version had several issues when deployed on Ubuntu. I had to fork 
+deployed and used. However, this version had several issues when deployed on Ubuntu. I had to fork 
 Faban on GitHub and implement workarounds for them. The scripts use the 
 [Faban fork](https://github.com/nikolayg/faban) instead of the original Faban distribution. 
 A full list of changes to Faban can be seen from forked project's history.
 *   CloudStone includes a distribution of PhP code, which according to the instructions needs to be 
-compiled and installed. However the PhP code had to be patched, as it depends on an old version of 
+compiled and installed. However, the PhP code had to be patched, as it depends on an old version of 
 libxml2-dev and did not compile.
 *   Faban assumes all VMs can ssh into each other without any prompts. The installation scripts 
 copy the _pem_ file to the CloudStone VMs and ensure their ~/.ssh/config files are set properly 

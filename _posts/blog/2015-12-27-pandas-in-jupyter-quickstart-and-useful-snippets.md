@@ -56,9 +56,9 @@ features (e.g. plot styling and combining data frames) you'll need to refer to o
 <div id="installing_and_importing"/>
 # Installing and Importing
 
-First we need to install python and the [pip](https://pip.pypa.io/en/stable/) package manger. 
+First we need to install python and the [pip](https://pip.pypa.io/en/stable/) package manager. 
 If you don't already have them, you can use [pyenv](https://github.com/yyuu/pyenv) to easily 
-install them (tested on Ubuntu and OS X). On Ubuntu you can follow 
+install them (tested on Ubuntu and OS X). On Ubuntu, you can follow 
 [these instructions](http://opencafe.readthedocs.org/en/latest/getting_started/pyenv/) to get pyenv. 
 On OS X you can just use brew:
 
@@ -66,7 +66,7 @@ On OS X you can just use brew:
 brew install pyenv
 ```
 
-Once you have pyenv, you can install an configure the desired python version as follows:
+Once you have pyenv, you can install and configure the desired python version as follows:
 
 ```bash
 # Install the desired python version - e.g. 3.4.3
@@ -174,7 +174,7 @@ df = pandas.DataFrame({
 })
 ```
 
-We will reuse this data frame in some of the subsequent examples.
+We will reuse this data frame in some subsequent examples.
 
 
 <div id="previewing_data"/>
@@ -408,7 +408,7 @@ import matplotlib
 
 If the import works without problems you're good to go. However, sometimes in OS X you may get the following error:
 
-> *"RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are Working with Matplotlib in a virtual enviroment see 'Working with Matplotlib in Virtual environments' in the Matplotlib FAQ"*
+> *"RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are Working with Matplotlib in a virtual enviroment, see 'Working with Matplotlib in Virtual environments' in the Matplotlib FAQ"*
 
 If that error occurs, you need to execute the following from terminal:
 
@@ -447,7 +447,7 @@ plot_df = pandas.DataFrame({
 })
 ```
 
-Data frames have a method called *plot*. By default it plots a line chart with al numerical columns. 
+Data frames have a method called *plot*. By default, it plots a line chart with al numerical columns. 
 The x-axis is the row index of the data frame. In other words, you're plotting :
 
 ```python
@@ -464,7 +464,7 @@ We can also specify a column for the x-axis:
 plot_df.plot(x='col1')
 ```
 
-The *plot* has an optional parameter *kind* which can be use to plot the data in different 
+The *plot* has an optional parameter *kind* which can be used to plot the data in different 
 type of visualisation - e.g. bar harts, pie chart, or histograms.
 
 Using *kind='bar'* produces multiple plots - one for each row. In each plot, there's a bar for each cell.

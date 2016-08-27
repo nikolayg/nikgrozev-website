@@ -146,7 +146,7 @@ As in the previous example we would like to compose them in order to compute x+1
 Additionally we would like to generate a list of all interim and final values - i.e. x, x+1, x+1+2 and x+1+2+3.
 
 Unlike the previous example, in this one the functions are composable as their parameter and result types match. 
-Therefore the simple invocation <u>f3(f2(f1(x)))</u> will give us the desired value of x+1+2+3\. 
+Therefore the simple invocation <u>f3(f2(f1(x)))</u> will give us the desired value of x+1+2+3. 
 However, this won't generate the interim values.
 
 A straightforward approach is:
@@ -232,7 +232,7 @@ print(result)
 ```
 
 However, in this solution we are unnecessarily calling multiple times the <u>get_boss</u> and <u>get_wage</u> methods. 
-If they are computationally expensive (e.g. if they access a database) this may be undesirable. Hence our solution should look like:
+If they are computationally expensive (e.g. if they access a database) this may be undesirable. Hence, our solution should look like:
 
 ```python
 result = None
@@ -302,7 +302,10 @@ In the above examples we first defined a straightforward imperative approach, wh
 </figure>
 
 
-Before calling f1, we execute some initialisation code. For instance, in Example 1 and 2 we initialised variables to store the aggregated log and interim values. After that, we call the functions f1, f2... fn and between the invocations we put some glue code. In Example 1 and 2 the glue code aggregates the log and the interim values. In Example 3, the glue code checks if the interim values are Null/None.
+Before calling f1, we execute some initialisation code. For instance, in Example 1 and 2 we initialised variables to store the aggregated log and interim values. 
+After that, we call the functions f1, f2... fn and between the invocations we put some glue code. 
+In Example 1 and 2 the glue code aggregates the log and the interim values. 
+In Example 3, the glue code checks if the interim values are Null/None.
 
 ## 2\. Enter Monads
 
@@ -320,9 +323,12 @@ The following diagram displays the computational process:
   <figcaption>Monad - Computational Model.</figcaption>
 </figure>
 
-The <u>unit(x)</u> invocation generates an initial value v1\. Then <u>bind(v1, f1)</u> generates a new interim value v2, which is then used in the subsequent call to bind - <u>bind(v2, f2)</u>. This continues until the final result is generated. Using this pattern, by using different <u>unit</u> and <u>bind</u> functions we can achieve various types of function compositions. Standard Monad libraries provide predefined sets of ready to use monads (<u>unit</u> and <u>bind</u> functions), which can be used "out of the box" to implement different kinds of composition.
+The <u>unit(x)</u> invocation generates an initial value v1\. Then <u>bind(v1, f1)</u> generates a new interim value v2, which is then used in the subsequent call to bind - <u>bind(v2, f2)</u>. 
+This continues until the final result is generated. Using this pattern, by using different <u>unit</u> and <u>bind</u> functions we can achieve various types of function compositions. 
+Standard Monad libraries provide predefined sets of ready to use monads (<u>unit</u> and <u>bind</u> functions), which can be used "out of the box" to implement different kinds of composition.
 
-In order to compose the <u>bind</u> and <u>unit</u> functions, the return types of <u>unit</u> and <u>bind</u>, and the type of <u>bind</u>'s first parameter must be compatible. This is called the Monadic Type. In terms of the previous computational diagram, the types of all interim values v1, v2 ... vn must be Monadic.
+In order to compose the <u>bind</u> and <u>unit</u> functions, the return types of <u>unit</u> and <u>bind</u>, and the type of <u>bind</u>'s first parameter must be compatible. 
+This is called the Monadic Type. In terms of the previous computational diagram, the types of all interim values v1, v2 ... vn must be Monadic.
 
 Lastly, repeating the calls to <u>bind</u> again and again can be tedious and should be avoided. For the purpose we define an auxiliary function:
 
@@ -347,7 +353,9 @@ pipeline(unit(x), f1, f2, f3, f4)
 
 # Conclusion
 
-Monads are a simple and powerful design pattern for function composition. In a declarative language they can be used to implement features of imperative languages like logging and I/O. In an imperative language, they can reduce and isolate the bloated glue code between function invocations. This article only scratches the surface and builds an intuitive understanding of Monads. To learn more you can explore:
+Monads are a simple and powerful design pattern for function composition. In a declarative language they can be used to implement features of imperative languages like logging and I/O. 
+In an imperative language, they can reduce and isolate the bloated glue code between function invocations. 
+This article only scratches the surface and builds an intuitive understanding of Monads. To learn more you can explore:
 
 *   [Wikipedia](http://en.wikipedia.org/wiki/Monad_%28functional_programming%29)
 *   [Monads in Python](http://www.valuedlessons.com/2008/01/monads-in-python-with-nice-syntax.html)

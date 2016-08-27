@@ -40,7 +40,7 @@ technical details. For more in-depth understanding you can refer to
 ## Basic Routing Theory
 
 The Internet consists of a number of [Autonomous Systems](http://en.wikipedia.org/wiki/Autonomous_system_%28Internet%29) (AS), 
-which in term consist of one or multiple subnetworks. Typically an AS is owned and exploited by a single 
+which in term consist of one or multiple subnetworks. Typically, an AS is owned and exploited by a single 
 large-scale organisation – e.g. an ISP. Routing protocols enable hosts to communicate efficiently regardless 
 of which network they are in.
 
@@ -86,8 +86,8 @@ Routing between Autonomous Systems (AS) is handled by the Border Gateway Protoco
 It is pretty much the only Exterior Gateway Protocol in use these days. Each AS is given 
 an Id number so it can be uniquely identified. Within each AS a few routers are designated 
 to manage the traffic with other AS networks. They are known as “Autonomous System Boundary Routers” (ASBR). 
-BGP is classified as a distance vector protocol. However the designated BGP routers within each AS keep the 
-entire path to each destination AS. Thus for each destination the neighbouring routers exchange entire paths, 
+BGP is classified as a distance vector protocol. However, the designated BGP routers within each AS keep the 
+entire path to each destination AS. Thus, for each destination the neighbouring routers exchange entire paths, 
 not just the next best hop. BGP is classless.
 
 ## Smaller Scale routing (Interior Gateway Protocols)
@@ -149,8 +149,8 @@ is similar to ARP but it works with IPv6.
 The IPv4 address space can have only 2<sup>32</sup> (4,294,967,296) addresses, which obviously is insufficient 
 for all devices connecting to the Internet. One way to solve this problem is not to assign a static IP address to 
 every connected device – i.e. to reuse a pool of IP addresses and dynamically assign them to devices joining the network. 
-Also static IP addresses are problematic when a device is moved from one network to another. Enter the Dynamic Host 
-Configuration Protocol (DHCP). Once a new machines joins a network it broadcast a request to find the dedicated DHCP server, 
+Also, static IP addresses are problematic when a device is moved from one network to another. Enter the Dynamic Host 
+Configuration Protocol (DHCP). Once a new machine joins a network it broadcast a request to find the dedicated DHCP server, 
 which responds with its IP address. If there is no DHCP address on the local network, one of the hosts on the network 
 (known as DHCP agent) transmits the messages between the newly added machine and an external DHCP server.
 

@@ -8,7 +8,7 @@ status: publish
 excerpt: 
     CloudSim is one of the most popular Cloud infrastructure simulators 
     and is used throughout academia and industry. Being one of its maintainers I often get emails with requests 
-    for new features. Thus I've started the CloudSimEx project, which brings some of these extensions 
+    for new features. Thus, I've started the CloudSimEx project, which brings some of these extensions 
     together. CloudSimEx is a set of CloudSim extensions making simulation development easier and enabling the 
     modelling of new types of applications, not supported by CloudSim ...
 categories:
@@ -36,7 +36,7 @@ and is used throughout academia and industry. Being one of its maintainers I oft
 for new features. I also get quite a few emails about several CloudSim extensions that we 
 [published a paper about (pdf)](http://nikgrozev.com/pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf) 
 last year. 
-Thus I've started the [CloudSimEx](https://github.com/Cloudslab/CloudSimEx) project, which brings some of these extensions 
+Thus, I've started the [CloudSimEx](https://github.com/Cloudslab/CloudSimEx) project, which brings some of these extensions 
 together. In a series of posts I'll demo some of its functionalities.
 
 **<u>So what is CloudSimEx</u>?** CloudSimEx is a set of CloudSim extensions making simulation development easier and enabling the 
@@ -81,9 +81,9 @@ mvn clean install
 This should take some time and in the end you should see the resounding "BUILD SUCCESSFUL".
 
 Before we open CloudSim in Eclipse, we need make a few settings in the IDE. 
-By default Eclipse comes with an embedded installation of Maven, which is different that the one on the operating system. 
+By default, Eclipse comes with an embedded installation of Maven, which is different that the one on the operating system. 
 We need to tell Eclipse to use the already installed one. 
-Otherwise building from the IDE and the terminal will be two different things. 
+Otherwise, building from the IDE and the terminal will be two different things. 
 You can skip the next step if you have already done this. 
 If not go to <u>Window</u> -> <u>Preferences</u> -> <u>Maven</u> -> <u>Installations</u> 
 and add the location of your maven installation:
@@ -203,7 +203,7 @@ You're ready to go!
 
 CloudSim requires the end user to provide a lot of numerical ids for the simulation entities (e.g. cloudlets, VMs). 
 This is error prone. If you provide duplicate ids for entities of the same type (e.g. cloudlets) this will result in 
-an insidious bug, as CloudSim won't give any warning. Moreover in complex simulations virtual machines and cloudlets 
+an insidious bug, as CloudSim won't give any warning. Moreover, in complex simulations virtual machines and cloudlets 
 (i.e. jobs) need to be created dynamically, and thus you'll need to maintain global counters for id generation.
 
 To solve the problem I've created the simple utility class 
@@ -239,13 +239,13 @@ public class MyCloudlet extends Cloudlet {
 ```
 
 In fact, this is the approach taken in all CloudSimEx classes. 
-Thus in CloudSimEx you don't need to specify your own ids.
+Thus, in CloudSimEx you don't need to specify your own ids.
 
 # CSV export of objects
 
 When developing CloudSim simulations people often need to export tabular 
 (i.e. coma separated values or CSV) for further statistical analysis. 
-For example you may want to export data about your jobs'/cloudlets' start, end and execution 
+For example, you may want to export data about your jobs'/cloudlets' start, end and execution 
 time in a CSV file, in order to compute statistics or perform numerical analysis with Excel, R, SAS or Matlab. 
 Looping over all objects and their properties, taking care of column padding and so on can be a drag.
 
@@ -261,7 +261,7 @@ System.out.println(TextUtil.getCaptionLine(Vm.class));
 System.out.println(TextUtil.getTxtLine(vm));
 ```
 
-By default TextUtil inspects all the properties (i.e. public no-arg get methods) of the class/object 
+By default, TextUtil inspects all the properties (i.e. public no-arg get methods) of the class/object 
 and concatenates them taking into account predefined formatting and padding options. 
 You can modify the list and order of properties for a given class using the 
 [Textualize](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/util/Textualize.java) 
@@ -331,7 +331,7 @@ CurrentRequestedRam;CurrentRequestedRamGB
 
 CloudSim's default [Log](http://code.google.com/p/cloudsim/source/browse/trunk/modules/cloudsim/src/main/java/org/cloudbus/cloudsim/Log.java) 
 implementation is designed only to print to the standard output. 
-Hence CloudSimEx introduces a new logger called 
+Hence, CloudSimEx introduces a new logger called 
 [CustomLog](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/util/CustomLog.java). 
 It follows the same design principle of the original Log, but has several new functionalities. 
 It allows (i) output redirection to a file, (ii) flexible definition of log entry formats. 
@@ -362,7 +362,7 @@ included in every log entry and it will be formatted in the "_days:hours:minutes
 *   LogFormat - a list of get method names of the class 
 [LogRecord](http://docs.oracle.com/javase/7/docs/api/java/util/logging/LogRecord.html). 
 It allows you to specify what should compose your log entries. 
-Typically you would specify just "_<u>getMessage</u>_" or "_<u>getLevel;getMessage</u>_".
+Typically, you would specify just "_<u>getMessage</u>_" or "_<u>getLevel;getMessage</u>_".
 *   ShutStandardLogger - a boolean property. If "true" it will shut CloudSim's standard logger. 
 This is useful, when the standard logger generates too many log messages and causes the simulation execution 
 to slow down significantly.
@@ -381,7 +381,7 @@ ShutStandardLogger=true
 
 Given this configuration, CustomLog will output only log entries with level higher than INFO, 
 will print the current time, and the current CloudSim simulation time and will shut the standard CloudSim logger. 
-The output will be written to the file <u>/mydesktop/log.log</u>. Thus if you call:
+The output will be written to the file <u>/mydesktop/log.log</u>. Thus, if you call:
 
 ```java
 CustomLog.printf("Hello %s", "World");

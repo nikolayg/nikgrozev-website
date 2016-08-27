@@ -37,7 +37,7 @@ following the ideas from [Jeff Hawkin](http://en.wikipedia.org/wiki/Jeff_Hawkins
 "[On Intelligence](http://en.wikipedia.org/wiki/On_Intelligence)".
 
 NuPIC is not the only open source implementation of HTM, but it is the "cutting edge" in this area. 
-Unfortunately it is quite difficult to setup and test. In this post I'll overview a setup procedure for 
+Unfortunately it is quite difficult to set up and test. In this post I'll overview a setup procedure for 
 Ubuntu (tested with version 14.04).
 
 # Setup Procedure
@@ -51,7 +51,7 @@ so the script below is not longer valid with the latest code. Please follow the
 the NuPIC team has made significant changes during the last 2-3 months. The following instructions 
 are tested on 64 bit Ubuntu 14.04 with the NuPIC trunk code from <u>11-Jun-2014</u>.
 
-Before starting you should have _<u>python 2.7</u>_ installed which comes by default in most Ubuntu installations. 
+Before starting, you should have _<u>python 2.7</u>_ installed which comes by default in most Ubuntu installations. 
 It is important to ensure that you have **<u>sufficient resource on your PC</u>!** If you don't you may be 
 getting strange and completely unrelated errors during the build process - e.g. compile or configuration errors. 
 This may cause you to waste hours or even days in futile debugging. For example, running the installation procedure 
@@ -59,7 +59,7 @@ completed successfully on a VirtuaBox Virtual Machine with 4 dedicated CPU cores
 on a clone of the same VM with 1GB and 1 CPU core resulted in runtime errors of the unit tests about missing dependencies. 
 Unfortunately, I couldn't find any documentation or guidelines about how much CPU and RAM capacity is typically needed.
 
-Once you've setup python 2.7 you're ready to go with the installation script given below. 
+After setting up python 2.7 you'll be ready to go with the installation script given below. 
 You can also run the commands one by one to check for error messages.
 
 The script firstly installs all needed packages. Then it clones the [NuPIC](https://github.com/numenta/nupic)'s 
@@ -132,7 +132,7 @@ export PYTHONPATH=$PYTHONPATH:$NTA/lib/python$pyVersion/site-packages
 ```
 
 
-Once you've completed the installation you can run some of the examples.
+After completing the installation, you can run some examples.
 
 ```bash
 # Run the "Online" hotgym  example

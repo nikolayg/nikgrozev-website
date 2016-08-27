@@ -33,7 +33,7 @@ to specialised languages like R when munging heterogeneous and messy data.
 
 [Pandas](http://pandas.pydata.org/) is one of the most widely used python libraries for data analysis. 
 It basically introduces a layer between other libraries like numpy and matplotlib, 
-which makes it easier to read in, transform and plot data. Also it introduces the concepts of DataFrames 
+which makes it easier to read in, transform and plot data. Also, it introduces the concepts of DataFrames 
 and Series, which are familiar to R programmers.
 
 ### The Problems
@@ -90,7 +90,7 @@ data = pd.read_csv(f, skiprows=skip_idx, ... )
 ```
 
 **<u>Note!</u>** If your data has a header you should make sure that 0 is not included in your skiprows list. 
-Otherwise the header will be ignored. **<u>Note!</u>** You may be tempted to use a generator instead of a 
+Otherwise, the header will be ignored. **<u>Note!</u>** You may be tempted to use a generator instead of a 
 list for the skiprows parameter value, in order to save some memory. Although this would work, my experiments 
 show that the performance of <u>read_csv</u> degrades when <u>skiprows</u> uses generators.
 

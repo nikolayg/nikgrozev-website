@@ -35,7 +35,7 @@ explain some of its core concepts by comparing and contrasting the two “worlds
 There are several main specifications which define what .Net actually is:
 
 1.  The **Common Intermediate Language** (CIL or just IL) is a language independent representation of 
-compiled code. Similarly to java byte code, which can be compiled from several of languages 
+compiled code. Similarly, to java byte code, which can be compiled from several of languages 
 (Java, Scala, Jython etc.), CIL can be compiled from a multitude of languages.
 2.  The **Common Language Runtime** (CLR) is an execution environment (like the JVM), which executes 
 CIL code. It manages threads, garbage collection, just-in-time (JIT) compilation etc.
@@ -89,9 +89,9 @@ Integration with Mono on non-Windows systems seems to be in progress.
 [MsBuild](http://en.wikipedia.org/wiki/MSBuild) seems to be the preferred automated build system for .Net. 
 It also allows you to build Visual Studio solutions and projects without Visual Studio.
 
-In .Net assemblies are not only deployment artefacts – they are also logical entities. 
+In .Net, assemblies are not only deployment artefacts – they are also logical entities. 
 For example C# defines an access modifier called <u>internal</u>, which denotes that the respective member 
-can only be accessed from the same assembly. Similarly members with modifier <u>protected internal</u> 
+can only be accessed from the same assembly. Similarly, members with modifier <u>protected internal</u> 
 can be accessed either from the assembly or through inheritance. There does not seem to be an alternative 
 to this in Java. In OSGI you can achieve similar access restriction by specifying which JAR/bundle packages 
 are visible to the outside world.

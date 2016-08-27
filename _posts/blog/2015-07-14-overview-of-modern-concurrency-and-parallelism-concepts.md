@@ -45,7 +45,7 @@ This is precisely the goal of this article – to summarise, exemplify and compa
 like green threads, fibres, goroutine, actors etc.
 
 This article aims to give a general overview of these concepts and is not exhaustive. 
-There is still some terminological ambiguity with respect to some of the terms. 
+There is still some terminological ambiguity with respect to some terms. 
 For this article, I have mostly followed the respective Wikipedia pages.
 
 # Concurrency vs. Parallelism
@@ -140,7 +140,7 @@ Java has effectively abandoned green threads in favour of mapping to native OS t
 # Protothreads
 
 [Protothreads](https://en.wikipedia.org/wiki/Protothreads) are defined as stackless threads. 
-All protothreads share the same same stack and context switching is done by 
+All protothreads share the same stack and context switching is done by 
 “[stack rewinding](http://dunkels.com/adam/pt/about.html)”. They are not preemptable, 
 and only switch context when a blocking operation is invoked. As there is no stack, all local 
 variables are not preserved upon a context switch! Protothreads are available only as a C library, 
@@ -213,7 +213,7 @@ The following lines print the first 20 Fibonacci numbers.
 ```
 
 
-Computing Fibonacci is not be the most impressive or useful example. 
+Computing Fibonacci is not the most impressive or useful example. 
 Indeed, there is a much better use case. Let's assume we have a wrapper of a native async 
 library for downloading HTTP resources. The methods of this library can be provided with callbacks, 
 which are executed once the async operation completes. In this scenario, the fiber can start an 
@@ -230,7 +230,7 @@ For an example of how to use Fibers in Ruby in such situation, you can check out
 In fact this approach of wrapping a long running backround task in a fiber is so widesperead, 
 that C# introduces a specialised [Async/Await](https://en.wikipedia.org/wiki/Await) language structure for it.
 
-As I mentioned, there is still some ambiguity with regards to many concurrency terms. 
+As I mentioned, there is still some ambiguity in regard to many concurrency terms. 
 For example, in [Quasar](http://docs.paralleluniverse.co/quasar/) fibers can run in parallel. 
 [GHC](https://www.haskell.org/ghc/) and [Mercury](https://en.wikipedia.org/wiki/Mercury_%28programming_language%29) 
 can migrate fibers from one thread to another, and GHC can even preempt them. 
@@ -291,7 +291,7 @@ Using a fiber library can be cumbersome, and thus some programming languages int
 [coroutines](https://en.wikipedia.org/wiki/Coroutine). The two concepts are functionally equivalent. 
 However, coroutines are implemented with specific syntax on the programming language level.
 
-Coroutines are a generalisation of generators. When you are invoking a generator you can not 
+Coroutines are a generalisation of generators. When you are invoking a generator, you can not 
 specify a parameter - i.e. in the previoous example we could not write g.next(7). 
 Coroutines allow for this. When the coroutine is resumed, the specified value is provided to it in 
 the form of a result of yield. The following example illustrates this:
@@ -405,7 +405,7 @@ Every parent actor is designated as a supervisor of its child actors.
 An actor can implement its own supervisor strategy, which gets executed when supervised actors fails. 
 Typically, this is used for restarting or recreating failed actors.
 
-Under the hood Akka uses a thread pool. Based on the 
+Under the hood, Akka uses a thread pool. Based on the 
 [configuration and the message dispatchers](http://stackoverflow.com/questions/20673206/how-are-akka-actors-implemented-on-underlying-threads) 
 (classes forwarding messages to actors), 
 Akka schedules the actors on the available threads. Actors can also be replicated and put behind a 

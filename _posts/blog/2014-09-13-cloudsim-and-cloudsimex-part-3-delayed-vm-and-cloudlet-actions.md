@@ -64,7 +64,7 @@ DatacenterBrokerEX broker = new DatacenterBrokerEX("Broker", 1000);
 
 Note that the new broker has an additional parameter called <u>lifeLength</u>. 
 Standard CloudSim brokers are terminated whenever there are no more running cloudlets/jobs. 
-If the simulated system becomes idle for a period of time (i.e. no cloudlets are run) the broker 
+If the simulated system becomes idle for a time period (i.e. no cloudlets are run) the broker 
 and the simulation will be terminated! To overcome this issues 
 [DatacenterBrokerEX](https://github.com/Cloudslab/CloudSimEx/blob/master/cloudsimex-core/src/main/java/org/cloudbus/cloudsim/ex/DatacenterBrokerEX.java) 
 introduces this new parameter called <u>lifeLength</u>, and ensures that the simulation and the broker are not terminated before 
@@ -99,7 +99,7 @@ If we look at the standard output of CloudSim, we can verify that:
 500.0: Broker: VM #0 has been destroyed in Datacenter #2
 ```
 
-Moreover if we schedule the termination of the VM before the completion of the cloudlet, 
+Moreover, if we schedule the termination of the VM before the completion of the cloudlet, 
 its status will be set appropriately to <u>Cloudlet.FAILED_RESOURCE_UNAVAILABLE</u>.
 
 # Use Cases

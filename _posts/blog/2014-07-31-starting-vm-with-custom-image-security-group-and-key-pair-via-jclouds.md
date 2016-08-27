@@ -119,7 +119,7 @@ The input parameters of the method are:
 *   <u>keyPairName</u> - the name of the predefined key-pair;
 *   <u>groupName</u> - a name pattern for the newly created VMs. <u>Must be lower case</u>;
 *   <u>numVMs</u> - how many VMs you want to create at once. If 1 - a single VM is created;
-*   <u>imageOwnerIdFilter</u> - by default some providers do not list private VM images. Thus you need to specify a custom filter/query that will make them list your private images.
+*   <u>imageOwnerIdFilter</u> - by default some providers do not list private VM images. Thus, you need to specify a custom filter/query that will make them list your private images.
 
 In the next section we'll see how all these parameters can be specified.
 
@@ -172,5 +172,5 @@ System.out.println(launchedNodesAddresses);
 ```
 
 Note that in the above code we use the AWS region as a part of the image ID (line 6). 
-This is a requirement for EC2. Also we constructed an AWS specific image query with 
+This is a requirement for EC2. Also, we constructed an AWS specific image query with 
 the image owner id as a parameter (line 14).

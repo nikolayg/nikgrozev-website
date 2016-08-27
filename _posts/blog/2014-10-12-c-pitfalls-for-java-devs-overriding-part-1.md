@@ -146,12 +146,12 @@ The invocation of non-virtual methods (e.g. G()) is decided by the compiler, bef
 
 In other words, Java keeps it simple, by always deferring the decision until runtime. 
 This is called <u>Dynamic binding</u>, and causes a certain performance penalty, because of 
-the runtime object inspection. In contrast C# does it the C++ way, and supports both dynamic 
-and static binding. By default methods are bound statically at compile time, unless they are marked as virtual.
+the runtime object inspection. In contrast, C# does it the C++ way, and supports both dynamic 
+and static binding. By default, methods are bound statically at compile time, unless they are marked as virtual.
 
 # Syntax specifics
 
-In Java it is a good practice to annotate overriding methods with the <u>@Override</u> annotation. 
+In Java, it is a good practice to annotate overriding methods with the <u>@Override</u> annotation. 
 This signals the compiler to validate that the method indeed overrides properly. 
 Even if the annotation is not specified, the behaviour remains the same.
 

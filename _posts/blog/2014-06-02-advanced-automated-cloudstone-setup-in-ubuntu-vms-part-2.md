@@ -43,7 +43,7 @@ as it has a single web server.
 This post covers how to achieve a <u>more advanced CloudStone</u> deployment with a dedicated load 
 balancer "_in front of_" the web server, so that new web servers can be added dynamically. To accommodate 
 multiple web servers we also need a central repository for the media <u>filestore</u>, which is shared 
-across all of them. Thus we use a dedicated Network File System (NFS) server to host the _<u>filestore</u>_.
+across all of them. Thus, we use a dedicated Network File System (NFS) server to host the _<u>filestore</u>_.
 
 Again the installation is automated with a set of scripts, which have been tested in Amazon AWS. 
 In principle, they should also work in other Infrastructure as a Service (IaaS) environments, as long 
@@ -52,11 +52,11 @@ they support 64bit Ubuntu 14.04 virtual machines.
 # SetUp Overview
 
 Unlike the standard CloudStone deployment, now we'll need two more Virtual Machines - 
-(i) a load balancer and (ii) a NFS server. Thus overall we'll need the following <u>64bit Ubuntu 14.04</u> VMs:
+(i) a load balancer and (ii) a NFS server. Thus, overall we'll need the following <u>64bit Ubuntu 14.04</u> VMs:
 
 *   Client/Driver VM - drives/runs the workload (i.e. emulated users' requests) to the load balancer.
 *   Load balancer VM - redirects the requests to a set of web servers, using a HAProxy load balancer.
-*   Web/App server - serves users' requests in a Nginx web server. Accesses the the _<u>filestore</u>_ of media files hosted on the NFS server.
+*   Web/App server - serves users' requests in a Nginx web server. Accesses the _<u>filestore</u>_ of media files hosted on the NFS server.
 *   NFS server - hosts the filestore on its file system, and shares it trough NFS. <u>Must have significant disk space!</u>
 *   DB server - hosts a MySql server and a geocoding application.
 
@@ -75,12 +75,12 @@ This allows us to dynamically provision more instances of the web server VM and 
 
 To be on the safe side I'll repeat the **<u><span style="color:#993300;text-decoration:underline;">Security Notice!</span></u>** 
 from the previous CloudStone post. CloudStone implicitly requires that all VMs can _ping_ each 
-other and connect to each other at random ports. Thus you should create a separate firewall 
+other and connect to each other at random ports. Thus, you should create a separate firewall 
 setting (i.e. a Security Group), which allows this and which is <u>used only for running CloudStone</u>. 
 The following screenshot shows the security group used in this tutorial, which allows pinging and 
 access to all TCP ports from anywhere. Furthermore, CloudStone assumes that all machines can ssh 
-into each other without any prompts. Hence our scripts need to copy the key (i.e. the <u>_pem_</u> file) 
-across all machines. Thus it is advised to <u>create a new pem file only for running CloudStone</u>.
+into each other without any prompts. Hence, our scripts need to copy the key (i.e. the <u>_pem_</u> file) 
+across all machines. Thus, it is advised to <u>create a new pem file only for running CloudStone</u>.
 
 <figure>
   <img src="/assets/images/Advanced Automated CloudStone Setup in Ubuntu VMs Part 2/securitygroup-1024x538.png" alt="CloudStone security Group in AWS" >
@@ -214,7 +214,7 @@ Of course, the new VM should have the same security group as the others.
 
 After the new VM is created from the image it will automatically start its web server and will 
 mount its NFS storage upon boot, so you don't need to take care or that. However, you still need to 
-associate it with the load balancer. Lets assume the IP/DNS address of the initial/old web/app server 
+associate it with the load balancer. Let's assume the IP/DNS address of the initial/old web/app server 
 is <u>asIP1</u> and the new one's is <u>asIP2</u>. Then you need to login into the load balancer 
 VM and from the home directory issue the following commands:
 
@@ -266,7 +266,7 @@ instead of hosting it locally. Its log is redirected to _~/as-setup.log_ on the 
 
 Common installation logic is still implemented in <u>base-setup.sh</u> and <u>base-server.sh</u>. 
 A lot of common and reusable functions are stored in <u>functions.sh</u>. The script <u>as-image-start.sh</u> is set to 
-automatically execute at boot time of the web/app server VM and starts it web server and NFS mounting.
+automatically execute at boot time of the web/app server VM and starts the web server and NFS mounting.
 
 A major problem in the set up of the load balancer was the stateful nature of the Olio workload. 
 Olio maintains session data in the web server's memory for every user. Thus requests from the same 

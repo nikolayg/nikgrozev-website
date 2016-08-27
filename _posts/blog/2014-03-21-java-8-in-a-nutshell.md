@@ -7,7 +7,7 @@ published: true
 status: publish
 excerpt: 
     Oracle has officially released JDK 8, featuring long-awaited language features like 
-    lambdas and a new Date-Time API. This posts gives a brief overview 
+    lambdas and a new Date-Time API. This post gives a brief overview 
     of the new functional programming features in Java ...
 categories:
 - Miscellaneous
@@ -27,7 +27,7 @@ author:
 # Introduction and Installation
 
 Oracle has [officially released JDK 8](https://blogs.oracle.com/thejavatutorials/entry/jdk_8_is_released), 
-featuring long-awaited language features like lambdas and a new Date-Time API. This posts gives a brief overview 
+featuring long-awaited language features like lambdas and a new Date-Time API. This post gives a brief overview 
 of the new functional programming features in Java.
 
 The latest JDK 8 can be downloaded and installed from 
@@ -53,7 +53,7 @@ A major problem of Java interfaces is extensibility. If you change an interface,
 classes must change as well. If this interface is a part of a public library for example, thousands of 
 implementations (some of which in external code bases) may have to change. As of Java 8, interfaces can have 
 default methods. Unlike standard abstract methods, a default method has an implementation and underlying classes 
-do not need to implement it. Hence default methods can be added later on, without having to modify or recompile existing classes.
+do not need to implement it. Hence, default methods can be added later on, without having to modify or recompile existing classes.
 
 Another change in Java 8 is that interfaces can have static methods just like classes. 
 The following example illustrates these features:
@@ -211,7 +211,7 @@ Predicate <String> p2 = s -> new Boolean(s);    // Equivalent lambda
 
 # Streams
 
-So far we've seen that Java 8 has removed some of the clutter around implementing functional interfaces. 
+So far we've seen that Java 8 has removed some clutter around implementing functional interfaces. 
 Functional interfaces are especially useful for manipulating collections, and thus Java 8 introduces the 
 [java.util.stream](http://download.java.net/jdk8/docs/api/java/util/stream/package-summary.html) package. 
 The main interface in this package is [Stream](http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html), 
