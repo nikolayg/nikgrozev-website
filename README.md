@@ -1,6 +1,6 @@
 # Personal website
 
-A Jekyll website and blog based on the [So Simple theme](https://mmistakes.github.io/so-simple-theme/).
+A Jekyll website and blog based on the [So Simple theme](https://github.com/mmistakes/so-simple-theme/).
 
 # Setup
 
