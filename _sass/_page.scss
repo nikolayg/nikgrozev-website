@@ -32,6 +32,12 @@
 
 .entry-header {
 	@include fill-parent;
+	@include media($medium) {
+		margin-bottom: 3em;
+	}
+	@include media($large) {
+		margin-bottom: 5em;
+	} 
 }
 
 /* tag listing in page header */
