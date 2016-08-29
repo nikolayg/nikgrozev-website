@@ -25,11 +25,20 @@
   }
 }
 
-#start-page{
-  .entry-meta {
+.entry-meta {
     display: none;
     @include media($large) {
       display: block;
     }
-  }
+
+    .social-icons {
+      margin: 1em 0 0.5em;
+      a {
+        padding: 2px 2px;
+        &:hover {
+          color: $black;
+        }
+      }
+    }
 }
+

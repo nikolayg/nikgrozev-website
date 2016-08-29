@@ -21,13 +21,14 @@
 /*
    Social media icons
    ========================================================================== */
-
-.social-icons {
-  margin: 1em 0 2em;
-  a {
-    padding: 4px 8px;
-    &:hover {
-      color: $black;
+.footer-wrapper {
+  .social-icons {
+    margin: 1em 0 2em;
+    a {
+      padding: 4px 8px;
+      &:hover {
+        color: $black;
+      }
     }
   }
 }
