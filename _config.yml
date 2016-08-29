@@ -5,7 +5,7 @@ locale: en_UK
 description: Staying on top of it.
 logo: site-logo.jpg
 search: true
-url: http://localhost:4000
+url: http://nikgrozev.com
 
 # Jekyll configuration
 
