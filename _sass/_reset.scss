@@ -38,6 +38,27 @@ audio:not([controls]) {
   display: none;
 }
 
+// Ensure appropriate height so that the footer is at the bottom
+html{
+  position:relative; 
+  min-height: 100%;
+}
+/*Normalize html and body elements,this style is just good to have*/
+html,body {
+  margin:0;
+  padding:0;
+}
+#main {
+  margin-bottom:6em;/* Height of footer*/
+} 
+.footer-wrapper{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:5em;
+}
+
 // Base font settings
 html {
   font-size: 100%;
