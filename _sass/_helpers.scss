@@ -67,7 +67,7 @@ figure {
   /* 2 images in a row. should be of equal height/width to maintain layout */
 
   &.half {
-    @include media($small) {
+    @include media($medium) {
       img {
         width: 47.5%;
         float: left;
