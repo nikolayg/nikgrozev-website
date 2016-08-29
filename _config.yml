@@ -1,0 +1,70 @@
+# Site wide configuration
+
+title: Nikolay Grozev
+locale: en_UK
+description: Staying on top of it.
+logo: site-logo.jpg
+search: true
+url: http://localhost:4000
+
+# Jekyll configuration
+
+permalink:   /:year/:month/:day/:title/
+markdown:    kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+kramdown:
+  input: GFM
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..2
+  enable_coderay: false
+
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+      start_line: 1
+
+mathjax: true
+
+# Share on social media:
+share: true
+
+include: [".htaccess"]
+exclude: ["*.odg", "*.odt", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
+
+
+# Site owner
+owner:
+  name: 'Nikolay Grozev'
+  avatar: bio-photo.jpg
+  email: nikolay.g.grozev@ieee.org
+  disqus-shortname:
+  twitter: nikolaygrozev
+  facebook: #username
+  github: nikolayg
+  stackexchange: http://stackoverflow.com/users/3682523/nikolay
+  linkedin: nikolaygrozev
+  instagram: #username
+  flickr: #username
+  tumblr: #username
+  pinterest: #username
+  weibo: #userid
+  google:
+    plus: NikolayGrozev
+    analytics:
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
