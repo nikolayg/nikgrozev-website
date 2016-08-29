@@ -34,7 +34,7 @@ author:
 [CloudSim](http://www.cloudbus.org/cloudsim/) is one of the most popular Cloud infrastructure simulators 
 and is used throughout academia and industry. Being one of its maintainers I often get emails with requests 
 for new features. I also get quite a few emails about several CloudSim extensions that we 
-[published a paper about (pdf)](http://nikgrozev.com/pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf) 
+[published a paper about (pdf)](/files/docs/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf) 
 last year. 
 Thus, I've started the [CloudSimEx](https://github.com/Cloudslab/CloudSimEx) project, which brings some of these extensions 
 together. In a series of posts I'll demo some of its functionalities.
@@ -434,4 +434,4 @@ modelling Internet latencies ... so stay tuned :)
 
 *   [CloudSim official website](http://www.cloudbus.org/cloudsim/)
 *   [CloudSimEx on GitHub](https://github.com/Cloudslab/CloudSimEx)
-*   [Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments [PDF]](http://nikgrozev.com/pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf)
+*   [Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments [PDF]](/files/docs/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf)

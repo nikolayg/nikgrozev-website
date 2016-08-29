@@ -34,7 +34,7 @@ In this post I'll focus on how CloudSimEx enables disk operations modelling.
 CloudSim and most other distributed system performance simulators only represent CPU instructions. 
 In other words, each job/cloudlet is defined only by the number of CPU operations it requires. 
 However, many applications are disk I/O bound, not CPU bound and they work intensively with database services or 
-files on the local storage. In a [previous publication](http://nikgrozev.com/pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf) 
+files on the local storage. In a [previous publication](/files/docs/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf) 
 we've explained at a high level how disk operations can be simulated. 
 In this post I'll demonstrate how this works in practice with CloudSimEx.
 
@@ -237,4 +237,4 @@ which distribute CPU and disk operations with respect to your application's requ
 *   [CloudSim and CloudSimEx [Part 1]](www.nikgrozev.net/2014/06/08/cloudsim-and-cloudsimex-part-1/)
 *   [CloudSim official website](http://www.cloudbus.org/cloudsim/)
 *   [CloudSimEx on GitHub](https://github.com/Cloudslab/CloudSimEx)
-*   [Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments [PDF]](http://nikgrozev.com/pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf)
+*   [Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments [PDF]](/files/docs/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf)
