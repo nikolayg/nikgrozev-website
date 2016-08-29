@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Publicaitons page
+   ========================================================================== */
+.publications{
+  p {
+    margin-bottom: 0.25em;
+  }
+
+  ul { 
+    width: 100%; 
+    text-align : left; 
+    margin-top: 0em;
+    margin-top: 0.5em;
+    li { 
+      display: inline; 
+      white-space: nowrap;
+      margin-right: 0.5em; 
+    }
+    li:before { 
+      content: " \2022"; 
+    }
+    li.nobullet:after { 
+      content: none; 
+    }
+  }
+}

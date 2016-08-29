@@ -6,15 +6,23 @@ modified: 2014-08-08T19:44:38.564948-04:00
 ---
 
 
-<strong>Hi there,</strong>
+<div class="about-page-content">
 
-My name is <span class="myname">Nikolay Grozev (a.k.a. Nik)</span>. 
-I'm a PhD candidate at the [Cloud Computing and Distributed Systems](http://www.gridbus.org/) (CLOUDS) 
-Laboratory, [University of Melbourne](http://www.unimelb.edu.au/ "http://www.unimelb.edu.au/"), 
-Australia.
+    <p class="stress">Hi there,</p>
 
-In my PhD I investigate how to architect large scale web applications so they can use multiple Clouds. This will make them legislation compliant, more resilient to outages and will increase the Quality of Experience (QoE). I am developing adaptive architectures and using online machine learning techniques to “learn” the application’s behaviour in real time and allocate computing resources adequately.
+    <p>My name is <span class="myname">Nikolay Grozev (a.k.a. Nik)</span>. 
+    I’m a software engineer and researcher interested in everything to do with
+    software development, distributes systems, programming languages, functional programming, 
+    teaching programming, and building cool stuff.</p>
 
-This is an exciting and important topic and you can learn more by exploring <span>[my latest publications](#publications)</span> and [my blog](https://nikolaygrozev.wordpress.com/ "https://nikolaygrozev.wordpress.com/").
+    <p>In my previous life, I was an academic and I hold a PhD in Computer Science from the
+    <a href="http://www.unimelb.edu.au/" title="http://www.unimelb.edu.au/">University of Melbourne</a>, Australia.
+    My PhD was about architecting large scale web applications so they can use multiple Clouds. 
+    I developed adaptive architectures and used online machine learning techniques 
+    to “learn” the application’s behaviour in real time and allocate computing resources adequately.</p>
 
+    <p>You can check out my <a href="/publications">publications</a> and <a href="/blog">blog</a> to 
+    learn more about my work.</p>
 
+</div>
+      

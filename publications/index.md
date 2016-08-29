@@ -7,79 +7,124 @@ search_omit: true
 
 # Publications
 
-*  **Nikolay Grozev**, 
-*Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments*, 
-PhD Thesis, University of Melbourne, Australia, 2015
-    *  [Full text (pdf)](pdf/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pdf)
-    *  [Presentation (pdf)](pdf/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments-expanded.pdf)
-    *  [Presentation (pptx)](ppt/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pptx)
-    *  [University Library (web)](https://minerva-access.unimelb.edu.au/handle/11343/58928)
+<div class="publications">
+    
+    <p>
+        <strong>Nikolay Grozev</strong>, 
+        <em>Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments</em>, 
+        PhD Thesis, University of Melbourne, Australia, 2015 
+        <ul>
+            <li> <a href="pdf/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="pdf/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments-expanded.pdf" target="_blank">Presentation (pdf)</a> </li> 
+            <li> <a href="ppt/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pptx" target="_blank">Presentation (pptx)</a> </li>   
+            <li> <a href="https://minerva-access.unimelb.edu.au/handle/11343/58928">University Library (web)</a> </li>    
+        </ul>
+    </p>
 
-*  **Nikolay Grozev** and Rajkumar Buyya, 
-*Regulations and Latency Aware Load Distribution of Web Applications in Multi-Clouds*, 
-The Journal of Supercomputing, Springer (to appear), 2016
-    *  [Full text (pdf)](pdf/Regulations and Latency Aware Load Distribution of Web Applications in Multi-Clouds.pdf)
-    *  [BibTeX](bib/GrozevBuyya2016-Springer.bib)
-    *  [Published version (web)](http://link.springer.com/article/10.1007/s11227-016-1735-6?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst)
+    <p>
+        <strong>Nikolay Grozev</strong> and Rajkumar Buyya, 
+        <em>Regulations and Latency Aware Load Distribution of Web Applications in Multi-Clouds</em>, 
+        The Journal of Supercomputing, Springer (to appear), 2016 
+        <ul>
+            <li> <a href="pdf/Regulations and Latency Aware Load Distribution of Web Applications in Multi-Clouds.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="bib/GrozevBuyya2016-Springer.bib" target="_blank">BibTeX</a> </li>    
+            <li> <a href="http://link.springer.com/article/10.1007/s11227-016-1735-6?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst" target="_blank">Published version (web)</a></li>
+        </ul>
+    </p>
 
-*  **Nikolay Grozev** and Rajkumar Buyya, 
-*Dynamic Selection of Virtual Machines for Application Servers in Cloud Environments*, 
-Technical Report, CLOUDS Laboratory, The University of Melbourne, CLOUDS-TR-2016-1
-    *  [Full text (pdf)](pdf/Dynamic Selection of Virtual Machines for Application Servers in Cloud Environments.pdf)
-    *  [BibTeX (bib)](bib/GrozevBuyya2016.bib)
-    *  [arXiv (web)](http://arxiv.org/abs/1602.02339)
+    <p>
+        <strong>Nikolay Grozev</strong> and Rajkumar Buyya, 
+        <em>Dynamic Selection of Virtual Machines for Application Servers in Cloud Environments</em>, 
+        Technical Report, CLOUDS Laboratory, The University of Melbourne, CLOUDS-TR-2016-1
+        <ul>
+            <li> <a href="pdf/Dynamic Selection of Virtual Machines for Application Servers in Cloud Environments.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="bib/GrozevBuyya2016.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="http://arxiv.org/abs/1602.02339" target="_blank">arXiv (web)</a> </li>
+        </ul>
+    </p>
 
-*   Nitisha Jain, **Nikolay Grozev**, J. Lakshmi, Rajkumar Buyya, 
-*PriDynSim: A Simulator for Dynamic Priority Based I/O Scheduling for Cloud Applications*, 
-To appear in the Proceedings of the The fourth IEEE International Conference on Cloud Computing in Emerging Markets (CCEM)
-    *  [Full text (pdf)](pdf/PriDynSim A Simulator for Dynamic Priority Based IO Scheduling for Cloud Applications.pdf)
-    *  BibTeX (bib)
-    *  Published version (web)
+    <p>
+        Nitisha Jain, <strong>Nikolay Grozev</strong>, J. Lakshmi, Rajkumar Buyya, 
+        <em>PriDynSim: A Simulator for Dynamic Priority Based I/O Scheduling for Cloud Applications</em>, 
+        To appear in the Proceedings of the The fourth IEEE International Conference on Cloud Computing in Emerging Markets (CCEM) 
+        <ul>
+            <li> <a href="pdf/PriDynSim A Simulator for Dynamic Priority Based IO Scheduling for Cloud Applications.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> BibTeX (bib) </li>    
+            <li> Published version (web) </li>
+        </ul>
+    </p>
 
-*  **Nikolay Grozev** and Rajkumar Buyya, 
-*Multi-Cloud Provisioning and Load Distribution for Three-Tier Applications*, 
-ACM Transactions on Autonomous and Adaptive Systems, 2014, 9, 13:1-13:21
-    *  [Full text (pdf)](pdf/Multi-Cloud Provisioning and Load Distribution for Three-Tier Applications.pdf)
-    *  [BibTeX (bib)](bib/GrozevBuyya2014.bib)
-    *  [Published version (web)](http://dl.acm.org/citation.cfm?id=2662112)
+    <p>
+        <strong>Nikolay Grozev</strong> and Rajkumar Buyya, 
+        <em>Multi-Cloud Provisioning and Load Distribution for Three-Tier Applications</em>, 
+        ACM Transactions on Autonomous and Adaptive Systems, 2014, 9, 13:1-13:21
+        <ul>
+            <li> <a href="pdf/Multi-Cloud Provisioning and Load Distribution for Three-Tier Applications.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="bib/GrozevBuyya2014.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="http://dl.acm.org/citation.cfm?id=2662112" target="_blank">Published version (web)</a> </li>
+        </ul>
+    </p>
 
-*  **Nikolay Grozev** and Rajkumar Buyya, 
-*Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments*, 
-The Computer Journal, Oxford University Press, 2013, (in press)
-    *  [Full text (pdf)](pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf)
-    *  [BibTeX (bib)](bib/GrozevBuyya2013.bib)
-    *  [Published version (web)](http://comjnl.oxfordjournals.org/content/58/1/1)
 
-*  **Nikolay Grozev** and Rajkumar Buyya, 
-*Inter-Cloud Architectures and Application Brokering: Taxonomy and Survey*, 
-Software: Practice and Experience, John Wiley & Sons, Ltd, 2012, 44, 369-390
-    *  [Full text (pdf)](http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/epdf)
-    *  [BibTeX (bib)](bib/GrozevBuyya2012.bib)
-    *  [Published version (web)](http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/full)
+    <p>
+        <strong>Nikolay Grozev</strong> and Rajkumar Buyya, 
+        <em>Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments</em>, 
+        The Computer Journal, Oxford University Press, 2013, (in press)
+        <ul>
+            <li> <a href="pdf/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="bib/GrozevBuyya2013.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="http://comjnl.oxfordjournals.org/content/58/1/1" target="_blank">Published version (web)</a> </li>    
+        </ul>
+    </p>
 
-*  **Nikolay Grozev**, Neli Maneva, Delyan Lilov, 
-*Facilitating Quality Assurance Through a Source Code Metrics Framework*, 
-Proceedings of the 7th Annual International Conference on Computer Science and Education in Computer Science, Sofia, Bulgaria, 2011
-    *  [Full text (pdf)](pdf/Facilitating Quality Assurance Through a Source Code Metrics Framework.pdf)
-    *  [Presentation (pdf)](pdf/Facilitating Quality Assurance Through a Source Code Metrics Framework (presentation).pdf)
-    *  [BibTeX (bib)](bib/GrozevManeva2011.bib)
+    <p>
+        <strong>Nikolay Grozev</strong> and Rajkumar Buyya, 
+        <em>Inter-Cloud Architectures and Application Brokering: Taxonomy and Survey</em>, 
+        Software: Practice and Experience, John Wiley &amp; Sons, Ltd, 2012, 44, 369-390 
+        <ul>
+            <li> <a href="http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/epdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="bib/GrozevBuyya2012.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/full" target="_blank">Published version (web)</a> </li>    
+        </ul>
+    </p>
 
-* Neli Maneva, **Nikolay Grozev**, Delyan Lilov, 
-*A Framework for Source Code Metrics*, 
-Proceedings of the 11th International Conference on Computer Systems and Technologies (CompSysTech'10), Sofia, Bulgaria, 2010
-    *  [Full text (pdf)](pdf/A Framework for Source Code Metrics.pdf)
-    *  [Presentation (pdf)](pdf/A Framework for Source Code Metrics (presentation).pdf)
-    *  [BibTeX (bib)](bib/ManevaGrozev2010.bib)
-    *  [Published version (web)](http://dl.acm.org/citation.cfm?id=1839400)
-
-*  **Nikolay Grozev**, 
-*A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective*, 
-Master Thesis in Software Engineering, 
-Mälardalen University Sweden, School of Innovation, Design and Engineering and 
-University of Sofia "St. Kliment Ohridski", Faculty of Mathematics and Informatics, 2011
-    *  [Full text (pdf)](pdf/A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective.pdf)
-    *  [Presentation (pdf)](pdf/A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective (presentation).pdf)
-    *  [Assignment (web)](http://goo.gl/0o5jW)
+    <p>
+        <strong>Nikolay Grozev</strong>, Neli Maneva, Delyan Lilov, 
+        <em>Facilitating Quality Assurance Through a Source Code Metrics Framework</em>, 
+        Proceedings of the 7th Annual International Conference on Computer Science and Education in Computer Science, Sofia, Bulgaria, 2011 
+        <ul>
+            <li> <a href="pdf/Facilitating Quality Assurance Through a Source Code Metrics Framework.pdf" target="_blank">Full text (pdf)</a> </li> 
+            <li> <a href="pdf/Facilitating Quality Assurance Through a Source Code Metrics Framework (presentation).pdf" target="_blank">Presentation (pdf)</a> </li>
+            <li> <a href="bib/GrozevManeva2011.bib" target="_blank"> BibTeX (bib) </a> </li> 
+        </ul>
+    </p>
+        
+    <p>
+        Neli Maneva, <strong>Nikolay Grozev</strong>, Delyan Lilov, 
+        <em>A Framework for Source Code Metrics</em>, 
+        Proceedings of the 11th International Conference on Computer Systems and Technologies (CompSysTech'10), Sofia, Bulgaria, 2010 
+        <ul>
+            <li> <a href="pdf/A Framework for Source Code Metrics.pdf" target="_blank">Full text (pdf)</a> </li>        
+            <li> <a href="pdf/A Framework for Source Code Metrics (presentation).pdf" target="_blank">Presentation (pdf)</a> </li>
+            <li> <a href="bib/ManevaGrozev2010.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="http://dl.acm.org/citation.cfm?id=1839400" target="_blank">Published version (web)</a> </li>    
+        </ul>
+    </p>
+            
+    <p>
+        <strong>Nikolay Grozev</strong>, 
+        <em>A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective</em>, 
+        Master Thesis in Software Engineering,  
+        Mälardalen University Sweden, School of Innovation, Design and Engineering and 
+        University of Sofia "St. Kliment Ohridski", Faculty of Mathematics and Informatics, 2011 
+        <ul>
+            <li> <a href="pdf/A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective.pdf" target="_blank">Full text (pdf)</a> </li>
+            <li> <a href="pdf/A Comparison of Component-Based Software Engineering and Model-Driven Development from the ProCom Perspective (presentation).pdf" target="_blank">Presentation (pdf)</a> </li>   
+            <li> <a href="http://goo.gl/0o5jW">Assignment (web)</a> </li>    
+        </ul>
+    </p>
+    
+</div>
 
 # Research Indices
 
