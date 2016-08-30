@@ -6,6 +6,7 @@ description: Staying on top of it.
 logo: site-logo.jpg
 search: true
 url: http://nikgrozev.com
+comments: true
 
 # Jekyll configuration
 
@@ -50,7 +51,7 @@ owner:
   name: 'Nikolay Grozev'
   avatar: bio-photo.jpg
   email: nikolay.g.grozev@ieee.org
-  disqus-shortname:
+  disqus-shortname: "nikgrozev-com"
   twitter: nikolaygrozev
   facebook: #username
   github: nikolayg
