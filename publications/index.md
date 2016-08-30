@@ -23,7 +23,7 @@ search_omit: true
         <ul>
             <li> <a href="/files/docs/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pdf" target="_blank">Full text (pdf)</a> </li>
             <li> <a href="/files/slides/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments-expanded.pdf" target="_blank">Presentation (pdf)</a> </li> 
-            <li> <a href="/ppt/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pptx" target="_blank">Presentation (pptx)</a> </li>   
+            <li> <a href="/files/slides/Brokering Techniques for Managing Three-Tier Applications in Distributed Cloud Computing Environments.pptx" target="_blank">Presentation (pptx)</a> </li>   
             <li> <a href="https://minerva-access.unimelb.edu.au/handle/11343/58928">University Library (web)</a> </li>    
         </ul>
     </p>
@@ -34,7 +34,7 @@ search_omit: true
         The Journal of Supercomputing, Springer (to appear), 2016 
         <ul>
             <li> <a href="/files/docs/Regulations and Latency Aware Load Distribution of Web Applications in Multi-Clouds.pdf" target="_blank">Full text (pdf)</a> </li>
-            <li> <a href="/bib/GrozevBuyya2016-Springer.bib" target="_blank">BibTeX</a> </li>    
+            <li> <a href="/files/bib/GrozevBuyya2016-Springer.bib" target="_blank">BibTeX</a> </li>    
             <li> <a href="http://link.springer.com/article/10.1007/s11227-016-1735-6?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst" target="_blank">Published version (web)</a></li>
         </ul>
     </p>
@@ -45,7 +45,7 @@ search_omit: true
         Technical Report, CLOUDS Laboratory, The University of Melbourne, CLOUDS-TR-2016-1
         <ul>
             <li> <a href="/files/docs/Dynamic Selection of Virtual Machines for Application Servers in Cloud Environments.pdf" target="_blank">Full text (pdf)</a> </li>
-            <li> <a href="/bib/GrozevBuyya2016.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="/files/bib/GrozevBuyya2016.bib" target="_blank"> BibTeX (bib) </a> </li>    
             <li> <a href="http://arxiv.org/abs/1602.02339" target="_blank">arXiv (web)</a> </li>
         </ul>
     </p>
@@ -67,7 +67,7 @@ search_omit: true
         ACM Transactions on Autonomous and Adaptive Systems, 2014, 9, 13:1-13:21
         <ul>
             <li> <a href="/files/docs/Multi-Cloud Provisioning and Load Distribution for Three-Tier Applications.pdf" target="_blank">Full text (pdf)</a> </li>
-            <li> <a href="/bib/GrozevBuyya2014.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="/files/bib/GrozevBuyya2014.bib" target="_blank"> BibTeX (bib) </a> </li>    
             <li> <a href="http://dl.acm.org/citation.cfm?id=2662112" target="_blank">Published version (web)</a> </li>
         </ul>
     </p>
@@ -78,7 +78,7 @@ search_omit: true
         The Computer Journal, Oxford University Press, 2013, (in press)
         <ul>
             <li> <a href="/files/docs/Performance Modelling and Simulation of Three-Tier Applications in Cloud and Multi-Cloud Environments.pdf" target="_blank">Full text (pdf)</a> </li>
-            <li> <a href="/bib/GrozevBuyya2013.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="/files/bib/GrozevBuyya2013.bib" target="_blank"> BibTeX (bib) </a> </li>    
             <li> <a href="http://comjnl.oxfordjournals.org/content/58/1/1" target="_blank">Published version (web)</a> </li>    
         </ul>
     </p>
@@ -89,7 +89,7 @@ search_omit: true
         Software: Practice and Experience, John Wiley &amp; Sons, Ltd, 2012, 44, 369-390 
         <ul>
             <li> <a href="http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/epdf" target="_blank">Full text (pdf)</a> </li>
-            <li> <a href="/bib/GrozevBuyya2012.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="/files/bib/GrozevBuyya2012.bib" target="_blank"> BibTeX (bib) </a> </li>    
             <li> <a href="http://onlinelibrary.wiley.com/doi/10.1002/spe.2168/full" target="_blank">Published version (web)</a> </li>    
         </ul>
     </p>
@@ -101,7 +101,7 @@ search_omit: true
         <ul>
             <li> <a href="/files/docs/Facilitating Quality Assurance Through a Source Code Metrics Framework.pdf" target="_blank">Full text (pdf)</a> </li> 
             <li> <a href="/files/slides/Facilitating Quality Assurance Through a Source Code Metrics Framework (presentation).pdf" target="_blank">Presentation (pdf)</a> </li>
-            <li> <a href="/bib/GrozevManeva2011.bib" target="_blank"> BibTeX (bib) </a> </li> 
+            <li> <a href="/files/bib/GrozevManeva2011.bib" target="_blank"> BibTeX (bib) </a> </li> 
         </ul>
     </p>
         
@@ -112,7 +112,7 @@ search_omit: true
         <ul>
             <li> <a href="/files/docs/A Framework for Source Code Metrics.pdf" target="_blank">Full text (pdf)</a> </li>        
             <li> <a href="/files/docs/A Framework for Source Code Metrics (presentation).pdf" target="_blank">Presentation (pdf)</a> </li>
-            <li> <a href="/bib/ManevaGrozev2010.bib" target="_blank"> BibTeX (bib) </a> </li>    
+            <li> <a href="/files/bib/ManevaGrozev2010.bib" target="_blank"> BibTeX (bib) </a> </li>    
             <li> <a href="http://dl.acm.org/citation.cfm?id=1839400" target="_blank">Published version (web)</a> </li>    
         </ul>
     </p>
