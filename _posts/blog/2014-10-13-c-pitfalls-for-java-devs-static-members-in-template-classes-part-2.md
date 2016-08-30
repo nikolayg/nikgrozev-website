@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# pitfalls for Java Devs - Static Members in Template Classes [Part 2]
-date: 2014-10-13 01:47:03.000000000 +11:00
+date: 2014-10-13 01:47:03.000000000
 type: post
 published: true
 status: publish

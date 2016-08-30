@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pandas in Jupyter - Quickstart and Useful Snippets
-date: 2015-12-27 12:14:57.000000000 +11:00
+date: 2015-12-27 12:14:57.000000000
 type: post
 excerpt: 
     This article overviews how to quickly set up and get started with the 

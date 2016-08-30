@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Starting VM with Custom Image, Security Group and Key-Pair via JClouds
-date: 2014-07-31 02:25:32.000000000 +10:00
+date: 2014-07-31 02:25:32.000000000
 type: post
 published: true
 status: publish

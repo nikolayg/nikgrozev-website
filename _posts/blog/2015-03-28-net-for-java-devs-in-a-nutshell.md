@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET for Java Devs in a nutshell"
-date: 2015-03-28 00:15:28.000000000 +11:00
+date: 2015-03-28 00:15:28.000000000
 type: post
 published: true
 status: publish

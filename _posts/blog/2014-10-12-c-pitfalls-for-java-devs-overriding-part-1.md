@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# pitfalls for Java Devs - Overriding [Part 1]
-date: 2014-10-12 22:07:10.000000000 +11:00
+date: 2014-10-12 22:07:10.000000000
 type: post
 published: true
 status: publish

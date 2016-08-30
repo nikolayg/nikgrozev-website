@@ -1,7 +1,7 @@
 ---
 layout: post
 title: NuPIC Setup in Ubuntu
-date: 2014-02-25 23:34:01.000000000 +11:00
+date: 2014-02-25 23:34:01.000000000
 type: post
 published: true
 status: publish

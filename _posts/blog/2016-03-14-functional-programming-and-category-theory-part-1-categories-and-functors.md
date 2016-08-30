@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Functional Programming and Category Theory [Part 1] - Categories and Functors
-date: 2016-03-14 17:18:19.000000000 +11:00
+date: 2016-03-14 17:18:19.000000000
 type: post
 published: true
 status: publish

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Monads in 15 minutes
-date: 2013-12-10 11:28:29.000000000 +11:00
+date: 2013-12-10 11:28:29.000000000
 type: post
 published: true
 status: publish

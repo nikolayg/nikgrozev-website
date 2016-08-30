@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Overview of Modern Concurrency and Parallelism Concepts
-date: 2015-07-14 18:00:39.000000000 +10:00
+date: 2015-07-14 18:00:39.000000000
 type: post
 published: true
 status: publish

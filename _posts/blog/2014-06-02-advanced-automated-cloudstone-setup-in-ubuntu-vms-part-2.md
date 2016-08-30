@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Advanced Automated CloudStone Setup in Ubuntu VMs [Part 2]
-date: 2014-06-02 22:31:06.000000000 +10:00
+date: 2014-06-02 22:31:06.000000000
 type: post
 published: true
 status: publish

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Reshaping in Pandas  - Pivot, Pivot-Table, Stack and Unstack explained with Pictures
-date: 2015-07-01 04:23:43.000000000 +10:00
+date: 2015-07-01 04:23:43.000000000
 type: post
 published: true
 status: publish

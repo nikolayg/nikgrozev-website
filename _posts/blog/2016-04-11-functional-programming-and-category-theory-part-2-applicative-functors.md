@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Functional Programming and Category Theory [Part 2] – Applicative Functors
-date: 2016-04-11 23:54:06.000000000 +10:00
+date: 2016-04-11 23:54:06.000000000
 type: post
 published: true
 status: publish

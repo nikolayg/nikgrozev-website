@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CloudSim and CloudSimEx [Part 3] – Delayed VM and Cloudlet actions
-date: 2014-09-13 03:43:30.000000000 +10:00
+date: 2014-09-13 03:43:30.000000000
 type: post
 published: true
 status: publish

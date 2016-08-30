@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fast and Simple Sampling in Pandas when Loading Data From Files
-date: 2015-06-16 03:33:06.000000000 +10:00
+date: 2015-06-16 03:33:06.000000000
 type: post
 published: true
 status: publish

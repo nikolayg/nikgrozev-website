@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CloudSim and CloudSimEx [Part 1]
-date: 2014-06-08 00:51:53.000000000 +10:00
+date: 2014-06-08 00:51:53.000000000
 type: post
 published: true
 status: publish

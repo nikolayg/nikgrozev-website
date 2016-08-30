@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CloudSim and CloudSimEx [Part 2] - Disk operations
-date: 2014-06-13 03:38:46.000000000 +10:00
+date: 2014-06-13 03:38:46.000000000
 type: post
 published: true
 status: publish

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Basic Networks: Cheatsheet [Part 1]'
-date: 2015-04-22 21:54:00.000000000 +10:00
+date: 2015-04-22 21:54:00.000000000
 type: post
 published: true
 status: publish

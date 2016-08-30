@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java 8 in a Nutshell
-date: 2014-03-21 22:13:36.000000000 +11:00
+date: 2014-03-21 22:13:36.000000000
 type: post
 published: true
 status: publish

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Summary of the Oracle JDK8 MOOC
-date: 2015-07-30 19:49:35.000000000 +10:00
+date: 2015-07-30 19:49:35.000000000
 type: post
 published: true
 status: publish

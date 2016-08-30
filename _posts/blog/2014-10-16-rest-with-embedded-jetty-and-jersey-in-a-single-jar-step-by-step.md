@@ -1,7 +1,7 @@
 ---
 layout: post
 title: REST with Embedded Jetty and Jersey in a Single Jar - Step by Step
-date: 2014-10-16 12:37:26.000000000 +11:00
+date: 2014-10-16 12:37:26.000000000
 type: post
 published: true
 status: publish

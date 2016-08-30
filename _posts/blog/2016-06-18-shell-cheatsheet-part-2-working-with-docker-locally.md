@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Shell Cheatsheet [Part 2] – Working with Docker
-date: 2016-06-18 15:22:09.000000000 +10:00
+date: 2016-06-18 15:22:09.000000000
 type: post
 published: true
 status: publish

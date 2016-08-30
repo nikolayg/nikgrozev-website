@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Shell Cheatsheet [Part 1] - Common Bash Scripting, Tmux
-date: 2016-05-22 08:51:23.000000000 +10:00
+date: 2016-05-22 08:51:23.000000000
 type: post
 published: true
 status: publish

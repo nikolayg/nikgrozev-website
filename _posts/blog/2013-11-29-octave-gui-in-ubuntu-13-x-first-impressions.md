@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Octave GUI in Ubuntu 13.x - First Impressions
-date: 2013-11-29 14:26:34.000000000 +11:00
+date: 2013-11-29 14:26:34.000000000
 type: post
 excerpt: 
     GNU Octave is a powerful open source alternative to Matlab. 
