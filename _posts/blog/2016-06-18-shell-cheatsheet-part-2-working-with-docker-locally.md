@@ -7,7 +7,7 @@ published: true
 status: publish
 excerpt: 
     This post is a cheat sheet of commonly used 
-    Docker shell commands....
+    Docker shell commands ...
 categories:
 - Bash
 - Docker
