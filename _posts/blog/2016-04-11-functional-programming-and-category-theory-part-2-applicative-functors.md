@@ -275,7 +275,7 @@ val yOpt : Option[Int] = Some(2)
 apply(apply(pure(sum), xOpt), yOpt)
 ```
 
-For convenience, some languages and libraries alias the **apply** function with the left associative **&lt;*&gt;** operator, which allows for the more succinct expression:
+For convenience, some languages and libraries alias the **apply** function with the left associative **&lt;\*&gt;** operator, which allows for the more succinct expression:
 
 ```scala
 pure(sum) <*> xOpt <*> yOpt
@@ -290,7 +290,7 @@ This section is a bit less intuitive and you may wish to skip it when reading fo
 <div id='identity-law' />
 ## Identity Law
 
-The identity law states that **pure(id) &lt;*&gt; v = v** for every **v**, where **id** is an identity function. This rule implies that **pure** preserves the identity function. The following snippet exemplifies this law for the Option's applicative functor:
+The identity law states that **pure(id) &lt;\*&gt; v = v** for every **v**, where **id** is an identity function. This rule implies that **pure** preserves the identity function. The following snippet exemplifies this law for the Option's applicative functor:
 
 ```scala
 // Identity Function
@@ -307,7 +307,7 @@ pure(id[Int]) <*> v == v
 <div id='composition-law' />
 ## Composition Law
 
-The composition law states that **pure(f) &lt;*&gt; pure(x)=pure(f(x))** meaning that for every function **f** and value **x**, applying the lifted/mapped function to the lifted value is the same as lifting the function's result, as in the following snippet: 
+The composition law states that **pure(f) &lt;\*&gt; pure(x)=pure(f(x))** meaning that for every function **f** and value **x**, applying the lifted/mapped function to the lifted value is the same as lifting the function's result, as in the following snippet: 
 
 ```scala
 // Any function f. For example: x+1
@@ -324,7 +324,7 @@ pure(f) <*> x == pure(f(x))
 <div id='homomorphism-law' />
 ## Homomorphism Law
 
-The homomorphism law states that **pure(&#8728;) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w =  u &lt;*&gt; (v &lt;*&gt; w)**. Here, "&#8728;" is function composition, which is a function of two arguements (the functions it composes). This law states that function composition is preserved by the applicative functor. The following snippet illustrates:
+The homomorphism law states that **pure(&#8728;) &lt;\*&gt; u &lt;\*&gt; v &lt;\*&gt; w =  u &lt;\*&gt; (v &lt;\*&gt; w)**. Here, "&#8728;" is function composition, which is a function of two arguements (the functions it composes). This law states that function composition is preserved by the applicative functor. The following snippet illustrates:
 
 ```scala
 // Composition Function
@@ -346,7 +346,7 @@ pure(compose) <*> u <*> v <*> w == u <*> (v <*> w)
 <div id='interchange-law' />
 ## Interchange Law
 
-The interchange law states that **u &lt;*&gt; pure x = pure (f =&gt; f(x)) &lt;*&gt; u**. Therefore, we should be able to change the order of **apply**'s the parameters. To do so, however, we need to convert the second parameter to a higher order function, as in the following snippet:
+The interchange law states that **u &lt;\*&gt; pure x = pure (f =&gt; f(x)) &lt;\*&gt; u**. Therefore, we should be able to change the order of **apply**'s the parameters. To do so, however, we need to convert the second parameter to a higher order function, as in the following snippet:
 
 ```scala
 // Any function u. For example: x+1
