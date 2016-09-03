@@ -25,6 +25,8 @@ author:
   last_name: 'Grozev'
 ---
 
+# Table of Contents
+
 - [Introduction](#introduction)
 - [Common Bash Commands](#common-bash-commands)
     - [Finding Files (find, egrep)](#finding-files-find-egrep)
