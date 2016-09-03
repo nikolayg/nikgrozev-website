@@ -10,10 +10,10 @@
   /* Fix the menu on the top with absolute positioning */
   @include media($medium) {
     position: absolute;
-    left: 50%;
-    nav {
-      left: -50%;
-    }
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align:center;
   }
 
   ul {
