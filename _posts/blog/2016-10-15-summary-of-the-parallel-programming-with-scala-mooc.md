@@ -28,7 +28,9 @@ author:
 
 - [Introduction](#introduction)
 - [Week 1](#week1)
-  - [Introduction to Parallel Programming](#introduction_to_parallel_programming)
+  - [Parallel Programming Introduction](#parallel_programming_introduction)
+  - [Parallelism on the JVM](#parallelism_on_the_jvm)
+  - [Complexity of Parallel Algorithms](#complexity_of_parallel_algorithms)
 - [Week 2](#week2)
 - [Week 3](#week3)
 - [Week 4](#week4)
@@ -36,15 +38,15 @@ author:
 <div id='introduction'/>
 # Introduction
 
-[EPFL](http://www.epfl.ch/index.en.html) has releases a new Coursera course on [Parallel Programming](https://www.coursera.org/learn/parprog1),
+[EPFL](http://www.epfl.ch/index.en.html) has released a new Coursera course on [Parallel Programming](https://www.coursera.org/learn/parprog1),
 which is a part of the [Functional Programming in Scala Specialisation](https://www.coursera.org/specializations/scala). 
 This post summarises the course and can be used as a quick ref-card on the topic.
 
 <div id='week1'/>
 # Week 1
 
-<div id='introduction_to_parallel_programming'/>
-## Introduction to Parallel Programming
+<div id='parallel_programming_introduction'/>
+## Parallel Programming Introduction
 
 **Parallel computing** is concerned with the simultaneous execution of multiple computations. 
 Its goal is faster execution (i.e. *speed-up*) than
@@ -90,3 +92,152 @@ a programmable integrated circuit.
  single computer.
 
 We'll focus on *multi-core* and *symmetric multiprocessor* systems.
+
+<div id='parallelism_on_the_jvm'/>
+## Parallelism on the JVM
+
+On the operating system (OS) level, a 
+[process](https://en.wikipedia.org/wiki/Process_(computing)) is an 
+instance of a program being executed and has its own 
+[address space](https://en.wikipedia.org/wiki/Address_space). 
+Processes can not access each others' address spaces and 
+[are isolated](https://en.wikipedia.org/wiki/Process_isolation).
+[Inter-process communication](https://en.wikipedia.org/wiki/Inter-process_communication) 
+techniques like sockets and pipelines can be used to communicate between processes.
+
+OS processes can be expensive to create, as each one has its own address space, 
+program code, open file handles etc. 
+Furthermore, the inter-process communication can be inefficient and cumbersome to program.
+
+Enter [threads](https://en.wikipedia.org/wiki/Thread_(computing)) (a.k.a. lightweight processes). 
+A thread is a separate line of execution (a sequence of instructions) within a process. 
+A process can have multiple threads, all of which share its address space, file handles etc. 
+Starting a thread is cheaper, as fewer resources need to be allocated. 
+The threads within a process are concurrent and can execute in parallel. 
+Each thread maintains its own programming stack. Alike processes, the OS scheduler preemptively 
+schedules all threads.
+
+Scala uses the JVM classes for threads, and hence creating and starting a thread is very similar 
+to Java. One approach to creating a thread is to extend from the Thread class:
+
+```scala
+// Subclassing class Thread
+class CustomThreadClass extends Thread {
+
+  // Override the run method - its code will
+  // be run in a separate thread
+  override def run = println("From CustomThreadClass")
+}
+```
+Then we can `start` a thread from that class, and wait for its completion (`join`):
+
+```scala
+val thread = new CustomThreadClass()
+
+// Start the thread
+thread.start()
+
+// Block the current thread until it's finished
+thread.join()
+```
+
+It is often important to ensure that a piece of code is atomic - i.e. it can not be
+execute simultaneosly from multiple threads. To achieve this, the JVM provides
+`synchronized` code blocks. Each such block is associated with a "monitor object", 
+and only one thread can execute the block associated with it. Here's an example:
+
+```scala
+// Thread class - takes the monitor as a constructor arg
+class Atom(name : String, monitor: AnyRef) extends Thread {
+  override def run = {
+    // Synch by the monitor given in the constructor
+    monitor.synchronized {
+      // This code can not run smultaneously for a given monitor
+      println(s"Atomic Operation Part 1 in $name")
+      println(s"Atomic Operation Part 2 in $name")
+      println(s"Atomic Operation Part 3 in $name")
+    }
+  }
+}
+```
+
+Then we can run the following experiment:
+
+```scala
+// We'll use this reference to implement atomicity
+val monitor = ""
+
+// Pass the same monitor to the threads
+val thread1 = new Atom("Atom 1", monitor)
+val thread2 = new Atom("Atom 2", monitor)
+
+// Start the threads. Their executions will not overlap.
+thread1.start()
+thread2.start()
+
+// Block the current thread until they're finished
+thread1.join()
+thread2.join()
+```
+
+This overview of JVM threads only scratches the surface. For more details you can refer to
+the [official tutorial](http://docs.oracle.com/javase/tutorial/essential/concurrency/),
+which covers more advanced topics on threads and processes.
+<!--This basic overview should be sufficient to follow the rest of the article.-->
+
+<div id='complexity_of_parallel_algorithms'/>
+## Complexity of Parallel Algorithms
+
+With serial algorithms, we often use the *big-O* notation to evaluate
+their computational complexity. Ideally, we would like to have the same 
+with parallel algorithms. However, in the parallel case we've got another
+parameter - the number of processing units.
+
+Let us denote by \\( W(e) \\) the number of steps needed
+by the computation/algorithm \\( e \\). We'll call \\( W(e)) \\)
+the **work** required for \\( e \\), and it's a measure of the time
+it would take if executed serially. \\( W(e)) \\) is an upper
+bound of the execution time if run in a parallel fashion.
+
+Now we can introduce a lower bound as well. With \\( D(e) \\) we denote
+the execution time of \\( e \\) if given infinite number of processing
+units. We call \\( D(e) \\) the **depth** of \\( e \\).
+
+Assuming our hardware has capacity to run \\( P \\) number of threads 
+simultaneously, we can approximate the execution time as:
+
+\\[ 
+  D(e) + \frac{W(e)}{P} 
+\\]
+
+The rationale is that when \\( P \\) grows, this expression 
+is asymptotically equivalent to the depth \\( D(e) \\). If \\( P \\)
+is a relatively small number, then the expression has the same
+complexity as the work \\( W(e) \\).
+
+But how can we estimate the effect of adding more resources to a computation
+(i.e. increasing \\( P \\))? Amdahl’s law comes to the resque. Lets assume 
+that the computation \\( e \\) has 2 parts:
+
+ * **Part 1** which is not parallelisable;
+ * **Part 2** which is absolutely paralelisable - i.e. can run in as many
+ independent threads that our hardware can have.
+
+Lets denote by \\( f\\) the fraction of the serial execution time 
+(i.e. \\( W(e)) \\)) that is dedicated to running **Part 1**. Then we can approximate
+the execution time as:
+
+\\[ 
+  f \cdot W(e) + \frac{(1-f) \cdot W(e)}{P}
+\\]
+
+Which means that adding more resources will only speed-up the parallelizable
+part of the computation. From this formula, we can deduct the original statment
+of the law that the speed-up of adding more resources to a computation
+\\( e \\) is:
+
+\\[ 
+  \frac{1}{ f + \frac{1-f}{P} } 
+\\]
+
+
