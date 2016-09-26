@@ -31,6 +31,7 @@ author:
   - [Parallel Programming Introduction](#parallel_programming_introduction)
   - [Parallelism on the JVM](#parallelism_on_the_jvm)
   - [Complexity of Parallel Algorithms](#complexity_of_parallel_algorithms)
+  - [Benchmarking](#benchmarking)
 - [Week 2](#week2)
 - [Week 3](#week3)
 - [Week 4](#week4)
@@ -68,7 +69,7 @@ At the most basic level, there are three types of parallelism:
  the CPU word size (e.g. from 32bit to 64bit), the processor can act on bigger chunks 
  of data with fewer operations. For example, two 64 bit integers could be added with a 
  single instruction on 64bit processor.   
-* [Instruction level parallelism](https://en.wikipedia.org/wiki/Instruction-level_parallelism - 
+* [Instruction level parallelism](https://en.wikipedia.org/wiki/Instruction-level_parallelism) - 
 some chips can run multiple instructions simultaneosly - 
 e.g. [processor pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining). 
 * [Task level paralparallelismlism](https://simple.wikipedia.org/wiki/Task_parallelism) - running
@@ -241,3 +242,72 @@ of the law that the speed-up of adding more resources to a computation
 \\]
 
 
+<div id='benchmarking'/>
+## Benchmarking
+
+The asymptotic complexity of a parallel algorithm gives us a rough estimate 
+of the actual running time. In practice, there are many other factors
+that affect the actual execution time.
+The CPU speed, the number of processing units, the memory access speed, 
+and the cache size and policies are just a few of hardware factors
+affecting the execution time. Furthermore, the operating system (OS) 
+scheduling of threads and processes and the execution environment 
+behaviour in terms of garbage collection and just-in-time (JIT) 
+compilation can have dramatic effect. Hence, benchmarking is an
+invaluable tool for assessing performance.
+
+Running the same benchmark execution multiple times can give us very 
+different results. Hence, we should take aggregate descriptive
+statistics of repeated runs (e.g. the mean or the interquartile range) 
+as evidences of the actual performance. Furthermore, it makes
+sense to eliminate outliers, as they are most likely a result of
+extreme events (e.g. garbage collection or swapping). 
+
+Another trick is to start measuring the application performance 
+after it has been running for some time. This is called **warm-up period**.
+The idea is, that during warm-up period, the JIT compilation have been
+complete and the caches should be populated with commonly accessed data.
+Therefore, measuring the application performance afterwards should
+give more represantative results.
+
+A popular library for benchmarking is [ScalaMeter](https://scalameter.github.io/).
+Here's how to benchmark a piece of code:
+
+```scala
+// Import all from the ScalaMeter library
+import org.scalameter._
+
+// Runs a block and returns how long it took in millisecons
+val time = measure {
+  // The code we want to benchmark
+  (0 until 100000000).map(math.pow(_, 5)).sum
+}
+
+println(s"The operation took: $time ms")
+```
+
+Now lets see how we can add warm-up to our measurment:
+
+```scala
+// Use the default ScalaMeter warmer
+val time = withWarmer(new Warmer.Default).measure {
+  // The code we want to benchmark
+  (0 until 1000000).map(math.pow(_, 5)).sum
+}
+```
+
+We can also config the warmenr parameters (e.g. min and max number
+of runs):
+
+```scala
+// Custom config of the warmer
+val time = config(Key.exec.minWarmupRuns -> 30,
+  Key.exec.maxWarmupRuns -> 60).withWarmer(new Warmer.Default).measure {
+  // The code we want to benchmark
+  (0 until 1000000).map(math.pow(_, 5)).sum
+}
+```
+
+ScalaMeter has many more functionalities. It can measure memory
+consumption, ignore Garbage collection periods, count method 
+invocation and so on. Consult the documentation to learn more :). 
