@@ -8,7 +8,7 @@ status: publish
 excerpt: 
     EPFL has released a new course on Parallel Programming,
     which is a part of the Functional Programming in Scala Specialisation.
-    This post summarises the course and can be used as a quick ref-card on the topic.
+    This post summarises the course and can be used as a quick ref-card on the topic ...
 categories:
 - Functional programming
 - Parallel programming
