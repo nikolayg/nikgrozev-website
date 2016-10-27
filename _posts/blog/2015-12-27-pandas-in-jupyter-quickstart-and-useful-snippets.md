@@ -167,6 +167,8 @@ This can be achieved following [this approach](/2015/06/16/fast-and-simple-sampl
 Hardcoded data frames can be constructed by providing a hash of columns and their values.
 
 ```python
+import numpy as np
+
 df = pandas.DataFrame({
    'col1': ['Item0', 'Item0', 'Item1', 'Item1'],
    'col2': ['Gold', 'Bronze', 'Gold', 'Silver'],
