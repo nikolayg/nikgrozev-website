@@ -205,10 +205,10 @@ with parallel algorithms. However, in the parallel case we've got an additional
 parameter - the number of processing units.
 
 Let us denote by \\( W(e) \\) the number of steps needed
-by the computation/algorithm \\( e \\). We'll call \\( W(e)) \\)
+by the computation/algorithm \\( e \\). We'll call \\( W(e) \\)
 the **work** required for \\( e \\), and it's a measure of the time
 it would take if executed serially. If \\( e \\) is run in parallel, 
-then \\( W(e)) \\) is an upper bound of the execution time.
+then \\( W(e) \\) is an upper bound of the execution time.
 
 Now we can introduce a lower bound as well. With \\( D(e) \\) we denote
 the execution time of \\( e \\) if given infinite number of processing
@@ -338,8 +338,12 @@ We can limit the level of parallelisation by the depth of the
 recursion, because at every stage we'll have
 \\( 2^{depth -1 } \\) execution threads. When the depth
 becomes bigger than a certain threshold, we'll just use
-a serial algorithm (e.g. quicksort). Here is the
-pseudocode of the solution:
+a serial algorithm (e.g. quicksort). By setting the threshold
+appropriately, we can control how many simultaneous threads of 
+execution are running. It sensible to avoid running more 
+independent non-blocking threads than the number of computing nodes
+or cores to avoid excessive context switching and resource 
+saturation.Here is the pseudocode of the solution:
 
 ```scala
 def sort(arr: Array[Int], from: Int, to: Int, depth: Int, maxDepth: Int) = {
