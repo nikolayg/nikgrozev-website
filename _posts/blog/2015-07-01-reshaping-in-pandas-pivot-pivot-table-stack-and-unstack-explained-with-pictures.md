@@ -190,7 +190,7 @@ The following code reproduces the issue:
 table = OrderedDict((
     ("Item", ['Item0', 'Item0', 'Item0', 'Item1']),
     ('CType',['Gold', 'Bronze', 'Gold', 'Silver']),
-    ('USD',  ['1/pre>, '2/pre>, '3/pre>, '4/pre>]),
+    ('USD',  ['1',  '2',  '3',  '4']),
     ('EU',   ['1€', '2€', '3€', '4€'])
 ))
 d = DataFrame(table)
