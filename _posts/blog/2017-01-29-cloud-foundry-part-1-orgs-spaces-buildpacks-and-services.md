@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cloud Foundry [Part 1] - Organisations, Spaces, Apps, Buildpacks, and Services
+title: Cloud Foundry [Part 1] - Orgs, Spaces, Buildpacks, and Services
 date: 2017-01-29 05:22:09.000000000
 type: post
 published: true
@@ -116,7 +116,7 @@ Each organisation has a resource quota and two spaces, which host
 the applications. In this example, the spaces do not have their own quotas.
 
 <figure>
-  <img src="/images/blog/Cloud Foundry Part 1 - Organisations Spaces Apps Buildpacks and Services/Organisations-and-spaces.png" alt="Organisations and Spaces." >
+  <img src="/images/blog/Cloud Foundry Part 1 - Orgs Spaces Buildpacks and Services/Organisations-and-spaces.png" alt="Organisations and Spaces." >
   <figcaption>An enterprise with two organisations and multiple spaces.</figcaption>
 </figure>  
 
@@ -197,7 +197,7 @@ traffic is distributed among its instances. The application is based on a predef
 system buildpack for Rails. 
 
 <figure>
-  <img src="/images/blog/Cloud Foundry Part 1 - Organisations Spaces Apps Buildpacks and Services/routes-boileplates.png" alt="Application, routes, buildpacks." >
+  <img src="/images/blog/Cloud Foundry Part 1 - Orgs Spaces Buildpacks and Services/routes-boileplates.png" alt="Application, routes, buildpacks." >
   <figcaption>An application with a route and some buildpacks.</figcaption>
 </figure>  
 
@@ -354,7 +354,7 @@ instances. The access credentials are specified in the `VCAP_SERVICES`
 environment variable, which the application code parses and uses.
 
 <figure>
-  <img src="/images/blog/Cloud Foundry Part 1 - Organisations Spaces Apps Buildpacks and Services/Services.png" alt="Services." >
+  <img src="/images/blog/Cloud Foundry Part 1 - Orgs Spaces Buildpacks and Services/Services.png" alt="Services." >
   <figcaption>An application with 2 service instances.</figcaption>
 </figure>  
 
@@ -386,7 +386,7 @@ cf unbind-service [app-name] [service-instance-name]
 
 Cloud Foundry also allows us to wrap existing/legacy services (e.g.
 on-premise data bases) as service instances through the 
-[cups commmand](https://docs.cloudfoundry.org/devguide/services/user-provided.html). 
+[cups command](https://docs.cloudfoundry.org/devguide/services/user-provided.html). 
 
 Finally, an app can specify its service instance dependencies in its `manifest.yml` file.
 Hence, when pushed it will automatically bind to the respective service
