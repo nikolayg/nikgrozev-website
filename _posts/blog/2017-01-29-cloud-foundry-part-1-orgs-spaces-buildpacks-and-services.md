@@ -89,12 +89,12 @@ cf login -a https://api.ng.bluemix.net
 
 In Cloud Foundry, an **organisation** represents an organisational account
 and groups together users, resources, applications, and environments.
-Each organisation has a resource quota, and is billed separately. 
-A startup company may have a single Cloud Foundry organisation, while
-a bigger enterprise would typically have multiple to 
+Each organisation has a resource quota and is billed separately. 
+For example, a startup company may have a single Cloud Foundry organisation, while
+a bigger enterprise would typically have multiple in order to 
 monitor and control expenses and resource consumption. Within
-an enterprise, separate organisations are typically assigned to 
-separate lines of buisiness (LOB) or divisions. 
+an enterprise, separate organisations may be assigned to 
+individual lines of buisiness (LOB) or divisions. 
 
 An organisation is further subdivided into **spaces**, which represent
 siloed application environments. For example, an organisation may have
@@ -102,7 +102,7 @@ spaces for *staging* and *production*. All used resources within a space
 contribute towards its organisation's quota. A space can also have
 its own quota. In this case, its resource consumption is counted towards
 both its own quota and the quota of the parent organisation. This is 
-useful when we need to ensure that a space (e.g. "staging") does 
+handy when we need to ensure that a space (e.g. "staging") does 
 not use too many resources and leaves enough for another space (e.g. "prod").
 
 Individual **users** are assigned **roles** which allow them to 
@@ -161,7 +161,7 @@ servers called **instances** which run the same code. These instances follow a
 template called **buildpack**. 
 A buildpack provides framework and runtime support - e.g. a preconfigured Java Web
 server. A buiildpack defines the server configuration and setup
-and we just need to push our code. 
+and we just need to push code which can be run in such an environment. 
 
 Cloud Foundry comes with a number of 
 [system buildpacks](https://docs.cloudfoundry.org/buildpacks/) for 
@@ -170,15 +170,15 @@ There are also many [community buildpacks](https://github.com/cloudfoundry-commu
 and a procedure for creating 
 [custom buildpacks](https://docs.cloudfoundry.org/buildpacks/custom.html).
 
-When creating a new application, you can specify its buildpack.
-If no builpack is specified, Cloud Foundry will try to guess which buildpack
+When creating a new application, we can explicitly specify its buildpack.
+If no builpack is provided, Cloud Foundry will try to guess which one
 to use, which can lead to an error if there are multiple matching buildpacks. 
 
 We mentioned that an app can have multiple servers/instances. So how do we make them
 appear as a single instance to the developer and the end user? In a typical IaaS
 environment, we would add a load balancer "in front of them" to route all the
-traffic across the instances. The Cloud Foundry answer to this is the concept
-of a **route**, which is an address associated with an application. 
+traffic across the instances. The Cloud Foundry approach to this is to use the so-called
+**route**, which is an address associated with an application. 
 Routing is how incoming traffic is distributed across
 application instances. Under the hood, Cloud Foundry takes care of the details - 
 e.g. load balancing, web sockets, sticky sessions, and caching. 
@@ -242,10 +242,10 @@ cf unmap-route [app-name] route.com -n myapp
 ## Application Management
 
 To deploy a new app or update an existing one we need to **push** its code to
-the Cloud Foundry instance. The push command has many optional arguements
+the Cloud Foundry instance. The `push` command has many optional arguements
 which depend on the application type. However, it's better to 
-specify all these arguements in a system file called `manifest.yml`. 
-This is a special file for Cloud Foundry.
+specify all these arguements in a system file called `manifest.yml`, which 
+is a special file for Cloud Foundry.
 
 ```bash
 # Start a new app called "myapp"
@@ -268,10 +268,10 @@ is quite comprehensive. Here's a sample file:
   command: node app.js
 ``` 
 
-In this example we specify the resource requirements, buildpack, route (host + domain),
+In this example, we specify the resource requirements, buildpack, route (host + domain),
 and a starting command.
 
-Once an application is started, we can easily manage its state and resources:
+After an application is started, we can easily manage its state and resources:
 
 ```bash
 # Start, stop, restart app
@@ -312,7 +312,7 @@ Almost every other architectural component is classified as a **service**.
 In Cloud Foundry, services can be **attached** to an application so
 that it can use them. 
 
-For example data bases, data analytics APIs, pub-sub systems, and 
+For example, data bases, data analytics APIs, pub-sub systems, and 
 even autoscaling can be implemented as services.
 Whenever the application logic needs to know about a service instance (e.g. to
 connect to a database), this information is provided via the `VCAP_SERVICES`
@@ -384,10 +384,10 @@ cf bind-service [app-name] [service-instance-name]
 cf unbind-service [app-name] [service-instance-name]
 ```
 
-Cloud Foundry also allows us to wrap existing/legacy services (e.g.
+Cloud Foundry also allows us to wrap existing/legacy systems (e.g.
 on-premise data bases) as service instances through the 
 [cups command](https://docs.cloudfoundry.org/devguide/services/user-provided.html). 
 
-Finally, an app can specify its service instance dependencies in its `manifest.yml` file.
+Finally, an app can specify its service instance dependencies in the `manifest.yml` file.
 Hence, when pushed it will automatically bind to the respective service
 instances.
