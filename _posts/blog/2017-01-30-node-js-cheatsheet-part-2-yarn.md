@@ -15,6 +15,7 @@ categories:
 tags:
 - Node
 - JavaScript
+- Yarn
 - Cheatsheet
 author:
   login: nikolay.grozev@gmail.com
@@ -33,19 +34,20 @@ author:
 - [Upgrade Packages](#upgrade-packages)
 - [Cache](#cache)
 - [Scripts](#scripts)
+- [Resources](#resources)
 
 <div id='introduction'/>
 # Introduction
 
-In a [previous post](/2014/01/22/node-js-cheatsheet-part-1/) we looked
+In a [previous post](/2017/01/22/node-js-cheatsheet-part-1/) we looked
 at Node.js and its package manager NPM. However, NPM has several shortcomings
-in terms of performance and reproducability.
+in terms of performance and reproducibility.
 
 Facebook's [Yarn](https://yarnpkg.com/) is a JavaScript package manager, 
-which resolves NPM's problems and is a bit more user friendly.
-It parallelises more and caches all installed modules.
+which resolves NPM's problems and is a bit more user-friendly.
+It parallelises better and caches all installed modules.
 Most importantly, it works with NPM's repositories and preserves
-the structure of the `package.json` file making it easy to migrate
+the structure of the `package.json` file which makes it easy to migrate
 existing NPM projects.
 
 In this post, we will review Yarn's basic commands and use cases.
@@ -69,7 +71,7 @@ yarn init
 ```
 
 If you already have an existing NPM project with a `package.json`, 
-there is no need to initialise Yarn. Yarn commands will work rigth away.
+there is no need to initialise Yarn. Yarn commands will work right away.
 
 <div id='install-remove-packages'/>
 # Install and Remove Packages
@@ -82,15 +84,16 @@ yarn install
 ```
 
 This is similar to `npm install` but achieves two additional things. 
-Firstly, it caches the new modules, so subsequent installations can be faster.
-Secondly, it creates the `yarn.lock` with the exact versions of all used
+Firstly, it caches the new modules outside of `/node_modules`
+so subsequent installations can be faster.
+Secondly, it creates the `yarn.lock` file with the exact versions of all used
 packages. In other words, even if a module has a range of version in its
 `package.json`, subsequent yarn commands will only use the version 
 specified in `yarn.lock`. This is similar to the role of `Gemfile.lock`
 in Ruby's package manager [Bundler](http://bundler.io/).
 
 Adding and removing new packages/modules is similar to NPM, but by default
-NPM saves all new modules in the `package.json`. This is equivalent to
+Yarn saves all new modules in the `package.json`. This is equivalent to
 the using the `--save` flag in NPM:
 
 ```bash
@@ -116,7 +119,7 @@ yarn remove express
 Each of thes commands modifies the `yarn.lock` and `package.json` files
 and populates the Yarn cache.
 
-Workig with global packages is pretty easy as well:
+Working with global packages is pretty easy as well:
 
 ```bash
 # Add a package globally
@@ -187,3 +190,12 @@ yarn run test
 # Lists all scripts and lets you choose
 yarn run
 ``` 
+
+<div id='resources'>
+# Resources
+
+Here are some nice resources on Yarn:
+
+- [Andrew Mead's short course](http://www.mead.io/yarn/)
+- [Different ways to install Yarn](https://yarnpkg.com/en/docs/install)
+- [Different ways to install Yarn](https://yarnpkg.com/en/docs/install)
