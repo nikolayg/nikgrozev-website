@@ -154,7 +154,7 @@ yarn upgrade express@3.0.0
 
 The `upgrade` command modifies both the `yarn.lock` and `package.json` files.
 
-<div id='cache'>
+<div id='cache'/>
 # Cache
 
 Yarn keeps all modules it installed in cache outside of the `/node_modules`
@@ -168,7 +168,7 @@ increasing its version) we may need to clean the cache:
 yarn clean cache
 ```
 
-<div id='scripts'>
+<div id='scripts'/>
 # Scripts 
 
 We can specify scripts in the `package.json` file like this:
@@ -191,7 +191,7 @@ yarn run test
 yarn run
 ``` 
 
-<div id='resources'>
+<div id='resources'/>
 # Resources
 
 Here are some nice resources on Yarn:
