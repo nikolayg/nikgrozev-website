@@ -198,4 +198,3 @@ Here are some nice resources on Yarn:
 
 - [Andrew Mead's short course](http://www.mead.io/yarn/)
 - [Different ways to install Yarn](https://yarnpkg.com/en/docs/install)
-- [Different ways to install Yarn](https://yarnpkg.com/en/docs/install)
