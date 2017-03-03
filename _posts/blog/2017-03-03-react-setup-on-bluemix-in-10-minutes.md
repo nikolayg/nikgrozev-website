@@ -151,7 +151,7 @@ to add our own dependencies, components, and logic. *Create React App*
 does not add Redux, Router, Bootsrap, and other popular libraries
 and it's up to us to configure them.
 
-The `npm start command` starts the app in a development server that 
+The `npm run start` command starts the app in a development server that 
 serves its static content without any additional logic. 
 However, in production we may
 deploy a [BFF](http://samnewman.io/patterns/architectural/bff/) API endpoint on the same server. 
