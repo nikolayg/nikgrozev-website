@@ -1,7 +1,7 @@
 ---
 layout: post
-title: React Setup on Bluemix in Less Than 10 Minutes 
-date: 2017-02-11 05:22:09.000000000
+title: React Setup on Bluemix in 10 Minutes 
+date: 2017-03-03 05:22:09.000000000
 type: post
 published: true
 status: publish
@@ -11,13 +11,14 @@ excerpt:
     it can be overwhelming. It often takes hours or even days to configure
     properly a usable development environment. 
     In this post, we'll show how to set up a sample React web app, and 
-    productionise it on Bluemix it in less than 10 minutes...
+    productionise it on Bluemix it in less than 10 minutes ...
 categories:
 - JavaScript
 - Node
 - NPM
 - React
 - Bluemix
+- blog
 tags:
 - JavaScript
 - Node
@@ -49,9 +50,9 @@ properly a usable development environment.
 Taking it all to production with a working continuous delivery pipeline
 can take even longer! 
 
-In this post, we'll show how to set up a sample React web app, and 
+In this post, we'll show how to set up a sample React web app and 
 productionise it in less than 10 minutes by using Bluemix Toolchains, 
-community Cloud Foundry boilerplates, and Facebook's latest
+a community Cloud Foundry boilerplate, and Facebook's latest
 React tooling.
 
 <div id='more-react-less-boilerplate'/>
@@ -97,11 +98,11 @@ Now we should have the following file structure
 ```
 
 [Create React App](https://github.com/facebookincubator/create-react-app)
-assumes that all your JavaScript and CSS code and resources are in the
+assumes that all JavaScript and CSS code and the resources are in the
 `src` folder. You can directly import the style sheets and the images
 from the JS files. By default, all sample files are stored directly
 in `src`, but you can reorganise it into subfolders as you see fit.
-The tool does not impose any specific code structure on purpose
+The tool does not impose any specific code structure
 because there are many conventions. For example, if you use 
 [Redux](http://redux.js.org/) you may have subfolders for actions
 and reducers or you may want to separate dummy components and containers
@@ -110,13 +111,13 @@ gives you the choice to organise your code within `src`.
 
 Note that there are no separate `test` and `assets` folders. I assume 
 this is to encourage developers to keep things together and avoid
-the hell of long relative import statements.
+maintaining long and brittle relative-path import statements.
 
 The only other folder is `public`. It just holds the template 
-`index.html` which defines a *div* with id `root`. The staring application
+`index.html` which defines a *div* with id `root`. The sample application
 renders the React components within it.
 
-Note that there are no Webpack and Babel config files. Everything is
+There are no Webpack and Babel config files. Everything is
 "hidden" behind several NPM scripts defined in `package.json`. If we
 explore `package.json`, we'll see the reference to the development
 scope dependency `react-scripts`. This is where the magic happens.
@@ -138,7 +139,7 @@ npm run test
 CI=true npm run test
 
 # Build production ready minimised and optimised
-# htmls, CSS, and JS files. Result is in the "build" folder
+# HTML, CSS, and JS files. Result is in the "build" folder
 npm run build
 ```
 
@@ -146,31 +147,32 @@ The [documentation](https://github.com/facebookincubator/create-react-app/blob/m
 details how to add additional commands for Flow, ESLint, etc.
 
 We now have a completely functional React app and we can go on
-to add our own dependencies, components, and logic. **Create React App**
+to add our own dependencies, components, and logic. *Create React App*
 does not add Redux, Router, Bootsrap, and other popular libraries
 and it's up to us to configure them.
 
 The `npm start command` starts the app in a development server that 
-serves its static content without any. However, in production we may
-deploy a BFF API endpoint on the same server. This can be replicated
-in development environment by redirecting the API calls with a 
-reverse proxy, as per 
+serves its static content without any additional logic. 
+However, in production we may
+deploy a [BFF](http://samnewman.io/patterns/architectural/bff/) API endpoint on the same server. 
+This can be replicated in development environment by redirecting the 
+API calls with a reverse proxy, as per 
 [this post](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/) .
 
-**Create React App** is suitable for most small and medium size apps.
+*Create React App* is suitable for most small and medium size apps.
 However, sometimes we may find ourselves restrained by the 
 default configurations. If we want to configure ourselves the
 underlying tools, we can use the `npm run eject` command.
 It will remove the dependency on `react-scripts` and will
-place in our folder the functionally equivalent dependencies
-and configurations of the underlying tool. 
+place in the project folder the functionally equivalent dependencies
+and configurations of the underlying tools. 
 
 <div id='to-the-cloud'/>
 # To the Cloud 
 
 Now that we have a running React app, how do we productionise it?
 Well, first things first - lets put our code on GitHub.
-Go to Github and create a project with the same name as your
+Go to GitHub and create a project with the same name as your
 React app - e.g. `sample-react-app`. Now you can push
 your code to it:
 
@@ -180,7 +182,7 @@ git init
 git add .
 git commit -m "App skeleton"
 
-# Add the remote Github repo
+# Add the remote GitHub repo
 git remote add origin git@github.com:[user-name]/[app-name].git
 
 # Push the code - may need authentication
@@ -190,10 +192,10 @@ git push origin
 If you don't already have a Bluemix account, you can sign
 up for a 30 day trial 
 [here](https://console.ng.bluemix.net/registration/).
-Bluemix allows you to workspace your Cloud resource into
+Bluemix allows you to divide and manage your Cloud resources into
 **organisations** and **spaces**. [Here](https://console.ng.bluemix.net/docs/admin/orgs_spaces.html)
 is how you can create an manage them. 
-You don't need to be a Cloud Foundry expert to follow this post, but
+You don't need to be know Cloud Foundry to follow this post, but
 if you're interested 
 [this article](/2017/01/29/cloud-foundry-part-1-orgs-spaces-buildpacks-and-services).
 provides a succinct overview of Bluemix/Cloud Foundry concepts.
@@ -202,8 +204,8 @@ provides a succinct overview of Bluemix/Cloud Foundry concepts.
 The easiest way to get up and running is to use 
 [Bluemix toolchains](https://console.ng.bluemix.net/docs/toolchains/toolchains_overview.html).
 A toolchain is a collection of tools (GitHub, Slack,
-CI, Web IDE, Monitoring tools, etc) which are integrated and 
-allow you to operate your application. Bluemix, allows you
+CI, Web IDE, Monitoring tools, etc.) which are integrated and 
+let you to manage your application and its life cycle. Bluemix allows you
 to build your own toolchains, or to use a set of predefined
 toolchain templates. Templates are much faster to use
 and they encompass typical scenarios and architectures.  
@@ -213,27 +215,27 @@ our application on the cloud. In the Bluemix web portal,
 select the hamburger navigation button and select "DevOps":
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Navigate to DevOps.jpg" alt="Select DevOps." >
+  <img src="/images/blog/React Setup on Bluemix/Navigate to DevOps.jpg" alt="Select DevOps." >
   <figcaption>Navigate to the DevOps page.</figcaption>
 </figure>  
 
-Select "Get Started" and then the "Simple Cloud Foundry Toolchain":
+Select "Get Started" and then the *"Simple Cloud Foundry Toolchain"*:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Select Tool Chain Template.jpg" alt="Select Cloud Foundry Template." >
-  <figcaption>Select "Simple Cloud Foundry Toolchain".</figcaption>
+  <img src="/images/blog/React Setup on Bluemix/Select Tool Chain Template.jpg" alt="Select Cloud Foundry Template." >
+  <figcaption>Select *"Simple Cloud Foundry Toolchain"*.</figcaption>
 </figure>  
 
 This toolchain integrates 3 tools - GitHub, Web IDE, and a delivery
 Pipeline. GitHub hosts the code and the issues. The Web IDE allows you to
-develop, test, and commit code. You don't need to use if you don't like it - 
+develop, test, and commit code. You don't need to use it if you don't like it - 
 you can still write the code locally and push it to GitHub. It's every
-useful for demos, or when you don't have your dev laptop handy.
+useful for demos or when you don't have your dev laptop handy.
 The Pipeline tool allows you to build CI, which tests your code, builds,
-and ships it. 
+and ships. 
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Toolchain Configuration.jpg" alt="Toolchain Configuration." >
+  <img src="/images/blog/React Setup on Bluemix/Toolchain Configuration.jpg" alt="Toolchain Configuration." >
   <figcaption>Tool configuration screen.</figcaption>
 </figure>  
 
@@ -243,7 +245,7 @@ connect the tool with your GitHub account. Now, from the drop-downs select
 you just created:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Github Tool Config.jpg" alt="Github Tool Config." >
+  <img src="/images/blog/React Setup on Bluemix/Github Tool Config.jpg" alt="Github Tool Config." >
   <figcaption>Github Tool Config.</figcaption>
 </figure>  
 
@@ -251,23 +253,23 @@ We'll configure the rest of the tools later on. Go ahead and press "Create".
 Now we should have a toolchain like this one.
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/New Toolchain Initial Look.jpg" alt="New Toolchain Initial Look." >
+  <img src="/images/blog/React Setup on Bluemix/New Toolchain Initial Look.jpg" alt="New Toolchain Initial Look." >
   <figcaption>New Toolchain Initial Look.</figcaption>
 </figure>  
 
-Our GitHub integration is already complete, so now we should configure
+Our GitHub integration is already complete so now we should configure
 the CI pipeline. Click on the Delivery Pipeline and you should have 2
-predefined stages - Build and Deploy.
+predefined stages - *"Build"* and *"Deploy"*.
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Initial Pipeline.jpg" alt="Initial Pipeline." >
+  <img src="/images/blog/React Setup on Bluemix/Initial Pipeline.jpg" alt="Initial Pipeline." >
   <figcaption>Initial Pipeline.</figcaption>
 </figure>  
 
-Let's configure the "Build" stage first. Select the cog/options menu and 
-then "Configure Stage". By default we have only job in this stage called
-"Build". Let's change its "Builder Type" to "npm". In the "Build Shell Command"
-we need to specify how the script to build the code. Unfortunately,
+Let's configure the *"Build"* stage first. Select the cog/options menu and 
+then "Configure Stage". By default we have only one job in this stage called
+*"Build"*. Let's change its "Builder Type" to "npm". In the "Build Shell Command"
+we need to specify the script to build the code. Unfortunately,
 for the time being the pipeline supports only NodeJS 4.2.2 and earlier.
 The [fix](http://gh-blog.mybluemix.net/blogs/cokeSchlumpf/rethink-it/posts/bluemix/node-buildpipeline.md)
 is to set up our own versions of Node and NPM. All in all, the build
@@ -294,11 +296,11 @@ npm install && npm run build
 
 The `npm run build` will create a `build` folder, just like when
 we run it locally. Hence, we need to specify it in the 
-"Build Archive Directory" field, so that it is passed along the next
-stage. At the end, the "Build" job should like this:
+"Build Archive Directory" field, so that it is passed to the next
+stage. At the end, the *"Build"* job should like this:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Build Job.jpg" alt="Build Job." >
+  <img src="/images/blog/React Setup on Bluemix/Build Job.jpg" alt="Build Job." >
   <figcaption>Build Job in the Build Stage.</figcaption>
 </figure>  
 
@@ -307,8 +309,8 @@ testing? To incorporate tests, we need to add a new job (via the "ADD JOB"
 button). Select "Test" as the new job type. In the "Test Command" field
 we need to provide the script which runs our unit tests. As a first step,
 we need to set up once again the proper versions of Node and NPM. Then we can run 
-`npm run test`. As discussed, by default the **Build React App** the test script
-runs in a loop, so we need to run in CI mode. The final script should be:
+`npm run test`. As discussed, by default the *Create React App* test script
+runs in a loop, so we need to run it in CI mode. The final script should be:
 
 ``` bash
 #!/bin/bash
@@ -332,34 +334,38 @@ npm install && CI=true npm run test
 The full configuration of the "Test" job follows:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Test Job.jpg" alt="Test Job." >
+  <img src="/images/blog/React Setup on Bluemix/Test Job.jpg" alt="Test Job." >
   <figcaption>Test Job in the Build Stage.</figcaption>
 </figure> 
 
-Finally, we can re-order the "Build" and the "Test" jobs. It doesn'tags
-make sense to build when the tests are failing, let's just drag and drop
-"Test" in front of "Build":
+As mentioned, *"Create React App"* allows easy integration with Flow and ESLint.
+Hence, we can define a new step/job for code analysis which is analogous 
+to the *"Test"* job. We'll skip this here, but feel free do it as an exercise.
+
+Finally, we can re-order the *"Build"* and the "Test" jobs. It doesn't
+make sense to build when the tests are failing. Let's just drag and drop
+"Test" in front of *"Build"*:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Build Stage Order.jpg" alt="Build Stage Order." >
+  <img src="/images/blog/React Setup on Bluemix/Build Stage Order.jpg" alt="Build Stage Order." >
   <figcaption>Job order in the Build stage.</figcaption>
 </figure> 
 
-Now we can go back to the pipeline and run the "Build" stage via the 
+Now we can go back to the pipeline and run the *"Build"* stage via the 
 the play/arrow button. If everything is OK, within a few minutes the stage
-and its jobs will turn green indicating success:
+and its jobs will turn green and indicate success:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Successful Build Stage.jpg" alt="Successful Build Stage." >
+  <img src="/images/blog/React Setup on Bluemix/Successful Build Stage.jpg" alt="Successful Build Stage." >
   <figcaption>Successful Build Stage.</figcaption>
 </figure> 
 
-So far so good! Now let's configure the "Deploy" stage. Click on its 
+So far so good! Now let's configure the *"Deploy"* stage. Click on its 
 options/cog button and select "Configure Stage". The stage has a single
-job called "Blue-Green". The toolchain template that we used
+job called *"Blue-Green Deploy"*. The used toolchain template
 came with a Cloud Foundry script implementing the 
 [Blue-Green](https://martinfowler.com/bliki/BlueGreenDeployment.html) deployment
-pattern. It takes as input the result of the "Build" job (from the previous stage)
+pattern. It takes as input the result of the *"Build"* job from the previous stage
 and (re)deploys a Cloud Foundry app with it. 
 
 The only missing part is the Cloud Foundry boilerplate. If you're unfamiliar with
@@ -385,11 +391,11 @@ This is very easy, we just need to replace every Cloud Foundry
 push expression `cf push $CF_APP` with a reference to the new buildpack:
 
 ```bash
-# Use instead of "cf push $CF_APP"
+# Use instead of "cf push $CF_APP", use the following
 cf push $CF_APP -b https://github.com/cloudfoundry-community/staticfile-buildpack.git 
 ```
 
-The final modified script should be:
+The final modified script is:
 
 ```bash
 #!/bin/bash
@@ -418,28 +424,28 @@ export CF_APP_NAME="$CF_APP"
 export APP_URL=http://$(cf app $CF_APP_NAME | grep urls: | awk '{print $2}')
 ```
 
-We just had to modify 2 expression (lines 4 and 9). The rest of the template
+We just had to modify 2 expression (lines 4 and 19). The rest of the template
 came from the toolchain template. Here is what the final configuration looks like:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Deploy Stage.jpg" alt="Deploy Stage." >
+  <img src="/images/blog/React Setup on Bluemix/Deploy Stage.jpg" alt="Deploy Stage." >
   <figcaption>Deploy Stage.</figcaption>
 </figure> 
 
-That's it! Now we can go back to the pipeline page, and run the "Deploy" stage.
+That's it! Now we can go back to the pipeline page and run the *"Deploy"* stage.
 It should deploy the React app. Any future change to the GitHub repo will
-cause the the "Build" stage to re-run and if successful the "Deploy" stage
+cause the the *"Build"* stage to re-run and if successful the *"Deploy"* stage
 will execute as well. The final pipeline is depicted below.
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Final Pipeline.jpg" alt="Final Pipeline." >
+  <img src="/images/blog/React Setup on Bluemix/Final Pipeline.jpg" alt="Final Pipeline." >
   <figcaption>Final Pipeline.</figcaption>
 </figure> 
 
-Clicking on the execution result will take you the sample React app:
+Clicking on the execution result will take us to the sample React app:
 
 <figure>
-  <img src="/images/blog/React Setup on Bluemix in Less Than 10 Minutes/Sample React App.jpg" alt="Sample React App." >
+  <img src="/images/blog/React Setup on Bluemix/Sample React App.jpg" alt="Sample React App." >
   <figcaption>Sample React App.</figcaption>
 </figure> 
 
@@ -453,10 +459,10 @@ Now, we can replicate the toolchain to create a staging/test environment.
 We can continue to code our application without frill. 
 
 This is actually a good starting point for more advanced features.
-Server side rendering? We just need to replace the community
+How about server side rendering? We just need to replace the community
 buildpack with a NodeJS buildpack and provide the NodeJS server file.
 Web sockets and backend APIs? We just need to "bake" the endpoints
-in the JavaScript and it can make dynamic calls to out back end.  
+in the JavaScript and it can make dynamic calls to our back end.  
 
 
 
