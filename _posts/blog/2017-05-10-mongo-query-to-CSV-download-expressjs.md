@@ -35,8 +35,8 @@ author:
 
 I recently worked on an app which uses [MongoDB](https://www.mongodb.com/) and
 [Express JS](https://expressjs.com/). 
-The app had to allow the end used to
-export the result of a large Mongo query (50K+ of documents). In this post, we'll
+The app had to allow for the
+export of a large Mongo query result (50K+ of documents). In this post, we'll
 see how to do it succinctly and "in-flight" with two popular CSV libraries.
 
 <div id='query-cursor'/>
@@ -44,10 +44,10 @@ see how to do it succinctly and "in-flight" with two popular CSV libraries.
 
 To keep things simple, I used the 
 [Standard MongoDB driver](https://mongodb.github.io/node-mongodb-native/). 
-Our ultimate goal is to stream documents from a query to a CSV formatter,
-which then streams the output to the HTTP response.
+My ultimate goal was to stream documents from a query to a CSV formatter,
+which can then stream the output to the HTTP response.
 As a first step we need to acquire a dabatase `cursor`. Assuming the Mongo DB driver
-instance is called `mongodb` our should be similar to this:
+instance is called `mongodb` our code should be similar to this:
 
 ```javascript
 // Your collection name
@@ -64,18 +64,18 @@ const selection = ...
 const cursor = mongodb.collection(collectionName).find(query, selection)
 ```
 
-Cursor's can be `pipe`-d into other streams and are handy for "in-flight" processing.
+Cursors can be `pipe`-d into other streams and are handy for "in-flight" processing.
 
 <div id='transformation-function'/>
 # Transformation Function
 
 We'll also need a function which transforms the JSON documents, returned by the cursor,
-into objects with a certain schema/object model. The function should look lite this:
+into objects with a suitable schema/object model. The function should look like this:
 
 ```javascript
 transform(doc) {
     // Return an object with all fields you need in the CSV
-    // Foe example ...
+    // For example ...
     return {
         Address: doc.address,
         State: doc.state.abbreviation
@@ -86,7 +86,7 @@ transform(doc) {
 <div id='fast-csv'/>
 # Using Fast-CSV 
 
-Let's see how to do it with [fast-csv](https://github.com/C2FO/fast-csv) library.
+Let's see how to transform the cursor's data with the [fast-csv](https://github.com/C2FO/fast-csv) library.
 
 First we obtain the cursor and the transformation function. Then we need to set the appropriate 
 download headers, which also include the name of the downloaded file, and send/flush them
@@ -126,14 +126,14 @@ downloadCSV(request, response) {
 # Using Node-CSV 
 
 The [fast-csv](https://github.com/C2FO/fast-csv) library worked pretty well, but I was
-willing to try the [node-csv](https://github.com/wdavidw/node-csv) library as well. 
+also willing to try the [node-csv](https://github.com/wdavidw/node-csv) library. 
 I was hoping to get better performance without much extra efforts. Its interface is similar, so
 without much change the code looked like this:
 
 ```javascript
 var csv = require('csv');
 
-download(polygons, response, groupedExport, useExclusionListOnExport) {
+download(request, response) {
     // Obtain your cursor ...
     const cursor = ...
     // The transformer function
