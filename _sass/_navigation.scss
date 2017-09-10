@@ -68,10 +68,10 @@
   display: none;
   z-index: 5;
   @include media($medium) {
-    -webkit-animation-duration: 1s;
-    -moz-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
   }
   &.closed {
     @include media($medium) {
