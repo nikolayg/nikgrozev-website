@@ -75,7 +75,7 @@ a promise that encapsulates the HTTP request. We can use a
 that automatically resolves the payload promises before firing the reducers.
 Here is a type for this:
 
-```typescript
+```javascript
 export type APIAction<Payload> = Action<Promise<Payload>>;
 ```
 
