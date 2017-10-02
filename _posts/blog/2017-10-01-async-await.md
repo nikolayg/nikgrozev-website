@@ -141,7 +141,7 @@ success.
 ```
 
 For a more detailed tutorial on promises, check 
-[this article](2017/01/22/node-js-cheatsheet-part-1/#promises).
+[this article](/2017/01/22/node-js-cheatsheet-part-1/#promises).
 
 
 <div id='composite-promises'/>
