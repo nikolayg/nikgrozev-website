@@ -298,6 +298,11 @@ This allows us to directly `await` for the promises, thus avoiding the need
 for `then` callbacks. Finally, we invoke the `async` function which simply
 spawns a promise which encapsulates the logic of invoking the other promises.
 
+Indeed in the first example (without `async`/`await`), the promises will be fired in parallel.
+In this case we do the same (lines 7-8). Notice that we don't use `await` until **lines 11-12**, 
+when we block the execution until both promises have resolved. Afterwards, we know that both promises 
+have resolved (similarly to using `Promise.all(...).then(...)`) in the previous example.
+
 The underlying computational process is equivalent to the one depicted in 
 [previous section](#composite-promises). The code, however, is much more readable
 and straightforward.
