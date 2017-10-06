@@ -129,14 +129,14 @@ with the `Promise.resolve` and `Promise.reject` methods:
 const success = Promise.resolve('Resolved');
 // Will print "Successful result: Resolved"
 success.
-    then(result => console.log(`Successful result: ${success}`)).
+    then(result => console.log(`Successful result: ${result}`)).
     catch(e => console.log(`Failed with: ${e}`))
 
 
 const fail = Promise.reject('Err');
 // Will print "Failed with: Err"
-success.
-    then(result => console.log(`Successful result: ${success}`)).
+fail.
+    then(result => console.log(`Successful result: ${result}`)).
     catch(e => console.log(`Failed with: ${e}`))
 ```
 
