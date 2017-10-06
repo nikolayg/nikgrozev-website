@@ -203,6 +203,29 @@ asynchronous operations or add error handling?
 This approach can easily end up in a spaghetti of `then`-s, 
 `Promise.all` calls, and callbacks.  
 
+We can rewrite the above example to use **"promise chaining"** as follows:
+
+```javascript
+// Make the first call
+const call1Promise = rp('http://example.com/');
+
+call1Promise.then(result1 => {
+    // Executes after the first request has finished
+    console.log(result1);
+
+    const call2Promise = rp('http://example.com/');
+    const call3Promise = rp('http://example.com/');
+
+    return Promise.all([call2Promise, call3Promise]);
+}).then(arr => {
+    // Executes after both promises have finished
+    console.log(arr[0]);
+    console.log(arr[1]);
+})
+```
+
+This is a bit more readable, although we still had to chain two `then` callbacks and use a `Promise.all`.
+
 <div id='async-functions'/>
 # Async Functions
 
@@ -278,8 +301,8 @@ async function solution() {
     console.log(await rp('http://example.com/'));
 
     // Spawn the HTTP calls without waiting for them - run them concurrently
-    const call2Promise = rp('http://example.com/');
-    const call3Promise = rp('http://example.com/');
+    const call2Promise = rp('http://example.com/');  // Does not wait!
+    const call3Promise = rp('http://example.com/');  // Does not wait!
 
     // After they are both spawn - wait for both of them
     const response2 = await call2Promise;
