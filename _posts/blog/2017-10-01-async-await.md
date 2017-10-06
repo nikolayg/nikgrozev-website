@@ -345,7 +345,8 @@ async function f() {
 }
 ```
 
-The underlying computational process is depicted below:
+The underlying computational process of the `f` function is depicted below.
+Since `f` is `async`, it will also run in parallel with its caller:
 
 <figure>
   <img src="/images/blog/async-await/AsyncAwaitExample.png" alt="AsyncAwaitExample." >
