@@ -93,8 +93,9 @@ console.log("Can't know if promise has finished yet...");
 
 We spawned a new `Promise` on **line 3**, and then attach
 a callback function to it on **line 4**. The `promise` is asynchronous, so when
-we reach **line 6**, we can't know if the promise has completed or not. In fact, 
-if we run the code multiple times, we may get different results each time.
+we reach **line 6**, we can't know if the promise has completed or not. 
+If we run the code multiple times, we may get different results each time.
+More generally, the code after any promise is spawn runs concurrently with the promise. 
 
 **There is no reasonable way to block the current sequence of operations until `promise` has finished**.
 This is different from [Java's `Future.get`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html#get--), 
