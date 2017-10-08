@@ -36,6 +36,7 @@ author:
 - [Async Functions](#async-functions)
 - [Await](#await)
 - [Error Handling](#error-handling)
+- [Discussion](#discussion)
 
 <div id='introduction'/>
 # Introduction
@@ -171,12 +172,11 @@ call1Promise.then(result1 => {
     const call2Promise = rp('http://example.com/');
     const call3Promise = rp('http://example.com/');
 
-    const combinedPromise = Promise.all([call2Promise, call3Promise]);
-    combinedPromise.then(arr => {
-        // Executes after both promises have finished
-        console.log(arr[0]);
-        console.log(arr[1]);
-    })
+    return Promise.all([call2Promise, call3Promise]);
+}).then(arr => {
+    // Executes after both promises have finished
+    console.log(arr[0]);
+    console.log(arr[1]);
 })
 ```
 
@@ -185,8 +185,8 @@ finishes (**lines 1-3**). In the callback, we spawn two other promises
 for the subsequent HTTP request (**lines 8-9**). These two promises run
 concurrently and we need to schedule a callback, when **both of them complete**.
 Hence, we need to combine them into a single promise via `Promise.all` (**line 11**),
-which resolves when both of them complete. Then we schedule another callback that 
-prints the results (**lines 14-15**). 
+which resolves when both of them complete. The result of the callback is a promise,
+so we need to chain yet another `then` callback that prints the results (**lines 12-16**). 
 
 The following diagram depicts the computational flow:
 
@@ -198,34 +198,12 @@ The following diagram depicts the computational flow:
   </figcaption>
 </figure>
 
-For such a simple example, we ended up with 2 nested `then` callbacks and had to use 
+For such a simple example, we ended up with 2 `then` callbacks and had to use 
 `Promise.all` to synchronise concurrent promises. What if we had to run a few more
 asynchronous operations or add error handling? 
 This approach can easily end up in a spaghetti of `then`-s, 
 `Promise.all` calls, and callbacks.  
 
-We can rewrite the above example to use **"promise chaining"** as follows:
-
-```javascript
-// Make the first call
-const call1Promise = rp('http://example.com/');
-
-call1Promise.then(result1 => {
-    // Executes after the first request has finished
-    console.log(result1);
-
-    const call2Promise = rp('http://example.com/');
-    const call3Promise = rp('http://example.com/');
-
-    return Promise.all([call2Promise, call3Promise]);
-}).then(arr => {
-    // Executes after both promises have finished
-    console.log(arr[0]);
-    console.log(arr[1]);
-})
-```
-
-This is a bit more readable, although we still had to chain two `then` callbacks and use a `Promise.all`.
 
 <div id='async-functions'/>
 # Async Functions
@@ -404,3 +382,60 @@ g().
 
 This gives us handy way to work with rejected promises via well the known
 exception handling mechanism.
+
+<div id='discussion'/>
+# Discussion
+
+Async/await is a language structure that complements promises. It allows us to work
+with promises with less boilerplate. However, `async`/`await` **do not replace
+the need for plain promises**. For example, if we call an `async` function from
+a normal function or the global scope, we won't be able to use `await` and will resort to 
+vanilla promises:
+
+```javascript
+async function fAsync() {
+    // actual return value is Promise.resolve(5)
+    return 5;
+}
+
+// can't call "await fAsync()". Need to use then/catch
+fAsync().then(r => console.log(`result is ${r}`));
+```
+
+I usually try to encapsulate most of my asynchronous logic in one or few `async` 
+functions, which I call from the non-async code. This minimises the amount of
+`then`/`catch` callbacks that I need to write.
+
+The `async`/`await` constructs are syntactic sugar for working with promises more
+coincisely. Every `async`/`await` construct can be rewritten with plain promises.
+Ultimately, it's a matter of style and brevity.
+
+Academics like pointing out that there's a difference between **concurrency** and **parallelism**.
+Check out [Rob Pike's talk](https://vimeo.com/49718712) on the topic or my 
+[previous post](/2015/07/14/overview-of-modern-concurrency-and-parallelism-concepts/).
+Concurrency is about **composing independent processes** (in the general meaning of the term process) 
+to work together, while parallelism is about **actually executing multiple processes simultaneously**. 
+Concurrency is about the application design and structure, while parallelism is about the actual execution.
+
+Let’s take a multi-threaded application as an example. The separation of the application into 
+threads defines its concurrent model. The mapping of these threads on the available cores defines 
+its level or parallelism. A concurrent system may run efficiently on a single processor, 
+in which case it is not parallel.
+
+<figure>
+  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/concurrent_vs_parallel.png" alt="Concurrent vs. Parallel" >
+  <figcaption>Concurrent vs. Parallel.</figcaption>
+</figure>
+
+In that sence, promises allow us to break up a program into **concurrent** modules
+which may or may not run in parallel. Whether the actual JavaScript execution is 
+**parallel** depends on the implementation. For example, Node Js is single threaded and
+if a promise is CPU bound you won't see much parallelism. However, if you compile 
+your code to java bytecode via something like
+[Nashorn](http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html),
+in theory you may be able to map CPU bound promises on different cores and achieve
+parallelism. Hence in my opinion, promises (either vanilla or expressed via `async`/`await`) constitute
+the concurrency model of a JavaScript app.
+
+> **Update**: updated based on constructive comments from the forum.
+
