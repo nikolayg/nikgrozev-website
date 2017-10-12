@@ -96,7 +96,7 @@ We spawned a new `Promise` on **line 3**, and then attach
 a callback function to it on **line 4**. The `promise` is asynchronous, so when
 we reach **line 6**, we can't know if the promise has completed or not. 
 If we run the code multiple times, we may get different results each time.
-More generally, the code after any promise is spawn runs concurrently with the promise. 
+More generally, the code after any promise is spawned runs concurrently with the promise. 
 
 **There is no reasonable way to block the current sequence of operations until `promise` has finished**.
 This is different from [Java's `Future.get`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html#get--), 
@@ -407,7 +407,7 @@ functions, which I call from the non-async code. This minimises the amount of
 `then`/`catch` callbacks that I need to write.
 
 The `async`/`await` constructs are syntactic sugar for working with promises more
-coincisely. Every `async`/`await` construct can be rewritten with plain promises.
+concisely. Every `async`/`await` construct can be rewritten with plain promises.
 Ultimately, it's a matter of style and brevity.
 
 Academics like pointing out that there's a difference between **concurrency** and **parallelism**.
