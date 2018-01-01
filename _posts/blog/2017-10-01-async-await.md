@@ -72,7 +72,7 @@ For the sake of simplicity, in all examples we'll assume that the
 has been installed and loaded as:
 
 ```javascript
-var rp = require('request-promise');
+const rp = require('request-promise');
 ```
 
 Now we can make a simple HTTP GET request that returns a promise as 
