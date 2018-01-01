@@ -24,5 +24,7 @@ modified: 2014-08-08T19:44:38.564948-04:00
     <p>You can check out my <a href="/publications">publications</a> and <a href="/blog">blog</a> to 
     learn more about my work.</p>
 
+    <p>If you have found this blog useful, please consider <a href="/donate">supporting my future work on it</a>.</p>
+
 </div>
       
