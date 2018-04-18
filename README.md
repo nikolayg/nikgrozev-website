@@ -14,7 +14,7 @@ To setup a local environment, follow these steps:
 # Install the ruby itself
 rvm install 2.4.1
 
-# Set 2.3.1 as default ruby
+# Set 2.4.1 as default ruby
 rvm use --default 2.4.1
 ```
 
