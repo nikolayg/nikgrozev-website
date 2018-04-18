@@ -66,8 +66,7 @@ export function submitForm(
   url: string,
   fields: Map<string, string | File | Blob>,
   headers: Map<string, string>,
-  onprogress: (pe: ProgressEvent) => any,
-) {
+  onprogress: (pe: ProgressEvent) => any) {
   // FormData represents the payload of the form
   const form = new FormData();
 
