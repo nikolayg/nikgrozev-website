@@ -12,10 +12,10 @@ To setup a local environment, follow these steps:
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 # Install the ruby itself
-rvm install 2.4.1
+rvm install 2.4.4
 
 # Set 2.4.1 as default ruby
-rvm use --default 2.4.1
+rvm use --default 2.4.4
 ```
 
 - Install the Bundler gem:
