@@ -152,7 +152,7 @@ However, this won't generate the interim values.
 A straightforward approach is:
 
 ```python
-st = [x]
+lst = [x]
 
 res = f1(x)
 lst.append(res)
@@ -161,9 +161,10 @@ res = f2(res)
 lst.append(res)
 
 res = f3(res)
-lst.append(res);
+lst.append(res)
 
 print(res, lst)
+
 ```
 
 Again, this is not a very good solution, as we have glue code that takes care of aggregating the 
