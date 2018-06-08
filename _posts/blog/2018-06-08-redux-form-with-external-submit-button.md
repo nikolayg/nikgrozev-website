@@ -38,7 +38,7 @@ into the React/Redux data flow.
 
 Below is a very simple example of a `redux-form` based form:
 
-```javascript
+```jsx
 import React, { Component } from 'react';
 import { Form, Field, reduxForm } from 'redux-form';
 import { TextField } from 'redux-form-material-ui';
@@ -105,7 +105,7 @@ The following form demonstrates this idea. It does not have a submission button 
 accepts a callback function `enabledCallback` via its properties. We use the `componentDidUpdate`
 life cycle method to detect when a component becomes (un)available for submission:
 
-```javascript
+```jsx
 import React, { Component } from 'react';
 import { Form, Field, reduxForm } from 'redux-form';
 import { TextField } from 'redux-form-material-ui';
@@ -157,7 +157,7 @@ the submission button is clicked.
 
 The following demonstrates this approach:
 
-```javascript
+```jsx
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import ChildComponentForm from './ChildComponentForm';
