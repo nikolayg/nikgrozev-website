@@ -164,7 +164,6 @@ res = f3(res)
 lst.append(res)
 
 print(res, lst)
-
 ```
 
 Again, this is not a very good solution, as we have glue code that takes care of aggregating the 
