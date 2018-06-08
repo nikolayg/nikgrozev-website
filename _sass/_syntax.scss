@@ -22,6 +22,11 @@ pre.highlight {
 		padding: 1em;
 	}
 	.lineno { padding-right: 5px; color: lighten(#333332,50);}
+	tr {
+		td:first-child {
+			width: 2.5em;
+		}	
+	}
 	.hll { background-color: #ffffcc }
 	.c { color: #999988; font-style: italic } /* Comment */
 	.err { color: #a61717; background-color: #e3d2d2 } /* Error */
