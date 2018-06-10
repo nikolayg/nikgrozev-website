@@ -11,7 +11,7 @@ disqus:
   shortname: nikgrozev-com
 twitter:
   username: nikolaygrozev
-google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
+google_analytics: "UA-120510914-1"
 
 # Build settings
 permalink:   /:year/:month/:day/:title/
