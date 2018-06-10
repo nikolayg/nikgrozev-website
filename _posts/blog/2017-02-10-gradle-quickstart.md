@@ -16,12 +16,6 @@ tags:
 - Gradle
 - Java
 - Build
-author:
-  login: nikolay.grozev@gmail.com
-  email: nikolay.grozev@gmail.com
-  display_name: nikolay.grozev@gmail.com
-  first_name: 'Nikolay'
-  last_name: 'Grozev'
 ---
 
 # Table of Contents

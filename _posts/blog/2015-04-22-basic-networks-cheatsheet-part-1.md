@@ -18,12 +18,6 @@ tags:
 - RIP
 - NAT
 - Cheatsheet
-author:
-  login: nikolaygrozev
-  email: nikolay.grozev@gmail.com
-  display_name: nikolaygrozev
-  first_name: 'Nikolay'
-  last_name: 'Grozev'
 ---
 
 Present day distributed systems are based on technologies which abstract away the complexity of the underlying network. 
