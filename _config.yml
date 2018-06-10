@@ -23,9 +23,6 @@ google_fonts:
     weights: "400,400i,700,700i"
   - name: "Lora"
 weights: "400,400i,700,700i"
-# sass:
-#   sass_dir: _sass
-#   style: compressed
 plugins:
   - jekyll-sitemap
   - jekyll-gist
@@ -110,38 +107,3 @@ footer_links:
     icon: fas fa-rss-square
 
 
-# Site owner
-# author:
-#   name: 'Nikolay Grozev'
-#   avatar: bio-photo.jpg
-#   email: nikolay.g.grozev@ieee.org
-#   disqus-shortname: "nikgrozev-com"
-#   twitter: nikolaygrozev
-#   facebook: #username
-#   github: nikolayg
-#   stackexchange: http://stackoverflow.com/users/3682523/nikolay
-#   linkedin: nikolaygrozev
-#   instagram: #username
-#   flickr: #username
-#   tumblr: #username
-#   pinterest: #username
-#   weibo: #userid
-#   google:
-#     plus: NikolayGrozev
-#     analytics:
-#     verify:
-#     ad-client:
-#     ad-slot:
-#   bing-verify:
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/

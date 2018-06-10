@@ -17,12 +17,6 @@ tags:
 - Octave
 - Octave GUI
 - Ubuntu
-author:
-  email: nikolay.grozev@gmail.com
-  display_name: nikolaygrozev
-  first_name: 'Nikolay'
-  last_name: 'Grozev'
-  name: 'Nikolay Grozev'
 ---
 
 [GNU Octave](http://www.gnu.org/software/octave/) is a powerful open source alternative to Matlab. 

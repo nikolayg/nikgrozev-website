@@ -23,12 +23,6 @@ tags:
 - Maven
 - REST
 - Web Services
-author:
-  login: nikolaygrozev
-  email: nikolay.grozev@gmail.com
-  display_name: nikolaygrozev
-  first_name: ''
-  last_name: ''
 ---
 
 # Introduction

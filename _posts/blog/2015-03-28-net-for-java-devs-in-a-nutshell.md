@@ -16,12 +16,6 @@ tags:
 - C#
 - .NET
 - Java
-author:
-  login: nikolaygrozev
-  email: nikolay.grozev@gmail.com
-  display_name: nikolaygrozev
-  first_name: 'Nikolay'
-  last_name: 'Grozev'
 ---
 
 # Introduction
