@@ -1,12 +1,14 @@
 ---
-layout: post
+layout: facepage
 title: "About"
 excerpt: "About me ..."
 modified: 2014-08-08T19:44:38.564948-04:00
+site:
+    disqus: "NAN"
 ---
 
 
-<div class="about-page-content">
+<div class="about-page-content layout--post">
 
     <p class="stress">Hi there,</p>
 
