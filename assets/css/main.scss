@@ -1,57 +1,172 @@
 ---
+# Only the main Sass file needs front matter (the dashes are enough)
 sitemap: false
 ---
 
-/*
- *
- *  So Simple
- *
- *  Designer: Michael Rose
- *  Twitter: http://twitter.com/mmistakes
- *
-*/
+@charset "utf-8";
 
-@import "variables";
+@import "so-simple";
 
-/*
-   Vendor
-   ========================================================================== */
+// MEDIA QUERIES ==============================================
+$micro            : "only screen and (min-width: 30em)";
+$small            : "only screen and (min-width: 37.5em)";
+$medium           : "only screen and (min-width: 48em)";
+$large            : "only screen and (min-width: 62em)";
+$x-large          : "only screen and (min-width: 86.375em)";
 
-@import "vendor/bourbon/bourbon"; /* Bourbon mixins (bourbon.io) */
-@import "grid-settings"; /* Bourbon Neat settings */
-@import "vendor/neat/neat"; /* Bourbon Neat grid mixins (neat.bourbon.io) */
-@import "vendor/font-awesome/font-awesome"; /* Font Awesome icons */
-@import "vendor/magnific-popup/magnific-popup"; /* Magnific Popup lightbox */
+$max-width: 1024px;
+$footer-height: 4rem;
+$footer-margin-top: 4rem;
 
-/*
-   Global
-   ========================================================================== */
+// ABOUT PAGE ==============================================
+.about-page-content {
+    .stress {
+        font-weight:650;
+        font-size:1.65em;
+        margin-bottom:0.5em;
+        margin-top:1em;
+    }
+    .myname {
+        color:#732626;
+        font-weight:650;
+    }
+}
 
-@import "mixins";
-@import "reset";
-@import "base";
+// Source code highlight fixed ==============================================
+.highlight {
+    table {
+        tbody{
+            tr {
+                td:first-child {
+                    width: 2.5rem !important;
+                    margin: 0;
+                    padding-left: 0;
+                    padding-right: 1rem;
+                    color: lightgray;
+                    overflow: hidden;
+                    pre: {
+                        max-width: 2.5rem !important;
+                    }
+                }	
+                td:nth-child(2) {
+                    pre {
+                        width: 100%;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+// Site title and logo ==============================================
+.navigation-wrapper {
+    position: absolute;
+    top:0;   
+    @media #{$medium} {
+        display: flex;
+        justify-content: center;
+    }
+    width: 100%;
+    z-index: 100;
+    #menu-toggle {
+        width: 100%;
+    }
+}
+.masthead {
+    display: flex;
+    justify-content: center;
+    .wrap {
+        position: relative;
+        @media #{$medium} {
+            width: 100%;
+        }
+        @media #{$large} {
+            width: $max-width;
+        }
+        .site-logo {
+            width: 100%;
+            img {
+                width: 100%;
+                display: none;
+                border-radius: 3px;
+                border: 0px !important;
+                @media #{$medium} {
+                    display: block;
+                }
+            }
+        }
+    }
+    h1.site-title {
+        @media #{$medium} {
+            position: absolute;
+            z-index: 100;
+            top: 20px;
+            left: 5%;
+            display: block;
+        }
+    }
+    p.site-description {
+        @media #{$medium} {
+            position: absolute;
+            z-index: 100;
+            top: 60px;
+            left: 5%;
+            display: block;
+        }
+    }
+}
 
-/*
-   Components
-   ========================================================================== */
+// Publications styling ==============================================
+.publicationslist {
+    p {
+      margin-bottom: 0.25em;
+    }
+  
+    ul { 
+      width: 100%; 
+      text-align : left; 
+      margin-top: 0em;
+      margin-top: 0.5em;
+      li { 
+        display: inline; 
+        white-space: nowrap;
+        margin-right: 0.5em; 
+      }
+      li:before { 
+        content: " \2022"; 
+      }
+      li.nobullet:after { 
+        content: none; 
+      }
+    }
+}
 
-@import "helpers";
-@import "buttons";
-@import "wells";
-@import "syntax";
-@import "forms";
-@import "notices"; /* notices and alerts */
-@import "animations";
-@import "masthead";
-@import "navigation";
-@import "search";
-@import "footer";
+// Footer styling (based on https://tinyurl.com/y7zvm44t) ==============================================
+html { 
+    height:100%; 
+}
+body { 
+    min-height:100%; 
+    padding:0; 
+    margin:0; 
+    position:relative; 
+}
 
-/*
-   Page specific
-   ========================================================================== */
+body::after { 
+    content:''; 
+    display:block; 
+    height:($footer-margin-top + $footer-height); 
+}
 
-@import "page"; /* layout and styles that apply to posts and pages */
-@import "archives"; /* archive pages (post/tag lists, etc) */
-@import "about-page"; 
-@import "publications"; 
+footer{ 
+  position:absolute; 
+  bottom:0; 
+  width:100%; 
+  margin-top: $footer-margin-top;
+  height:$footer-height; 
+}
+
+// Disallow body scrolling ==============================================
+body { 
+    overflow-x: hidden; 
+}

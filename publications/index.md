@@ -1,5 +1,5 @@
 ---
-layout: start-page
+layout: page
 title: "Publications"
 excerpt: "An archive of publications."
 search_omit: true
@@ -14,7 +14,7 @@ search_omit: true
 
 # Publications
 
-<div class="publications">
+<div class="publicationslist">
     
     <p>
         <strong>Nikolay Grozev</strong>, 
