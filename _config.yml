@@ -2,20 +2,30 @@
 
 title: Nikolay Grozev
 locale: en_UK
+email: nikolay.grozev@gmail.com
 description: Staying on top of it.
-logo: site-logo.jpg
-search: true
+logo: images/site-logo.jpg
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: http://nikgrozev.com
-comments: true
+disqus:
+  shortname: nikgrozev-com
+twitter:
+  username: nikolaygrozev
+google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 
-# Jekyll configuration
-
+# Build settings
 permalink:   /:year/:month/:day/:title/
-markdown:    kramdown
-highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: compressed
+markdown: kramdown
+remote_theme: "mmistakes/so-simple-theme"
+mathjax: true
+google_fonts:
+  - name: "Source Sans Pro"
+    weights: "400,400i,700,700i"
+  - name: "Lora"
+weights: "400,400i,700,700i"
+# sass:
+#   sass_dir: _sass
+#   style: compressed
 plugins:
   - jekyll-sitemap
   - jekyll-gist
@@ -37,35 +47,101 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-mathjax: true
 
 # Share on social media:
 share: true
 
+# Search
+search_full_content: false
+
+# Taxonomy pages
+category_archive_path: "/categories/#"
+tag_archive_path: "/tags/#"
+
 include: [".htaccess"]
 exclude: ["*.odg", "*.odt", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
 
+# Site Author
+# Icons found at - https://fontawesome.com/icons?d=gallery
+author:
+  name: Nikolay Grozev
+  picture: /images/bio-photo.jpg
+  email: nikolay.grozev@gmail.com
+  twitter: nikolaygrozev
+  links:
+    - title: Twitter
+      url: https://twitter.com/nikolaygrozev
+      icon: fab fa-twitter-square
+    - title: GitHub
+      url: https://github.com/nikolayg
+      icon: fab fa-github-square
+    - title: LinkedIn
+      url: https://linkedin.com/in/nikolaygrozev
+      icon: fab fa-linkedin
+    - title: Stack Overflow
+      url: http://stackoverflow.com/users/3682523/nikolay
+      icon: fab fa-stack-overflow
+    - title: Google+
+      url: https://plus.google.com/+NikolayGrozev
+      icon: fab fa-google-plus-square
+    - title: RSS
+      url: http://nikgrozev.com/feed.xml
+      icon: fas fa-rss-square
+
+# Footer Links
+footer_links:
+  - title: Twitter
+    url: https://twitter.com/nikolaygrozev
+    icon: fab fa-twitter-square
+  - title: GitHub
+    url: https://github.com/nikolayg
+    icon: fab fa-github-square
+  - title: LinkedIn
+    url: https://linkedin.com/in/nikolaygrozev
+    icon: fab fa-linkedin
+  - title: Stack Overflow
+    url: http://stackoverflow.com/users/3682523/nikolay
+    icon: fab fa-stack-overflow
+  - title: Google+
+    url: https://plus.google.com/+NikolayGrozev
+    icon: fab fa-google-plus-square
+  - title: RSS
+    url: http://nikgrozev.com/feed.xml
+    icon: fas fa-rss-square
+
 
 # Site owner
-owner:
-  name: 'Nikolay Grozev'
-  avatar: bio-photo.jpg
-  email: nikolay.g.grozev@ieee.org
-  disqus-shortname: "nikgrozev-com"
-  twitter: nikolaygrozev
-  facebook: #username
-  github: nikolayg
-  stackexchange: http://stackoverflow.com/users/3682523/nikolay
-  linkedin: nikolaygrozev
-  instagram: #username
-  flickr: #username
-  tumblr: #username
-  pinterest: #username
-  weibo: #userid
-  google:
-    plus: NikolayGrozev
-    analytics:
-    verify:
-    ad-client:
-    ad-slot:
-  bing-verify:
+# author:
+#   name: 'Nikolay Grozev'
+#   avatar: bio-photo.jpg
+#   email: nikolay.g.grozev@ieee.org
+#   disqus-shortname: "nikgrozev-com"
+#   twitter: nikolaygrozev
+#   facebook: #username
+#   github: nikolayg
+#   stackexchange: http://stackoverflow.com/users/3682523/nikolay
+#   linkedin: nikolaygrozev
+#   instagram: #username
+#   flickr: #username
+#   tumblr: #username
+#   pinterest: #username
+#   weibo: #userid
+#   google:
+#     plus: NikolayGrozev
+#     analytics:
+#     verify:
+#     ad-client:
+#     ad-slot:
+#   bing-verify:
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
