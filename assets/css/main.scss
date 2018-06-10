@@ -157,7 +157,7 @@ body::after {
     height:($footer-margin-top + $footer-height); 
 }
 
-footer{ 
+body > footer{ 
   position:absolute; 
   bottom:0; 
   width:100%; 
