@@ -16,7 +16,7 @@ google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 # Build settings
 permalink:   /:year/:month/:day/:title/
 markdown: kramdown
-remote_theme: "mmistakes/so-simple-theme"
+remote_theme: "nikolayg/so-simple-theme"
 mathjax: true
 google_fonts:
   - name: "Source Sans Pro"
