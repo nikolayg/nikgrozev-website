@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: facepage
 title: "Publications"
 excerpt: "An archive of publications."
 search_omit: true

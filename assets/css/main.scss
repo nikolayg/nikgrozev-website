@@ -24,7 +24,6 @@ $footer-margin-top: 4rem;
         font-weight:650;
         font-size:1.65em;
         margin-bottom:0.5em;
-        margin-top:1em;
     }
     .myname {
         color:#732626;
@@ -169,4 +168,36 @@ footer{
 // Disallow body scrolling ==============================================
 body { 
     overflow-x: hidden; 
+}
+
+// Facepage styles - mimic the post pace ==============================================
+.layout--facepage {
+    .page-wrapper {
+        display: inherit;
+        @media #{$large} {
+            display: grid;
+            grid-column-gap: 3em;
+            grid-row-gap: 0;
+            grid-template-columns: 175px 1fr;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+    .page-header {
+        grid-column: 1 / -1;
+        clear: both;
+    }
+  
+    .page-sidebar {
+        display: none;
+        @media #{$large} {
+            display: block;
+        };
+        .page-author {
+            display: none;
+            @media #{$large} {
+                display: inherit;
+            }
+        }
+    }
+  }
 }
