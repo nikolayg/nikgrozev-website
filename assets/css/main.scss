@@ -170,7 +170,7 @@ body {
     overflow-x: hidden; 
 }
 
-// Facepage styles - mimic the post pace ==============================================
+// Facepage styles - mimic the post page ==============================================
 .layout--facepage {
     .page-wrapper {
         display: inherit;
@@ -200,4 +200,17 @@ body {
         }
     }
   }
+}
+
+// Images and figures in centre ==============================================
+.page-content {
+    figure {
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+        figcaption: {
+            text-align: center;
+        }
+    }
 }
