@@ -87,10 +87,9 @@ This setup poses 2 problems:
 - The button in the parent component can not programmatically submit the form;
 
 
-<div id='solution'/>
-# The Solution
+<div id='solution1'/>
+# Solution 1
 
-After a lot of research and experimentation, I managed to work around these issues.
 A form component can observe when it becomes ready to be submitted and signal
 the parent component via a specially provided callback
 
@@ -196,3 +195,93 @@ export default class App extends Component {
   }))
 }
 ```
+
+<div id='solution2'/>
+# Solution 2
+
+Another approach is to use the global functions and selectors provided by `redux-form`.
+They vary from version to version - in the example below we'll be using version 7.2.0.
+
+Every `redux-form` has a unique name, which is used as an identifier in redux.
+In the example below, we define a simple form and associate it with a name:
+
+```jsx
+import React, { Component } from 'react';
+import { Form, Field, reduxForm } from 'redux-form';
+import { TextField } from 'redux-form-material-ui';
+
+class ChildComponentForm extends Component {
+  render() {
+    const { handleSubmit, onSubmit } = this.props;
+
+    // Standard form but no submit button - it's in the parent
+    return (
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Field name="firstName" hintText="First Name" component={TextField} fullWidth />
+        <Field name="lastName" hintText="Last Name" component={TextField} fullWidth />
+      </Form>
+    );
+  }
+}
+
+function validate(form) {
+  const errors = {};
+  if (!form.firstName) {
+    errors.firstName = "required";
+  }
+
+  return errors;
+}
+
+// The global name for this form will be 'child-form'
+export default reduxForm({ form: 'child-form', validate })(ChildComponentForm);
+```
+
+This form is agnostic of its parent which will perform its submission and inspect its validity,
+as in this example usage:
+
+```jsx
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
+import ChildComponentForm from './ChildComponentForm';
+import { bindActionCreators } from 'redux';
+import { isValid, isSubmitting, submit } from 'redux-form';
+
+// A simple component which uses the form
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <ChildComponentForm onSubmit={this.onSubmit} />
+        <RaisedButton
+          label="Submit"
+          disabled={!this.props.formEnabled}
+          onClick={this.props.submitForm}
+        />
+      </div>
+    );
+  }
+
+  // Callback for when the form is submitted
+  onSubmit = (form) => alert(JSON.stringify(form, null, 2))
+}
+
+// Use redux-form selectors to check the form's state - e.g. valid, submitting
+function mapStateToProps(state) {
+  return {
+    formEnabled: isValid('child-form')(state) && !isSubmitting('child-form')(state) 
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  // Bind an action, which submit the form by its name
+  return bindActionCreators({
+    submitForm: () => submit('child-form')
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+```
+
+
