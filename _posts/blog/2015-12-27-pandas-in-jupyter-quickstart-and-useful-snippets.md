@@ -10,14 +10,13 @@ excerpt:
 published: true
 status: publish
 categories:
-- DataScience
+- Pandas
 - Python
-- blog
 tags:
 - Jupyter
 - Pandas
 - Python
-- DataScience
+- Data Science
 ---
 
 # Table of Contents

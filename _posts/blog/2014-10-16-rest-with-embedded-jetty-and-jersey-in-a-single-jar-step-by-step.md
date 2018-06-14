@@ -13,8 +13,7 @@ excerpt:
     which can be started from any machine with a Java environment. Finally, we'll see how to import it into Eclipse, 
     so we can develop and debug there ...
 categories:
-- Miscellaneous
-- blog
+- Java
 tags:
 - Eclipse
 - Java

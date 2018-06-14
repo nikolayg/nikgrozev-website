@@ -10,10 +10,6 @@ excerpt:
 categories:
 - JavaScript
 - Node
-- Async
-- Await
-- Promise
-- blog
 tags:
 - JavaScript
 - Node

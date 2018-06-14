@@ -10,8 +10,6 @@ excerpt:
 categories:
 - Gradle
 - Java
-- Build
-- blog
 tags:
 - Gradle
 - Java

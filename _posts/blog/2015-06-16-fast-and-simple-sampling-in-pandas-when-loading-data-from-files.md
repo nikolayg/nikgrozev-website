@@ -9,14 +9,12 @@ excerpt:
     In this article I'll describe a simple and fast approach for sampling data in 
     Pandas as it is loaded from the data file ...
 categories:
-- DataScience
-- Miscellaneous
 - Python
-- blog
+- Pandas
 tags:
 - Pandas
 - Python
-- DataScience
+- Data Science
 ---
 
 # Introduction

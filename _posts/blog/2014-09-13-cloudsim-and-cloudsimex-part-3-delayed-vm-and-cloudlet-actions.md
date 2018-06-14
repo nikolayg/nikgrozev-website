@@ -13,7 +13,7 @@ excerpt:
     other new features also supports dynamic provisioning and scheduling of VMs and cloudlets ...
 categories:
 - CloudSimEx
-- blog
+- Java
 tags:
 - CloudSim
 - CloudSimEx

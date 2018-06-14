@@ -11,8 +11,8 @@ excerpt:
     Its goal is to explain Monads simply in less than 15 minutes and thus it refrains from making 
     insightful philosophical and theoretical reflections ...
 categories:
-- Miscellaneous
-- blog
+- Functional programming
+- Python
 tags:
 - Functional programming
 - Monad

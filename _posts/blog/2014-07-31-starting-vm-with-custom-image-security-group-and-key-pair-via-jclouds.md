@@ -13,8 +13,7 @@ excerpt:
     as possible, so that I can include multiple clouds later on. After struggling a bit with both 
     Apache LibCloud and Apache JClouds I could finally implement this in JClouds ...
 categories:
-- Miscellaneous
-- blog
+- Java
 tags:
 - AWS
 - Java

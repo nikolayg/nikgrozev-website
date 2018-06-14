@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reshaping in Pandas  - Pivot, Pivot-Table, Stack and Unstack explained with Pictures
+title: Reshaping in Pandas - Pivot, Pivot-Table, Stack, and Unstack explained with Pictures
 date: 2015-07-01 04:23:43.000000000
 type: post
 published: true
@@ -9,15 +9,13 @@ excerpt:
     In this post, I'll exemplify some of the most common Pandas reshaping 
     functions and will depict their work with diagrams ...
 categories:
-- DataScience
-- Miscellaneous
 - Python
-- blog
+- Pandas
 tags:
 - Pandas
 - Python
 - Reshape
-- DataScience
+- Data Science
 - Pivot
 - Reshape
 ---

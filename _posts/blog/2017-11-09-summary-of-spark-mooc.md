@@ -14,9 +14,6 @@ excerpt:
 categories:
 - Spark
 - Scala
-- MOOC
-- Functional programming
-- blog
 tags:
 - Spark
 - Scala

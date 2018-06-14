@@ -10,11 +10,9 @@ excerpt:
     lambdas and a new Date-Time API. This post gives a brief overview 
     of the new functional programming features in Java ...
 categories:
-- Miscellaneous
-- blog
+- Java
 tags:
 - Java
-- Jdk
 - Lambda
 ---
 

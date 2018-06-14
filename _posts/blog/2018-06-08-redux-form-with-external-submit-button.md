@@ -11,9 +11,6 @@ excerpt:
 categories:
 - JavaScript
 - React
-- Redux
-- Redux-Form
-- blog
 tags:
 - JavaScript
 - React

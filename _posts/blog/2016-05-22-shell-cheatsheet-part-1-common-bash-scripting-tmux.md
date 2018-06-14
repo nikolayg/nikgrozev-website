@@ -11,7 +11,6 @@ excerpt:
     extensively with the Bash shell ...
 categories:
 - Bash
-- blog
 tags:
 - Bash
 - Cheatsheet

@@ -16,11 +16,8 @@ excerpt:
     Cloud Foundry commands ...
 categories:
 - Cloud Foundry
-- Cheatsheet
-- blog
 tags:
 - Cloud Foundry
-- Cheatsheet
 ---
 
 

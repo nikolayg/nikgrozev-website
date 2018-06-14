@@ -13,11 +13,11 @@ categories:
 - Functional programming
 - Parallel programming
 - Scala
-- blog
 tags:
 - Functional programming
 - Parallel programming
 - Scala
+- MOOC
 ---
 
 

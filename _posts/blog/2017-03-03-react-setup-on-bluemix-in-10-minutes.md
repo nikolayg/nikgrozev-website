@@ -15,10 +15,7 @@ excerpt:
 categories:
 - JavaScript
 - Node
-- NPM
 - React
-- Bluemix
-- blog
 tags:
 - JavaScript
 - Node
