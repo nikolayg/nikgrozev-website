@@ -11,7 +11,6 @@ excerpt:
     explain some of its core concepts by comparing and contrasting the two “worlds” ...
 categories:
 - C#
-- blog
 tags:
 - C#
 - .NET
