@@ -11,7 +11,6 @@ categories:
 - Node
 - JavaScript
 - Cheatsheet
-- blog
 tags:
 - Node
 - JavaScript

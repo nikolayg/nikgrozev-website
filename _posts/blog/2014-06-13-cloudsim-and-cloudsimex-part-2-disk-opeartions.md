@@ -9,7 +9,7 @@ excerpt:
     In this post I'll focus on how CloudSimEx enables disk operations modelling ...
 categories:
 - CloudSimEx
-- blog
+- Java
 tags:
 - CloudSim
 - CloudSimEx

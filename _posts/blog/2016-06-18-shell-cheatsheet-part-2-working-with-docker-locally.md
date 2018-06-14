@@ -11,7 +11,6 @@ excerpt:
 categories:
 - Bash
 - Docker
-- blog
 tags:
 - Bash
 - Docker

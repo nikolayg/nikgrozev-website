@@ -11,13 +11,12 @@ excerpt:
     the HTM (Hierarchical Temporal Memory) model which mimics the structure and organisation of the neocortex. 
     In this post I'll overview a setup procedure for Ubuntu (tested with version 14.04) ...
 categories:
-- Miscellaneous
-- blog
+- NuPIC
 tags:
 - C++
 - NuPIC
 - Python
-- Ubuntu
+- Data Science
 ---
 
 

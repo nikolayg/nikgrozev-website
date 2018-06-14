@@ -11,11 +11,11 @@ categories:
 - Node
 - JavaScript
 - Cheatsheet
-- blog
 tags:
 - Node
 - JavaScript
 - Yarn
+- NPM
 - Cheatsheet
 ---
 

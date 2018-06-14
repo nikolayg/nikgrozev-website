@@ -12,7 +12,7 @@ excerpt:
     you're interested in Java and new JDK8 it can help you get started. This article summarises the course 
     and my previous post and can be used as a quick ref-card ...
 categories: 
-- blog
+- Java
 tags:
 - Java
 - Jdk

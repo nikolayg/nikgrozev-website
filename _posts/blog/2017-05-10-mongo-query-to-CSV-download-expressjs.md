@@ -10,15 +10,9 @@ excerpt:
 categories:
 - JavaScript
 - Node
-- NPM
-- Express
-- Mongo
-- CSV
-- blog
 tags:
 - JavaScript
 - Node
-- NPM
 - Mongo
 - CSV
 ---

@@ -10,10 +10,8 @@ excerpt:
     We will use simple Scala and pseudocode examples to illustrate the new terms. In this post we will look
     into Categories and Functors ...
 categories:
-- Category Theory
 - Functional programming
 - Scala
-- blog
 tags:
 - Category Theory
 - Functional programming

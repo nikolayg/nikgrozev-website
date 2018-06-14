@@ -9,8 +9,7 @@ excerpt:
     The purpose of this cheat-sheet is to briefly overview the main networking principles 
     without going into too much technical details...
 categories:
-- Miscellaneous
-- blog
+- Networking
 tags:
 - BGP
 - Network

@@ -12,8 +12,8 @@ excerpt:
     The goals of this article are to summarise, exemplify and compare terms 
     like green threads, fibres, goroutine, actors etc ...
 categories:
-- Miscellaneous
-- blog
+- Concurrent Programming
+- Parallel Programming
 tags:
 - Actors
 - Coroutine

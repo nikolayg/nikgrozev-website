@@ -12,13 +12,8 @@ excerpt:
     which can be reused in the future ... 
 categories:
 - JavaScript
-- Node
-- NPM
-- TypeScript
-- Flow
 - React
-- Redux
-- blog
+- TypeScript
 tags:
 - JavaScript
 - Node

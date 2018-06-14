@@ -10,10 +10,9 @@ excerpt:
 published: true
 status: publish
 categories:
-- Miscellaneous
-- blog
+- Octave
 tags:
-- GNU Octave
+- Data Science
 - Octave
 - Octave GUI
 - Ubuntu

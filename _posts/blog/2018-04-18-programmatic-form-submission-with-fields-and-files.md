@@ -12,14 +12,12 @@ categories:
 - JavaScript
 - Node
 - TypeScript
-- WebForm
-- blog
 tags:
 - JavaScript
 - Node
 - TypeScript
 - WebForm
-- Functional programming
+- File Upload
 ---
 
 <div id='introduction'/>
