@@ -15,6 +15,8 @@ tags:
 - JavaScript
 - TypeScript
 - AOP
+- Audit Log
+- Crosss Cutting Concern
 ---
 
 <div id='introduction'/>
