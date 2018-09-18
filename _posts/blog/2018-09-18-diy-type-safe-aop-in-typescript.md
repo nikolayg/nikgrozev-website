@@ -32,7 +32,6 @@ For just 2 API calls I had to write code like this:
 
 
 ```typescript
-
 try {
     console.log(`Calling API 1 ${param1}, ${param2}`);
     const resultCall1 = await apiCall_1(param1, param2);
