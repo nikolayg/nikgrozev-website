@@ -214,3 +214,11 @@ body {
         }
     }
 }
+
+// Site navigation styling
+#primary-nav ul li {
+    font-size: 1em;
+    @media #{$medium} {
+        font-size: 0.75em;
+    };
+}
