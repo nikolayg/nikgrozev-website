@@ -7,7 +7,7 @@ published: true
 status: publish
 excerpt: 
     In this article, we will demonstrate how to implement a simple type safe utility function 
-    for audit logging in Typescript.  
+    for audit logging in TypeScript.  
 categories:
 - JavaScript
 - TypeScript
