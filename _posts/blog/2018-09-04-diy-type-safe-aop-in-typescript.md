@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DIY Type Safe AOP in TypeScript
-date: 2018-09-04 05:22:09.000000000
+date: 2018-09-18 05:22:09.000000000
 type: post
 published: false
 status: publish
@@ -22,9 +22,9 @@ tags:
 
 Recently, I have been working on a few TypeScript projects where I had to implement audit logging
 for many opeartions. For example, I had to log every request to an external API and the received response or error message.
-I also had to audit log every attempt to access externally hosted resources e.g. SMTP or WebDAV servers.
+I also had to audit log every attempt to access externally hosted resources (e.g. SMTP or WebDAV servers).
 
-I had to wrap every function invocation, which needed to be audit logged, with the same audit logging logic.
+I had to wrap every function invocation, which needed to be audited, with the same logging logic.
 For simplicity, let's assume the audit logging had to be done via `console.log`. 
 For just 2 API calls I had to write code like this:
 
@@ -50,13 +50,12 @@ try {
     console.log(`Call to API 2 Failed with error: ${e}`);
     throw e;
 }
-
 ```
 
 This is obviously a very brittle and verbose solution. Moreover, I had to mix essential buisiness logic (the API calls)
 with [cross-cutting aspects](https://en.wikipedia.org/wiki/Aspect_(computer_programming)) (i.e. the logging). 
 Unfortunately, I couldn't find a flexible, stable, and type safe library for 
-[Aspect Oriented Programming (AOP)](https://en.wikipedia.org/wiki/Aspect-oriented_programming) in Node JS.
+[Aspect Oriented Programming (AOP)](https://en.wikipedia.org/wiki/Aspect-oriented_programming) in TypeScript.
 
 Fortunately, I managed to roll out my own minimalistic implementation to isolate the logging cross-cutting concerns.
 
@@ -86,22 +85,22 @@ const txt = (o: any) => stringify(o, null, 2);
 
 Now let's define a super type of all operations which we need to audit.  
 In the most general sense, we want to audit asynchronous functions (e.g. API calls) which take
-arbitrary number of parameters. The following type definition of `IPromiseFunction` represents a *super type*
-for all such functions. In other words, every asyncrhonous function can be assigned to an `IPromiseFunction` reference.
+arbitrary number of parameters. The following type definition of `AsyncFunction` represents a *super type*
+for all such functions. In other words, every asyncrhonous function can be assigned to an `AsyncFunction` reference.
 
 ```typescript
-type IAsyncFunction = (...args: any[]) => Promise<any>;
+type AsyncFunction = (...args: any[]) => Promise<any>;
 ```
 
 Now we can define a utility higher order function called `auditWrap`. 
 It takes as a parameter the function whose behaviour we need to audit log.
-The type parameter `F` is sub-type of `IAsyncFunction` and captures the exact 
+The type parameter `F` is sub-type of `AsyncFunction` and captures the exact 
 compile-time type of `fn`. Since `auditWrap` returns a function of type `F`, the types
 of `fn` and the result are the same. Thus we can preserve the type safety from the caller's point of view.
 
 
 ```typescript
-const auditWrap = function <F extends IAsyncFunction>(fn: F): F {
+const auditWrap = function <F extends AsyncFunction>(fn: F): F {
   const wrapper = async (...args: any[]) => {
     const stringArgs = args.map(txt).join(",\n"); // Textualize all arguements
 
@@ -136,7 +135,7 @@ async function example() {
 example()
 ```
 
-The audit log is huge - every axios parameter and response element is printed out. Below is a subset of the output
+The produced audit log is huge - every axios parameter and response element is printed out. Below is a subset of the output
 (`...` denotes omited output):
 
 ```
@@ -154,6 +153,7 @@ Call to function "wrap" suceeded with result: {
     "completed": false
   }
 }
+
 Attempting to call function: "wrap" with arguements: "https://jsonplaceholder.typicode.com/todos/2"
 Call to function "wrap" suceeded with result: {
   "status": 200,
@@ -170,11 +170,11 @@ Call to function "wrap" suceeded with result: {
 }
 ```
 
-Notice that name of the function in the audit log is `wrap`. Indeed, if you print `axios.get.name`, you'll see that this is actual
+Notice that name of the function in the audit log is `wrap`. Indeed, if you print `axios.get.name`, you'll see that this is its actual
 function name.
 
-Nevertheless, the above aproach is significant improvement. We managed to eliminate all `try`-`catch`-`log` boilerplate code and to preserve type safety.
-However, we could do a bit better. In the above example, we generated a huge amount of log. What if we want to audit log
+Nevertheless, the above aproach is a significant improvement. We managed to eliminate all `try`-`catch`-`log` boilerplate code and to preserve type safety.
+However, we can do a bit better. In the above example, we generated a huge amount of log. What if we want to audit log
 only specific parts of the output or have more readable function names? 
 
 We can achieve this by introducing higher level function(s), which hide the details of the underlying libraries and return
