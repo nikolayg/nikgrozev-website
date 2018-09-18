@@ -60,7 +60,7 @@ Unfortunately, I couldn't find a flexible, stable, and type safe library for
 Fortunately, I managed to roll out my own minimalistic implementation to isolate the logging cross-cutting concerns.
 
 <div id='implementation'/>
-#Minimalistic Type Safe AOP
+# Minimalistic Type Safe AOP
 
 Let's start by defining a simple asyncrhonous logging function. For the purposes of this article, we'll just write to the standard output.
 You can obviously have versions of this function which write to a databse, stream, or use a 3rd party logging library.
@@ -120,7 +120,7 @@ const auditWrap = function <F extends AsyncFunction>(fn: F): F {
 
 
 <div id='usage'/>
-#Usage
+# Usage
 
 Let's demonstrate how to use `auditWrap` in practice to audit log a couple of API Calls:
 
