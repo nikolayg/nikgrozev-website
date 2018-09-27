@@ -6,7 +6,7 @@ email: nikolay.grozev@gmail.com
 description: Staying on top of it.
 logo: images/site-logo.jpg
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: http://nikgrozev.com
+url: https://nikgrozev.com
 disqus:
   shortname: nikgrozev-com
 twitter:
