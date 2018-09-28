@@ -42,6 +42,25 @@ Again the installation is automated with a set of scripts, which have been teste
 In principle, they should also work in other Infrastructure as a Service (IaaS) environments, as long 
 they support 64bit Ubuntu 14.04 virtual machines.
 
+
+<div class="mid-page-ads in-body-ads ad-secion">
+    <div class="ad-header ad-header-body">Related Topics</div>
+    <script id="mNCC" language="javascript">
+        if (window.innerWidth >= 1024) {
+          medianet_width = "600";
+          medianet_height = "250";
+          medianet_crid = "459711728";
+        } else {
+          medianet_width=Math.min(250, window.innerWidth).toString();
+          medianet_height = "250";
+          medianet_crid = "318234500";
+        }
+        medianet_versionId = "3111299"; 
+      </script>
+    <script src="//contextual.media.net/nmedianet.js?cid=8CU4WBM36"></script>
+</div>
+
+
 # SetUp Overview
 
 Unlike the standard CloudStone deployment, now we'll need two more Virtual Machines - 

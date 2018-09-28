@@ -36,6 +36,23 @@ Unfortunately, it's quite old school and did not fit well with the rest of proje
 which uses promises. In this article, I'll show how to wrap the `XMLHttpRequest` primitives
 in a simple promise-based function for arbitrary form submission.
 
+<div class="mid-page-ads in-body-ads ad-secion">
+    <div class="ad-header ad-header-body">Related Topics</div>
+    <script id="mNCC" language="javascript">
+        if (window.innerWidth >= 1024) {
+          medianet_width = "600";
+          medianet_height = "250";
+          medianet_crid = "459711728";
+        } else {
+          medianet_width=Math.min(250, window.innerWidth).toString();
+          medianet_height = "250";
+          medianet_crid = "318234500";
+        }
+        medianet_versionId = "3111299"; 
+      </script>
+    <script src="//contextual.media.net/nmedianet.js?cid=8CU4WBM36"></script>
+</div>
+
 <div id='solution'/>
 # The Solution
 
