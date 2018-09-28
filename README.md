@@ -43,4 +43,3 @@ Running `exec jekyll serve` provides hot swapping - i.e. code changes are automa
 deployed locally. However, changes to `_config.yml` require the server to be restarted.
 
 
-
