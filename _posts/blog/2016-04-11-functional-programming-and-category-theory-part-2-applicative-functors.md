@@ -48,6 +48,22 @@ I talked about the basic concepts in Category Theory and Functional Programming 
 This post introduces a type of functors called *Applicative Functors*. Unlike the ordinary functors, applicatives allow 
 us to work with multi-arguement functions and thus turn out to be quite useful in FP. 
  
+<div class="mid-page-ads in-body-ads ad-secion">
+    <div class="ad-header ad-header-body">Related Topics</div>
+    <script id="mNCC" language="javascript">
+        if (window.innerWidth >= 1024) {
+          medianet_width = "600";
+          medianet_height = "250";
+          medianet_crid = "459711728";
+        } else {
+          medianet_width=Math.min(250, window.innerWidth).toString();
+          medianet_height = "250";
+          medianet_crid = "318234500";
+        }
+        medianet_versionId = "3111299"; 
+      </script>
+    <script src="//contextual.media.net/nmedianet.js?cid=8CU4WBM36"></script>
+</div>
 
 
 <!--- =============================== MOTIVATING EXAMPLE =============================== -->

@@ -233,8 +233,8 @@ body {
     @media screen and (min-width: 1025px){
         border-bottom: 1px solid #e0e0e0;
         border-top: 1px solid #e0e0e0;
-        font-size: 125%;
-        margin: 3rem 0 0.1rem auto;
+        font-size: 120%;
+        margin: 2rem 0 0.1rem auto;
         padding: 0.5rem 0 0rem 0.35rem;
     }
     @media (max-width: 1024px){
@@ -248,11 +248,12 @@ body {
 .ad-header-body {
     border-bottom: 1px solid #e0e0e0;
     border-top: 1px solid #e0e0e0;
-    font-size: 125%;
+    font-size: 115%;
     margin: 3rem 0 0.1rem auto;
     padding: 0.5rem 0 0rem 0.35rem;
+    color: #555555;
 }
 
 .in-body-ads {
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0 1.5rem 0;
 }
