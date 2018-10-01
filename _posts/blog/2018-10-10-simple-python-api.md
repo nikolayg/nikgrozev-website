@@ -77,8 +77,21 @@ python
 from flask import Flask
 ```
 
+# Environments
 
-# Flask
+NODE_ENV in Python - https://stackoverflow.com/questions/47392830/is-there-a-node-env-equivalent-in-python
+
+
+# Flask and Flask-RESTPlus
+
+If you have been following so far, we already installed flask by:
+
+```bash
+pipenv install flask
+```
+
+https://www.youtube.com/watch?v=yh-28ksEXwY
+
 
 # Swagger
 
