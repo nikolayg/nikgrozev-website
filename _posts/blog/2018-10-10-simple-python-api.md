@@ -14,6 +14,9 @@ tags:
 - Python
 - API
 - pyenv
+- pipenv
+- Flask
+- pytest
 ---
 
 # Introduction
@@ -144,7 +147,7 @@ source folders `src` and `tests`. By now your project should look like this:
 
 ```
 sample-python-api/
- |
+ │
  ├──── Pipfile
  ├──── Pipfile.lock
  ├──── src/
@@ -222,18 +225,286 @@ Now let's add `flask-restplus` too:
 pipenv install flask-restplus
 ```
 
-# Models and Resources
+# The Server
 
-# Swagger
+Let's start by creating a flask server in a file `./src/server/instance.py`:
+
+```python
+from flask import Flask
+from flask_restplus import Api, Resource, fields
+from environment.instance import environment_config
+
+class Server(object):
+    def __init__(self):
+        self.app = Flask(__name__)
+        self.api = Api(self.app, 
+            version='1.0', 
+            title='Sample Book API',
+            description='A simple Book API', 
+            doc = environment_config["swagger-url"]
+        )
+
+    def run(self):
+        self.app.run(debug = environment_config["debug"], port = environment_config["port"])
+
+server = Server()
+```
+
+The above code defines a wrapper class `Server`, which aggregates the flask 
+and the flask-restplus server instances called `app` and `api`.
+We use the environment configuration to parameterise `api`.
+The `environment_config["swagger-url"]` parameter defines the URL path
+of the Swagger UI for the project. If it's `None`, then the app won't start
+a Swagger UI. 
+
+The `start` method (which also uses environment parameters) initiates the server.
+The `server` represents the gloabl (ala singleton) instance of the web server.
+
+# Models
+
+The `flask-restplus` library introduces 2 main abstrations: *models*
+and *resources*. A model defines the structure/schema of the
+payload of a request or response. This includes the list of all fields,
+and their types. I keep all my models in a separate folder `src/models`.
+Let's create a new model `src/models/book.py`:
+
+```python
+from flask_restplus import fields
+from server.instance import server
+
+book = server.api.model('Book', {
+    'id': fields.Integer(description='Id'),
+    'title': fields.String(required=True, description='Book title')
+})
+```
+
+# Resources
+
+A `resource` is a class whose methods are mapped to an API/URL endpoint.
+We use the annotations from `flask-restplus` to define the 
+URL patterns for every such class. 
+
+The methods for every resources class, whose names match the HTTP
+methods (e.g. `get`, `put`), will handle those calls. 
+By using the `expect` annotation, for every HTTP method
+we can specify the expected *model* of their payload body.
+Similarly, by using the `marshal` annotations, we can define
+the respective response payload *model*.
+
+I like keeping my resources in the `src/resources` folder. Let's
+create a simple resource `src/resources/book.py`:
+
+```python
+from flask import Flask
+from flask_restplus import Api, Resource, fields
+
+from server.instance import server
+from models.book import book
+
+app, api = server.app, server.api
+
+# Let's just keep them in memory 
+books_db = [
+    {"id": 0, "title": "War and Peace"},
+    {"id": 1, "title": "Python for Dummies"},
+]
+
+# This class will handle GET and POST to /books
+@api.route('/books')
+class BookList(Resource):
+    @api.marshal_list_with(book)
+    def get(self):
+        return books_db
+
+    @api.expect(book)
+    @api.marshal_with(book)
+    def post(self):
+        # Generate new Id
+        api.payload["id"] = books_db[-1]["id"] + 1 if len(books_db) > 0 else 0
+        books_db.append(api.payload)
+        return api.payload
+```
+
+The above example handles HTTP `GET` and `POST` to the `/books` endpoint.
+Based on the `expect` amd `marshal` annotations, `flask-restplus` will
+automatically convert the JSON payloads to dictionaries and vice versa.
+
+Now let's implement can retrieval or update of inidividual books. In the same
+file we can write another resource/endpoiont class:
+
+```python
+# Handles GET and PUT to /books/:id
+# The path parameter will be supplied as a parameter to every method
+@api.route('/books/<int:id>')
+class Book(Resource):
+    def find_one(self, id):
+        return next((b for b in books_db if b["id"] == id), None)
+
+    @api.marshal_with(book)
+    def get(self, id):
+        match = self.find_one(id)
+        return match if match else ("Not found", 404)
+
+    @api.marshal_with(book)
+    def delete(self, id):
+        global books_db 
+        match = self.find_one(id)
+        books_db = list(filter(lambda b: b["id"] != id, books_db))
+        return match
+
+    @api.expect(book)
+    @api.marshal_with(book)
+    def put(self, id):
+        match = self.find_one(id)
+        if match != None:
+            match.update(api.payload)
+            match["id"] = id
+        return match
+```
+
+# Application Entry Point
+
+We now have all necessary components to start the API.
+If you have followed along, your code structure should look like this:
+
+```
+sample-python-api/
+ │
+ ├── Pipfile
+ ├── Pipfile.lock
+ └── src
+     ├── environment
+     │   └── instance.py
+     ├── models
+     │   └── book.py
+     ├── resources
+     │   └── book.py
+     └── server
+         └── instance.py
+```
+
+Let's create an entry point in the `src/main.py` file:
+
+```python
+from server.instance import server
+import sys, os
+
+# Need to import all resources
+# so that they register with the server 
+from resources.book import *
+
+if __name__ == '__main__':
+    server.run()
+```
+
+To start the server in development mode:
+
+```bash
+# If you haven't already, then start a pipenv shell
+pipenv shell
+
+PYTHON_ENV=development python src/main.py
+```
+
+This will start the server at the default port 5000. You can access the Swagger UI
+on http://localhost:5000/api/swagger:
+
+<figure>
+  <img src="/images/blog/Python-flask-rest-api/swagger-ui.png" alt="Swagger UI" >
+  <figcaption>Swagger UI on http://localhost:5000/api/swagger</figcaption>
+</figure>
+
+To start the server in production mode:
+
+```bash
+# If you haven't already, then start a pipenv shell
+pipenv shell
+
+PYTHON_ENV=production python src/main.py
+```
+
+Because of our environment configuration, you won't see the Swagger UI.
+You can still make API calls:
+
+```bash
+curl http://localhost:8080/books
+```
+
+Note that despite running our code in production mode/environment,
+we are still using flask's embedded development server. It
+is not optimised for large volumes. 
+
+<figure>
+  <img src="/images/blog/Python-flask-rest-api/flask-server-warning.png" alt="Flask Warning" >
+  <figcaption>Flask Warning</figcaption>
+</figure>
+
+Refer to the [official flask documentation](http://flask.pocoo.org/docs/0.12/deploying/) about suitable production
+deployment options.
 
 # Unit Tests
 
+We're going to use the [pytest](https://docs.pytest.org/en/latest/) library
+for unit testing. Let's install it 
+
 ```bash
-echo PYTHONPATH="$PWD/src" python -m pytest
+pipenv install pytest
+```
+We're also going to use `pytest-flask`, which is a `pytest` plugin
+for testing `flask` resources:
+
+```bash
+pipenv install pytest-flask
 ```
 
-# VS Code
+`Pytest` is different from other popular unit testing libraries
+(like `junit` or `jest`), because it introduces the concept of 
+*fixtures*. In the simplest case, a fixture is just a named function, 
+which constructs a test object (e.g. a mock database connection).
+Whenever a test function declares a formal parameter whose name
+conicides with the name of the fixture, `pytest` will invoke
+the corresponding function and pass the actual value.
 
-# Cloud Foundry
+When `pytest` starts, it looks for a special file called `./conftest.py`
+and runs it before all tests. This is the usual place to define
+global fixtures.
+Let's define a fixture for our server in `./conftest.py`:
 
-- https://www.youtube.com/watch?v=yh-28ksEXwY
+```python
+import pytest
+from server.instance import server
+
+# Creates a fixture whose name is "app"
+# and returns our flask server instance
+@pytest.fixture
+def app():
+    app = server.app
+    return app
+```
+
+The above code defines a global fixture for our flask instance.
+This is where the `pytest-flask` plugin kicks in. Given the `app`
+fixture, it implicitly and "magically" creates the `client` fixture,
+which allows to execute test API calls.
+
+Let's demonstrate this by creating a new test file `./test/resources/test_book.py`. Pytest expects all unit test files
+and functions to start with `test_` prefix:
+
+
+```python
+# Import the resource/controllers we're testing
+from resources.book import *
+
+# client is a fixture, injected bu the `pytest-flask` plugin
+def test_get_book(client):
+    # Make a tes call to /books/1
+    response = client.get("/books/1")
+
+    # Validate the response
+    assert response.status_code == 200
+    assert response.json == {
+        "id": 1, 
+        "title": "Python for Dummies"
+    }
+```
+
