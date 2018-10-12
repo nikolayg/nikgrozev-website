@@ -53,6 +53,8 @@ we can write APIs. We'll leave out application specific aspects like authenticat
 and database access and will focus on the basics. As an example, we'll build a 
 simple REST-ful API. You can find the full code [here](https://github.com/nikolayg/sample-python-api).
 
+The following has been tested on Ubuntu and OS X.
+
 <div id='pyenv'/>
 # Pyenv
 
