@@ -83,22 +83,6 @@ This setup poses 2 problems:
 - The button in the parent component can not access the form component properties. Therefore, it can not check if the form is ready to be submitted (e.g. all fields are valid);
 - The button in the parent component can not programmatically submit the form;
 
-<div class="mid-page-ads in-body-ads ad-secion">
-    <div class="ad-header ad-header-body">Related Topics</div>
-    <script id="mNCC" language="javascript">
-        if (window.innerWidth >= 1024) {
-          medianet_width = "600";
-          medianet_height = "250";
-          medianet_crid = "459711728";
-        } else {
-          medianet_width=Math.min(250, window.innerWidth).toString();
-          medianet_height = "250";
-          medianet_crid = "318234500";
-        }
-        medianet_versionId = "3111299"; 
-      </script>
-    <script src="//contextual.media.net/nmedianet.js?cid=8CU4WBM36"></script>
-</div>
 
 <div id='solution1'/>
 # Solution 1

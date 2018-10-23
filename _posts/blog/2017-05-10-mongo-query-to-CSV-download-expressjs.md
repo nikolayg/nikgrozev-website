@@ -27,22 +27,6 @@ The app had to allow for the
 export of a large Mongo query result (50K+ of documents). In this post, we'll
 see how to do it succinctly and "in-flight" with two popular CSV libraries.
 
-<div class="mid-page-ads in-body-ads ad-secion">
-    <div class="ad-header ad-header-body">Related Topics</div>
-    <script id="mNCC" language="javascript">
-        if (window.innerWidth >= 1024) {
-          medianet_width = "600";
-          medianet_height = "250";
-          medianet_crid = "459711728";
-        } else {
-          medianet_width=Math.min(250, window.innerWidth).toString();
-          medianet_height = "250";
-          medianet_crid = "318234500";
-        }
-        medianet_versionId = "3111299"; 
-      </script>
-    <script src="//contextual.media.net/nmedianet.js?cid=8CU4WBM36"></script>
-</div>
 
 <div id='query-cursor'/>
 # Query Cursor
