@@ -307,7 +307,7 @@ from server.instance import server
 
 book = server.api.model('Book', {
     'id': fields.Integer(description='Id'),
-    'title': fields.String(required=True, description='Book title')
+    'title': fields.String(required=True, min_length=1, max_length=200, description='Book title')
 })
 ```
 
@@ -350,7 +350,8 @@ class BookList(Resource):
     def get(self):
         return books_db
 
-    @api.expect(book)
+    # Ask flask_restplus to validate the incoming payload
+    @api.expect(book, validate=True)
     @api.marshal_with(book)
     def post(self):
         # Generate new Id
@@ -387,7 +388,8 @@ class Book(Resource):
         books_db = list(filter(lambda b: b["id"] != id, books_db))
         return match
 
-    @api.expect(book)
+    # Ask flask_restplus to validate the incoming payload
+    @api.expect(book, validate=True)
     @api.marshal_with(book)
     def put(self, id):
         match = self.find_one(id)
