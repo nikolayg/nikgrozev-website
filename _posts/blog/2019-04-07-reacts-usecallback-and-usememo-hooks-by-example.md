@@ -141,7 +141,7 @@ which keep the old values of `c1` and `c2` from the first rendering.
 We need to tell `useCallback` to create new cached versions of the functions 
 for every change of values of `c1` and `c2` that they depend on. 
 
-# useCallback and Dependencies
+# Dependencies
 
 This is where the second arguement of `useCallback` comes in. It is an array of values,
 which represents the **dependencies** of the cache. On any two subsequent re-renders,
@@ -214,7 +214,7 @@ This can be enforced by a
 [linter](https://www.npmjs.com/package/eslint-plugin-react-hooks) which checks that
 your `useCallback` cache dependenices are consistent.
 
-# useCallback vs useMemo
+# Two similar hooks - useCallback vs useMemo
 
 React introduces another similar hook called [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo).
 It has similar signature, but works differently.
