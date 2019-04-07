@@ -211,7 +211,7 @@ dependencies of `incrementBoth`.
 
 Since the references of `increment1` and `increment2` won't change unless their dependencies change,
 we could use them instead. Transitive dependencies can be ignored! 
-This makes for an easy rule:
+This makes for a straightforward rule:
 
 
 > Each function declared within a functional component's scope must be memoised/cached with `useCallback`.
