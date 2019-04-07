@@ -69,11 +69,13 @@ const App = () => {
 }
 ```
 
-Once we run the app and start clicking the buttons we observe something interesting.
+When we run the app and start clicking the buttons we observe something interesting.
 For every click of a button there are 2 newly created functions!
 In other words, at every re-render we're creating 2 new functions which is excessive.
 If we increment the `c1` counter, why do we need to recreate the `increment2` function?
-If we repeat this error many times on a big app, this may become a performance issue.
+And it's not just about memory - if we pass these functions as properties to future child 
+components, they will re-render needlessly because the function instances are different.
+If we repeat this error many times on a big app, this will become a performance issue.
 
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
