@@ -72,14 +72,6 @@ const App = () => {
 When we run the app and start clicking the buttons we observe something interesting.
 For every click of a button there are 2 newly created functions!
 
-In other words, at every re-render we're creating 2 new functions which is excessive.
-If we increment `c1`, why do we need to recreate the `increment2` function?
-This is not just about memory. 
-What if we pass `increment2` as a property to a future child component? 
-It will needlessly re-render on evey change of `c1`, because 
-the function instance of `increment2` will also change.
-This can quickly become a performance issue.
-
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
   <figcaption>
@@ -87,6 +79,14 @@ This can quickly become a performance issue.
     In this example, 5 state changes result in 10 new functions.
   </figcaption>
 </figure>
+
+In other words, at every re-render we're creating 2 new functions which is excessive.
+If we increment `c1`, why do we need to recreate the `increment2` function?
+This is not just about memory. 
+What if we pass `increment2` as a property to a future child component? 
+It will needlessly re-render on evey change of `c1`, because 
+the function instance of `increment2` will also change.
+This can quickly become a performance issue.
 
 One solution would be to move the two functions outside of the the `App` functional component. 
 Unfortunately, this wouldn't work because they use the state variables from `App`'s scope.
