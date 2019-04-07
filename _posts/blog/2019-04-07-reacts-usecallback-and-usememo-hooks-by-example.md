@@ -214,7 +214,7 @@ we could use them instead. Transitive dependencies can be ignored!
 This makes for a straightforward rule:
 
 
-> Each function declared within a functional component's scope must be memoised/cached with `useCallback`.
+> Each function declared within a functional component's scope must be memoized/cached with `useCallback`.
 > If it directly uses functions or other variables from the component scope
 > it should list them in its depency list.
 
