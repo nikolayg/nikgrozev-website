@@ -196,7 +196,7 @@ For example, let's create a cached/memoized function which increments both count
 const increment1 = useCallback(() => setC1(c1 + 1), [c1]);
 const increment2 = useCallback(() => setC2(c2 + 1), [c2]);
 
-// Could depend on [c1, c2] instead, but it would be brittle
+// Can depend on [c1, c2] instead, but it would be brittle
 const incrementBoth = useCallback(() => {
     increment1();
     increment2();
@@ -204,15 +204,22 @@ const incrementBoth = useCallback(() => {
 ```
 
 The new `incrementBoth` function transitively depends on `c1` and `c2`. 
-We could write `const incrementBoth = useCallback(... ,[c1, c2])` and that would work.
-However, this is brittle! If we changed the dependencies of `increment1` or `increment2`,
-we would have to remember to change the dependencies of `incrementBoth`.
+We could write `useCallback(... ,[c1, c2])` and that would work.
+However, this is a very brittle approach! If we changed the dependencies 
+of `increment1` or `increment2`, we would have to remember to change the 
+dependencies of `incrementBoth`.
 
 Since the references of `increment1` and `increment2` won't change unless their dependencies change,
 we could use them instead. Transitive dependencies can be ignored! 
-This makes for an easy rule - *list as dependency any
-function or other variable from the component scope that you're using*. 
-This can be enforced by a 
+This makes for an easy rule:
+
+
+> Each function declared within a functional component's scope must be memoised/cached with `useCallback`.
+> If it directly uses functions or other variables from the component scope
+> it should list them in its depency list.
+
+
+This rule can be enforced by a 
 [linter](https://www.npmjs.com/package/eslint-plugin-react-hooks) which checks that
 your `useCallback` cache dependenices are consistent.
 
