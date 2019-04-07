@@ -6,7 +6,7 @@ type: post
 published: true
 status: publish
 excerpt: 
-    This article demonstrates with a few simple examples why we need the useCallback and useMemo hooks,
+    This article demonstrates with a few simple examples why we need the useCallback and useMemo hooks
     and when and how to use them.  
 categories:
 - JavaScript
@@ -24,10 +24,10 @@ tags:
 I recently started learning about the [React hooks](https://reactjs.org/docs/hooks-reference.html) API and I was
 amazed by how expressive it is. Hooks allow me to rewrite tens of lines of boilerplate code with
 just a few lines. Unfortunately, this convenience comes at a cost. 
-I found that some more advanced hook like `useCallback` and `useMemo`
+I found that some more advanced hooks like `useCallback` and `useMemo`
 are hard to learn and appear counter-intuitive at first.
 
-In this article, I'll demonstrate with a few very simple examples why we need these hooks
+In this article, I'll demonstrate with a few simple examples why we need these hooks
 and when and how to use them. This is not an introduction to hooks, and you must be familiar
 with the [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook to follow. 
 
@@ -51,7 +51,7 @@ const App = () => {
   const increment1 = () => setC1(c1 + 1);
   const increment2 = () => setC2(c2 + 1);
 
-  // Register the functions
+  // Register the functions so we can count them
   functions.add(increment1);
   functions.add(increment2);
 
@@ -90,7 +90,7 @@ Unfortunately, this wouldn't work because they use the state variables from `App
 
 This is where the [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) hook comes in.
 It takes as an arguement a function and returns a cached/memoized version of it.
-It takes a second parameter which will cover later. Let's rewrite with `useCallBack`:
+It also takes a second parameter which will cover later. Let's rewrite with `useCallBack`:
 
 ```tsx
 const App = () => {
@@ -102,7 +102,7 @@ const App = () => {
   const increment1 = useCallback(() => setC1(c1 + 1), []);
   const increment2 = useCallback(() => setC2(c2 + 1), []);
 
-  // Register the functions
+  // Register the functions so we can count them
   functions.add(increment1);
   functions.add(increment2);
 
@@ -128,7 +128,7 @@ created functions, and this is the cause of the issue.
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-dependencies.png" alt="Without dependencies" >
   <figcaption>
     No new functions are created regardless of the counters' state changes. During the initial rendering, 
-    `useCallback` created single cached versions of the functions, which encapsulate the closure values, 
+    `useCallback` created single cached versions of the functions, which encapsulate the state values, 
     and reused them on every re-render.
   </figcaption>
 </figure>
@@ -136,7 +136,7 @@ created functions, and this is the cause of the issue.
 The `useCallback` hook has created single cached versions of the two functions, which
 encapsulate the **initial values** of `c1` and `c2`. When `App` re-renders with different values for
 `c1` and `c2`, `useCallback` returns the previous versions of the functions
-which embed the old values of `c1` and `c2` from the first rendering.
+which keep the old values of `c1` and `c2` from the first rendering.
 
 We need to tell `useCallback` to create new cached versions of the functions 
 for every change of values of `c1` and `c2` that they depend on. 
@@ -156,7 +156,7 @@ const App = () => {
   const increment1 = useCallback(() => setC1(c1 + 1), [c1]);
   const increment2 = useCallback(() => setC2(c2 + 1), [c2]);
 
-  // Register the functions
+  // Register the functions so we can count them
   functions.add(increment1);
   functions.add(increment2);
 
@@ -182,7 +182,7 @@ has changed since the previous rendering**.
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/with-dependencies.png" alt="With dependencies" >
   <figcaption>
-    A new function is created on every state change. Only the function whose dependencies change are recreated.
+    A new function is created on every state change. Only the function whose dependencies change is recreated.
   </figcaption>
 </figure>
 
@@ -190,7 +190,7 @@ A really useful feature of `useCallback` is that it returns the **same function 
 if the depencies don't change. Hence we can use it in the dependecy lists of other hooks. 
 For example, let's create a cached/memoized function which increments both counters:
 
-```tsx
+```typescript
 const increment1 = useCallback(() => setC1(c1 + 1), [c1]);
 const increment2 = useCallback(() => setC2(c2 + 1), [c2]);
 
@@ -230,11 +230,10 @@ const [c2, setC2] = useState(0);
 
 // This value will not be recomputed between re-renders
 // unless the value of c1 changes
-const complexValue = useMemo(() => Math.sin(c1) , [c1])
+const sinOfC1: number = useMemo(() => Math.sin(c1) , [c1])
 ```
 
-Just as with `useCallback`, the values returned by `useMemo` can be used by other
-hooks as dependencies. 
+Just as with `useCallback`, the values returned by `useMemo` can be used as other hooks' dependencies. 
 
 As an interesting aside, `useMemo` can cache a function value too.
 In other words, it is a generalised version of `useCallback` and can replace it 
