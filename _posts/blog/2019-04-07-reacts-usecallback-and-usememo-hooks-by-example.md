@@ -223,7 +223,7 @@ This rule can be enforced by a
 [linter](https://www.npmjs.com/package/eslint-plugin-react-hooks) which checks that
 your `useCallback` cache dependenices are consistent.
 
-# Two similar hooks - useCallback vs useMemo
+# Two similar hooks - useCallback and useMemo
 
 React introduces another similar hook called [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo).
 It has similar signature, but works differently.
