@@ -60,8 +60,8 @@ const App = () => {
     <div> Counter 2 is {c2} </div>
     <br/>
     <div>
-      <button onClick={increment1} >Increment Counter 1</button>
-      <button onClick={increment2} >Increment Counter 2</button>
+      <button onClick={increment1}>Increment Counter 1</button>
+      <button onClick={increment2}>Increment Counter 2</button>
     </div>
     <br/>
     <div> Newly Created Functions: {functions.size - 2} </div>
@@ -111,8 +111,8 @@ const App = () => {
     <div> Counter 2 is {c2} </div>
     <br/>
     <div>
-      <button onClick={increment1} >Increment Counter 1</button>
-      <button onClick={increment2} >Increment Counter 2</button>
+      <button onClick={increment1}>Increment Counter 1</button>
+      <button onClick={increment2}>Increment Counter 2</button>
     </div>
     <br/>
     <div> Newly Created Functions: {functions.size - 2} </div>
@@ -165,8 +165,8 @@ const App = () => {
     <div> Counter 2 is {c2} </div>
     <br/>
     <div>
-      <button onClick={increment1} >Increment Counter 1</button>
-      <button onClick={increment2} >Increment Counter 2</button>
+      <button onClick={increment1}>Increment Counter 1</button>
+      <button onClick={increment2}>Increment Counter 2</button>
     </div>
     <br/>
     <div> Newly Created Functions: {functions.size - 2} </div>
