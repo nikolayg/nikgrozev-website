@@ -34,8 +34,36 @@ with the [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook
 
 # The Problem
 
-Let's look at the following simple app. It displays 2 counters and allows the user to increment them with 2 buttons.
-We'll create 2 functions `increment1` and `increment2` and assign them to the buttons' on-click event handlers.
+Before we start, let's introduce a helper button component. We'll use
+[React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
+to turn it into a memoized component. This will force React to
+never re-render it, unless some of its properties change.
+We'll also. We'll also add a random colour as it's backgfound
+so we can track when it re-rerenders:
+
+```tsx
+import React, { useState, useCallback } from 'react';
+
+// Generates random colours any time it's called
+const randomColor = () => '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+// The type of the props
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+// A memoized button with a random background colour
+const Button = React.memo((props: ButtonProps) => 
+  <button onClick={props.onClick} style={{ background: randomColor() }}> 
+    {props.children}
+  </button>
+)
+```
+
+Now let's look at the following simple app. It displays 2 numbers - a 
+counter (`c`) and a `delta`. One button allows the user to incemenet  
+`delta` by 1.
+A second button, allows the user to increment the count by adding
+`delta` to it.
+We'll create 2 functions `increment` and `incrementDelta` and assign them to the buttons' on-click event handlers.
 Let's also keep track of how many such functions are created while the user clicks the buttons:
 
 ```tsx
@@ -45,23 +73,23 @@ import React, { useState } from 'react';
 const functions: Set<any> = new Set();
 
 const App = () => {
-  const [c1, setC1] = useState(0);
-  const [c2, setC2] = useState(0);
+  const [delta, setDelta] = useState(1);
+  const [c, setC] = useState(0);
 
-  const increment1 = () => setC1(c1 + 1);
-  const increment2 = () => setC2(c2 + 1);
+  const incrementDelta = () => setDelta(delta => delta + 1);
+  const increment = () => setC(c => c + delta);
 
   // Register the functions so we can count them
-  functions.add(increment1);
-  functions.add(increment2);
+  functions.add(incrementDelta);
+  functions.add(increment);
 
   return (<div>
-    <div> Counter 1 is {c1} </div>
-    <div> Counter 2 is {c2} </div>
+    <div> Delta is {delta} </div>
+    <div> Counter is {c} </div>
     <br/>
     <div>
-      <button onClick={increment1}>Increment Counter 1</button>
-      <button onClick={increment2}>Increment Counter 2</button>
+      <Button onClick={incrementDelta}>Increment Delta</Button>
+      <Button onClick={increment}>Increment Counter</Button>
     </div>
     <br/>
     <div> Newly Created Functions: {functions.size - 2} </div>
@@ -71,21 +99,20 @@ const App = () => {
 
 When we run the app and start clicking the buttons we observe something interesting.
 For every click of a button there are 2 newly created functions!
+Futhermore, both buttons re-render on every change!
 
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
   <figcaption>
     For every re-render of the component, 2 new functions are created. 
-    In this example, 5 state changes result in 10 new functions.
+    Every change causes by both buttoms to re-render .
   </figcaption>
 </figure>
 
-In other words, at every re-render we're creating 2 new functions, which is excessive.
-If we increment `c1`, why do we need to recreate the `increment2` function?
-This is not just about memory. 
-What if we pass `increment2` as a property to a future child component? 
-It will needlessly re-render on evey change of `c1`, because 
-the function instance of `increment2` will also change.
+In other words, at every re-render we're creating 2 new functions.
+If we increment `c`, why do we need to recreate the `incrementDelta` function?
+This is not just about memory - it causes child components to re-render
+unnecessarily. 
 This can quickly become a performance issue.
 
 One solution would be to move the two functions outside of the the `App` functional component. 
@@ -99,25 +126,23 @@ It also takes a second parameter which will cover later. Let's rewrite with `use
 
 ```tsx
 const App = () => {
-  const [c1, setC1] = useState(0);
-  const [c2, setC2] = useState(0);
+  const [delta, setDelta] = useState(1);
+  const [c, setC] = useState(0);
 
-  // Cache/memoize the functions - do not create new ones on every rerender
-  // Let's ignore the dependencies for now - i.e. use []
-  const increment1 = useCallback(() => setC1(c1 + 1), []);
-  const increment2 = useCallback(() => setC2(c2 + 1), []);
+  const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
+  const increment = useCallback(() => setC(c => c + delta), []);
 
   // Register the functions so we can count them
-  functions.add(increment1);
-  functions.add(increment2);
+  functions.add(incrementDelta);
+  functions.add(increment);
 
   return (<div>
-    <div> Counter 1 is {c1} </div>
-    <div> Counter 2 is {c2} </div>
+    <div> Delta is {delta} </div>
+    <div> Counter is {c} </div>
     <br/>
     <div>
-      <button onClick={increment1}>Increment Counter 1</button>
-      <button onClick={increment2}>Increment Counter 2</button>
+      <Button onClick={incrementDelta}>Increment Delta</Button>
+      <Button onClick={increment}>Increment Counter</Button>
     </div>
     <br/>
     <div> Newly Created Functions: {functions.size - 2} </div>
@@ -125,26 +150,32 @@ const App = () => {
 }
 ```
 
-When we re-run the app, we notice that we've introduced a bug. We can keep clicking
-the increment buttons, but the counters' values never increase beyond 1. There're no newly 
-created functions, and this is the cause of the issue.
+This prevents the instantiation of new functions and unnecessary re-renders.
+However, when we re-run the app, we notice that we've introduced a bug. If we increment
+`detla` to 2, and then try to increment the counter, its value increases by 1, not by 2:
 
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-dependencies.png" alt="Without dependencies" >
   <figcaption>
-    No new functions are created regardless of the counters' state changes. During the initial rendering, 
-    `useCallback` created single cached versions of the functions, which encapsulate the state values, 
-    and reused them on every re-render.
+    No new functions are created regardless of delta's state changes. During the 
+    initial rendering, `useCallback` created a single cached version of the 
+    "increment" function, which encapsulate the detla state value, 
+    and reused it on every re-render.
   </figcaption>
 </figure>
 
-The `useCallback` hook has created single cached versions of the two functions, which
-encapsulate the **initial values** of `c1` and `c2`. When `App` re-renders with different values for
-`c1` and `c2`, `useCallback` returns the previous versions of the functions
-which keep the old values of `c1` and `c2` from the first rendering.
+This is because at the point of instantiation of the `increment` function, the value
+of `delta` was 1, and this was captured in the function's scope. Since we're caching
+the `increment` instance, it's never recreated and it uses its original scope with
+`detla = 1`.  
 
-We need to tell `useCallback` to create new cached versions of the functions 
-for every change of values of `c1` and `c2` that they depend on. 
+The `useCallback` hook has created a single cached version of `increment`, which
+encapsulates the **initial value** of `delta`. When `App` re-renders with different values for
+`delta`, `useCallback` returns the previous version of the `increment` function
+which keeps the old value of `delta` from the first rendering.
+
+We need to tell `useCallback` to create new cached version of `increment` 
+for every change of `delta`. 
 
 # Dependencies
 
@@ -153,66 +184,50 @@ which represents the **dependencies** of the cache. On any two subsequent re-ren
 `useCallback` will return the same cached function instance if the values of the dependencies are equal:
 
 ```tsx
-const App = () => {
-  const [c1, setC1] = useState(0);
-  const [c2, setC2] = useState(0);
+  const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
 
-  // The useCallback caches depend on the values of c1 and c2
-  const increment1 = useCallback(() => setC1(c1 + 1), [c1]);
-  const increment2 = useCallback(() => setC2(c2 + 1), [c2]);
+  // Recreate increment on every change of delta
+  const increment = useCallback(() => setC(c => c + delta), [delta]);
 
-  // Register the functions so we can count them
-  functions.add(increment1);
-  functions.add(increment2);
-
-  return (<div>
-    <div> Counter 1 is {c1} </div>
-    <div> Counter 2 is {c2} </div>
-    <br/>
-    <div>
-      <button onClick={increment1}>Increment Counter 1</button>
-      <button onClick={increment2}>Increment Counter 2</button>
-    </div>
-    <br/>
-    <div> Newly Created Functions: {functions.size - 2} </div>
-  </div>)
-}
 ``` 
 
-Now we can see that the number of newly created functions is the same as the number of
-re-renders, which is twice as good as the original example without `useCallback`. In other words,
-**we only create new callbacks, if the part of the closure they use (i.e. their dependencies) 
+Now we can see that a new `increment` function is created only when `delta` changes.
+Consequently, the counter button only re-renders when `delta` changes, because
+a new instance of the `onClick` property is added.
+In other words,
+**we only create a new callback, if the part of the closure it uses (i.e. the dependencies) 
 has changed since the previous rendering**.
 
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/with-dependencies.png" alt="With dependencies" >
   <figcaption>
-    A new function is created on every state change. Only the function whose dependencies change is recreated.
+    A new `increment` function is created on every change of `delta`. 
+    Only the function whose dependencies change is recreated.
   </figcaption>
 </figure>
 
 A really useful feature of `useCallback` is that it returns the **same function instance**
 if the depencies don't change. Hence we can use it in the dependecy lists of other hooks. 
-For example, let's create a cached/memoized function which increments both counters:
+For example, let's create a cached/memoized function which increments both numbers:
 
 ```typescript
-const increment1 = useCallback(() => setC1(c1 + 1), [c1]);
-const increment2 = useCallback(() => setC2(c2 + 1), [c2]);
+const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
+const increment = useCallback(() => setC(c => c + delta), [delta]);
 
 // Can depend on [c1, c2] instead, but it would be brittle
 const incrementBoth = useCallback(() => {
-    increment1();
-    increment2();
-}, [increment1, increment2]); 
+    increment();
+    incrementDelta();
+}, [increment, incrementDelta]); 
 ```
 
-The new `incrementBoth` function transitively depends on `c1` and `c2`. 
-We could write `useCallback(... ,[c1, c2])` and that would work.
+The new `incrementBoth` function transitively depends on `delta`. 
+We could write `useCallback(... ,[delta])` and that would work.
 However, this is a very brittle approach! If we changed the dependencies 
-of `increment1` or `increment2`, we would have to remember to change the 
+of `increment` or `incrementDelta`, we would have to remember to change the 
 dependencies of `incrementBoth`.
 
-Since the references of `increment1` and `increment2` won't change unless their dependencies change,
+Since the references of `increment` and `incrementDelta` won't change unless their dependencies change,
 we could use them instead. Transitive dependencies can be ignored! 
 This makes for a straightforward rule:
 
@@ -237,12 +252,11 @@ In other words `useMemo` caches a computed value. This is usefull when the compu
 requires significant resources and we don't want to repeat it on every re-render, as in this example:
 
 ```typescript
-const [c1, setC1] = useState(0);
-const [c2, setC2] = useState(0);
+const [c, setC] = useState(0);
 
 // This value will not be recomputed between re-renders
-// unless the value of c1 changes
-const sinOfC1: number = useMemo(() => Math.sin(c1) , [c1])
+// unless the value of c changes
+const sinOfC1: number = useMemo(() => Math.sin(c) , [c])
 ```
 
 Just as with `useCallback`, the values returned by `useMemo` can be used as other hooks' dependencies. 
