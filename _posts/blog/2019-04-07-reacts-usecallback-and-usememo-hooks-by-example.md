@@ -59,8 +59,7 @@ const Button = React.memo((props: ButtonProps) =>
 ```
 
 Now let's look at the following simple app. It displays 2 numbers - a 
-counter (`c`) and a `delta`. One button allows the user to incemenet  
-`delta` by 1.
+counter (`c`) and a `delta`. One button allows the user to increment `delta` by 1.
 A second button, allows the user to increment the count by adding
 `delta` to it.
 We'll create 2 functions `increment` and `incrementDelta` and assign them to the buttons' on-click event handlers.
