@@ -38,7 +38,7 @@ Before we start, let's introduce a helper button component. We'll use
 [React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 to turn it into a memoized component. This will force React to
 never re-render it, unless some of its properties change.
-We'll also. We'll also add a random colour as it's backgfound
+We'll also add a random colour as its backgfound
 so we can track when it re-rerenders:
 
 ```tsx
@@ -59,9 +59,8 @@ const Button = React.memo((props: ButtonProps) =>
 ```
 
 Now let's look at the following simple app. It displays 2 numbers - a 
-counter (`c`) and a `delta`. One button allows the user to increment `delta` by 1.
-A second button, allows the user to increment the count by adding
-`delta` to it.
+counter `c` and a `delta`. One button allows the user to increment `delta` by 1.
+A second button, allows the user to increment the counter by adding `delta` to it.
 We'll create 2 functions `increment` and `incrementDelta` and assign them to the buttons' on-click event handlers.
 Let's also keep track of how many such functions are created while the user clicks the buttons:
 
@@ -104,7 +103,7 @@ Futhermore, both buttons re-render on every change!
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
   <figcaption>
     For every re-render of the component, 2 new functions are created. 
-    Every change causes by both buttoms to re-render .
+    Every change causes both buttoms to re-render.
   </figcaption>
 </figure>
 
@@ -128,6 +127,7 @@ const App = () => {
   const [delta, setDelta] = useState(1);
   const [c, setC] = useState(0);
 
+  // No dependencies (i.e. []) for now
   const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
   const increment = useCallback(() => setC(c => c + delta), []);
 
@@ -150,15 +150,16 @@ const App = () => {
 ```
 
 This prevents the instantiation of new functions and unnecessary re-renders.
-However, when we re-run the app, we notice that we've introduced a bug. If we increment
-`detla` to 2, and then try to increment the counter, its value increases by 1, not by 2:
+However, when we re-run the app, we notice that we've introduced a bug. If we 
+increment `detla` to 2, and then try to increment the counter, its value increases 
+by 1, not by 2:
 
 <figure>
   <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-dependencies.png" alt="Without dependencies" >
   <figcaption>
     No new functions are created regardless of delta's state changes. During the 
     initial rendering, `useCallback` created a single cached version of the 
-    "increment" function, which encapsulate the detla state value, 
+    "increment" function, which encapsulate the detla state value 
     and reused it on every re-render.
   </figcaption>
 </figure>
@@ -180,18 +181,19 @@ for every change of `delta`.
 
 This is where the second arguement of `useCallback` comes in. It is an array of values,
 which represents the **dependencies** of the cache. On any two subsequent re-renders,
-`useCallback` will return the same cached function instance if the values of the dependencies are equal:
+`useCallback` will return the same cached function instance if the values of the dependencies are equal.
+
+We can use dependencies to solve the previous bug:
 
 ```tsx
   const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
 
-  // Recreate increment on every change of delta
+  // Recreate increment on every change of delta!
   const increment = useCallback(() => setC(c => c + delta), [delta]);
-
 ``` 
 
 Now we can see that a new `increment` function is created only when `delta` changes.
-Consequently, the counter button only re-renders when `delta` changes, because
+Therefore, the counter button only re-renders when `delta` changes, because
 a new instance of the `onClick` property is added.
 In other words,
 **we only create a new callback, if the part of the closure it uses (i.e. the dependencies) 
@@ -215,8 +217,8 @@ const increment = useCallback(() => setC(c => c + delta), [delta]);
 
 // Can depend on [c1, c2] instead, but it would be brittle
 const incrementBoth = useCallback(() => {
-    increment();
     incrementDelta();
+    increment();
 }, [increment, incrementDelta]); 
 ```
 
