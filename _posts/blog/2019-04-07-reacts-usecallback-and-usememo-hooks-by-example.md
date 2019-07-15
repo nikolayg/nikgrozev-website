@@ -38,7 +38,7 @@ Before we start, let's introduce a helper button component. We'll use
 [React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 to turn it into a memoized component. This will force React to
 never re-render it, unless some of its properties change.
-We'll also add a random colour as its backgfound
+We'll also add a random colour as its background
 so we can track when it re-rerenders:
 
 ```tsx
