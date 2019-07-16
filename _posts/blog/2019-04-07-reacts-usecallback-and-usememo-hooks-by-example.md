@@ -45,14 +45,14 @@ so we can track when it re-rerenders:
 import React, { useState, useCallback } from 'react';
 
 // Generates random colours any time it's called
-const randomColor = () => '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+const randomColour = () => '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
 // The type of the props
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 // A memoized button with a random background colour
 const Button = React.memo((props: ButtonProps) => 
-  <button onClick={props.onClick} style={{ background: randomColor() }}> 
+  <button onClick={props.onClick} style={{background: randomColour()}}> 
     {props.children}
   </button>
 )
