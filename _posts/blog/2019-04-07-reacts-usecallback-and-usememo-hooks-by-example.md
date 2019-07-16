@@ -51,11 +51,13 @@ const randomColour = () => '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 // A memoized button with a random background colour
+{% raw %}
 const Button = React.memo((props: ButtonProps) => 
   <button onClick={props.onClick} style={{background: randomColour()}}> 
     {props.children}
   </button>
 )
+{% endraw %}
 ```
 
 Now let's look at the following simple app. It displays 2 numbers - a 
