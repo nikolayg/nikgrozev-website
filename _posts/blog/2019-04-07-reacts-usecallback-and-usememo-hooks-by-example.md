@@ -217,7 +217,7 @@ For example, let's create a cached/memoized function which increments both numbe
 const incrementDelta = useCallback(() => setDelta(delta => delta + 1), []);
 const increment = useCallback(() => setC(c => c + delta), [delta]);
 
-// Can depend on [c1, c2] instead, but it would be brittle
+// Can depend on [delta] instead, but it would be brittle
 const incrementBoth = useCallback(() => {
     incrementDelta();
     increment();
@@ -259,7 +259,7 @@ const [c, setC] = useState(0);
 
 // This value will not be recomputed between re-renders
 // unless the value of c changes
-const sinOfC1: number = useMemo(() => Math.sin(c) , [c])
+const sinOfC: number = useMemo(() => Math.sin(c) , [c])
 ```
 
 Just as with `useCallback`, the values returned by `useMemo` can be used as other hooks' dependencies. 
