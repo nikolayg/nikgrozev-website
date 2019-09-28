@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: nikgrozev.com
+Token: 52cb7f2764c9f7f09986bc5892236fc3baf4bbb0dfab8e6e5c00ab73e2189191
