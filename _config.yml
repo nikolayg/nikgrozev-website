@@ -78,9 +78,6 @@ author:
     - title: Stack Overflow
       url: http://stackoverflow.com/users/3682523/nikolay
       icon: fab fa-stack-overflow
-    - title: Google+
-      url: https://plus.google.com/+NikolayGrozev
-      icon: fab fa-google-plus-square
     - title: RSS
       url: http://nikgrozev.com/feed.xml
       icon: fas fa-rss-square
@@ -99,9 +96,6 @@ footer_links:
   - title: Stack Overflow
     url: http://stackoverflow.com/users/3682523/nikolay
     icon: fab fa-stack-overflow
-  - title: Google+
-    url: https://plus.google.com/+NikolayGrozev
-    icon: fab fa-google-plus-square
   - title: RSS
     url: http://nikgrozev.com/feed.xml
     icon: fas fa-rss-square
