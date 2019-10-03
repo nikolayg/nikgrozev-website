@@ -45,7 +45,7 @@ Here's the content of my `~/.kube` folder:
  ├── cache
  │   └── ...
  ├── config
- ├── custom-contexts
+ └── custom-contexts
      └── NikTest-Kube-Config
          ├── ca-hou02-NikTest.pem
          └── kube-config-hou02-NikTest.yml
