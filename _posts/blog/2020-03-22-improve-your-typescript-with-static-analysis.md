@@ -395,7 +395,7 @@ sonarqubeScanner(
     options: {}
   },
   () => {
-    console.error(' >> >> >> >> Sonar analysis is done!');
+    console.log('>> Sonar analysis is done!');
   }
 );
 ```
