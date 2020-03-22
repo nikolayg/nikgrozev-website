@@ -45,9 +45,9 @@ In this post, I'll describe a set of tools for static analysis and automated aud
 I'll demonstrate how to configure and execute them locally so you can get quick 
 feedback during development. The same scripts and commands can be used in any CI/CD tool.
 
-Interestingly, most of these tools and configurations are not specific to TypeScript 
+Most of these tools and configurations are not specific to TypeScript 
 and can be adapted to plain JavaScript. However, if you're looking at automated 
-code quality tooling for large codebases
+code quality tooling for large code bases
 [then TypeScript is your friend](https://www.youtube.com/watch?v=wYgSiFaYSSo).
 
 There are many code snippets in this post. At any point, you can refer to 
@@ -73,7 +73,7 @@ We'll need the following ESLint plugins and auxiliary packages:
 - [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs) - code quality ESLint rules from [Sonar Source](https://www.sonarsource.com/);
 
 [Prettier](https://prettier.io/) is a popular code formatting tool. If you want to integrate it with ESLint, we'll need the following. 
-- [prettier](https://www.npmjs.com/package/prettier) - [Prettier](https://prettier.io/) itself; 
+- [prettier](https://www.npmjs.com/package/prettier) - the [Prettier](https://prettier.io/) tool itself; 
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) - rules for the [Prettier](https://prettier.io/) code formatter; 
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier) - turns off ESLint rules which might conflict with Prettier;
 - [prettier-eslint](https://www.npmjs.com/package/prettier-eslint) - allows ESLint to 
@@ -142,7 +142,7 @@ You can configure the behaviour or Prettier with a [.prettierrc](https://github.
 files in the root of the project.
 
 Finally, let's add two additional commands to our `package.json`. They'll allow us
-to run `ESLint` and fix formatting issues automatically:
+to run `ESLint` and automatically fix formatting issues:
 
 
 ```
@@ -160,9 +160,10 @@ to run `ESLint` and fix formatting issues automatically:
 # Jest and Code Coverage
 
 [Jest](https://jestjs.io/) has emerged as the most popular JavaScript testing framework.
-To make it work with TypeScript, we'll need a helper module called [ts-jest](https://www.npmjs.com/package/ts-jest) which dynamically compiles the TypeScript code. 
-We also need `jest` to generate a test coverage report. We'll later feed this report
-into [SonarQube](https://www.sonarqube.org/) for further analysis. There's a handy module for this called [jest-sonar-reporter](https://www.npmjs.com/package/jest-sonar-reporter).
+To make it work with TypeScript we'll need a helper module called [ts-jest](https://www.npmjs.com/package/ts-jest).
+It dynamically compiles the TypeScript code. 
+We also need `jest` to generate a test coverage report. We'll feed this report
+into [SonarQube](https://www.sonarqube.org/) later on for further analysis. There's a handy module for this called [jest-sonar-reporter](https://www.npmjs.com/package/jest-sonar-reporter).
 
 We can install them and `jest` itself via `npm` or `yarn`:
 
@@ -171,7 +172,7 @@ npm install --save-dev jest @types/jest
 npm install --save-dev ts-jest jest-sonar-reporter
 ```
 
-Jest can be configured via a file called `jest.config.js` in the project root. 
+Jest can be configured via a file called `jest.config.js` in the project root folder. 
 We'll use it to transform all test files matching the 
 [Jest naming convention](https://www.reactnative.guide/7-testing/7.1-jest-setup.html) 
 with `ts-jest` and generate reports 
@@ -227,11 +228,13 @@ Add the following to your scripts in `package.json`:
 "test": "jest --forceExit --detectOpenHandles --coverage"
 ```
 
+If you run `npm test` you should see a new folder `./coverage` with the code coverage reports.
+
 <div id='jest-cra'/>
 # Jest and Create React App (CRA)
 
 Many React projects use the [Create React App](https://create-react-app.dev/) code
-generator. CRA uses Jest internally, but hides many of its properties.
+generator. CRA uses Jest internally but hides many of its properties.
 Also, it doesn't pick up the configuration in `jest.config.js`.
 
 Fortunately, you can still configure the coverage output directly in the 
@@ -252,18 +255,18 @@ configuration as in the previous section.
 <div id='dep-audit'/>
 # Dependency Audit / Supply Chain Analysis
 
-A typical medium sized JavaScript project can have hundreds of direct dependencies.
+A large JavaScript project can have hundreds of direct dependencies.
 Each of them can have many dependencies on its own.
 A security vulnerability in any of them can become a vulnerability for 
 the entire project. This is known as a [Supply Chain Attack](https://devops.com/software-supply-chain-attacks-how-to-disrupt-attackers/).
 
-Both `npm` and `yarn` introduced a new command called `audit`.
+To address this, both `npm` and `yarn` introduced a new command called `audit`.
 It checks whether your dependencies have known vulnerabilities and provides a report.
 Unfortunately, working directly with `npm audit` can be tricky. It provides
 limited options to filter threats by severity and to white list modules.
-It can generate a lot of "noise". 
+It can generate a lot of noise. 
 
-There are a number of auxiliary tools, which "wrap" the audit command
+There are a few auxiliary tools which "wrap" the audit command
 and give developers much more control. A popular option is
 [audit-ci](https://www.npmjs.com/package/audit-ci). 
 It automatically detects whether you're using `npm` or `yarn` and gives you plenty 
@@ -273,7 +276,7 @@ of configuration options. Let's install it:
 npm install --save-dev audit-ci
 ```
 
-Now, let's create a file `audit-ci.json` which will contain its config:
+Now, let's create a file `audit-ci.json` with its config:
 
 ```json
 {
@@ -302,17 +305,20 @@ Lastly, let's configure a script for `audit-ci` in `package.json`:
 }
 ```
 
+Now, you should be able to run `npm run audit-dependencies` and analyze your
+supply chain for vulnerabilities.
+
 <div id='sonar-qube'/>
 # Local SonarQube
 
 [SonarQube](https://www.sonarqube.org/) is a popular tool for static source 
 code analysis. It supports many languages including TypeScript. 
-Usually, a company would have a SonarQube instance which analyses
+Typically, a company would have a SonarQube instance which analyses
 all of its projects. The CI/CD pipeline would push your code to the 
 SonarQube instance during each build.
 
 I often find it convenient to run SonarQube locally so I can quickly analyse
-my code before integrating it. This is quite easy to do in a 
+my code before integrating it. This is quite easy with a 
 [Docker container](https://dev.to/rafaeldias97/nodejs-express-docker-jest-sonarqube-45me).
 
 Let's create a `docker-compose.sonar.yml` file:
@@ -343,13 +349,13 @@ After starting it, wait for Sonar to load on
 Navigate to [http://localhost:9000/dashboard](http://localhost:9000/dashboard) 
 and use `admin`/`admin` to login.
 
-Note that this local SonarQube instance uses an in-memory data storage.
+Note that the local SonarQube instance uses in-memory data storage.
 Any changes you make will be wiped out on restart.
 
 <div id='sonar-analysis'/>
 # Run SonarQube Analysis
 
-Before you analyse a project in SonarQube, you need to create yet another config file
+Before you analyse a project in SonarQube, you need to create a config file
 called `sonar-project.properties` in the root folder:
 
 ```
@@ -369,14 +375,14 @@ sonar.testExecutionReportPaths=coverage/test-reporter.xml
 This file defines the project name, key, and version. It also specifies the programming
 language, code location, and the code coverage report.
 
-In order to run the SonarQube analysis, we will need an auxiliary module 
+To run the SonarQube analysis we will need an auxiliary module 
 called [sonarqube-scanner](https://www.npmjs.com/package/sonarqube-scanner):
 
 ```bash
 npm install --save-dev sonarqube-scanner
 ```
 
-The module expects to find a file called `sonar-project.js` in the root of your project.
+The module expects to find a file called `sonar-project.js` in the project root.
 Let's create it:
 
 ```js
@@ -389,7 +395,7 @@ sonarqubeScanner(
     options: {}
   },
   () => {
-    console.error(' >> >> >> >> Sonar analyis is done!');
+    console.error(' >> >> >> >> Sonar analysis is done!');
   }
 );
 ```
@@ -400,7 +406,7 @@ variables.
 
 The `sonarqube-scanner` module has one shortcoming. It starts the SonarQube analysis
 asynchronously and it doesn't wait for it to complete. This is problematic 
-when you want to integrate the code scan into a CI/CD pipeline. In this case, you
+when you want to integrate the code scan into a CI/CD pipeline. You may
 need to wait for the analysis to complete and either fail/proceed based on the
 result.
 
@@ -415,7 +421,7 @@ The `sonarqube-verify` library is a wrapper of `sonarqube-scanner`.
 It starts the code analsys and then checks its progress every few seconds.
 On completion, it either suceeds or fails based on the analysis result.
 
-Lastly, let's create the script to run it:
+Let's create the script to run it:
 
 ```json
 {
@@ -463,8 +469,10 @@ Now we need to create a `.huskyrc` file which defines the hook:
 
 This ensures that the code builds, the tests pass, no ESLint errors are present, 
 and there're no known vulnerabilities in the dependencies. 
-Depending on the size of the project, these commands can take a while.
-That's why we used a `pre-push` hook instead of `pre-commit`.
+Depending on the project size these commands can take a while.
+I prefer to use `pre-push` instead of `pre-commit` so that local commits 
+are quick, but everyone is forced to clean up their code before they integrate.
+Every team has its own philosophy - use whatever works for you!
 
 From now on, on every `git push` the above command will run. If it fails, 
 no code will be pushed to the remote repository.
