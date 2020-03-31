@@ -400,9 +400,10 @@ sonarqubeScanner(
 );
 ```
 
-This configures `sonarqube-scanner` to submit your code to the sonar server. 
+Now we can run `sonarqube-scanner` with `node sonar-qube.js` and this will submit 
+our code sonar server. 
 By default, the local server is used, but this can be overriden via environment
-variables.
+variables. Go on and test it to make sure it works.
 
 The `sonarqube-scanner` module has one shortcoming. It starts the SonarQube analysis
 asynchronously and it doesn't wait for it to complete. This is problematic 
@@ -444,6 +445,9 @@ npm run sonar
 # Visit http://localhost:9000/projects to see result 
 # login with admin/admin
 ```
+
+Check out the documentation of [sonarqube-verify](https://www.npmjs.com/package/sonarqube-verify)
+to see how to push to a remote server via env variables.
 
 
 <div id='husky'/>
