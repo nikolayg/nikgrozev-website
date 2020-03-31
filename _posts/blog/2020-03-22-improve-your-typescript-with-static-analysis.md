@@ -400,7 +400,7 @@ sonarqubeScanner(
 );
 ```
 
-Now we can run `sonarqube-scanner` with `node sonar-qube.js` and this will submit 
+Now we can run `sonarqube-scanner` with `node sonar-project.js` and this will submit 
 our code sonar server. 
 By default, the local server is used, but this can be overriden via environment
 variables. Go on and test it to make sure it works.
