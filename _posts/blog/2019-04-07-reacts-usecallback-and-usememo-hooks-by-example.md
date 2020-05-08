@@ -237,7 +237,7 @@ This makes for a straightforward rule:
 
 > Each function declared within a functional component's scope must be memoized/cached with `useCallback`.
 > If it references functions or other variables from the component scope
-> it should list them in its depency list.
+> it should list them in its dependency list.
 
 
 This rule can be enforced by a 
