@@ -10,8 +10,10 @@ excerpt:
     in a structured and convenient way ...
 categories:
 - Kubernetes
+- Docker
 tags:
 - Kubernetes
+- Docker
 - kubectl
 - context
 ---
