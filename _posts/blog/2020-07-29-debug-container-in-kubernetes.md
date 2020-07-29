@@ -22,7 +22,8 @@ tags:
 
 # Background
 
-On a recent project, I've been troubleshooting some connectivity issues in a Kubernetes cluster. The pods were failing to talk
+On a recent project, I've been troubleshooting some connectivity issues in a Kubernetes cluster. 
+The pods were failing to talk
 to external on-prem systems and I had to prepare a
 [Minimal, Reproducible Example (MRE)](https://stackoverflow.com/help/minimal-reproducible-example) for 
 the network administrators. 
@@ -55,7 +56,7 @@ image (about 11MB) which includes `curl` - you can obviously choose to use a big
 
 **The container will complete in 10 minutes and the pod will
 be die/exit.** If you need more time for your troubleshooting
-please increase the sleep intervarl in the above config. 
+please increase the sleep interval in the above config. 
 
 Let's create the pod in the cluster:
 
