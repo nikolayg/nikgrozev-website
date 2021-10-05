@@ -36,7 +36,7 @@ bundle update && bundle install
 
 -  Start the Jekyll server:
 ```bash
-bundle exec jekyll serve --watch
+bundle exec jekyll serve --watch --incremental
 ```
 
 -  Open http://localhost:4000 in your browser.

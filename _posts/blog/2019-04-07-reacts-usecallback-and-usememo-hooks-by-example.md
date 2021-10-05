@@ -101,7 +101,7 @@ For every click of a button there are 2 newly created functions!
 Futhermore, both buttons re-render on every change!
 
 <figure>
-  <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/React useCallback and useMemo Hooks By Example/without-use-callback.png" alt="Without useCallback" >
   <figcaption>
     For every re-render of the component, 2 new functions are created. 
     Every change causes both buttoms to re-render.
@@ -156,7 +156,7 @@ increment `detla` to 2, and then try to increment the counter, its value increas
 by 1, not by 2:
 
 <figure>
-  <img src="/images/blog/React useCallback and useMemo Hooks By Example/without-dependencies.png" alt="Without dependencies" >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/React useCallback and useMemo Hooks By Example/without-dependencies.png" alt="Without dependencies" >
   <figcaption>
     No new functions are created regardless of delta's state changes. During the 
     initial rendering, `useCallback` created a single cached version of the 
@@ -201,7 +201,7 @@ In other words,
 has changed since the previous rendering**.
 
 <figure>
-  <img src="/images/blog/React useCallback and useMemo Hooks By Example/with-dependencies.png" alt="With dependencies" >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/React useCallback and useMemo Hooks By Example/with-dependencies.png" alt="With dependencies" >
   <figcaption>
     A new `increment` function is created on every change of `delta`. 
     Only the function whose dependencies change is recreated.

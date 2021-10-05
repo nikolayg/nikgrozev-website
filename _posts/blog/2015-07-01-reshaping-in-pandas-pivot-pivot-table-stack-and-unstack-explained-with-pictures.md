@@ -233,7 +233,7 @@ The inverse operation is called unstacking. It means moving the innermost row in
 innermost column index. The following diagram depicts the operations:
 
 <figure>
-  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-unstack1.png" alt="Stack and Unstack" >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-unstack1.png" alt="Stack and Unstack" >
   <figcaption>Stack and Unstack</figcaption>
 </figure>
 
@@ -273,7 +273,7 @@ if unstacking) and its values are nested in the other index, which is now a Mult
 Therefore, the result is always a Series with a hierarchical index. The following example demonstrates this:
 
 <figure>
-  <img src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png">
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/Reshaping in Pandas - Pivot Pivot-Table Stack and Unstack explained with Pictures/stack-simple2.png">
   <figcaption>Stack and Unstack</figcaption>
 </figure>
 

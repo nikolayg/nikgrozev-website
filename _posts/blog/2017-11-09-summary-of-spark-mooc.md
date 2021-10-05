@@ -208,7 +208,7 @@ Behind the scenes, the driver schedules the RDD operations on the workers via th
 **Cluster Manager**.
 
 <figure>
-  <img src="/images/blog/Summary of Spark MOOC/SparkTopology.png" alt="Spark Topology." >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/Summary of Spark MOOC/SparkTopology.png" alt="Spark Topology." >
   <figcaption>
     The topology of a Spark cluster.
   </figcaption>

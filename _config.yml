@@ -16,7 +16,8 @@ google_analytics: "UA-120510914-1"
 # Build settings
 permalink:   /:year/:month/:day/:title/
 markdown: kramdown
-remote_theme: "nikolayg/so-simple-theme"
+remote_theme: "mmistakes/so-simple-theme@3.2.0"
+skin: "/assets/css/skins/dark.css"
 mathjax: true
 google_fonts:
   - name: "Source Sans Pro"
@@ -49,7 +50,7 @@ kramdown:
 share: true
 
 # Search
-search_full_content: false
+search_full_content: true
 
 # Taxonomy pages
 category_archive_path: "/categories/#"
