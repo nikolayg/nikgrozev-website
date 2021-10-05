@@ -98,7 +98,7 @@ is to attach a callback via `then`.
 The following diagram depicts the computational process of the example:
 
 <figure>
-  <img src="/images/blog/async-await/SimplePromiseExample.png" alt="Simple Promises Example." >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/async-await/SimplePromiseExample.png" alt="Simple Promises Example." >
   <figcaption>
     Computational process of a promise. The calling "thread" can't wait for the promise.
     The only way to schedule code after a promise is to specify a callback via the "then" method.
@@ -182,7 +182,7 @@ so we need to chain yet another `then` callback that prints the results (**lines
 The following diagram depicts the computational flow:
 
 <figure>
-  <img src="/images/blog/async-await/CombinedPromises.png" alt="Combined Promises Example." >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/async-await/CombinedPromises.png" alt="Combined Promises Example." >
   <figcaption>
     Computational process of a combination of promises. We use "Promise.all" to combine two
     concurrent promises into a single promise.
@@ -319,7 +319,7 @@ The underlying computational process of the `f` function is depicted below.
 Since `f` is `async`, it will also run in parallel with its caller:
 
 <figure>
-  <img src="/images/blog/async-await/AsyncAwaitExample.png" alt="AsyncAwaitExample." >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/async-await/AsyncAwaitExample.png" alt="AsyncAwaitExample." >
   <figcaption>
     Computational process of "await".
   </figcaption>
@@ -414,7 +414,7 @@ its level or parallelism. A concurrent system may run efficiently on a single pr
 in which case it is not parallel.
 
 <figure>
-  <img src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/concurrent_vs_parallel.png" alt="Concurrent vs. Parallel" >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/Overview of Modern Concurrency and Parallelism Concepts/concurrent_vs_parallel.png" alt="Concurrent vs. Parallel" >
   <figcaption>Concurrent vs. Parallel.</figcaption>
 </figure>
 

@@ -449,7 +449,7 @@ The x-axis is the row index of the data frame. In other words, you're plotting :
 plot_df.plot()
 ```
 <figure>
-  <img src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/lines-300x209.png" alt="Line chart." >
+  <img style="background: white; padding: 0.5rem;" src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/lines-300x209.png" alt="Line chart." >
   <figcaption>Line chart.</figcaption>
 </figure>
 
@@ -478,13 +478,13 @@ plot_df.plot(kind='box')
 <!-------------------------------------------- Image Galery -------------------------------------------->
 <figure class="third">
     <a class="image-popup-fit-width" href="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
-        <img src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
+        <img style="background: white;" src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/stacked_bar.png">
     </a>
     <a class="image-popup-fit-width" href="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
-        <img src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
+        <img style="background: white;" src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot.png">
     </a>
     <a class="image-popup-fit-width" href="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
-        <img src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
+        <img style="background: white;" src="/images/blog/Pandas in Jupyter - Quickstart and Useful Snippets/barplot_horizontal.png">
     </a>
     <figcaption>Various plots.</figcaption>
 </figure>
