@@ -169,7 +169,7 @@ body {
     overflow-x: hidden; 
 }
 
-// Site navigation styling
+// Site navigation styling ==============================================
 #primary-nav ul li {
     font-size: 1em;
     @media #{$medium} {
@@ -177,3 +177,7 @@ body {
     };
 }
 
+// Disqus colour fix for dark mode ==============================================
+.post-message {
+    color: white
+}
