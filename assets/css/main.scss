@@ -8,11 +8,11 @@ sitemap: false
 @import "so-simple";
 
 // MEDIA QUERIES ==============================================
-$micro            : "only screen and (min-width: 30em)";
-$small            : "only screen and (min-width: 37.5em)";
-$medium           : "only screen and (min-width: 48em)";
-$large            : "only screen and (min-width: 62em)";
-$x-large          : "only screen and (min-width: 86.375em)";
+$micro: "only screen and (min-width: 30em)";
+$small: "only screen and (min-width: 37.5em)";
+$medium: "only screen and (min-width: 48em)";
+$large: "only screen and (min-width: 62em)";
+$x-large: "only screen and (min-width: 86.375em)";
 
 $max-width: 1024px;
 $footer-height: 4rem;
@@ -29,171 +29,205 @@ $footer-margin-top: 4rem;
 
 // Source code highlight fixed ==============================================
 .highlight {
-    table {
-        tbody{
-            tr {
-                td:first-child {
-                    width: 2.5rem !important;
-                    margin: 0;
-                    padding-left: 0;
-                    padding-right: 0.25rem;
-                    color: lightgray;
-                    overflow: hidden;
-                    pre: {
-                        max-width: 2.5rem !important;
-                    }
-                }	
-                td:nth-child(2) {
-                    pre {
-                        width: 100%;
-                        overflow: auto;
-                    }
-                }
-            }
+  table {
+    tbody {
+      tr {
+        td:first-child {
+          width: 2.5rem !important;
+          margin: 0;
+          padding-left: 0;
+          padding-right: 0.25rem;
+          color: lightgray;
+          overflow: hidden;
+          pre: {
+            max-width: 2.5rem !important;
+          }
         }
+        td:nth-child(2) {
+          pre {
+            width: 100%;
+            overflow: auto;
+          }
+        }
+      }
     }
+  }
 }
 // Site title and logo ==============================================
 .navigation-wrapper {
-    position: absolute;
-    top:0;   
-    @media #{$medium} {
-        display: flex;
-        justify-content: center;
-    }
-    width: 100%;
-    z-index: 100;
-    #menu-toggle {
-        width: 100%;
-        font-size: 1.2rem;
-    }
-}
-.masthead {
+  position: absolute;
+  top: 0;
+  @media #{$medium} {
     display: flex;
     justify-content: center;
-    .wrap {
-        position: relative;
-        @media #{$medium} {
-            width: 100%;
-        }
-        @media #{$large} {
-            width: $max-width;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        .site-logo {
-            width: 100%;
-            img {
-                width: 100%;
-                display: none;
-                border-radius: 3px;
-                border: 0px !important;
-                @media #{$medium} {
-                    display: block;
-                }
-            }
-        }
+  }
+  width: 100%;
+  z-index: 100;
+  #menu-toggle {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}
+.masthead {
+  display: flex;
+  justify-content: center;
+  .wrap {
+    position: relative;
+    @media #{$medium} {
+      width: 100%;
     }
-    .site-title {
-        margin-top: 2.5rem !important;
-        @media #{$medium} {
-            margin-top: initial !important;
-            position: absolute;
-            z-index: 100;
-            top: 20px;
-            left: 5%;
-            display: block;
-            color: white;
-        }
+    @media #{$large} {
+      width: $max-width;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
-    p.site-description {
+    .site-logo {
+      width: 100%;
+      img {
+        width: 100%;
+        display: none;
+        border-radius: 3px;
+        border: 0px !important;
         @media #{$medium} {
-            position: absolute;
-            z-index: 100;
-            top: 65px;
-            left: 5%;
-            display: block;
+          display: block;
         }
+      }
     }
+  }
+  .site-title {
+    margin-top: 2.5rem !important;
+    @media #{$medium} {
+      margin-top: initial !important;
+      position: absolute;
+      z-index: 100;
+      top: 20px;
+      left: 5%;
+      display: block;
+      color: white;
+    }
+  }
+  p.site-description {
+    @media #{$medium} {
+      position: absolute;
+      z-index: 100;
+      top: 65px;
+      left: 5%;
+      display: block;
+    }
+  }
+}
+.site-logo-img {
+    height: auto !important;
 }
 
 // Publications styling ==============================================
+ul.researchindices {
+  li {
+    line-height: 1.5rem;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
 .publicationslist {
-    p {
-      margin-bottom: 0.25em;
+  p {
+    margin-bottom: 0.25em;
+  }
+
+  ul {
+    @media #{$medium} {
+      width: 100%;
+      text-align: left;
+      //   margin-top: 0em;
+      //   margin-top: 0.75em;
+      list-style: none;
     }
-  
-    ul { 
-      width: 100%; 
-      text-align : left; 
-      margin-top: 0em;
-      margin-top: 0.5em;
-      li { 
-        display: inline; 
+    li {
+      line-height: 1.5rem;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      @media #{$medium} {
+        line-height: inherit;
         white-space: nowrap;
-        margin-right: 0.5em; 
-      }
-      li:before { 
-        content: " \2022"; 
-      }
-      li.nobullet:after { 
-        content: none; 
+        margin-right: 0.75em;
+        display: inline;
+        font-size: 1rem;
       }
     }
+    li:before {
+      @media #{$medium} {
+        content: " \2022";
+      }
+    }
+    li.nobullet:after {
+      @media #{$medium} {
+        content: none;
+      }
+    }
+  }
 }
 
 // Footer styling (based on https://tinyurl.com/y7zvm44t) ==============================================
-html { 
-    height:100%; 
+html {
+  height: 100%;
 }
-body { 
-    min-height:100%; 
-    padding:0; 
-    margin:0; 
-    position:relative; 
-}
-
-body::after { 
-    content:''; 
-    display:block; 
-    height:($footer-margin-top + $footer-height); 
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
 
-body > footer{ 
-  position:absolute; 
-  bottom:0; 
-  width:100%; 
+body::after {
+  content: "";
+  display: block;
+  height: ($footer-margin-top + $footer-height);
+}
+
+body > footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   margin-top: $footer-margin-top;
-  height:$footer-height; 
+  height: $footer-height;
 }
 
 // Disallow body scrolling ==============================================
-body { 
-    overflow-x: hidden; 
+body {
+  overflow-x: hidden;
 }
 
 // Site navigation styling ==============================================
 #primary-nav ul li {
-    font-size: 1em;
-    @media #{$medium} {
-        font-size: 0.75em;
-    };
+  font-size: 1em;
+  @media #{$medium} {
+    font-size: 0.75em;
+  }
 }
 
 // Social Icon Sizes  ==============================================
 .social-icons .social-icon .svg-inline--fa {
-    height: 48px !important;
-    width: 48px !important;
+  height: 48px !important;
+  width: 48px !important;
+  @media #{$medium} {
+    height: 36px !important;
+    width: 36px !important;
+  }
 }
 .social-icons .social-icon {
-    margin-left: 4px;
-    margin-right: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 // Year table spacing   ==============================================
 .taxonomy-index {
-    font-size: 1.2rem;
-    @media #{$medium} {
-        font-size: 0.9em;
-    };
+  font-size: 1.2rem;
+  @media #{$medium} {
+    font-size: 0.9em;
+  }
+}
+
+// Copyrigth footer   ==============================================
+#footer {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
 }

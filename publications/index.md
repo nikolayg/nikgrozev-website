@@ -6,11 +6,11 @@ search_omit: true
 ---
 
 # Research Indices
-
-*   [Google Scholar Profile](http://scholar.google.com.au/citations?user=yVbOGJ0AAAAJ&hl=en&oi=ao)
-*   [DBLP profile](http://www.informatik.uni-trier.de/~ley/pers/hd/g/Grozev:Nikolay)
-*   [Research Gate](https://www.researchgate.net/profile/Nikolay_Grozev/)
-
+<ul class="researchindices">
+    <li> <a href="http://scholar.google.com.au/citations?user=yVbOGJ0AAAAJ&hl=en&oi=ao" target="_blank">Google Scholar Profile</a> </li>
+    <li> <a href="http://www.informatik.uni-trier.de/~ley/pers/hd/g/Grozev:Nikolay" target="_blank">DBLP profile</a> </li>
+    <li> <a href="https://www.researchgate.net/profile/Nikolay_Grozev/" target="_blank">Research Gate</a> </li>
+</ul>
 
 # Publications
 
