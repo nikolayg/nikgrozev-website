@@ -180,7 +180,7 @@ body {
     };
 }
 
-// Bottom Icon Sizes:
+// Social Icon Sizes  ==============================================
 .social-icons .social-icon .svg-inline--fa {
     height: 48px !important;
     width: 48px !important;
@@ -188,4 +188,12 @@ body {
 .social-icons .social-icon {
     margin-left: 4px;
     margin-right: 4px;
+}
+
+// Year table spacing   ==============================================
+.taxonomy-index {
+    font-size: 1.2rem;
+    @media #{$medium} {
+        font-size: 0.9em;
+    };
 }
