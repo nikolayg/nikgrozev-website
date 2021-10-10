@@ -65,6 +65,7 @@ $footer-margin-top: 4rem;
     z-index: 100;
     #menu-toggle {
         width: 100%;
+        font-size: 1.2rem;
     }
 }
 .masthead {
@@ -94,7 +95,9 @@ $footer-margin-top: 4rem;
         }
     }
     .site-title {
+        margin-top: 2.5rem !important;
         @media #{$medium} {
+            margin-top: initial !important;
             position: absolute;
             z-index: 100;
             top: 20px;
@@ -175,4 +178,14 @@ body {
     @media #{$medium} {
         font-size: 0.75em;
     };
+}
+
+// Bottom Icon Sizes:
+.social-icons .social-icon .svg-inline--fa {
+    height: 48px !important;
+    width: 48px !important;
+}
+.social-icons .social-icon {
+    margin-left: 4px;
+    margin-right: 4px;
 }
