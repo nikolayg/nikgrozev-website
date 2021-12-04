@@ -203,7 +203,9 @@ List<String> immutableList = List.copyOf(mutableList);
 System.out.println(immutableList.getClass());
 
 // New collectors - toUnmodifiableXXX convert a stream to immutable collection
-List<String> immutableListCollected = mutableList.stream().collect(Collectors.toUnmodifiableList());
+List<String> immutableListCollected = mutableList.
+    stream().
+    collect(Collectors.toUnmodifiableList());
 ```
 
 <div id="streams-new-methods" />
@@ -243,7 +245,9 @@ values based on a predicate:
 // Stream 0 to 9
 Stream<Integer> sampleStream = Stream.iterate(0, i -> i < 10, i -> i + 1);
 
-Stream<Integer> selectedPart = sampleStream.dropWhile(i -> i < 2).takeWhile(i -> i < 5);
+Stream<Integer> selectedPart = sampleStream.
+    dropWhile(i -> i < 2).
+    takeWhile(i -> i < 5);
 
 // Prints Range [2, 3, 4]
 System.out.printf("Range %s\n", selectedPart.toList().toString());
@@ -295,21 +299,26 @@ System.out.println(" x ".stripTrailing());
 System.out.println(" x ".repeat(3)); // unicode strip
 
 // Make a stream of lines!
-"\ntest\ntest2\n\nstest".lines().forEachOrdered((var s) -> System.out.println(">> " + s));
+"\ntest\ntest2\n\nstest".
+    lines().
+    forEachOrdered((var s) -> System.out.println(">> " + s));
 
-// Manage indentation
+// Manage indentation:
 var multiline = "  line1\n  line2";
+
 // Adds 2 spaces at each line's start. Normalises new lines (\n)
 System.out.println(multiline.indent(2));
+
 // Removes up to 3 spaces lines' start and normalises new lines symbol
 // Can be less if a line has fewer lead spaces
 System.out.println(multiline.indent(-2));
+
 // Normalises new lines (\n) - nothing else changes
 System.out.println(multiline.indent(0));
+
 // Removes the common identation - e.g. if all lines have
 // between 2 and 5 leading spaces stripIndent will remove 2.
 System.out.println(multiline.stripIndent());
-
 ```
 
 <div id="files-new-methods" />
@@ -325,8 +334,8 @@ System.out.println(path);
 String s = Files.readString(path);
 System.out.println(s); //Prints "Demo"
 
-// "mismatch" compares two files efficiently - i.e. first by size, then by content
-// returns -1 if they're equal
+// "mismatch" compares two files efficiently - i.e. first by size,
+// then by content. Returns -1 if they're equal
 System.out.println(Files.mismatch(path, path)); // prints -1
 ```
 
@@ -495,8 +504,10 @@ record ComplexName(String first, String last) {
 
 // Default constructor
 var complexName1 = new ComplexName("john", "doe");
+
 // Custom constructor
 var complexName2 = new ComplexName("john doe");
+
 // Call the custom method
 complexName1.funnyPrint();
 ```
@@ -689,7 +700,7 @@ Unfortunately, some popular libraries haven't migrated to modules yet.
 Also, there is no interoperability with [OSGI](https://www.osgi.org/)
 which was the de facto standard for app modularisation before Java 9.
 
-For more in-depth discussion of the syntax of features, please
+For more in-depth discussion of the syntax of modules, please
 check out this overview of [Java Modules](http://tutorials.jenkov.com/java/modules.html).
 
 <div id="resources" />
