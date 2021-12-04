@@ -187,7 +187,7 @@ List<String> sampleList = List.of("a", "b", "c");
 Set<String> sampleSet = Set.of("a", "b", "c");
 Map<String, String> sampleMap = Map.of("a", "a-Value", "b", "b-Value");
 
-// Immutable collections - will throw error on modification
+// Immutable collection - will throw error on modification
 // sampleList.set(0, "will be error");
 
 // Prints out:
