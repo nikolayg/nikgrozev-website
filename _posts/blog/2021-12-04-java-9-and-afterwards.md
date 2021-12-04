@@ -33,7 +33,7 @@ tags:
 - [New Syntax for Interfaces](#interfaces)
 - [Records](#records)
 - [Sealed Classes](#sealed-classes)
-- [New Garbage Collection Algorithms](#garbage-collection)
+- [Garbage Collection Algorithms](#garbage-collection)
 - [Java Modules (Overview)](#java-modules)
 - [Resources](#resources)
 
@@ -619,7 +619,7 @@ class LoanSharkProduct extends PersonalLoan {
 
 <div id="garbage-collection" />
 
-# New Garbage Collection Algorithms
+# Garbage Collection Algorithms
 
 Java is one of the few platforms to offer developers fine grained
 control over which Garbage Collection (GC) algorithm is used and its
