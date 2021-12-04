@@ -719,3 +719,4 @@ check out this overview of [Java Modules](http://tutorials.jenkov.com/java/modul
 - [Getting started with Z Garbage Collector (ZGC) in Java 11](https://hub.packtpub.com/getting-started-with-z-garbage-collectorzgc-in-java-11-tutorial/)
 - [Garbage Collection in Java – What is GC and How it Works in the JVM](https://www.freecodecamp.org/news/garbage-collection-in-java-what-is-gc-and-how-it-works-in-the-jvm/)
 - [Java Modules](http://tutorials.jenkov.com/java/modules.html)
+- [Fight ambiguity and improve your code with Java 17’s sealed classes](https://blogs.oracle.com/javamagazine/post/java-sealed-classes-fight-ambiguity)
