@@ -5,7 +5,7 @@ date: 2021-12-04 01:22:09.000000000
 type: post
 published: true
 status: publish
-excerpt: This post summarises the new fatures in Java after version 9.
+excerpt: This post summarises the new features in Java after version 9.
   It covers the most prominent features from
   a developer's perspective. It either omits or gives a high level overview
   of less commonly used features.
@@ -51,7 +51,7 @@ There're many projects
 [stuck with Java 8](https://www.marcobehler.com/guides/a-guide-to-java-versions-and-features#_why_are_companies_still_stuck_with_java_8). It turns out developers are
 having a hard time keeping up to speed and upgrading their code bases.
 
-In this post, I'll summarise the new fatures in Java 9 and later versions.
+In this post, I'll summarise the new features in Java 9 and later versions.
 At the time of writing the latest is Java 17 and I will keep this
 article up to date as new versions are released.
 If you need to catch up with Java 8, check out
@@ -155,8 +155,8 @@ java ./app/src/main/java/com/nikgrozev/App.java
 # Var - Local Variable Type Inference
 
 As of Java 10, local variables can be defined with the `var`
-without expilicty specifying their type. The compiler
-automatically infers the type of such varitables:
+without explicitly specifying their type. The compiler
+automatically infers the type of such variables:
 
 ```java
 // Before, we had to write List<String> list = ...
@@ -175,7 +175,7 @@ have a new factory method `of` to quickly instantiate
 immutable collections.
 
 Another new collection factory method is `copyOf`, which
-creates an immutable copy of its arguement.
+creates an immutable copy of its argument.
 
 Finally, new collectors have been introduced, which convert a
 stream to an unmodifiable collections
@@ -316,7 +316,7 @@ System.out.println(multiline.indent(-2));
 // Normalises new lines (\n) - nothing else changes
 System.out.println(multiline.indent(0));
 
-// Removes the common identation - e.g. if all lines have
+// Removes the common indentation - e.g. if all lines have
 // between 2 and 5 leading spaces stripIndent will remove 2.
 System.out.println(multiline.stripIndent());
 ```
@@ -329,7 +329,8 @@ With the new `Files`, developers can read, write, compare files more easily:
 
 ```java
 // Creating and reading text files with a single line!
-Path path = Files.writeString(Files.createTempFile("test", ".txt"), "Demo");
+Path path =
+    Files.writeString(Files.createTempFile("test", ".txt"), "Demo");
 System.out.println(path);
 String s = Files.readString(path);
 System.out.println(s); //Prints "Demo"
@@ -343,7 +344,7 @@ System.out.println(Files.mismatch(path, path)); // prints -1
 
 # Switch Expressions
 
-This new syntax avoids the pitfals of
+This new syntax avoids the pitfalls of
 [switch fall through](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html):
 
 ```java
@@ -361,7 +362,7 @@ System.out.println(index);
 # Pattern Matching For InstanceOf
 
 Type guards with `instanceOf` are common in Java code.
-In older versions, you'd still need to expicitly cast within the
+In older versions, you'd still need to explicitly cast within the
 guarded code, but now there's a shortcut:
 
 ```java
@@ -395,17 +396,17 @@ var sql = """
         """;
 ```
 
-The lines' common identation and trailing spaces are stripped.
-To add leading identation either use the `indent` method
+The lines' common indentation and trailing spaces are stripped.
+To add leading indentation either use the `indent` method
 or move the closing quotes at the beginning of the line:
 
 ```java
-var sqlExplicitlyIdented = """
+var sqlExplicitlyIndented = """
     SELECT * FROM
     MY_TABLE
     """.indent(2);
 
-var sqlOriginalIdentation = """
+var sqlOriginalIndentation = """
     SELECT * FROM
     MY_TABLE
 """; // <----- closing bracket is at the line's beginning
@@ -532,7 +533,7 @@ bad.list().remove(0);
 Sealed classes are a new feature which allows you to control how a class hierarchy is extended.
 
 Previously, a class could be either `final` or freely extendable.
-What if you nned to have your own class hierachy, but want to prevent client programmers
+What if you need to have your own class hierarchy, but want to prevent client programmers
 (e.g. library users) extending it or part of it?
 
 For example, you can create a class `ImmutableSet` and a subclass `ImmutableOrderedSet`.
@@ -620,14 +621,14 @@ parameters. In recent years, Java changed the default GC algorithm to
 [G1](https://www.redhat.com/en/blog/part-1-introduction-g1-garbage-collector)
 and introduced the [ZGC](https://hub.packtpub.com/getting-started-with-z-garbage-collectorzgc-in-java-11-tutorial/)
 and [Shenandoah](https://wiki.openjdk.java.net/display/shenandoah/Main)
-algorithms for low latency applicaitons. In this section, I'll cover
+algorithms for low latency applications. In this section, I'll cover
 the main GC algorithms (old and new) and how they compare.
 
 **Serial GC** is the simplest GC algorithm, tailored
 for single threaded applications.
 It works on a single thread and stops the app while running.
 It uses a mark-compact collection method, which clears the heap and
-then compacts it into a contiguos memory space.
+then compacts it into a contiguous memory space.
 
 <!-- Hence, allocating new memory blocks is faster. -->
 
@@ -636,7 +637,7 @@ meaning that it divides the heap into sections called "generations".
 The idea is that new objects are more likely to require collection
 than older objects. Hence, younger generations are cleaned more often
 and the surviving objects are gradually moved to the old generations.
-Although the algorigthm is called Parallel, it doesn't run
+Although the algorithm is called Parallel, it doesn't run
 in parallel with the application. It pauses the app, just like **Serial GC**.
 However, the garbage collection itself should be much faster since it uses
 multiple threads.
@@ -693,7 +694,7 @@ Only the exposed packages can be used by other modules.
 
 Most importantly, the JDK itself has been broken into modules. Hence, you can
 cherry pick which part of the JDK you need to package with your app.
-This leads to smaller and more secure executable and runtimes
+This leads to smaller and more secure executable and runtime
 (e.g. Docker images).
 
 Unfortunately, some popular libraries haven't migrated to modules yet.
