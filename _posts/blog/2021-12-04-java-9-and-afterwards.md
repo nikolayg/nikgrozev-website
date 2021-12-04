@@ -313,8 +313,8 @@ var multiline = "  line1\n  line2";
 // Adds 2 spaces at each line's start. Normalises new lines (\n)
 System.out.println(multiline.indent(2));
 
-// Removes up to 3 spaces lines' start and normalises new lines symbol
-// Can be less if a line has fewer lead spaces
+// Removes up to 3 spaces on each line's start and normalises new
+// lines symbol. Can be less if a line has fewer lead spaces
 System.out.println(multiline.indent(-2));
 
 // Normalises new lines (\n) - nothing else changes
