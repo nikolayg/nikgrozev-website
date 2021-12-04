@@ -193,7 +193,10 @@ Map<String, String> sampleMap = Map.of("a", "a-Value", "b", "b-Value");
 // class java.util.ImmutableCollections$ListN,
 // class java.util.ImmutableCollections$SetN,
 // class java.util.ImmutableCollections$MapN
-System.out.printf("%s,\n%s,\n%s\n", sampleList.getClass(), sampleSet.getClass(), sampleMap.getClass());
+System.out.printf("%s,\n%s,\n%s\n",
+    sampleList.getClass(),
+    sampleSet.getClass(),
+    sampleMap.getClass());
 
 // List, Set, Map have a new method "copyOf" to create an immutable copy
 List<String> mutableList = new ArrayList<>(Arrays.asList("1", "2", "3"));
