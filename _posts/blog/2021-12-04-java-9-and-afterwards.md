@@ -22,7 +22,7 @@ tags:
 - [JShell](#jshell)
 - [Run Java files](#run-java-files)
 - [Var - Local Variable Type Inference](#var-local-inference)
-- [Unmodifiable Collections - new factory and utility methods](#unmodifiable-collections)
+- [Unmodifiable Collections - New Factory and Utility Methods](#unmodifiable-collections)
 - [Streams - New Methods](#streams-new-methods)
 - [Optional - New Methods](#optional-new-methods)
 - [String - New Methods](#string-new-methods)
@@ -48,7 +48,7 @@ then 3 more for Java 8 (2014) and then 3 more for Java 9 (2017).
 
 Since then, there's been a new release every 6 months!
 There're many projects
-[stuck with Java 8](https://www.marcobehler.com/guides/a-guide-to-java-versions-and-features#_why_are_companies_still_stuck_with_java_8). 
+[stuck with Java 8](https://www.marcobehler.com/guides/a-guide-to-java-versions-and-features#_why_are_companies_still_stuck_with_java_8).
 It turns out developers are
 having a hard time keeping up to speed and upgrading their code bases.
 
