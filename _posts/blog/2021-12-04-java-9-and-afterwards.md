@@ -41,14 +41,15 @@ tags:
 
 # Introduction
 
-Java has been known as a very slow moving
+Java has been often referred to as a slow moving
 language and platform. It took nearly 5 years for Java 7
 to come out (released in 2011)
 then 3 more for Java 8 (2014) and then 3 more for Java 9 (2017).
 
 Since then, there's been a new release every 6 months!
 There're many projects
-[stuck with Java 8](https://www.marcobehler.com/guides/a-guide-to-java-versions-and-features#_why_are_companies_still_stuck_with_java_8). It turns out developers are
+[stuck with Java 8](https://www.marcobehler.com/guides/a-guide-to-java-versions-and-features#_why_are_companies_still_stuck_with_java_8). 
+It turns out developers are
 having a hard time keeping up to speed and upgrading their code bases.
 
 In this post, I'll summarise the new features in Java 9 and later versions.
