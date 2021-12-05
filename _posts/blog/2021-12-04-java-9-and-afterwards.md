@@ -477,8 +477,8 @@ a simple data-only class - get methods, `equals`, `hashCode`, `toString`, etc.
 Developers often use their IDEs to auto generate all of these.
 
 As of Java 17, there's a shortcut for creating _immutable data-only classes_ via the
-`record` keyword. Records are final and can not be extended. They get  
-automatic accessor methods, constructor, and the
+`record` keyword. Records are final and can not be extended. 
+They get automatic accessor methods, constructor, and the
 aforementioned `equals`, `hashCode`, `toString`:
 
 ```java
@@ -664,13 +664,13 @@ with the most dead objects. Because it works on selected regions, G1
 minimises the amount of time the app is paused.
 
 The **Epsilon Garbage Collector** doesn't actually collect any garbage.
-Thus apps can only allocate memory on the heap, but it is never deleted.
+Thus, apps can only allocate memory on the heap, but it is never deleted.
 It's used for low latency apps where developers are well aware
 of the memory consumption. It's also useful for short lived jobs
 where the upper limit of allocated memory is small.
 
 The **Z Garbage Collector (ZGC)** runs an analysis of the heap known as
-marking. For each object reference ZGC stores the object state
+marking. For each object reference, ZGC stores the object state
 (e.g. ready for collection, or being relocated) in
 unused bits of the reference itself - a technique known as
 colouring.
