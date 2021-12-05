@@ -692,6 +692,7 @@ structures to keep track of objects' state and hence its
 memory and CPU footprints are much higher.
 
 <div id="java-modules" />
+
 # Java Modules (Overview)
 
 Java modules are new in Java 9. 
