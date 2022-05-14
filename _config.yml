@@ -21,7 +21,7 @@ skin: "/assets/css/skins/dark.css"
 mathjax: true
 google_fonts:
   - name: "Lora"
-    weights: "400,400i,700,700i&display=swap"
+    weights: "400,400i,700,700i"
 plugins:
   - jekyll-sitemap
   - jekyll-gist
