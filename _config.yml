@@ -14,7 +14,7 @@ twitter:
 google_analytics: "UA-120510914-1"
 
 # Build settings
-permalink:   /:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
 markdown: kramdown
 remote_theme: "mmistakes/so-simple-theme@3.2.0"
 skin: "/assets/css/skins/dark.css"
@@ -23,7 +23,7 @@ google_fonts:
   - name: "Source Sans Pro"
     weights: "400,400i,700,700i"
   - name: "Lora"
-weights: "400,400i,700,700i"
+    weights: "400,400i,700,700i"
 plugins:
   - jekyll-sitemap
   - jekyll-gist
@@ -45,7 +45,6 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-
 # Share on social media:
 share: true
 
@@ -57,7 +56,32 @@ category_archive_path: "/categories/#"
 tag_archive_path: "/tags/#"
 
 include: [".htaccess", ".well-known"]
-exclude: ["*.odg", "*.odt", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
+exclude:
+  [
+    "*.odg",
+    "*.odt",
+    "lib",
+    "config.rb",
+    "Capfile",
+    "config",
+    "log",
+    "Rakefile",
+    "Rakefile.rb",
+    "tmp",
+    ".less",
+    "*.sublime-project",
+    "*.sublime-workspace",
+    "test",
+    "spec",
+    "Gruntfile.js",
+    "package.json",
+    "node_modules",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE",
+    "README.md",
+    "vendor",
+  ]
 
 # Site Author
 # Icons found at - https://fontawesome.com/icons?d=gallery
@@ -100,5 +124,3 @@ footer_links:
   - title: RSS
     url: http://nikgrozev.com/feed.xml
     icon: fas fa-rss-square
-
-
