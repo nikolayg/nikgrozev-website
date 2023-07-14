@@ -6,24 +6,23 @@ A Jekyll website and blog based on the [So Simple theme](https://github.com/mmis
 
 To setup a local environment, follow these steps:
 
-- Install ruby 2.6.3 or later. On Linux/OSX use [RVM](https://rvm.io/rvm/install) to set it up:
+- Install ruby 3.2.2 or later. On Linux/OSX use [rbenv](https://github.com/rbenv/rbenv) to set it up:
 ```bash
 # Install RVM
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
+brew install rbenv ruby-build
+echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc 
+source ~/.zshrc
 
-# Install the ruby itself
-rvm install 2.6.3
+# Install the ruby itself - this will take a while
+rbenv install 3.2.2
 
-# If there's an issue try
-rvm reinstall 2.6.3
-rvm reinstall --disable-binary 2.6.3
-
-# Set 2.6.3 as default ruby
-rvm use --default 2.6.3
+# Set it as default ruby
+rbenv global 3.2.2
 ```
 
 - Install the Bundler gem:
 ```bash
+rbenv init
 gem install bundler
 ```
 
@@ -31,6 +30,7 @@ gem install bundler
 
 - Install all gems:
 ```bash
+rbenv init
 bundle update && bundle install
 ```
 
