@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Solving Progress Indication Issues in Legacy Web Applications
-date: 2023-14-07 01:22:09.000000000
+date: 2023-07-14 01:22:09.000000000
 type: post
 published: true
 status: publish
