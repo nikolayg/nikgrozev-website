@@ -50,7 +50,7 @@ experienced with Java.
 
 In this post, I'll explain how to build an unopionated, production ready API
 which isn't coupled with complex frameworks or requiring understanding of the Java 
-enterprise ecosystem. We'll cover how to automate testing, formatting, code analysis,
+enterprise ecosystem. We'll cover how to do automate testing, formatting, code analysis,
 and vulnerability checks with [Gradle](https://gradle.org/) commands.
 
 The API starter [code is on GitHub](https://github.com/nikolayg/java-api-starter) and in the rest of this post we'll break it down.
