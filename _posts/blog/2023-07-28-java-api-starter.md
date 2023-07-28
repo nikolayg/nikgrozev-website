@@ -77,7 +77,7 @@ If you cloned the [GitHub project](https://github.com/nikolayg/java-api-starter)
 If you want to follow along, then you'll need `gradle` to initialise the project:
 
 ```bash
-# View all available Java distributions:
+# View available Gradle distributions:
 sdk list gradle
 
 # Install a gradle version from the above list
