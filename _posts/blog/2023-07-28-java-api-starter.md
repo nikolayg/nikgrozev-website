@@ -618,7 +618,7 @@ docker run \
 # Docker Image: Vulnerability Analysis
 
 Many CI/CD tools scan images for known vulnerabilities. I often find it useful
-to scan the image locally so I can quickly experiment with different approaches
+to scan the image locally, so I can quickly experiment with different approaches
 to mitigate vulnerabilities. I find the [Rancher Desktop](https://rancherdesktop.io/)
 very useful. It allows me to pick a local docker image and scan it in the UI.
 
