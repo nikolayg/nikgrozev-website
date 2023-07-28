@@ -139,7 +139,7 @@ run, and check the docs:
 # Run the JUnit5 tests
 ./gradlew test
 
-# Run app locally
+# Run the app locally
 ./gradlew run
 
 # Checkout all gradle tasks or get help for a task
@@ -218,7 +218,7 @@ For a full example, see the [GitHub project](https://github.com/nikolayg/java-ap
 With the above, we have a fully functional web server:
 
 ```bash
-# Run app locally
+# Run the app locally
 # Checkout http://localhost:9090/api/health
 ./gradlew run
 ```
