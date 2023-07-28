@@ -53,7 +53,7 @@ which isn't coupled with complex frameworks or requiring understanding of the Ja
 enterprise ecosystem. We'll cover how to automate testing, formatting, code analysis,
 and vulnerability checks with [Gradle](https://gradle.org/) commands.
 
-The API starter [code is on GitHub](https://github.com/nikolayg/java-api-starter) and in the rest of this post, we'll break it down.
+The API starter [code is on GitHub](https://github.com/nikolayg/java-api-starter) and in the rest of this post we'll break it down.
 
 <div id="set_up" />
 
@@ -123,7 +123,7 @@ Enter target version of Java (min. 7) (default: 17): 17
 
 The above creates a single project 
 [gradle application](https://docs.gradle.org/current/userguide/application_plugin.html)
-which can run a main method and packages your code in a single archive. If you're new to gradle,
+which can run a main method and packages your code in an archive. If you're new to gradle,
 you can have a look at the [Gradle Quickstart](/2017/02/10/gradle-quickstart/) tutorial. 
 From now on, we'll use the [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
 script `./gradlew` to ensure consistent builds across environments.
@@ -164,7 +164,7 @@ jar {
 }
 ```
 
-Now we can build and run an executable jar file:
+Now we can build and run the executable jar file:
 
 ```bash
 # Clean up, compile and rebuild
@@ -186,12 +186,8 @@ dependencies {
     //...
     // Javalin Web Server
     implementation "io.javalin:javalin:5.6.1"
-    // Allows Javalin to parse for create JSON
+    // Allows Javalin to parse and create JSON
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
-    // Mockito for unit testing Javalin
-    testImplementation 'org.mockito:mockito-inline:5.2.0'
-    // Javalin test utility
-    testImplementation 'io.javalin:javalin-testtools:5.6.1'
 }
 ```
 
@@ -228,8 +224,8 @@ With the above, we have a fully functional web server:
 ```
 
 Beyond the basisc, Javalin offers many more advanced functionalities like 
-[before and after handlers](https://javalin.io/documentation#before-handlers) so you 
-can check auth tokens and starndardise responses, supports 
+[before and after handlers](https://javalin.io/documentation#before-handlers), 
+supports 
 [web sockets](https://javalin.io/documentation#websockets), [validation](https://javalin.io/documentation#validation) and more.
 
 <div id="testing" />
@@ -277,7 +273,7 @@ public class ItemControllerTest {
 This is great, but I prefer to mock as little as possible. Mocking excessively makes
 tests unreleastic. Fortunately, 
 [Javalin Test Tools](https://mvnrepository.com/artifact/io.javalin/javalin-testtools)
-allows us to test an actual instance of a Javalin webserver and make realistic queries:
+allows us to test an actual instance of a Javalin webserver and make realistic API calls:
 
 ```java
 public class AppTest {
@@ -307,8 +303,8 @@ Once again, the full code with the unit tests is available on [GitHub](https://g
 
 # Externalisation
 
-[Dotenv](https://github.com/cdimascio/dotenv-java) is a Java alternative for the popular npm package
-[dotenv](https://www.npmjs.com/package/dotenv). It allows you to keep all your dev env variables
+[Dotenv](https://github.com/cdimascio/dotenv-java) is a Java alternative of the popular npm package
+[dotenv](https://www.npmjs.com/package/dotenv). It allows us to keep all dev env variables
 in a local file `./app/.env` and load them from the app. In production, you wouldn't have a `.env`
 and then the library would load actual environment variables instead. Let's add it as a dependency:
 
@@ -440,9 +436,9 @@ can submit code for analysis, which is then validated against a predefined
 [Quality Gate](https://docs.sonarsource.com/sonarqube/latest/user-guide/quality-gates/).
 
 Let's configure a [Gradle Plugin](https://docs.sonarsource.com/sonarqube/latest/) to push
-code to a SonarQube instance. Before that, we'll need to congirue test coverate reports,
+code to a SonarQube instance. Before that, we'll need to congirue test coverage reports,
 so that SonaQube can inspect that too (SonarQube won't run your tests).
-We'll use the populat [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html)
+We'll use the popular [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html)
 code coverate tool:
 :
 
@@ -493,7 +489,7 @@ export SONAR_TOKEN=???
 # Dependency Vulnerability Analysis
 
 [Dependency vulnerability analysis](https://owasp.org/www-project-dependency-check/) 
-is essential to maintain healthy and secure application.
+is essential to maintain a healthy and secure application.
 We'll use the [OWASP Gradle plugin](https://plugins.gradle.org/plugin/org.owasp.dependencycheck)
 to inspect our code - let's configure it:
 
@@ -551,7 +547,7 @@ The first stage will build the executable jar file, and the second will run it.
 
 I've chosen to use the [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
 official Docker image a base image. If you want to minimise the resulting docker image
-you may use its Alpine variant or another base image. Firthermore,
+you may use its Alpine variant or another base image. Furthermore,
 the [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin) page documents
 how to use [jlink](https://www.baeldung.com/jlink) to create a smaller and custom JRE, 
 which would result in an even smaller image. For simplicity, let's just use the
@@ -585,7 +581,7 @@ CMD ["java", "-jar", "/app/app.jar"]
 
 It's a good practice to add a `.dockerignore` file to your code base. This will speed
 up the build. I have added a 
-[sample](https://github.com/nikolayg/java-api-starter/blob/main/.dockerignore) on in the GitHub project.
+[sample](https://github.com/nikolayg/java-api-starter/blob/main/.dockerignore) one in the GitHub project.
 
 Let's proceed to build and tag our docker image:
 
@@ -593,7 +589,7 @@ Let's proceed to build and tag our docker image:
 docker build . -t java-api-starter
 ```
 
-Now we can start the image locally. It's ofent convenient to 
+Now we can start the image locally. It's often convenient to 
 pass all required env variables in a file:
 
 ``` bash
@@ -624,7 +620,7 @@ docker run \
 Many CI/CD tools scan images for known vulnerabilities. I often find it useful
 to scan the image locally so I can quickly experiment with different approaches
 to mitigate vulnerabilities. I find the [Rancher Desktop](https://rancherdesktop.io/)
-very useful. It allows me to pick a local docker image and scan it via an easy UI.
+very useful. It allows me to pick a local docker image and scan it in the UI.
 
 Let's start by selecting an image to scan:
 <figure>
@@ -634,7 +630,7 @@ Let's start by selecting an image to scan:
   </figcaption>
 </figure>
 
-And then we can preview all known vulnerabilities and their severity
+And then we can preview all known vulnerabilities and their severity:
 
 <figure>
   <img style="max-width: 700px;" src="/images/blog/java-api-starter/image-analysis.png" alt="Docker image analysis." >
