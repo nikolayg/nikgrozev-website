@@ -18,6 +18,11 @@ $max-width: 1024px;
 $footer-height: 4rem;
 $footer-margin-top: 4rem;
 
+// Fix up small font on small devices
+html {
+  font-size: max(calc(14px + 4 * ((100vw - 320px) / 960)), 16px) !important;
+}
+
 // ABOUT PAGE ==============================================
 // .about-page-content {
 //     .stress {
@@ -67,7 +72,16 @@ $footer-margin-top: 4rem;
     width: 100%;
     font-size: 1.2rem;
   }
+
 }
+@media only screen and (max-width: 37.5em) {
+  .site-nav {
+    li {
+      display: block !important;
+    }
+  }
+}
+
 .masthead {
   display: flex;
   justify-content: center;
